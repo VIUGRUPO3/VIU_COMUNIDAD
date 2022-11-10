@@ -2,7 +2,7 @@
 package usuario;
 
 /**
- *
+ * Clase que hereda de Usuario
  */
 public class Admin extends Usuario {
     
@@ -16,7 +16,7 @@ public class Admin extends Usuario {
         super(idUsuario, nombre, clave, telefono, email, tipo);
     }
     /**
-    * Metodo altaUsuario, pra crear usuario de BD
+    * Metodo altaUsuario, para crear usuario de BD
     * NOTA: "void" ya que no devuelve nada el metodo
     */
     public void altaUsuario (int idUsuario, String nombre, String clave, String telefono, String email, String tipo){

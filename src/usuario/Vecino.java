@@ -1,5 +1,7 @@
 package usuario;
 
+/*Clase que hereda de Usuario*/
+
 public class Vecino extends Usuario {
 
     /**
