@@ -8,7 +8,7 @@ import usuario.Admin;
 import usuario.Vecino;
 /**
  *
- * @author Ubik
+ * @author Grupo3
  */
 public class main {
 
