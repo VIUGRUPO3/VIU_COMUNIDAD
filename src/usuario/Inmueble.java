@@ -3,15 +3,15 @@ package usuario;
 
 //* Se declara como clase abstracta ya que define unicamente la estructura de la clase.*//
 //* No se va a instanciar ningún objeto de esta clase.*//
-abstract class Inmueble {
+public class Inmueble {
 
     /**
-     * Declaración de atributos como protected para no ser accedidos por otras clases fuera del paquete.
+     * Declaración de atributos como privados para no ser accedidos por otras clases fuera del paquete.
      */
 
-    protected int idInmueble;//
-    protected String direccion;
-    protected int idUsuario;
+    private int idInmueble;//
+    private String direccion;
+    private int idUsuario;
     
     //Se declara esta variable como privada para que este protegida dentro de la clase
     //private String token;
@@ -19,8 +19,8 @@ abstract class Inmueble {
     /**
      * Constructor "metodo que inicializa el objeto" de la clase Unmueble.
      */
-    //(Dentro del constructor se incluyen los paramatros)
-    protected Inmueble(int idInmueble, String direccion, int idUsuario){
+    //(Dentro del constructor se incluyen los parametros)
+    public Inmueble(int idInmueble, String direccion, int idUsuario){
        
         this.idInmueble = idInmueble;
         this.direccion = direccion;

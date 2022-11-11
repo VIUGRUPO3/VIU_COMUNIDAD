@@ -3,24 +3,24 @@ package gastos;
 
 //* Se declara como clase abstracta ya que define unicamente la estructura de la clase.*//
 //* No se va a instanciar ningún objeto de esta clase.*//
-abstract class Liquidacion {
+public class Liquidacion {
 
     /**
      * Declaración de atributos como protected para no ser accedidos por otras clases fuera del paquete.
      */
 
-    protected int idLiquidacion;//
-    protected String fecIni;
-    protected String fecFin;
-    protected double recibo;
-    protected int idUsuario;
+    private int idLiquidacion;//
+    private String fecIni;
+    private String fecFin;
+    private double recibo;
+    private int idUsuario;
     
     
     /**
-     * Constructor "metodo que inicializa el objeto" de la clase Gasto.
+     * Constructor "metodo que inicializa el objeto" de la clase Liquidación.
      */
-    //(Dentro del constructor se incluyen los paramatros)
-    protected Liquidacion(int idLiquidacion, String fecIni, String fecFin, double recibo, int idUsuario){
+    //(Dentro del constructor se incluyen los parametros)
+    public Liquidacion(int idLiquidacion, String fecIni, String fecFin, double recibo, int idUsuario){
        
         this.idLiquidacion = idLiquidacion;
         this.fecIni = fecIni;
@@ -30,7 +30,7 @@ abstract class Liquidacion {
     }
 
     /**
-     * Metodo getId, para obtener el identificar de usuario
+     * Metodo getId, para obtener el identificar de Liquidación
      * 
      */
     public int getId (){
@@ -46,24 +46,23 @@ abstract class Liquidacion {
         this.recibo = recibo;
         this.idUsuario = idUsuario;
                 
-        //Pendiente logica alta de BD gastos
+        //Pendiente logica alta de BD Liquidacion
         
         return ok;        
     }
     /**
-    * Metodo bajaUsuario, pra eliminar usuario de BD
-    * NOTA: "void" ya que no devuelve nada el metodo
+    * Metodo bajaLiquidacion, para eliminar liquidacion de BD
     */
     public boolean bajaLiquidacion(int idUsuario){
         
         boolean ok=false;
         
-        //Pendiente logica baja de BD gasto, devolver true si fue todo bien
+        //Pendiente logica baja de BD liquidacion, devolver true si fue todo bien
         
         return ok;
     }
     /**
-    * Metodo modUsuario, para modificar usuario de BD
+    * Metodo modLiquidacion, para modificar liquidacion de BD
     */
     public boolean modLiquidacion(int idLiquidacion, String fecIni, String fecFin, double recibo, int idUsuario){
         
@@ -75,20 +74,20 @@ abstract class Liquidacion {
         this.recibo = recibo;
         this.idUsuario = idUsuario;
         
-        //Pendiente logica Modificar de BD gasto, devolver true si la modificación fue correcta
+        //Pendiente logica Modificar de BD liquidacion, devolver true si la modificación fue correcta
         
         return ok;
     }
     
     /**
-     * Metodo login, reliaza el login contra la app
+     * Metodo getCalcularLiquidacion, calcula la liquidación para el inmueble asociado
      * 
      */
     public double getCalcularLiquidacion (int idInmueble, String fecIni, String fecFin){
        
         double liquidacion=0;
         
-        /*Aqui se calcularia el gasto de un servicio a lo largo de un periodo de tiempo y se devuelve el montante calculado */
+        /*Aqui se calcularia obtendrian los gastos asociados a un periodo de tiempo y se devuelve el montante calculado */
         
         return liquidacion;
                 

@@ -21,7 +21,7 @@ abstract class Usuario {
     /**
      * Constructor "metodo que inicializa el objeto" de la clase Usuario.
      */
-    //(Dentro del constructor se incluyen los paramatros)
+    //(Dentro del constructor se incluyen los parametros)
     protected Usuario(int idUsuario, String nombre, String clave, String telefono, String email, String tipo){
        
         this.idUsuario = idUsuario;
@@ -65,7 +65,7 @@ abstract class Usuario {
         /*
         Incluir logica de login 
         */       
-        //Pendiente consulta a BD con idUsuario para comprobar el emial y la clave y validar si es correcto
+        //Pendiente consulta a BD con idUsuario para comprobar el email y la clave y validar si es correcto
       
                
         return token;

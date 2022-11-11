@@ -29,7 +29,7 @@ public class Admin extends Usuario {
         //Pendiente logica alta de BD usuario
     }
     /**
-    * Metodo bajaUsuario, pra eliminar usuario de BD
+    * Metodo bajaUsuario, para eliminar usuario de BD
     * NOTA: "void" ya que no devuelve nada el metodo
     */
     public void bajaUsuario (int idUsuario){

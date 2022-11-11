@@ -10,8 +10,9 @@ package servicios;
 
 public class Opcional extends Servicio {
 
+    private int numInmuebles;
     /**
-    * Constructor de la clase Fijo.
+    * Constructor de la clase Opcional.
     */
     public Opcional(int idServicio, String tipo, double importeServicio, String descripcion, boolean costeCompartido, int idProveedor){
         super(idServicio, tipo, importeServicio, descripcion, costeCompartido, idProveedor);
@@ -21,7 +22,7 @@ public class Opcional extends Servicio {
         return this.idServicio;
     }
 
-    public int NumInmuebles(){
+    public int getNumInmuebles(){
         
         int numInmuebles = 0;
     

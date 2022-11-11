@@ -19,7 +19,7 @@ abstract class Servicio {
     /**
      * Constructor "metodo que inicializa el objeto" de la clase Gasto.
      */
-    //(Dentro del constructor se incluyen los paramatros)
+    //(Dentro del constructor se incluyen los parametros)
     protected Servicio(int idServicio, String tipo, double importeServicio, String descripcion, boolean costeCompartido, int idProveedor){
        
         this.idServicio = idServicio;
@@ -53,7 +53,7 @@ abstract class Servicio {
         return ok;        
     }
     /**
-    * Metodo bajaUsuario, pra eliminar usuario de BD
+    * Metodo bajaUsuario, para eliminar usuario de BD
     * NOTA: "void" ya que no devuelve nada el metodo
     */
     public boolean bajaServicio(int idServicio){
@@ -65,7 +65,7 @@ abstract class Servicio {
         return ok;
     }
     /**
-    * Metodo modUsuario, para modificar usuario de BD
+    * Metodo modUsuario, para modificar servicio de BD
     */
     public boolean modServicio(int idServicio, String tipo, double importeServicio, String descripcion, boolean costeCompartido, int idProveedor){
         
@@ -78,7 +78,7 @@ abstract class Servicio {
         this.costeCompartido = costeCompartido;
         this.idProveedor = idProveedor;
         
-        //Pendiente logica Modificar de BD gasto, devolver true si la modificación fue correcta
+        //Pendiente logica Modificar de BD servicio, devolver true si la modificación fue correcta
         
         return ok;
     }

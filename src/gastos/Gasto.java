@@ -3,26 +3,26 @@ package gastos;
 
 //* Se declara como clase abstracta ya que define unicamente la estructura de la clase.*//
 //* No se va a instanciar ningún objeto de esta clase.*//
-abstract class Gasto {
+public class Gasto {
 
     /**
-     * Declaración de atributos como protected para no ser accedidos por otras clases fuera del paquete.
+     * Declaración de atributos como privados para no ser accedidos por otras clases fuera del paquete.
      */
 
-    protected int idGasto;//
-    protected String fecAltaGasto;
-    protected double costeGasto;
-    protected String descripcion;
-    protected int idUsuario;
-    protected int idServicio;
-    protected int idLiquidacion;
-    protected String fecPago;
+    private int idGasto;//
+    private String fecAltaGasto;
+    private double costeGasto;
+    private String descripcion;
+    private int idUsuario;
+    private int idServicio;
+    private int idLiquidacion;
+    private String fecPago;
     
     /**
      * Constructor "metodo que inicializa el objeto" de la clase Gasto.
      */
-    //(Dentro del constructor se incluyen los paramatros)
-    protected Gasto(int idGasto, String fecAltaGasto , double costeGasto, String descripcion, int idUsuario, int idServicio, int idLiquidacion, String fecPago){
+    //(Dentro del constructor se incluyen los parametros)
+    public Gasto(int idGasto, String fecAltaGasto , double costeGasto, String descripcion, int idUsuario, int idServicio, int idLiquidacion, String fecPago){
        
         this.idGasto = idGasto;
         this.fecAltaGasto = fecAltaGasto;
@@ -35,7 +35,7 @@ abstract class Gasto {
     }
 
     /**
-     * Metodo getId, para obtener el identificar de usuario
+     * Metodo getId, para obtener el identificar de Gasto
      * 
      */
     public int getId (){
@@ -59,10 +59,9 @@ abstract class Gasto {
         return ok;        
     }
     /**
-    * Metodo bajaUsuario, pra eliminar usuario de BD
-    * NOTA: "void" ya que no devuelve nada el metodo
+    * Metodo bajaUsuario, para eliminar Gasto de BD
     */
-    public boolean bajaGasto (int idUsuario){
+    public boolean bajaGasto (int idGasto){
         
         boolean ok=false;
         
@@ -71,7 +70,7 @@ abstract class Gasto {
         return ok;
     }
     /**
-    * Metodo modUsuario, para modificar usuario de BD
+    * Metodo modGasto, para modificar gasto de BD
     */
     public boolean modGasto(int idGasto, String fecAltaGasto , double costeGasto, String descripcion, int idUsuario, int idServicio, int idLiquidacion, String fecPago){
         
@@ -92,8 +91,7 @@ abstract class Gasto {
     }
     
     /**
-     * Metodo login, reliaza el login contra la app
-     * 
+     * Metodo getCalcularGasto, calcula el gasto acumulado durante un periodo de tiempo por un inmueble     * 
      */
     public double getCalcularGasto (int idInmueble, String fecIni, String fecFin){
        
