@@ -59,7 +59,7 @@ public interface OpsAdmin {
    public abstract void saveGasto(Gasto gasto);
    public abstract void deleteGasto(Gasto gasto);
    public void updateGasto(Gasto gasto, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante,Categoria categoria, double importe);
-   public abstract List<Gasto> viewGasto();
+   public abstract List<Gasto> viewGastos();
     
     
 }

@@ -46,7 +46,7 @@ public class Proveedor {
 
     @Override
     public String toString() {
-        return "Proveedor"+ id + "\nnombr - " + nombre + "\ndirec - " + direccion + "\ntelef - " + telefono + "\nemail - " + email + "\n\n";
+        return "--------Proveedor"+ id + "--------\nnombr - " + nombre + "\ndirec - " + direccion + "\ntelef - " + telefono + "\nemail - " + email + "\n";
     }
     
     

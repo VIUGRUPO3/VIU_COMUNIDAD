@@ -67,7 +67,7 @@ public class Gasto {
 
     @Override
     public String toString() {
-        return "Gasto{" + "id=" + id + ", fechaRegistro=" + fechaRegistro + ", fechaPago=" + fechaPago + ", proveedor=" + proveedor + ", comprobante=" + comprobante + ", categoria=" + categoria + '}';
+        return "--------Gasto" + id + "--------\n fechaRegistro - " + fechaRegistro + "\n fechaPago    - " + fechaPago + "\n comprobante  - " + comprobante + "\n categoria    - " + categoria + "\n" + proveedor + "\n--------TOTAL--------\n    " + importe + "Euros \n\n";
     }
     
     

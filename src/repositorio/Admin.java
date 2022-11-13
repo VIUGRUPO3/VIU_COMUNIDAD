@@ -289,7 +289,7 @@ public class Admin extends Usuario implements OpsAdmin {
     }
     
     @Override
-    public List<Gasto> viewGasto(){
+    public List<Gasto> viewGastos(){
         return gastos;
     }
 }

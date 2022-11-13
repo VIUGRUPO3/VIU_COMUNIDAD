@@ -235,6 +235,26 @@ public class main {
             //Actualizamos los datos del inmueble seleccionado
         admin.updateProveedor(proveedor1, "Garden Express", "C/Altamira, 33", "665842684", "gardenex@gmail.com");
         
+    //Operaciones de eliminacion, update e impresion de GASTOS
+       
+            //Generamos una variable con la lista completa de inmuebles y la imprimimos por pantalla
+        List<Gasto> gastos = admin.viewGastos();
+        System.out.println("\n\nVALOR INICIAL DEL ARRAY DE GASTOS \n");
+        System.out.println(gastos);
+        
+            //Eliminamos un proveedor del ArrayList de Gasto
+        //admin.deleteGasto(gasto1);
+        
+            //Actualizamos los datos del inmueble seleccionado
+        admin.updateGasto(gasto1,
+                 "Talado Setos",
+                 LocalDate.parse("01/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
+                    LocalDate.parse("30/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
+                    proveedor4,
+                   "GRF3",
+                    categoria3,
+                      500);
+        
         
     //Operaciones de impresion despues de las actualizaciones    
         
@@ -256,6 +276,9 @@ public class main {
             //Generamos una variable con la lista completa de proveedores y la imprimimos por pantalla una vez editados
         List<Proveedor> proveedoresEdit = admin.viewProveedores();
         
+            //Generamos una variable con la lista completa de gastos y la imprimimos por pantalla una vez editados
+        List<Gasto> gastosEdit = admin.viewGastos();
+        
         System.out.println("\n\nVALOR FINAL DEL ARRAY DE VECINOS \n");
         System.out.println(vecinosEdit);
         System.out.println("\n\nVALOR FINAL DEL ARRAY DE INMUEBLES \n");
@@ -268,6 +291,8 @@ public class main {
         System.out.println(serviciosOpcionalesEdit);
         System.out.println("\n\nVALOR FINAL DEL ARRAY DE PROVEEDORES \n");
         System.out.println(proveedoresEdit);
+        System.out.println("\n\nVALOR FINAL DEL ARRAY DE GASTOS \n");
+        System.out.println(gastosEdit);
         
         
     }
