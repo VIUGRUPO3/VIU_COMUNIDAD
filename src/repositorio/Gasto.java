@@ -4,6 +4,7 @@
  */
 package repositorio;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -15,23 +16,27 @@ public class Gasto {
     //1.Atributos
     
     private int id;
-    private Date fechaRegistro;
-    private Date fechaPago;
+    private String descripcion;
+    private LocalDate fechaRegistro;
+    private LocalDate fechaPago;
     private Proveedor proveedor;
     private String comprobante;
     private Categoria categoria;
+    private double importe;
     
     //2.Constructores
 
     public Gasto() {}
 
-    public Gasto(int id, Date fechaRegistro, Date fechaPago, Proveedor proveedor, String comprobante, Categoria categoria) {
+    public Gasto(int id, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, Categoria categoria, double importe) {
         this.id = id;
+        this.descripcion = descripcion;
         this.fechaRegistro = fechaRegistro;
         this.fechaPago = fechaPago;
         this.proveedor = proveedor;
         this.comprobante = comprobante;
         this.categoria = categoria;
+        this.importe = importe;
     }
     
     //3.Metodos
@@ -48,12 +53,14 @@ public class Gasto {
         return categoria;
     }
 
-    public void setGasto(Date fechaRegistro, Date fechaPago, Proveedor proveedor, String comprobante,Categoria categoria) {
+    public void setGasto(String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, Categoria categoria, double importe) {
+        this.descripcion = descripcion;
         this.fechaRegistro = fechaRegistro;
         this.fechaPago = fechaPago;
         this.proveedor = proveedor;
         this.comprobante = comprobante;
         this.categoria = categoria;
+        this.importe = importe;
     }
     
     

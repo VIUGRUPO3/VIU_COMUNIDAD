@@ -1,7 +1,9 @@
 
 package repositorio;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,15 +16,42 @@ public class Admin extends Usuario implements OpsAdmin {
     
     //1. Atributos
     
-    List<Vecino> vecinos = new ArrayList();
-    List<Inmueble> inmuebles = new ArrayList();
-    List<Categoria> categorias = new ArrayList();
-    List<ServicioFijo> serviciosFijos = new ArrayList();
-    List<ServicioOpcional> serviciosOpcionales = new ArrayList();
-    List<Proveedor> proveedores = new ArrayList();
+    private final List<Vecino> vecinos;
+    private final List<Inmueble> inmuebles;
+    private final List<Categoria> categorias;
+    private final List<ServicioFijo> serviciosFijos;
+    private final List<ServicioOpcional> serviciosOpcionales;
+    private final List<Proveedor> proveedores;
+    private final List<Gasto> gastos;
     Vecino vecino = new Vecino(0, "Comunidad", "000", "666555222", "comunidad@viu.es");
     
-    //2. Metodos
+    //2.Constructores
+
+    public Admin() {
+        this.vecinos = new ArrayList();
+        this.inmuebles = new ArrayList();
+        this.categorias = new ArrayList();
+        this.serviciosFijos = new ArrayList();
+        this.serviciosOpcionales = new ArrayList();
+        this.proveedores = new ArrayList();
+        this.gastos = new ArrayList();
+    }
+
+    public Admin(int id, String nombre, String clave, String telefono, String email) {
+        super(id, nombre, clave, telefono, email);
+        this.vecinos = new ArrayList();
+        this.inmuebles = new ArrayList();
+        this.categorias = new ArrayList();
+        this.serviciosFijos = new ArrayList();
+        this.serviciosOpcionales = new ArrayList();
+        this.proveedores = new ArrayList();
+        this.gastos = new ArrayList();
+        
+    }
+    
+    
+
+    //3. Metodos
     
     
 //VECINOS
@@ -194,13 +223,13 @@ public class Admin extends Usuario implements OpsAdmin {
         }); 
     }
     
-        //Metodo que desasigna un servicioFijo a todos los inmuebles
+        //Metodo que desasigna un servicioFijo al inmueble especificado
     @Override
     public void desasignarServicioOpcionalInmueble(ServicioOpcional servicioOpcional, Inmueble inmueble){
         inmueble.serviciosOpcionales.remove(inmueble.serviciosOpcionales.indexOf(servicioOpcional));
     }
     
-        //Metodo que actualiza los datos del inmueble especificado en parametros
+        //Metodo que actualiza los datos del servicioOpcional especificado en parametros
     @Override
     public void updateServicioOpcional(ServicioOpcional servicioOpcional, String nombre, double tarifa, Categoria categoria){
         servicioOpcional.nombre = nombre;
@@ -237,5 +266,30 @@ public class Admin extends Usuario implements OpsAdmin {
     @Override
     public List<Proveedor> viewProveedores(){
         return proveedores;
+    }
+    
+//GASTOS
+    
+        //Guarda un Proveedor en ArrayList de PROVEEDORES
+    @Override
+    public void saveGasto(Gasto gasto){
+        gastos.add(gasto);
+    }
+    
+        //Borra un Proveedor en ArrayList de PROVEEDORES
+    @Override
+    public void deleteGasto(Gasto gasto){
+        gastos.remove(gastos.indexOf(gasto));
+    }
+    
+        //Actualiza los datos del proveedor en el ArrayList de PROVEEDORES
+    @Override
+    public void updateGasto(Gasto gasto, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante,Categoria categoria, double importe){
+        gasto.setGasto(descripcion, fechaRegistro, fechaPago, proveedor, comprobante, categoria, importe);
+    }
+    
+    @Override
+    public List<Gasto> viewGasto(){
+        return gastos;
     }
 }

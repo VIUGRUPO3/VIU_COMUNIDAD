@@ -1,6 +1,9 @@
 
 package repositorio;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
     //Interface para las operaciones realizadas con los usuarios vecinos
@@ -53,6 +56,10 @@ public interface OpsAdmin {
    public abstract List<Proveedor> viewProveedores();
    
         //Metodos con Gasto
+   public abstract void saveGasto(Gasto gasto);
+   public abstract void deleteGasto(Gasto gasto);
+   public void updateGasto(Gasto gasto, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante,Categoria categoria, double importe);
+   public abstract List<Gasto> viewGasto();
     
     
 }

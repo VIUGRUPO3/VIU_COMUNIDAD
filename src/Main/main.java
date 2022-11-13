@@ -1,10 +1,12 @@
 
 package Main;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-import repositorio.AdminOld;
 import repositorio.Admin;
 import repositorio.Categoria;
+import repositorio.Gasto;
 import repositorio.Inmueble;
 import repositorio.Proveedor;
 import repositorio.ServicioFijo;
@@ -50,7 +52,7 @@ public class main {
         ServicioFijo servicioFijo1 = new ServicioFijo(1, "Jardineria ", 100, categoria2);
         ServicioFijo servicioFijo2 = new ServicioFijo(2, "Conserjeria", 50, categoria4);
         
-            //Instancias de la clase ServicioFijo
+            //Instancias de la clase ServicioOpcional
         ServicioOpcional servicioOpcional1 = new ServicioOpcional(1, "Piscina    ", 60, categoria2);
         ServicioOpcional servicioOpcional2 = new ServicioOpcional(2, "Paddle     ", 30, categoria3);
         
@@ -60,6 +62,29 @@ public class main {
         Proveedor proveedor3 = new Proveedor(3, "Luxury Pools", "Avda.Estacion, 21", "668741963","luxpools@gmail.com");
         Proveedor proveedor4 = new Proveedor(4, "Paddle Club", "Ctra. Malaga", "669874512","paddleclub@gmail.com");
         Proveedor proveedor5 = new Proveedor(5, "Atlas Services", "C/Jaul", "669879854","atlas@gmail.com");
+        
+            //Instancias de la clase Gasto
+        Gasto gasto1 = new Gasto(
+                         1,
+                  "Talado de palmeras",
+                LocalDate.parse("01/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
+                   LocalDate.parse("30/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
+                   proveedor1,
+                  "JR345",
+                   categoria2,
+                     1000
+        );
+        Gasto gasto2 = new Gasto(
+                         2,
+                  "Red Paddle",
+                LocalDate.parse("10/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
+                   LocalDate.parse("20/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
+                   proveedor4,
+                  "JR345",
+                   categoria3,
+                     200
+        );
+       
         
     //Operaciones de almacenamiento dentro de las estructuras de datos
             
@@ -111,16 +136,20 @@ public class main {
         admin.saveProveedor(proveedor4);
         admin.saveProveedor(proveedor5);
         
+            //Guardamos los gastos instanciados dentro de un ArrayList de gastos
+        admin.saveGasto(gasto1);
+        admin.saveGasto(gasto2);
         
+
     //Operaciones de eliminacion, update e impresion de VECINOS
-        
-            //Eliminamos un vecino del ArrayList de Vecinos
-        admin.deleteVecino(vecino5);
         
             //Generamos una variable con la lista completa de vecinos y la imprimimos por pantalla
         List<Vecino> vecinos = admin.viewVecinos();
         System.out.println("VALOR INICIAL DEL ARRAY DE VECINOS \n");
         System.out.println(vecinos);
+        
+        //Eliminamos un vecino del ArrayList de Vecinos
+        admin.deleteVecino(vecino5);
         
             //Actualizamos los datos del vecino seleccionado
         admin.updateVecino(vecino4, "Maria", "wer", "666555444", "maria@viu.es");
@@ -128,13 +157,13 @@ public class main {
         
     //Operaciones de eliminacion, update e impresion de INMUEBLES
     
-            //Eliminamos un inmueble del ArrayList de Inmuebles
-        admin.deleteInmueble(inmueble5);
-        
             //Generamos una variable con la lista completa de inmuebles y la imprimimos por pantalla
         List<Inmueble> inmuebles = admin.viewInmuebles();
         System.out.println("\n\nVALOR INICIAL DEL ARRAY DE INMUEBLES \n");
         System.out.println(inmuebles);
+        
+        //Eliminamos un inmueble del ArrayList de Inmuebles
+        admin.deleteInmueble(inmueble5);
         
             //Actualizamos los datos del inmueble seleccionado
         admin.updateInmueble(inmueble4, vecino1, "Colon");
@@ -144,14 +173,14 @@ public class main {
         
     
     //Operaciones de eliminacion, update e impresion de CATEGORIAS
-    
-            //Eliminamos una categoria del ArrayList de Categorias
-        admin.deleteCategoria(categoria6);
         
             //Generamos una variable con la lista completa de categorias y la imprimimos por pantalla
         List<Categoria> categorias = admin.viewCategorias();
         System.out.println("\n\nVALOR INICIAL DEL ARRAY DE CATEGORIAS \n");
         System.out.println(categorias);
+        
+            //Eliminamos una categoria del ArrayList de Categorias
+        admin.deleteCategoria(categoria6);
         
             //Actualizamos los datos del inmueble seleccionado
         admin.updateCategoria(categoria5, "Tasas e Impuestos");
@@ -194,14 +223,14 @@ public class main {
         
        
     //Operaciones de eliminacion, update e impresion de PROVEEDORES
-    
-            //Eliminamos un proveedor del ArrayList de proveedores
-        admin.deleteProveedor(proveedor5);
-        
+       
             //Generamos una variable con la lista completa de inmuebles y la imprimimos por pantalla
         List<Proveedor> proveedores = admin.viewProveedores();
         System.out.println("\n\nVALOR INICIAL DEL ARRAY DE PROVEEDORES \n");
         System.out.println(proveedores);
+        
+            //Eliminamos un proveedor del ArrayList de proveedores
+        admin.deleteProveedor(proveedor5);
         
             //Actualizamos los datos del inmueble seleccionado
         admin.updateProveedor(proveedor1, "Garden Express", "C/Altamira, 33", "665842684", "gardenex@gmail.com");

@@ -44,24 +44,6 @@ abstract class Usuario {
     @Override
     public String toString() {
         return "Usuario" + id + "\nnombr - " + nombre + "\nclave - " + clave + "\ntelef - " + telefono + "\nemail - " + email + "\n\n";
-    }
-   
-    
-        // Metodo login, reliaza el login contra la app
-    public String login (int id, String email, String clave){
-        this.id= id;
-        this.email=email;
-        this.clave=clave;
-        this.token = "Email incorrecto"; //Pendiente de logica
-        // Variable para la logica de login
-        String emailBd;
-        String claveBd;
-        /*
-        Incluir logica de login 
-        */       
-        //Pendiente consulta a BD con idUsuario para comprobar el email y la clave y validar si es correcto 
-        return token;
-    }
-    
+    }   
     
 }
