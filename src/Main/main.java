@@ -71,7 +71,7 @@ public class main {
                          1,
                   "Talado de palmeras",
                 LocalDate.parse("01/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
-                   LocalDate.parse("30/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
+                   LocalDate.parse("29/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
                    proveedor1,
                   "JR345",
                    categoria2,

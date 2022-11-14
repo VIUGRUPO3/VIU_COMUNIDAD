@@ -48,15 +48,17 @@ public class Liquidacion {
 
     @Override
     public String toString() {
-        return "  --------Liquidacion" + id + "--------"
+        return "  -------Liquidacion Nº" + id + "-------"
                 + "\nInmueble    - " + inmueble.getId()
                 + "\nPropietario - " + inmueble.getNombreVecino() 
                 + "\n------------------------------------" 
                 + "\nInicio - " + fechaInicio 
                 + "\nFin - " + fechaFin 
-                + "\nTotal - " + total 
-                + "\n------------------------------------\n"
-                + servicioLiquidado;
+                + "\nTotal - " + total + " EUROS"
+                + "\n--------Liquidacion Servicios-------\n\n"
+                + servicioLiquidado
+                + "\n----------Liquidacion Gastos--------\n"
+                + gastoLiquidado;
     }
     
     

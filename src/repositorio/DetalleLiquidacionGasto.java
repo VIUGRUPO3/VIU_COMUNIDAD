@@ -16,9 +16,7 @@ public class DetalleLiquidacionGasto extends DetalleLiquidacion {
     
     //2.Constructores
 
-    public DetalleLiquidacionGasto(Gasto gasto) {
-        this.gasto = gasto;
-    }
+    
 
     public DetalleLiquidacionGasto(Gasto gasto, int id, Categoria categoria) {
         super(id, categoria);
@@ -27,5 +25,9 @@ public class DetalleLiquidacionGasto extends DetalleLiquidacion {
 
     //3.Metodos
     
+    @Override
+    public String toString() {
+        return id + " " + categoria.getNombre() + " - " + this.gasto.getImporte() + " Euros\n";
+    }
     
 }

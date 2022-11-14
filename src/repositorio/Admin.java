@@ -326,7 +326,6 @@ public class Admin extends Usuario implements OpsAdmin {
         List<DetalleLiquidacionServicio> servicioLiquidado = new ArrayList();
         List<DetalleLiquidacionGasto> gastoLiquidado = new ArrayList();
         int idLiquidacion = liquidaciones.size();
-        int idDetalleServicio = servicioLiquidado.size();
         int idDetalleGasto = gastoLiquidado.size();
         
         
@@ -341,6 +340,19 @@ public class Admin extends Usuario implements OpsAdmin {
             servicioLiquidado.add(detalleServicioOpcional);
             totalLiquidacion = totalLiquidacion + servicioOpcional.tarifa;
         });
+        
+        gastos.forEach(gasto -> {
+            if (
+                    (gasto.getFechaPago().isAfter(fechaInicio) && gasto.getFechaPago().isBefore(fechaFin)) || 
+                    (gasto.getFechaPago().isEqual(fechaInicio) || gasto.getFechaPago().isEqual(fechaFin))
+                    ){
+                DetalleLiquidacionGasto detalleGasto = new DetalleLiquidacionGasto(gasto, gastoLiquidado.size(), gasto.getCategoria());
+                gastoLiquidado.add(detalleGasto);
+                totalLiquidacion = totalLiquidacion + gasto.getImporte();
+            }
+            
+        });
+        
         
         Liquidacion liquidacion = new Liquidacion(idLiquidacion, fechaInicio, fechaFin, totalLiquidacion, gastoLiquidado, servicioLiquidado, inmuebleLiquidado);
         totalLiquidacion = 0;

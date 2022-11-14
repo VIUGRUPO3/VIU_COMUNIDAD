@@ -48,10 +48,26 @@ public class Gasto {
     public Proveedor getProveedor() {
         return proveedor;
     }
-
+    
     public Categoria getCategoria() {
         return categoria;
     }
+
+    public LocalDate getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public LocalDate getFechaPago() {
+        return fechaPago;
+    }
+
+    public double getImporte() {
+        return importe;
+    }
+    
+    
+    
+    
 
     public void setGasto(String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, Categoria categoria, double importe) {
         this.descripcion = descripcion;
