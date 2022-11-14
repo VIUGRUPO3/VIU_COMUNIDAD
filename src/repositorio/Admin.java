@@ -3,7 +3,6 @@ package repositorio;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,17 +12,20 @@ import java.util.List;
 
 //Clase encargada de realizar todas las operaciones con los usuarios vecinos, implementa la interfaz UserInterfaceOps
 public class Admin extends Usuario implements OpsAdmin {
+
     
     //1. Atributos
+    protected List<Vecino> vecinos;
+    protected List<Inmueble> inmuebles;
+    protected List<Categoria> categorias;
+    protected List<ServicioFijo> serviciosFijos;
+    protected List<ServicioOpcional> serviciosOpcionales;
+    protected List<Proveedor> proveedores;
+    protected List<Gasto> gastos;
+    protected List<Liquidacion> liquidaciones;
     
-    private final List<Vecino> vecinos;
-    private final List<Inmueble> inmuebles;
-    private final List<Categoria> categorias;
-    private final List<ServicioFijo> serviciosFijos;
-    private final List<ServicioOpcional> serviciosOpcionales;
-    private final List<Proveedor> proveedores;
-    private final List<Gasto> gastos;
     Vecino vecino = new Vecino(0, "Comunidad", "000", "666555222", "comunidad@viu.es");
+    double totalLiquidacion = 0;
     
     //2.Constructores
 
@@ -35,6 +37,7 @@ public class Admin extends Usuario implements OpsAdmin {
         this.serviciosOpcionales = new ArrayList();
         this.proveedores = new ArrayList();
         this.gastos = new ArrayList();
+        this.liquidaciones = new ArrayList();
     }
 
     public Admin(int id, String nombre, String clave, String telefono, String email) {
@@ -46,8 +49,12 @@ public class Admin extends Usuario implements OpsAdmin {
         this.serviciosOpcionales = new ArrayList();
         this.proveedores = new ArrayList();
         this.gastos = new ArrayList();
-        
+        this.liquidaciones = new ArrayList();
     }
+
+    
+
+    
     
     
 
@@ -88,6 +95,7 @@ public class Admin extends Usuario implements OpsAdmin {
         vecino.telefono=telefono;
         vecino.email=email; 
     }
+    
     
     
 //INMUEBLES
@@ -291,5 +299,51 @@ public class Admin extends Usuario implements OpsAdmin {
     @Override
     public List<Gasto> viewGastos(){
         return gastos;
+    }
+    
+ //Liquidacion
+    
+        //Guarda un Proveedor en ArrayList de PROVEEDORES
+    @Override
+    public void saveLiquidacion(Liquidacion liquidacion){
+        liquidaciones.add(liquidacion);
+    }
+    
+        //Borra un Proveedor en ArrayList de PROVEEDORES
+    @Override
+    public void deleteLiquidacion(Liquidacion liquidacion){
+        liquidaciones.remove(liquidaciones.indexOf(liquidacion));
+    }
+    
+    
+    @Override
+    public List<Liquidacion> viewLiquidaciones(){
+        return liquidaciones;
+    }
+    
+    public Liquidacion generarLiquidacion(LocalDate fechaInicio, LocalDate fechaFin, Inmueble inmuebleLiquidado){
+        
+        List<DetalleLiquidacionServicio> servicioLiquidado = new ArrayList();
+        List<DetalleLiquidacionGasto> gastoLiquidado = new ArrayList();
+        int idLiquidacion = liquidaciones.size();
+        int idDetalleServicio = servicioLiquidado.size();
+        int idDetalleGasto = gastoLiquidado.size();
+        
+        
+        inmuebleLiquidado.serviciosFijos.forEach(servicioFijo -> {
+            DetalleLiquidacionServicio detalleServicioFijo = new DetalleLiquidacionServicio(servicioFijo, servicioLiquidado.size(), servicioFijo.categoria);
+            servicioLiquidado.add(detalleServicioFijo);
+            totalLiquidacion = totalLiquidacion + servicioFijo.tarifa;
+        });
+        
+        inmuebleLiquidado.serviciosOpcionales.forEach(servicioOpcional ->{
+            DetalleLiquidacionServicio detalleServicioOpcional = new DetalleLiquidacionServicio(servicioOpcional, servicioLiquidado.size(), servicioOpcional.categoria);
+            servicioLiquidado.add(detalleServicioOpcional);
+            totalLiquidacion = totalLiquidacion + servicioOpcional.tarifa;
+        });
+        
+        Liquidacion liquidacion = new Liquidacion(idLiquidacion, fechaInicio, fechaFin, totalLiquidacion, gastoLiquidado, servicioLiquidado, inmuebleLiquidado);
+        totalLiquidacion = 0;
+        return liquidacion;
     }
 }

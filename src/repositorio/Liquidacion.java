@@ -21,19 +21,21 @@ public class Liquidacion {
     private LocalDate fechaFin;
     private double total;
     private List<DetalleLiquidacionGasto> gastoLiquidado;
-    private List<DetalleLiquidacionServicio> ServicioLiquidado;
+    private List<DetalleLiquidacionServicio> servicioLiquidado;
+    private Inmueble inmueble;
     
     //2.Constructores
 
     public Liquidacion() {}
 
-    public Liquidacion(int id, LocalDate fechaInicio, LocalDate fechaFin, double total, List<DetalleLiquidacionGasto> gastoLiquidado, List<DetalleLiquidacionServicio> ServicioLiquidado) {
+    public Liquidacion(int id, LocalDate fechaInicio, LocalDate fechaFin, double total, List<DetalleLiquidacionGasto> gastoLiquidado, List<DetalleLiquidacionServicio> ServicioLiquidado, Inmueble inmueble) {
         this.id = id;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.total = total;
-        this.gastoLiquidado = new ArrayList();
-        this.ServicioLiquidado = new ArrayList();
+        this.gastoLiquidado = gastoLiquidado;
+        this.servicioLiquidado = ServicioLiquidado;
+        this.inmueble = inmueble;
     }
 
     
@@ -46,7 +48,15 @@ public class Liquidacion {
 
     @Override
     public String toString() {
-        return "Liquidacion{" + "id=" + id + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", total=" + total + '}';
+        return "  --------Liquidacion" + id + "--------"
+                + "\nInmueble    - " + inmueble.getId()
+                + "\nPropietario - " + inmueble.getNombreVecino() 
+                + "\n------------------------------------" 
+                + "\nInicio - " + fechaInicio 
+                + "\nFin - " + fechaFin 
+                + "\nTotal - " + total 
+                + "\n------------------------------------\n"
+                + servicioLiquidado;
     }
     
     

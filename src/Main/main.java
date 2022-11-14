@@ -8,6 +8,7 @@ import repositorio.Admin;
 import repositorio.Categoria;
 import repositorio.Gasto;
 import repositorio.Inmueble;
+import repositorio.Liquidacion;
 import repositorio.Proveedor;
 import repositorio.ServicioFijo;
 import repositorio.ServicioOpcional;
@@ -23,6 +24,8 @@ public class main {
      */
     public static void main(String[] args) {
         
+        int login;
+        
             //Instancia de la clase usada para realizar las operaciones con los usuarios
         Admin admin = new Admin();
         
@@ -35,8 +38,8 @@ public class main {
         
             //Instancias de la clase Inmueble
         Inmueble inmueble1 = new Inmueble(1, vecino1, "Gran Via");
-        Inmueble inmueble2 = new Inmueble(2, vecino2, "Serrano");
-        Inmueble inmueble3 = new Inmueble(3, vecino3, "Arenal");
+        Inmueble inmueble2 = new Inmueble(2, vecino1, "Serrano");
+        Inmueble inmueble3 = new Inmueble(3, vecino1, "Arenal");
         Inmueble inmueble4 = new Inmueble(4, vecino4, "Ronda");
         Inmueble inmueble5 = new Inmueble(5, vecino5, "Ronda2");
         
@@ -84,7 +87,7 @@ public class main {
                    categoria3,
                      200
         );
-       
+        
         
     //Operaciones de almacenamiento dentro de las estructuras de datos
             
@@ -140,6 +143,8 @@ public class main {
         admin.saveGasto(gasto1);
         admin.saveGasto(gasto2);
         
+        login = vecino2.login("fer@viu.es", "def");
+        System.out.println(login);
 
     //Operaciones de eliminacion, update e impresion de VECINOS
         
@@ -195,13 +200,13 @@ public class main {
         System.out.println(serviciosFijos);
     
             //Desasignacion del ServicioFijo que se va a eliminar de todos los inmuebles
-        admin.desasignarServicioFijoInmuebles(servicioFijo1);
+        //admin.desasignarServicioFijoInmuebles(servicioFijo1);
 
             //Eliminacion del servicio Fijo
-        admin.deleteServicioFijo(servicioFijo1);
+        //admin.deleteServicioFijo(servicioFijo1);
         
             //Update del serviciofijo asi como de todos los serviciosFijos asignados a los inmuebles
-        admin.updateServicioFijo(servicioFijo2, "Basura", 30, categoria1);
+        //admin.updateServicioFijo(servicioFijo2, "Basura", 30, categoria1);
         
     
     //Operaciones de eliminacion, update e impresion de SERVICIOS OPCIONALES
@@ -295,6 +300,15 @@ public class main {
         System.out.println(gastosEdit);
         
         
+        Liquidacion liquidacion1 = admin.generarLiquidacion(
+                 LocalDate.parse("01/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
+                   LocalDate.parse("30/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")), 
+            inmueble1);
+        
+        admin.saveLiquidacion(liquidacion1);
+        
+        List<Liquidacion> liquidacionesEdit = admin.viewLiquidaciones();
+        System.out.println(liquidacionesEdit);
     }
     
 }

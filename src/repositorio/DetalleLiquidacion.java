@@ -33,10 +33,7 @@ abstract class DetalleLiquidacion {
         return id;
     }
 
-    @Override
-    public String toString() {
-        return "DetalleLiquidacion{" + "id=" + id + ", categoria=" + categoria + '}';
-    }
+    
     
     
     

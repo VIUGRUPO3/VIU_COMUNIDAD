@@ -2,8 +2,6 @@
 package repositorio;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
     //Interface para las operaciones realizadas con los usuarios vecinos
@@ -20,10 +18,10 @@ public interface OpsAdmin {
     public abstract void updateVecino(Vecino vecino, String nombre, String clave, String telefono, String email);
     
          //Metodos con objetos Categoria
-    public void saveCategoria(Categoria categoria);
-    public void deleteCategoria(Categoria categoria);
-    public List<Categoria> viewCategorias();
-    public void updateCategoria(Categoria categoria, String nombre);
+    public abstract void saveCategoria(Categoria categoria);
+    public abstract void deleteCategoria(Categoria categoria);
+    public abstract List<Categoria> viewCategorias();
+    public abstract void updateCategoria(Categoria categoria, String nombre);
     
         //Metodos con objetos Inmueble
     public abstract void saveInmueble(Inmueble inmueble);
@@ -60,6 +58,13 @@ public interface OpsAdmin {
    public abstract void deleteGasto(Gasto gasto);
    public void updateGasto(Gasto gasto, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante,Categoria categoria, double importe);
    public abstract List<Gasto> viewGastos();
+   
+        //Metodos con Liquidacion
+   public void saveLiquidacion(Liquidacion liquidacion);
+   public void deleteLiquidacion(Liquidacion liquidacion);
+   public List<Liquidacion> viewLiquidaciones();
+   public Liquidacion generarLiquidacion(LocalDate fechaInicio, LocalDate fechaFin, Inmueble inmuebleLiquidado);
+   
     
     
 }

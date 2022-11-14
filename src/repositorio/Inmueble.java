@@ -38,9 +38,19 @@ public class Inmueble {
        return this.direccion;
     }
 
+    public int getVecinoId() {
+        return vecino.id;
+    }
+    
+    public String getNombreVecino() {
+        return vecino.nombre;
+    }
+
     public Vecino getVecino() {
         return vecino;
     }
+    
+    
 
     public void setVecino(Vecino vecino) {
         this.vecino = vecino;

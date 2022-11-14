@@ -1,9 +1,12 @@
 package repositorio;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 //* Se declara como clase abstracta ya que define unicamente la estructura de la clase.*//
 //* No se va a instanciar ningún objeto de esta clase.*//
-abstract class Usuario {
+public class Usuario {
 
     //1, Atributos
         // Declaración de atributos como protected para no ser accedidos por otras clases fuera del paquete.
@@ -13,16 +16,19 @@ abstract class Usuario {
     protected String clave;
     protected String telefono;
     protected String email;
-        //Se declara esta variable como privada para que este protegida dentro de la clase
-    private String token;
     
+    private int logged;
+        //Se declara esta variable como privada para que este protegida dentro de la clase    
     
     //2. Constructor
         // Constructor "metodo que inicializa el objeto" de la clase Usuario.
         //(Dentro del constructor se incluyen los parametros)
         //Como buena practica se crea un constructor vacio
     
-    public Usuario(){}
+    public Usuario(){
+        
+        
+    }
 
     public Usuario(int id, String nombre, String clave, String telefono, String email) {
         this.id = id;
@@ -30,7 +36,12 @@ abstract class Usuario {
         this.clave = clave;
         this.telefono = telefono;
         this.email = email;
+        
     }
+
+    
+
+   
 
     //3. Metodos
         
@@ -45,5 +56,14 @@ abstract class Usuario {
     public String toString() {
         return "Usuario" + id + "\nnombr - " + nombre + "\nclave - " + clave + "\ntelef - " + telefono + "\nemail - " + email + "\n\n";
     }   
+    
+    public int login(String email, String clave){
+        if(this.email == email){
+                if (this.clave == clave){
+                 logged = this.id;
+                }
+            }
+        return logged;
+    }
     
 }

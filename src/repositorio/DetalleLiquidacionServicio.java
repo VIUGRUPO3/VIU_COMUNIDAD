@@ -17,9 +17,7 @@ public class DetalleLiquidacionServicio extends DetalleLiquidacion {
 
     public DetalleLiquidacionServicio() {}
 
-    public DetalleLiquidacionServicio(Servicio servicio) {
-        this.servicio = servicio;
-    }
+  
 
     public DetalleLiquidacionServicio(Servicio servicio, int id, Categoria categoria) {
         super(id, categoria);
@@ -28,6 +26,9 @@ public class DetalleLiquidacionServicio extends DetalleLiquidacion {
     
     //3.Metodos
 
-    
+    @Override
+    public String toString() {
+        return id + " " + categoria.getNombre() + " - " + this.servicio.tarifa + " Euros\n";
+    }
     
 }
