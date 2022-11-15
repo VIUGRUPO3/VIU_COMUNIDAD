@@ -158,7 +158,68 @@ public class main {
         login = vecino2.login("fer@viu.es", "def");
         System.out.println(login);
 
-    //Operaciones de prueba eliminacion, update e impresion de VECINOS
+    
+        
+        
+    //Operaciones de impresion EN CONSOLA    
+        
+            //Generamos una variable con la lista completa cada clase y la imprimimos por pantalla una vez editados
+        List<Vecino> vecinosEdit = admin.viewVecinos();
+        List<Inmueble> inmueblesEditados = admin.viewInmuebles();
+        List<Categoria> categoriasEditadas = admin.viewCategorias();
+        List<ServicioFijo> serviciosFijosEdit = admin.viewServiciosFijos();
+        List<ServicioOpcional> serviciosOpcionalesEdit = admin.viewServiciosOpcionales();
+        List<Proveedor> proveedoresEdit = admin.viewProveedores();
+        List<Gasto> gastosEdit = admin.viewGastos();
+        
+        System.out.println("\n\nVALOR FINAL DEL ARRAY DE VECINOS \n");
+        System.out.println(vecinosEdit);
+        System.out.println("\n\nVALOR FINAL DEL ARRAY DE INMUEBLES \n");
+        System.out.println(inmueblesEditados);
+        System.out.println("\n\nVALOR FINAL DEL ARRAY DE CATEGORIAS \n");
+        System.out.println(categoriasEditadas);
+        System.out.println("\n\nVALOR FINAL DEL ARRAY DE SERVICIOS FIJOS \n");
+        System.out.println(serviciosFijosEdit);
+        System.out.println("\n\nVALOR FINAL DEL ARRAY DE SERVICIOS OPCIONALES \n");
+        System.out.println(serviciosOpcionalesEdit);
+        System.out.println("\n\nVALOR FINAL DEL ARRAY DE PROVEEDORES \n");
+        System.out.println(proveedoresEdit);
+        System.out.println("\n\nVALOR FINAL DEL ARRAY DE GASTOS \n");
+        System.out.println(gastosEdit);
+        
+    //Operaciones con LIQUIDACIONES
+    
+            //Generacion de liquidaciones entre fechas especificadas
+        List<Liquidacion> liquidacionesEdit = admin.generarLiquidaciones(
+                 LocalDate.parse("01/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
+                   LocalDate.parse("30/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")));
+
+              // Impresion en consola de todas las liquidaciones generadas
+        System.out.println("\n\n    GENERACION DE LIQUIDACIONES \n");
+        System.out.println("========================================== \n");
+        System.out.println(liquidacionesEdit);
+        
+        
+            //Generacion de liquidaciones por INMUEBLE especificado
+        List<Liquidacion> liquidacionesInmueble = admin.consultaLiquidacionInmueble(inmueble5);
+
+              // Impresion en consola de todas las liquidaciones consultadas
+        System.out.println("\n\n   CONSULTA DE LIQUIDACIONES POR INMUEBLE \n");
+        System.out.println("========================================== \n");
+        System.out.println(liquidacionesInmueble);
+        
+            //Generacion de liquidaciones por VECINO especificado
+        List<Liquidacion> liquidacionesVecino = admin.consultaLiquidacionVecino(vecino2);
+
+              // Impresion en consola de todas las liquidaciones consultadas
+        System.out.println("\n\n   CONSULTA DE LIQUIDACIONES POR VECINO \n");
+        System.out.println("========================================== \n");
+        System.out.println(liquidacionesVecino);
+        
+        
+        
+    //--------------------------------------------------------CODIGO DE PRUEBA DE FUNCIONALIDADES ------------------------------------------    
+        //Operaciones de prueba eliminacion, update e impresion de VECINOS
         
     //            //Generamos una variable con la lista completa de vecinos y la imprimimos por pantalla
     //        List<Vecino> vecinos = admin.viewVecinos();
@@ -272,74 +333,6 @@ public class main {
     //                    categoria2,
     //                      500);
         
-        
-    //Operaciones de impresion despues de las actualizaciones    
-        
-            //Generamos una variable con la lista completa cada clase y la imprimimos por pantalla una vez editados
-        List<Vecino> vecinosEdit = admin.viewVecinos();
-        List<Inmueble> inmueblesEditados = admin.viewInmuebles();
-        List<Categoria> categoriasEditadas = admin.viewCategorias();
-        List<ServicioFijo> serviciosFijosEdit = admin.viewServiciosFijos();
-        List<ServicioOpcional> serviciosOpcionalesEdit = admin.viewServiciosOpcionales();
-        List<Proveedor> proveedoresEdit = admin.viewProveedores();
-        List<Gasto> gastosEdit = admin.viewGastos();
-        
-        System.out.println("\n\nVALOR FINAL DEL ARRAY DE VECINOS \n");
-        System.out.println(vecinosEdit);
-        System.out.println("\n\nVALOR FINAL DEL ARRAY DE INMUEBLES \n");
-        System.out.println(inmueblesEditados);
-        System.out.println("\n\nVALOR FINAL DEL ARRAY DE CATEGORIAS \n");
-        System.out.println(categoriasEditadas);
-        System.out.println("\n\nVALOR FINAL DEL ARRAY DE SERVICIOS FIJOS \n");
-        System.out.println(serviciosFijosEdit);
-        System.out.println("\n\nVALOR FINAL DEL ARRAY DE SERVICIOS OPCIONALES \n");
-        System.out.println(serviciosOpcionalesEdit);
-        System.out.println("\n\nVALOR FINAL DEL ARRAY DE PROVEEDORES \n");
-        System.out.println(proveedoresEdit);
-        System.out.println("\n\nVALOR FINAL DEL ARRAY DE GASTOS \n");
-        System.out.println(gastosEdit);
-        
-        //Operaciones de liquidaciones 
-        
-                //Generacion de liquidaciones por inmueble 
-        //        Liquidacion liquidacion1 = admin.generarLiquidacion(
-        //                 LocalDate.parse("01/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
-        //                   LocalDate.parse("30/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")), 
-        //            inmueble1);
-        //        admin.saveLiquidacion(liquidacion1);
-        //        
-        //        Liquidacion liquidacion2 = admin.generarLiquidacion(
-        //                 LocalDate.parse("01/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
-        //                   LocalDate.parse("30/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")), 
-        //            inmueble3);
-        //        admin.saveLiquidacion(liquidacion2);
-
-            //Generacion de liquidaciones entre fechas especificadas
-        List<Liquidacion> liquidacionesEdit = admin.generarLiquidaciones(
-                 LocalDate.parse("01/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
-                   LocalDate.parse("30/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")));
-
-              // Impresion en consola de todas las liquidaciones generadas
-        System.out.println("\n\n    GENERACION DE LIQUIDACIONES \n");
-        System.out.println("========================================== \n");
-        System.out.println(liquidacionesEdit);
-        
-        
-            //Generacion de liquidaciones por INMUEBLE especificado
-        List<Liquidacion> liquidacionesInmueble = admin.consultaLiquidacionInmueble(inmueble5);
-
-              // Impresion en consola de todas las liquidaciones consultadas
-        System.out.println("\n\n   CONSULTA DE LIQUIDACIONES POR INMUEBLE \n");
-        System.out.println("========================================== \n");
-        System.out.println(liquidacionesInmueble);
-        
-            //Generacion de liquidaciones por VECINO especificado
-        List<Liquidacion> liquidacionesVecino = admin.consultaLiquidacionVecino(vecino2);
-
-              // Impresion en consola de todas las liquidaciones consultadas
-        System.out.println("\n\n   CONSULTA DE LIQUIDACIONES POR VECINO \n");
-        System.out.println("========================================== \n");
-        System.out.println(liquidacionesVecino);
     }
     
 }
