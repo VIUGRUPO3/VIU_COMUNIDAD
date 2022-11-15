@@ -1,6 +1,7 @@
 
 package repositorio;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,11 @@ public class Admin extends Usuario implements OpsAdmin {
     
     Vecino vecino = new Vecino(0, "Comunidad", "000", "666555222", "comunidad@viu.es");
     double totalLiquidacion = 0;
+    double totalGastosServiciosFijos = 0;
+    double totalGastosServiciosOpcionales = 0;
+    int inmueblesAdheridos = 0;
+    
+
     
     //2.Constructores
 
@@ -181,10 +187,10 @@ public class Admin extends Usuario implements OpsAdmin {
     
         //Metodo que actualiza los datos del inmueble especificado en parametros
     @Override
-    public void updateServicioFijo(ServicioFijo servicioFijo, String nombre, double tarifa, Categoria categoria){
+    public void updateServicioFijo(ServicioFijo servicioFijo, String nombre, double tarifa){
         servicioFijo.nombre = nombre;
         servicioFijo.tarifa = tarifa;
-        servicioFijo.categoria = categoria;
+        
     }
     
         //Este metodo resulta innecesario ya que el update referencia al objeto
@@ -202,7 +208,7 @@ public class Admin extends Usuario implements OpsAdmin {
     
 //SERVICIOS OPCIONALES
         
-        //Metodo que almacena un objeto servicioOpcional dentro de un ArrayList de serviciosFijos
+        //Metodo que almacena un objeto servicioOpcional dentro de un ArrayList de serviciosOpcionales
     @Override
     public void saveServicioOpcional(ServicioOpcional servicioOpcional){
         serviciosOpcionales.add(servicioOpcional);
@@ -214,7 +220,7 @@ public class Admin extends Usuario implements OpsAdmin {
         inmueble.serviciosOpcionales.add(servicioOpcional);
     }
     
-        //Metodo que borra un objeto servicioOpcional del ArrayList de serviciosFijos
+        //Metodo que borra un objeto servicioOpcional del ArrayList de serviciosOpcionales
     @Override
     public void deleteServicioOpcional(ServicioOpcional servicioOpcional){
         serviciosOpcionales.remove(serviciosOpcionales.indexOf(servicioOpcional));
@@ -231,7 +237,7 @@ public class Admin extends Usuario implements OpsAdmin {
         }); 
     }
     
-        //Metodo que desasigna un servicioFijo al inmueble especificado
+        //Metodo que desasigna un servicioOpcional al inmueble especificado
     @Override
     public void desasignarServicioOpcionalInmueble(ServicioOpcional servicioOpcional, Inmueble inmueble){
         inmueble.serviciosOpcionales.remove(inmueble.serviciosOpcionales.indexOf(servicioOpcional));
@@ -239,10 +245,23 @@ public class Admin extends Usuario implements OpsAdmin {
     
         //Metodo que actualiza los datos del servicioOpcional especificado en parametros
     @Override
-    public void updateServicioOpcional(ServicioOpcional servicioOpcional, String nombre, double tarifa, Categoria categoria){
+    public void updateServicioOpcional(ServicioOpcional servicioOpcional, String nombre, double tarifa){
         servicioOpcional.nombre = nombre;
         servicioOpcional.tarifa = tarifa;
-        servicioOpcional.categoria = categoria;
+        
+    }
+    
+        //Metodo que calcula el numero de inmuebles adheridos a un servicio
+    public int inmueblesadheridos(Servicio servicio){
+        inmueblesAdheridos = 0;
+        inmuebles.forEach(inmueble ->{
+            inmueble.serviciosOpcionales.forEach(servicioOpcional -> {
+                if(servicioOpcional == servicio){
+                    inmueblesAdheridos += 1;
+                }
+            });
+        });
+        return inmueblesAdheridos;
     }
     
         //Metodo que devuelve la lista de serviciosOpcionales
@@ -321,41 +340,120 @@ public class Admin extends Usuario implements OpsAdmin {
         return liquidaciones;
     }
     
-    public Liquidacion generarLiquidacion(LocalDate fechaInicio, LocalDate fechaFin, Inmueble inmuebleLiquidado){
+//    public Liquidacion generarLiquidacion(LocalDate fechaInicio, LocalDate fechaFin, Inmueble inmuebleLiquidado){
+//        
+//        List<DetalleLiquidacionServicio> servicioLiquidado = new ArrayList();
+//        List<DetalleLiquidacionGasto> gastoLiquidado = new ArrayList();
+//        int idLiquidacion = liquidaciones.size();
+//        int idDetalleGasto = gastoLiquidado.size();
+//        
+//        
+//        inmuebleLiquidado.serviciosFijos.forEach(servicioFijo -> {
+//            DetalleLiquidacionServicio detalleServicioFijo = new DetalleLiquidacionServicio(servicioFijo, servicioLiquidado.size(), servicioFijo.categoria);
+//            servicioLiquidado.add(detalleServicioFijo);
+//            totalLiquidacion = totalLiquidacion + servicioFijo.tarifa;
+//        });
+//        
+//        inmuebleLiquidado.serviciosOpcionales.forEach(servicioOpcional ->{
+//            DetalleLiquidacionServicio detalleServicioOpcional = new DetalleLiquidacionServicio(servicioOpcional, servicioLiquidado.size(), servicioOpcional.categoria);
+//            servicioLiquidado.add(detalleServicioOpcional);
+//            totalLiquidacion = totalLiquidacion + servicioOpcional.tarifa;
+//        });
+//        
+//        gastos.forEach(gasto -> {
+//            if (
+//                    (gasto.getFechaRegistro().isAfter(fechaInicio) && gasto.getFechaRegistro().isBefore(fechaFin)) || 
+//                    (gasto.getFechaRegistro().isEqual(fechaInicio) || gasto.getFechaRegistro().isEqual(fechaFin))
+//                    ){
+//                DetalleLiquidacionGasto detalleGasto = new DetalleLiquidacionGasto(gasto, gastoLiquidado.size(), gasto.getCategoria());
+//                gastoLiquidado.add(detalleGasto);
+//                totalLiquidacion = totalLiquidacion + gasto.getImporte();
+//            }
+//            
+//        });
+//        
+//        
+//        Liquidacion liquidacion = new Liquidacion(liquidaciones.size(), fechaInicio, fechaFin, totalLiquidacion, gastoLiquidado, servicioLiquidado, inmuebleLiquidado);
+//        totalLiquidacion = 0;
+//        return liquidacion;
+//    }
+    
+    @Override
+    public List<Liquidacion> generarLiquidaciones(LocalDate fechaInicio, LocalDate fechaFin){
         
-        List<DetalleLiquidacionServicio> servicioLiquidado = new ArrayList();
-        List<DetalleLiquidacionGasto> gastoLiquidado = new ArrayList();
-        int idLiquidacion = liquidaciones.size();
-        int idDetalleGasto = gastoLiquidado.size();
         
         
-        inmuebleLiquidado.serviciosFijos.forEach(servicioFijo -> {
-            DetalleLiquidacionServicio detalleServicioFijo = new DetalleLiquidacionServicio(servicioFijo, servicioLiquidado.size(), servicioFijo.categoria);
-            servicioLiquidado.add(detalleServicioFijo);
-            totalLiquidacion = totalLiquidacion + servicioFijo.tarifa;
-        });
-        
-        inmuebleLiquidado.serviciosOpcionales.forEach(servicioOpcional ->{
-            DetalleLiquidacionServicio detalleServicioOpcional = new DetalleLiquidacionServicio(servicioOpcional, servicioLiquidado.size(), servicioOpcional.categoria);
-            servicioLiquidado.add(detalleServicioOpcional);
-            totalLiquidacion = totalLiquidacion + servicioOpcional.tarifa;
-        });
-        
-        gastos.forEach(gasto -> {
-            if (
-                    (gasto.getFechaPago().isAfter(fechaInicio) && gasto.getFechaPago().isBefore(fechaFin)) || 
-                    (gasto.getFechaPago().isEqual(fechaInicio) || gasto.getFechaPago().isEqual(fechaFin))
-                    ){
-                DetalleLiquidacionGasto detalleGasto = new DetalleLiquidacionGasto(gasto, gastoLiquidado.size(), gasto.getCategoria());
-                gastoLiquidado.add(detalleGasto);
-                totalLiquidacion = totalLiquidacion + gasto.getImporte();
-            }
+        inmuebles.forEach(inmueble ->{
             
+                List<DetalleLiquidacionServicio> servicioLiquidado = new ArrayList();
+                List<DetalleLiquidacionGasto> gastoLiquidado = new ArrayList();
+            
+                inmueble.serviciosFijos.forEach(servicioFijo ->{
+                    DetalleLiquidacionServicio detalleServicioFijo = new DetalleLiquidacionServicio(servicioFijo, servicioLiquidado.size());
+                    servicioLiquidado.add(detalleServicioFijo);
+                    totalLiquidacion = totalLiquidacion + servicioFijo.tarifa;
+                    categorias.forEach(categoria -> {
+                       if(categoria.getServicio() == servicioFijo){
+                           gastos.forEach(gasto -> {
+                                if (
+                                    (gasto.getFechaRegistro().isAfter(fechaInicio) && gasto.getFechaRegistro().isBefore(fechaFin)) || 
+                                    (gasto.getFechaRegistro().isEqual(fechaInicio) || gasto.getFechaRegistro().isEqual(fechaFin))
+                                    ){
+                                    if(gasto.getCategoria() == categoria){
+                                        totalGastosServiciosFijos = gasto.getImporte()/(vecinos.size());
+                                        DetalleLiquidacionGasto detalleGasto = new DetalleLiquidacionGasto(gasto, gastoLiquidado.size(),totalGastosServiciosFijos);
+                                        gastoLiquidado.add(detalleGasto);
+                                        totalLiquidacion = totalLiquidacion + totalGastosServiciosFijos;
+                                    }
+                                    
+                                    }                              
+                           });
+                       } 
+                    });
+                });
+                
+                inmueble.serviciosOpcionales.forEach(servicioOpcional -> {
+                    DetalleLiquidacionServicio detalleServicioOpcional = new DetalleLiquidacionServicio(servicioOpcional, servicioLiquidado.size());
+                    servicioLiquidado.add(detalleServicioOpcional);
+                    totalLiquidacion = totalLiquidacion + servicioOpcional.tarifa;
+                    categorias.forEach(categoria -> {
+                       if(categoria.getServicio() == servicioOpcional){
+                           gastos.forEach(gasto -> {
+                                if (
+                                    (gasto.getFechaRegistro().isAfter(fechaInicio) && gasto.getFechaRegistro().isBefore(fechaFin)) || 
+                                    (gasto.getFechaRegistro().isEqual(fechaInicio) || gasto.getFechaRegistro().isEqual(fechaFin))
+                                    ){
+                                    if(gasto.getCategoria() == categoria){
+                                        totalGastosServiciosOpcionales = gasto.getImporte()/ this.inmueblesadheridos(servicioOpcional);
+                                        DetalleLiquidacionGasto detalleGasto = new DetalleLiquidacionGasto(gasto, gastoLiquidado.size(),totalGastosServiciosOpcionales);
+                                        gastoLiquidado.add(detalleGasto);
+                                        totalLiquidacion = totalLiquidacion + totalGastosServiciosOpcionales;
+                                    }
+                                    
+                                    }                              
+                           });
+                       } 
+                    });
+                });
+                
+//                gastos.forEach(gasto -> {
+//                if (
+//                    (gasto.getFechaRegistro().isAfter(fechaInicio) && gasto.getFechaRegistro().isBefore(fechaFin)) || 
+//                    (gasto.getFechaRegistro().isEqual(fechaInicio) || gasto.getFechaRegistro().isEqual(fechaFin))
+//                    ){
+//                    DetalleLiquidacionGasto detalleGasto = new DetalleLiquidacionGasto(gasto, gastoLiquidado.size());
+//                    gastoLiquidado.add(detalleGasto);
+//                    totalLiquidacion = totalLiquidacion + gasto.getImporte();
+//                    }
+//                });
+                
+                Liquidacion liquidacion = new Liquidacion(liquidaciones.size(), fechaInicio, fechaFin, totalLiquidacion, gastoLiquidado, servicioLiquidado, inmueble);
+                totalLiquidacion = 0;
+                liquidaciones.add(liquidacion);
+                
+                
+                
         });
-        
-        
-        Liquidacion liquidacion = new Liquidacion(idLiquidacion, fechaInicio, fechaFin, totalLiquidacion, gastoLiquidado, servicioLiquidado, inmuebleLiquidado);
-        totalLiquidacion = 0;
-        return liquidacion;
+        return liquidaciones;   
     }
 }

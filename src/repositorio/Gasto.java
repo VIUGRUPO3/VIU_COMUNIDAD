@@ -48,9 +48,21 @@ public class Gasto {
     public Proveedor getProveedor() {
         return proveedor;
     }
-    
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public String getComprobante() {
+        return comprobante;
+    }
+
     public Categoria getCategoria() {
         return categoria;
+    }   
+    
+    public String getNombreCategoria() {
+        return categoria.getNombre();
     }
 
     public LocalDate getFechaRegistro() {

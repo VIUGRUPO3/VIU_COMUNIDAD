@@ -14,4 +14,5 @@ public interface OpsVecino {
     //2. Metodos
     
     
+    
 }

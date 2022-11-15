@@ -34,7 +34,7 @@ public interface OpsAdmin {
    public abstract void asignarServicioFijoInmuebles(ServicioFijo servicioFijo);
    public abstract void deleteServicioFijo(ServicioFijo servicioFijo);
    public abstract void desasignarServicioFijoInmuebles(ServicioFijo servicioFijo);
-   public abstract void updateServicioFijo(ServicioFijo servicioFijo, String nombre, double tarifa, Categoria categoria);
+   public abstract void updateServicioFijo(ServicioFijo servicioFijo, String nombre, double tarifa);
    //public void updateServicioFijoInmuebles(ServicioFijo servicioFijo); Este metodo no hace falta ya que el update referencia al objeto.
    public abstract List<ServicioFijo> viewServiciosFijos();
    
@@ -44,7 +44,7 @@ public interface OpsAdmin {
    public abstract void deleteServicioOpcional(ServicioOpcional servicioOpcional);
    public abstract void desasignarServicioOcionalInmuebles(ServicioOpcional servicioOpcional);
    public abstract void desasignarServicioOpcionalInmueble(ServicioOpcional servicioOpcional, Inmueble inmueble);
-   public abstract void updateServicioOpcional(ServicioOpcional servicioOpcional, String nombre, double tarifa, Categoria categoria);
+   public abstract void updateServicioOpcional(ServicioOpcional servicioOpcional, String nombre, double tarifa);
    public abstract List<ServicioOpcional> viewServiciosOpcionales();
    
         //Metodos con Proveedor
@@ -56,14 +56,15 @@ public interface OpsAdmin {
         //Metodos con Gasto
    public abstract void saveGasto(Gasto gasto);
    public abstract void deleteGasto(Gasto gasto);
-   public void updateGasto(Gasto gasto, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante,Categoria categoria, double importe);
+   public abstract void updateGasto(Gasto gasto, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante,Categoria categoria, double importe);
    public abstract List<Gasto> viewGastos();
    
         //Metodos con Liquidacion
-   public void saveLiquidacion(Liquidacion liquidacion);
-   public void deleteLiquidacion(Liquidacion liquidacion);
-   public List<Liquidacion> viewLiquidaciones();
-   public Liquidacion generarLiquidacion(LocalDate fechaInicio, LocalDate fechaFin, Inmueble inmuebleLiquidado);
+   public abstract void saveLiquidacion(Liquidacion liquidacion);
+   public abstract void deleteLiquidacion(Liquidacion liquidacion);
+   public abstract List<Liquidacion> viewLiquidaciones();
+   //public Liquidacion generarLiquidacion(LocalDate fechaInicio, LocalDate fechaFin, Inmueble inmuebleLiquidado);
+   public abstract List<Liquidacion> generarLiquidaciones(LocalDate fechaInicio, LocalDate fechaFin);
    
     
     

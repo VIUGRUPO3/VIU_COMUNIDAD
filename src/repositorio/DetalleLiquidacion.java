@@ -15,16 +15,14 @@ abstract class DetalleLiquidacion {
     //1.Atributos
     
     protected int id;
-    protected Categoria categoria;
     
     
     //2.Constructores
     
     public DetalleLiquidacion() {}
 
-    public DetalleLiquidacion(int id, Categoria categoria) {
+    public DetalleLiquidacion(int id) {
         this.id = id;
-        this.categoria = categoria;
     }
     
     //3.Metodos

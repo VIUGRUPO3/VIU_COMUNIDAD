@@ -58,7 +58,7 @@ public class Liquidacion {
                 + "\n--------Liquidacion Servicios-------\n\n"
                 + servicioLiquidado
                 + "\n----------Liquidacion Gastos--------\n"
-                + gastoLiquidado;
+                + gastoLiquidado + "\n\n";
     }
     
     
