@@ -57,13 +57,7 @@ public class Admin extends Usuario implements OpsAdmin {
         this.gastos = new ArrayList();
         this.liquidaciones = new ArrayList();
     }
-
-    
-
-    
-    
-    
-
+ 
     //3. Metodos
     
     
@@ -155,6 +149,7 @@ public class Admin extends Usuario implements OpsAdmin {
         categoria.setCategoria(nombre);
     }
     
+    
 //SERVICIOS FIJOS
         
         //Metodo que almacena un objeto servicioFijo dentro de un ArrayList de serviciosFijos
@@ -205,6 +200,7 @@ public class Admin extends Usuario implements OpsAdmin {
     public List<ServicioFijo> viewServiciosFijos(){
         return serviciosFijos;
     }
+    
     
 //SERVICIOS OPCIONALES
         
@@ -270,6 +266,7 @@ public class Admin extends Usuario implements OpsAdmin {
         return serviciosOpcionales;
     }
     
+    
 //PROVEEDORES
     
         //Guarda un Proveedor en ArrayList de PROVEEDORES
@@ -294,6 +291,7 @@ public class Admin extends Usuario implements OpsAdmin {
     public List<Proveedor> viewProveedores(){
         return proveedores;
     }
+    
     
 //GASTOS
     
@@ -320,21 +318,22 @@ public class Admin extends Usuario implements OpsAdmin {
         return gastos;
     }
     
- //Liquidacion
     
-        //Guarda un Proveedor en ArrayList de PROVEEDORES
+ //LIQUIDACIONES
+    
+        //Guarda un Liquidacion en ArrayList de LIQUIDACIONES
     @Override
     public void saveLiquidacion(Liquidacion liquidacion){
         liquidaciones.add(liquidacion);
     }
     
-        //Borra un Proveedor en ArrayList de PROVEEDORES
+        //Borra un Liquidacion en ArrayList de LIQUIDACIONES
     @Override
     public void deleteLiquidacion(Liquidacion liquidacion){
         liquidaciones.remove(liquidaciones.indexOf(liquidacion));
     }
     
-    
+        //Devuelve el ArrayList de LIQUIDACIONES
     @Override
     public List<Liquidacion> viewLiquidaciones(){
         return liquidaciones;
@@ -380,8 +379,6 @@ public class Admin extends Usuario implements OpsAdmin {
     
     @Override
     public List<Liquidacion> generarLiquidaciones(LocalDate fechaInicio, LocalDate fechaFin){
-        
-        
         
         inmuebles.forEach(inmueble ->{
             
@@ -434,26 +431,31 @@ public class Admin extends Usuario implements OpsAdmin {
                            });
                        } 
                     });
-                });
-                
-//                gastos.forEach(gasto -> {
-//                if (
-//                    (gasto.getFechaRegistro().isAfter(fechaInicio) && gasto.getFechaRegistro().isBefore(fechaFin)) || 
-//                    (gasto.getFechaRegistro().isEqual(fechaInicio) || gasto.getFechaRegistro().isEqual(fechaFin))
-//                    ){
-//                    DetalleLiquidacionGasto detalleGasto = new DetalleLiquidacionGasto(gasto, gastoLiquidado.size());
-//                    gastoLiquidado.add(detalleGasto);
-//                    totalLiquidacion = totalLiquidacion + gasto.getImporte();
-//                    }
-//                });
-                
+                });                      
                 Liquidacion liquidacion = new Liquidacion(liquidaciones.size(), fechaInicio, fechaFin, totalLiquidacion, gastoLiquidado, servicioLiquidado, inmueble);
                 totalLiquidacion = 0;
-                liquidaciones.add(liquidacion);
-                
-                
-                
+                liquidaciones.add(liquidacion);  
         });
         return liquidaciones;   
+    }
+    
+    public List<Liquidacion> consultaLiquidacionInmueble (Inmueble inmueble){
+        List<Liquidacion> liquidacionesInmueble = new ArrayList();
+        liquidaciones.forEach(liquidacion ->{
+            if(liquidacion.getInmueble() == inmueble){        
+                liquidacionesInmueble.add(liquidacion);
+            }
+        });
+        return liquidacionesInmueble;
+    }
+    
+     public List<Liquidacion> consultaLiquidacionVecino (Vecino vecino){
+        List<Liquidacion> liquidacionesVecino = new ArrayList();
+        liquidaciones.forEach(liquidacion ->{
+            if(liquidacion.getInmueble().getVecino() == vecino){        
+                liquidacionesVecino.add(liquidacion);
+            }
+        });
+        return liquidacionesVecino;
     }
 }

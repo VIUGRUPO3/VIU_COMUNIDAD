@@ -41,7 +41,7 @@ public class main {
         Inmueble inmueble2 = new Inmueble(2, vecino2, "Serrano ");
         Inmueble inmueble3 = new Inmueble(3, vecino3, "Arenal  ");
         Inmueble inmueble4 = new Inmueble(4, vecino4, "Ronda   ");
-        Inmueble inmueble5 = new Inmueble(5, vecino5, "Ronda2  ");
+        Inmueble inmueble5 = new Inmueble(5, vecino2, "Ronda2  ");
               
             //Instancias de la clase ServicioFijo
         ServicioFijo servicioFijo1 = new ServicioFijo(1, "Jardineria   ", 100);
@@ -313,18 +313,33 @@ public class main {
         //                   LocalDate.parse("30/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")), 
         //            inmueble3);
         //        admin.saveLiquidacion(liquidacion2);
-        
 
-
+            //Generacion de liquidaciones entre fechas especificadas
         List<Liquidacion> liquidacionesEdit = admin.generarLiquidaciones(
                  LocalDate.parse("01/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
                    LocalDate.parse("30/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")));
-        
-       
+
               // Impresion en consola de todas las liquidaciones generadas
-        System.out.println("\n\nGENERACION DE LIQUIDACIONES \n");
-        System.out.println("=========================== \n");
+        System.out.println("\n\n    GENERACION DE LIQUIDACIONES \n");
+        System.out.println("========================================== \n");
         System.out.println(liquidacionesEdit);
+        
+        
+            //Generacion de liquidaciones por INMUEBLE especificado
+        List<Liquidacion> liquidacionesInmueble = admin.consultaLiquidacionInmueble(inmueble5);
+
+              // Impresion en consola de todas las liquidaciones consultadas
+        System.out.println("\n\n   CONSULTA DE LIQUIDACIONES POR INMUEBLE \n");
+        System.out.println("========================================== \n");
+        System.out.println(liquidacionesInmueble);
+        
+            //Generacion de liquidaciones por VECINO especificado
+        List<Liquidacion> liquidacionesVecino = admin.consultaLiquidacionVecino(vecino2);
+
+              // Impresion en consola de todas las liquidaciones consultadas
+        System.out.println("\n\n   CONSULTA DE LIQUIDACIONES POR VECINO \n");
+        System.out.println("========================================== \n");
+        System.out.println(liquidacionesVecino);
     }
     
 }

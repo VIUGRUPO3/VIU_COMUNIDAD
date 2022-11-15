@@ -65,6 +65,8 @@ public interface OpsAdmin {
    public abstract List<Liquidacion> viewLiquidaciones();
    //public Liquidacion generarLiquidacion(LocalDate fechaInicio, LocalDate fechaFin, Inmueble inmuebleLiquidado);
    public abstract List<Liquidacion> generarLiquidaciones(LocalDate fechaInicio, LocalDate fechaFin);
+   public abstract List<Liquidacion> consultaLiquidacionInmueble (Inmueble inmueble);
+   public abstract List<Liquidacion> consultaLiquidacionVecino (Vecino vecino);
    
     
     

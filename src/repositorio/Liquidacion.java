@@ -46,6 +46,12 @@ public class Liquidacion {
         return id;
     }
 
+    public Inmueble getInmueble() {
+        return inmueble;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "  -------Liquidacion Nº" + id + "-------"
