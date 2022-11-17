@@ -49,6 +49,16 @@ public class Liquidacion {
     public Inmueble getInmueble() {
         return inmueble;
     }
+
+    public List<DetalleLiquidacionGasto> getGastoLiquidado() {
+        return gastoLiquidado;
+    }
+
+    public List<DetalleLiquidacionServicio> getServicioLiquidado() {
+        return servicioLiquidado;
+    }
+    
+    
     
     
 

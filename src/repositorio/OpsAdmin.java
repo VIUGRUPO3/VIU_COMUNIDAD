@@ -56,7 +56,7 @@ public interface OpsAdmin {
         //Metodos con Gasto
    public abstract void saveGasto(Gasto gasto);
    public abstract void deleteGasto(Gasto gasto);
-   public abstract void updateGasto(Gasto gasto, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante,Categoria categoria, double importe);
+   public void updateGasto(Gasto gasto, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante,Categoria categoria, double importe, boolean liquidado);
    public abstract List<Gasto> viewGastos();
    
         //Metodos con Liquidacion

@@ -75,7 +75,8 @@ public class main {
                    proveedor1,
                   "JR345",
                    categoria2,
-                     1000
+                     1000,
+                   false
         );
         Gasto gasto2 = new Gasto(
                          2,
@@ -85,7 +86,8 @@ public class main {
                    proveedor4,
                   "JR345",
                    categoria3,
-                     300
+                     300,
+                   false
         );
         Gasto gasto3 = new Gasto(
                          3,
@@ -95,7 +97,8 @@ public class main {
                    proveedor5,
                   "Consj45",
                    categoria5,
-                     1400
+                     1400, 
+                   false
         );
         
         
@@ -215,6 +218,22 @@ public class main {
         System.out.println("\n\n   CONSULTA DE LIQUIDACIONES POR VECINO \n");
         System.out.println("========================================== \n");
         System.out.println(liquidacionesVecino);
+        
+        
+//        List<Gasto> gastosEdit2 = admin.viewGastos();
+//        System.out.println("\n\nVALOR FINAL DEL ARRAY DE GASTOS \n");
+//        System.out.println(gastosEdit2);
+//        
+//        List<Liquidacion> liquidacionesEdit2 = admin.generarLiquidaciones(
+//                 LocalDate.parse("01/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
+//                   LocalDate.parse("30/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")));
+//
+//              // Impresion en consola de todas las liquidaciones generadas
+//        System.out.println("\n\n    GENERACION DE LIQUIDACIONES \n");
+//        System.out.println("========================================== \n");
+//        System.out.println(liquidacionesEdit2);
+        
+        
         
         
         

@@ -30,6 +30,7 @@ public class Admin extends Usuario implements OpsAdmin {
     double totalGastosServiciosFijos = 0;
     double totalGastosServiciosOpcionales = 0;
     int inmueblesAdheridos = 0;
+    double cantidadLiquidada = 0;
     
 
     
@@ -309,8 +310,8 @@ public class Admin extends Usuario implements OpsAdmin {
     
         //Actualiza los datos del proveedor en el ArrayList de PROVEEDORES
     @Override
-    public void updateGasto(Gasto gasto, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante,Categoria categoria, double importe){
-        gasto.setGasto(descripcion, fechaRegistro, fechaPago, proveedor, comprobante, categoria, importe);
+    public void updateGasto(Gasto gasto, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante,Categoria categoria, double importe, boolean liquidado){
+        gasto.setGasto(descripcion, fechaRegistro, fechaPago, proveedor, comprobante, categoria, importe, liquidado);
     }
     
     @Override
@@ -339,44 +340,7 @@ public class Admin extends Usuario implements OpsAdmin {
         return liquidaciones;
     }
     
-//    public Liquidacion generarLiquidacion(LocalDate fechaInicio, LocalDate fechaFin, Inmueble inmuebleLiquidado){
-//        
-//        List<DetalleLiquidacionServicio> servicioLiquidado = new ArrayList();
-//        List<DetalleLiquidacionGasto> gastoLiquidado = new ArrayList();
-//        int idLiquidacion = liquidaciones.size();
-//        int idDetalleGasto = gastoLiquidado.size();
-//        
-//        
-//        inmuebleLiquidado.serviciosFijos.forEach(servicioFijo -> {
-//            DetalleLiquidacionServicio detalleServicioFijo = new DetalleLiquidacionServicio(servicioFijo, servicioLiquidado.size(), servicioFijo.categoria);
-//            servicioLiquidado.add(detalleServicioFijo);
-//            totalLiquidacion = totalLiquidacion + servicioFijo.tarifa;
-//        });
-//        
-//        inmuebleLiquidado.serviciosOpcionales.forEach(servicioOpcional ->{
-//            DetalleLiquidacionServicio detalleServicioOpcional = new DetalleLiquidacionServicio(servicioOpcional, servicioLiquidado.size(), servicioOpcional.categoria);
-//            servicioLiquidado.add(detalleServicioOpcional);
-//            totalLiquidacion = totalLiquidacion + servicioOpcional.tarifa;
-//        });
-//        
-//        gastos.forEach(gasto -> {
-//            if (
-//                    (gasto.getFechaRegistro().isAfter(fechaInicio) && gasto.getFechaRegistro().isBefore(fechaFin)) || 
-//                    (gasto.getFechaRegistro().isEqual(fechaInicio) || gasto.getFechaRegistro().isEqual(fechaFin))
-//                    ){
-//                DetalleLiquidacionGasto detalleGasto = new DetalleLiquidacionGasto(gasto, gastoLiquidado.size(), gasto.getCategoria());
-//                gastoLiquidado.add(detalleGasto);
-//                totalLiquidacion = totalLiquidacion + gasto.getImporte();
-//            }
-//            
-//        });
-//        
-//        
-//        Liquidacion liquidacion = new Liquidacion(liquidaciones.size(), fechaInicio, fechaFin, totalLiquidacion, gastoLiquidado, servicioLiquidado, inmuebleLiquidado);
-//        totalLiquidacion = 0;
-//        return liquidacion;
-//    }
-    
+        //Genera las liquidaciones entre las fechas especificdas
     @Override
     public List<Liquidacion> generarLiquidaciones(LocalDate fechaInicio, LocalDate fechaFin){
         
@@ -392,22 +356,27 @@ public class Admin extends Usuario implements OpsAdmin {
                     categorias.forEach(categoria -> {
                        if(categoria.getServicio() == servicioFijo){
                            gastos.forEach(gasto -> {
-                                if (
+                                if ( 
                                     (gasto.getFechaRegistro().isAfter(fechaInicio) && gasto.getFechaRegistro().isBefore(fechaFin)) || 
-                                    (gasto.getFechaRegistro().isEqual(fechaInicio) || gasto.getFechaRegistro().isEqual(fechaFin))
-                                    ){
-                                    if(gasto.getCategoria() == categoria){
+                                     (gasto.getFechaRegistro().isEqual(fechaInicio) || gasto.getFechaRegistro().isEqual(fechaFin))                                      
+                                    
+                                        ){
+                                    if(gasto.getCategoria() == categoria && gasto.isLiquidado() == false){
                                         totalGastosServiciosFijos = gasto.getImporte()/(vecinos.size());
+                                        cantidadLiquidada += totalGastosServiciosFijos;
                                         DetalleLiquidacionGasto detalleGasto = new DetalleLiquidacionGasto(gasto, gastoLiquidado.size(),totalGastosServiciosFijos);
                                         gastoLiquidado.add(detalleGasto);
-                                        totalLiquidacion = totalLiquidacion + totalGastosServiciosFijos;
+                                        totalLiquidacion = totalLiquidacion + totalGastosServiciosFijos;                                        
                                     }
                                     
                                     }                              
                            });
                        } 
+                       
                     });
+                    
                 });
+                
                 
                 inmueble.serviciosOpcionales.forEach(servicioOpcional -> {
                     DetalleLiquidacionServicio detalleServicioOpcional = new DetalleLiquidacionServicio(servicioOpcional, servicioLiquidado.size());
@@ -416,25 +385,33 @@ public class Admin extends Usuario implements OpsAdmin {
                     categorias.forEach(categoria -> {
                        if(categoria.getServicio() == servicioOpcional){
                            gastos.forEach(gasto -> {
-                                if (
+                                if ( 
                                     (gasto.getFechaRegistro().isAfter(fechaInicio) && gasto.getFechaRegistro().isBefore(fechaFin)) || 
-                                    (gasto.getFechaRegistro().isEqual(fechaInicio) || gasto.getFechaRegistro().isEqual(fechaFin))
-                                    ){
-                                    if(gasto.getCategoria() == categoria){
-                                        totalGastosServiciosOpcionales = gasto.getImporte()/ this.inmueblesadheridos(servicioOpcional);
+                                    (gasto.getFechaRegistro().isEqual(fechaInicio) || gasto.getFechaRegistro().isEqual(fechaFin))                                                          
+                                        ){
+                                    if(gasto.getCategoria() == categoria && gasto.isLiquidado() == false){
+                                        totalGastosServiciosOpcionales = gasto.getImporte()/ this.inmueblesadheridos(servicioOpcional);            
                                         DetalleLiquidacionGasto detalleGasto = new DetalleLiquidacionGasto(gasto, gastoLiquidado.size(),totalGastosServiciosOpcionales);
                                         gastoLiquidado.add(detalleGasto);
-                                        totalLiquidacion = totalLiquidacion + totalGastosServiciosOpcionales;
+                                        totalLiquidacion = totalLiquidacion + totalGastosServiciosOpcionales;                                      
                                     }
                                     
                                     }                              
                            });
                        } 
+                       
                     });
-                });                      
+                    
+                });     
+                
                 Liquidacion liquidacion = new Liquidacion(liquidaciones.size(), fechaInicio, fechaFin, totalLiquidacion, gastoLiquidado, servicioLiquidado, inmueble);
                 totalLiquidacion = 0;
                 liquidaciones.add(liquidacion);  
+        });
+        liquidaciones.forEach(liquidacion -> {
+            liquidacion.getGastoLiquidado().forEach(detalleGasto -> {
+               detalleGasto.gasto.setLiquidado(true);
+            });
         });
         return liquidaciones;   
     }

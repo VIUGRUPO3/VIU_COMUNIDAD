@@ -22,13 +22,14 @@ public class Gasto {
     private Proveedor proveedor;
     private String comprobante;
     private Categoria categoria;
+    private boolean liquidado;
     private double importe;
     
     //2.Constructores
 
     public Gasto() {}
 
-    public Gasto(int id, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, Categoria categoria, double importe) {
+    public Gasto(int id, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, Categoria categoria, double importe, boolean liquidado) {
         this.id = id;
         this.descripcion = descripcion;
         this.fechaRegistro = fechaRegistro;
@@ -37,6 +38,7 @@ public class Gasto {
         this.comprobante = comprobante;
         this.categoria = categoria;
         this.importe = importe;
+        this.liquidado = liquidado;
     }
     
     //3.Metodos
@@ -76,12 +78,23 @@ public class Gasto {
     public double getImporte() {
         return importe;
     }
+
+    public boolean isLiquidado() {
+        return liquidado;
+    }
+
+    public void setLiquidado(boolean liquidado) {
+        this.liquidado = liquidado;
+    }
+
+    
+    
     
     
     
     
 
-    public void setGasto(String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, Categoria categoria, double importe) {
+    public void setGasto(String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, Categoria categoria, double importe, boolean liquidado) {
         this.descripcion = descripcion;
         this.fechaRegistro = fechaRegistro;
         this.fechaPago = fechaPago;
@@ -89,13 +102,14 @@ public class Gasto {
         this.comprobante = comprobante;
         this.categoria = categoria;
         this.importe = importe;
+        this.liquidado = liquidado;
     }
     
     
 
     @Override
     public String toString() {
-        return "--------Gasto" + id + "--------\n fechaRegistro - " + fechaRegistro + "\n fechaPago    - " + fechaPago + "\n comprobante  - " + comprobante + "\n categoria    - " + categoria + "\n" + proveedor + "\n--------TOTAL--------\n    " + importe + "Euros \n\n";
+        return "--------Gasto" + id + "--------\n fechaRegistro - " + fechaRegistro + "\n fechaPago    - " + fechaPago + "\n comprobante  - " + comprobante + "\n categoria    - " + categoria + "\n liquidado    - " + liquidado + "\n" + proveedor + "\n--------TOTAL--------\n    " + importe + "Euros \n\n";
     }
     
     
