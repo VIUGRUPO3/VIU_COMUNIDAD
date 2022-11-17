@@ -6,7 +6,7 @@ import java.util.List;
 
 //* Se declara como clase abstracta ya que define unicamente la estructura de la clase.*//
 //* No se va a instanciar ningún objeto de esta clase.*//
-public class Usuario {
+abstract class Usuario {
 
     //1, Atributos
         // Declaración de atributos como protected para no ser accedidos por otras clases fuera del paquete.
