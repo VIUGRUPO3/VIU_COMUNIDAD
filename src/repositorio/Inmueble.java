@@ -1,3 +1,7 @@
+// Autor Grupo 3
+
+//************************ INFO ************************
+
 package repositorio;
 
 import java.util.ArrayList;
@@ -11,8 +15,9 @@ public class Inmueble {
     private int id;
     private Vecino vecino;
     private String direccion;
-    protected List<ServicioFijo> serviciosFijos = new ArrayList();
-    protected List<ServicioOpcional> serviciosOpcionales = new ArrayList(); 
+    protected List<Servicio> servicios = new ArrayList();
+
+
     
     //2. Constructores
 
@@ -64,12 +69,11 @@ public class Inmueble {
 
     
     
-    
         
-        //Metodo toString que sobreescribe el heredado de la clase Object
+        //Metodo toString que sobreescribe el heredado de la clase Object ////REVISAR
     @Override
     public String toString() {
-        return "Inmueble" + id + "\nvecin - " + vecino.nombre + "\ndirec - " + direccion + "\n- Serv Fijos asociados - \n" + serviciosFijos + "\n- Serv Opcionales asoc - \n" + serviciosOpcionales +"\n}\n\n";
+        return "Inmueble" + id + "\nvecin - " + vecino.nombre + "\ndirec - " + direccion + "\n- Serv Fijos asociados - \n" + servicios + "\n- Serv Opcionales asoc - \n" + servicios +"\n}\n\n";
     }
    
 

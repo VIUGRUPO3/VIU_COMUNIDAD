@@ -1,10 +1,10 @@
+// Autor Grupo 3
+
+//************************ INFO ************************
 
 package repositorio;
 
-/**
- *
- * @author fer
- */
+
 public class Proveedor {
     
     //1.Atributos

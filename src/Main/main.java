@@ -1,3 +1,8 @@
+// Autor Grupo 3
+
+//************************ INFO ************************
+
+
 
 package Main;
 
@@ -6,17 +11,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import repositorio.Admin;
 import repositorio.Categoria;
+import repositorio.ComunidadCRUD;
 import repositorio.Gasto;
 import repositorio.Inmueble;
 import repositorio.Liquidacion;
 import repositorio.Proveedor;
-import repositorio.ServicioFijo;
-import repositorio.ServicioOpcional;
+import repositorio.Servicio;
+import repositorio.TipoServicio;
 import repositorio.Vecino;
-/**
- *
- * @author Grupo3
- */
+
 public class main {
 
     /**
@@ -26,8 +29,9 @@ public class main {
         
         boolean login;
         
-            //Instancia de la clase usada para realizar las operaciones con los usuarios
-        Admin admin = new Admin();
+            //Instancia de la clase usada para realizar el Almacenamiento/tratamiendo de datos de la comunidad (BD)
+        ComunidadCRUD comunidadCrud = new ComunidadCRUD ();
+        
         
             //instancias de la clase Vecino 
         Vecino vecino1 = new Vecino(1,"Martin    ","abc ","666778899","martin@viu.es  ");
@@ -44,13 +48,11 @@ public class main {
         Inmueble inmueble5 = new Inmueble(5, vecino2, "Ronda2  ");
               
             //Instancias de la clase ServicioFijo
-        ServicioFijo servicioFijo1 = new ServicioFijo(1, "Jardineria   ", 100);
-        ServicioFijo servicioFijo2 = new ServicioFijo(2, "Mantenimiento", 50);
-        
-            //Instancias de la clase ServicioOpcional
-        ServicioOpcional servicioOpcional1 = new ServicioOpcional(1, "Piscina    ", 60);
-        ServicioOpcional servicioOpcional2 = new ServicioOpcional(2, "Paddle     ", 30);
-        ServicioOpcional servicioOpcional3 = new ServicioOpcional(2, "Conserjeria", 20);
+        Servicio servicio1 = new Servicio(1, "Jardineria   ", 100);
+        Servicio servicio2 = new Servicio(2, "Mantenimiento", 50);
+        Servicio servicio3 = new Servicio(1, "Piscina    ", 60);
+        Servicio servicio4 = new Servicio(2, "Paddle     ", 30);
+        Servicio servicio5 = new Servicio(2, "Conserjeria", 20);
        
              //Instancias de la clase Proveedor
         Proveedor proveedor1 = new Proveedor(1, "Jardines Eden     ", "C/Serrano, 3     ", "666888777","jardineden@gmail.com");
@@ -59,12 +61,6 @@ public class main {
         Proveedor proveedor4 = new Proveedor(4, "Paddle Club       ", "Ctra. Malaga     ", "669874512","paddleclub@gmail.com");
         Proveedor proveedor5 = new Proveedor(5, "Atlas Services    ", "C/Jaul           ", "669879854","atlas@gmail.com     ");
         
-            //Instancias de la clase Categoria
-        Categoria categoria1 = new Categoria(1, "Piscina      ", servicioOpcional1);
-        Categoria categoria2 = new Categoria(2, "Jardines     ", servicioFijo1);
-        Categoria categoria3 = new Categoria(3, "Paddle       ", servicioOpcional2);
-        Categoria categoria4 = new Categoria(4, "Mantenimiento", servicioFijo2);
-        Categoria categoria5 = new Categoria(4, "Sueldos      ", servicioOpcional3);
         
             //Instancias de la clase Gasto
         Gasto gasto1 = new Gasto(
@@ -74,7 +70,7 @@ public class main {
                    LocalDate.parse("29/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
                    proveedor1,
                   "JR345",
-                   categoria2,
+                   servicio1,
                      1000,
                    false
         );
@@ -85,7 +81,7 @@ public class main {
                    LocalDate.parse("20/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
                    proveedor4,
                   "JR345",
-                   categoria3,
+                   servicio4,
                      300,
                    false
         );
@@ -96,7 +92,7 @@ public class main {
                    LocalDate.parse("20/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
                    proveedor5,
                   "Consj45",
-                   categoria5,
+                   servicio5,
                      1400, 
                    false
         );
@@ -105,59 +101,54 @@ public class main {
     //Operaciones de almacenamiento dentro de las estructuras de datos
             
             //Guardamos los Vecinos instanciados dentro de un ArrayList de Vecinos
-        admin.saveVecino(vecino1);
-        admin.saveVecino(vecino2);
-        admin.saveVecino(vecino3);
-        admin.saveVecino(vecino4);
-        admin.saveVecino(vecino5);
+        comunidadCrud.saveVecino(vecino1);
+        comunidadCrud.saveVecino(vecino2);
+        comunidadCrud.saveVecino(vecino3);
+        comunidadCrud.saveVecino(vecino4);
+        comunidadCrud.saveVecino(vecino5);
         
             //Guardamos los inmuebles instanciados dentro de un ArrayList de Inmuebles
-        admin.saveInmueble(inmueble1);
-        admin.saveInmueble(inmueble2);
-        admin.saveInmueble(inmueble3);
-        admin.saveInmueble(inmueble4);
-        admin.saveInmueble(inmueble5);
+        comunidadCrud.saveInmueble(inmueble1);
+        comunidadCrud.saveInmueble(inmueble2);
+        comunidadCrud.saveInmueble(inmueble3);
+        comunidadCrud.saveInmueble(inmueble4);
+        comunidadCrud.saveInmueble(inmueble5);
         
-            //Guardamos las categorias instanciados dentro de un ArrayList de Categorias
-        admin.saveCategoria(categoria1);
-        admin.saveCategoria(categoria2);
-        admin.saveCategoria(categoria3);
-        admin.saveCategoria(categoria4);
-        admin.saveCategoria(categoria5);
-        
-            //Guardamos los servicios fijos instanciados dentro de un ArrayList de Servicios Fijos
+          
+            //Guardamos los servicios fijos instanciados dentro de un ArrayList de Servicios Fijos //CAMBIAR!!!!!
             //Al ser servicios fijos se incluiran en todos los inmuebles creados
-        admin.saveServicioFijo(servicioFijo1);
-        admin.asignarServicioFijoInmuebles(servicioFijo1);
-        admin.saveServicioFijo(servicioFijo2);
-        admin.asignarServicioFijoInmuebles(servicioFijo2);
+        comunidadCrud.saveServicio(servicio1);
+        comunidadCrud.asignarServicioInmuebles(servicio1);
+        comunidadCrud.saveServicio(servicio2);
+        comunidadCrud.asignarServicioInmuebles(servicio2);
         
-            //Guardamos los servicios opcionales dentro de un Array de Servicios opcionales
-        admin.saveServicioOpcional(servicioOpcional1);
-        admin.saveServicioOpcional(servicioOpcional2);
+            //Guardamos los servicios opcionales dentro de un Array de Servicios opcionales //CAMBIAR!!!!
+        comunidadCrud.saveServicioOpcional(servicio);
+        comunidadCrud.saveServicioOpcional(servicio);
         
             //Asignamos varios servicios opcionales a varios inmuebles
-        admin.asignarServicioOpcionalInmueble(servicioOpcional1, inmueble1);
-        admin.asignarServicioOpcionalInmueble(servicioOpcional2, inmueble1);
-        admin.asignarServicioOpcionalInmueble(servicioOpcional1, inmueble2);
-        admin.asignarServicioOpcionalInmueble(servicioOpcional2, inmueble2);
-        admin.asignarServicioOpcionalInmueble(servicioOpcional1, inmueble3);
-        admin.asignarServicioOpcionalInmueble(servicioOpcional2, inmueble3);
-        admin.asignarServicioOpcionalInmueble(servicioOpcional3, inmueble3);
-        admin.asignarServicioOpcionalInmueble(servicioOpcional3, inmueble2);
+        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional1, inmueble1);
+        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional2, inmueble1);
+        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional1, inmueble2);
+        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional2, inmueble2);
+        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional1, inmueble3);
+        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional2, inmueble3);
+        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional3, inmueble3);
+        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional3, inmueble2);
         
             //Guardamos los proveedores instanciados dentro de un ArrayList de proveedores
-        admin.saveProveedor(proveedor1);
-        admin.saveProveedor(proveedor2);
-        admin.saveProveedor(proveedor3);
-        admin.saveProveedor(proveedor4);
-        admin.saveProveedor(proveedor5);
+        comunidadCrud.saveProveedor(proveedor1);
+        comunidadCrud.saveProveedor(proveedor2);
+        comunidadCrud.saveProveedor(proveedor3);
+        comunidadCrud.saveProveedor(proveedor4);
+        comunidadCrud.saveProveedor(proveedor5);
         
-            //Guardamos los gastos instanciados dentro de un ArrayList de gastos
-        admin.saveGasto(gasto1);
-        admin.saveGasto(gasto2);
-        admin.saveGasto(gasto3);
+            //Guardamos los gastos instanciados dentro de un ArrayList de gastos // CAMBIAR!!!!
+        comunidadCrud.saveGasto(gasto1);
+        comunidadCrud.saveGasto(gasto2);
+        comunidadCrud.saveGasto(gasto3);
         
+        // QUITAR DEL CODIGO // Mas ADELANTE SE UTILIZA // CAMBIAR!!!!
         login = vecino2.login("fer@viu.es     ", "def ");
         if(login == true){
             System.out.println("Usuario autenticado correctamente");

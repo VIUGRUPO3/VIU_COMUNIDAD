@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+// Autor Grupo 3
+
+//************************ INFO ************************
+
 package repositorio;
 
-/**
- *
- * @author fer
- */
+
 public class DetalleLiquidacionGasto extends DetalleLiquidacion {
     
     //1.Atributos

@@ -1,13 +1,17 @@
+// Autor Grupo 3
+
+//************************ INFO ************************
+
+
+
 package repositorio;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /*Clase que hereda de Usuario*/
 
-public class Vecino extends Usuario implements OpsVecino {
+public class Vecino extends Usuario {
 
-     //1. Atributos
+    //1. Atributos
     
     
     
@@ -20,7 +24,61 @@ public class Vecino extends Usuario implements OpsVecino {
     }
     
     //3.Metodos
+
+    //Getters
+    public int getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public boolean isLogged() {
+        return logged;
+    }
+     
+
+    //Setters
     
+    public void setId(int id) {
+        this.id = id;
+    }
+   
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setLogged(boolean logged) {
+        this.logged = logged;
+    }
+    
+    
+ 
        
 }
 

@@ -1,16 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+// Autor Grupo 3
+
 package repositorio;
 
 import java.time.LocalDate;
 import java.util.Date;
 
-/**
- *
- * @author fer
- */
+
 public class Gasto {
     
     //1.Atributos
@@ -21,7 +16,7 @@ public class Gasto {
     private LocalDate fechaPago;
     private Proveedor proveedor;
     private String comprobante;
-    private Categoria categoria;
+    private Servicio servicio;
     private boolean liquidado;
     private double importe;
     
@@ -29,14 +24,14 @@ public class Gasto {
 
     public Gasto() {}
 
-    public Gasto(int id, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, Categoria categoria, double importe, boolean liquidado) {
+    public Gasto(int id, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, Servicio servicio, double importe, boolean liquidado) {
         this.id = id;
         this.descripcion = descripcion;
         this.fechaRegistro = fechaRegistro;
         this.fechaPago = fechaPago;
         this.proveedor = proveedor;
         this.comprobante = comprobante;
-        this.categoria = categoria;
+        this.servicio = servicio;
         this.importe = importe;
         this.liquidado = liquidado;
     }
@@ -59,13 +54,9 @@ public class Gasto {
         return comprobante;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
+    public Servicio getServicio() {
+        return servicio;
     }   
-    
-    public String getNombreCategoria() {
-        return categoria.getNombre();
-    }
 
     public LocalDate getFechaRegistro() {
         return fechaRegistro;
@@ -87,20 +78,13 @@ public class Gasto {
         this.liquidado = liquidado;
     }
 
-    
-    
-    
-    
-    
-    
-
-    public void setGasto(String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, Categoria categoria, double importe, boolean liquidado) {
+    public void setGasto(String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, Servicio servicio, double importe, boolean liquidado) {
         this.descripcion = descripcion;
         this.fechaRegistro = fechaRegistro;
         this.fechaPago = fechaPago;
         this.proveedor = proveedor;
         this.comprobante = comprobante;
-        this.categoria = categoria;
+        this.servicio = servicio;
         this.importe = importe;
         this.liquidado = liquidado;
     }
@@ -109,7 +93,7 @@ public class Gasto {
 
     @Override
     public String toString() {
-        return "--------Gasto" + id + "--------\n fechaRegistro - " + fechaRegistro + "\n fechaPago    - " + fechaPago + "\n comprobante  - " + comprobante + "\n categoria    - " + categoria + "\n liquidado    - " + liquidado + "\n" + proveedor + "\n--------TOTAL--------\n    " + importe + "Euros \n\n";
+        return "--------Gasto" + id + "--------\n fechaRegistro - " + fechaRegistro + "\n fechaPago    - " + fechaPago + "\n comprobante  - " + comprobante + "\n servicio    - " + servicio + "\n liquidado    - " + liquidado + "\n" + proveedor + "\n--------TOTAL--------\n    " + importe + "Euros \n\n";
     }
     
     

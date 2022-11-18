@@ -1,10 +1,10 @@
+// Autor Grupo 3
+
+//************************ INFO ************************
 
 package repositorio;
 
-/**
- *
- * @author fer
- */
+
 public class Categoria {
     
     //1.Atributos
@@ -24,6 +24,7 @@ public class Categoria {
     }
     
     //3.Metodos
+    //Getters
 
     public int getId() {
         return id;
@@ -32,19 +33,28 @@ public class Categoria {
     public String getNombre() {
         return nombre;
     }
-    
+
     public Servicio getServicio() {
         return servicio;
     }
+    
+    //Setters
 
-    public void setCategoria(String nombre) {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
     public void setServicio(Servicio servicio) {
         this.servicio = servicio;
     }
-   
+    
+
+    
+    
     @Override
     public String toString() {
         return id + " - " + nombre;

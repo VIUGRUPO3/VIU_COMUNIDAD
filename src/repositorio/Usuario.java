@@ -1,7 +1,8 @@
-package repositorio;
+// Autor Grupo 3
 
-import java.util.ArrayList;
-import java.util.List;
+//************************ INFO ************************
+
+package repositorio;
 
 
 //* Se declara como clase abstracta ya que define unicamente la estructura de la clase.*//
@@ -9,7 +10,8 @@ import java.util.List;
 abstract class Usuario {
 
     //1, Atributos
-        // Declaración de atributos como protected para no ser accedidos por otras clases fuera del paquete.
+    
+    // Declaración de atributos como protected para no ser accedidos por otras clases fuera del paquete.
     
     protected int id;//
     protected String nombre;
@@ -21,6 +23,7 @@ abstract class Usuario {
         //Se declara esta variable como privada para que este protegida dentro de la clase    
     
     //2. Constructor
+    
         // Constructor "metodo que inicializa el objeto" de la clase Usuario.
         //(Dentro del constructor se incluyen los parametros)
         //Como buena practica se crea un constructor vacio
