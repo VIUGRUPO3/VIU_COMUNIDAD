@@ -24,6 +24,7 @@ public class Liquidacion {
     private List<DetalleLiquidacionServicio> servicioLiquidado;
     private Inmueble inmueble;
     
+    
     //2.Constructores
 
     public Liquidacion() {}
@@ -57,10 +58,6 @@ public class Liquidacion {
     public List<DetalleLiquidacionServicio> getServicioLiquidado() {
         return servicioLiquidado;
     }
-    
-    
-    
-    
 
     @Override
     public String toString() {

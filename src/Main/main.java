@@ -24,7 +24,7 @@ public class main {
      */
     public static void main(String[] args) {
         
-        int login;
+        boolean login;
         
             //Instancia de la clase usada para realizar las operaciones con los usuarios
         Admin admin = new Admin();
@@ -158,8 +158,12 @@ public class main {
         admin.saveGasto(gasto2);
         admin.saveGasto(gasto3);
         
-        login = vecino2.login("fer@viu.es", "def");
-        System.out.println(login);
+        login = vecino2.login("fer@viu.es     ", "def ");
+        if(login == true){
+            System.out.println("Usuario autenticado correctamente");
+        }else{
+            System.out.println("Error de autenticacion");
+        }
 
     
         
