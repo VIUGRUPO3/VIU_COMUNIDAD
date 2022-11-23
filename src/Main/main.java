@@ -10,14 +10,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import repositorio.Admin;
-import repositorio.Categoria;
+import repositorio.GastoCategoria;
 import repositorio.ComunidadCRUD;
 import repositorio.Gasto;
 import repositorio.Inmueble;
 import repositorio.Liquidacion;
 import repositorio.Proveedor;
 import repositorio.Servicio;
-import repositorio.TipoServicio;
+import repositorio.ServicioTipos;
 import repositorio.Vecino;
 
 public class main {
@@ -31,6 +31,7 @@ public class main {
         
             //Instancia de la clase usada para realizar el Almacenamiento/tratamiendo de datos de la comunidad (BD)
         ComunidadCRUD comunidadCrud = new ComunidadCRUD ();
+        
         
         
             //instancias de la clase Vecino 
@@ -47,7 +48,7 @@ public class main {
         Inmueble inmueble4 = new Inmueble(4, vecino4, "Ronda   ");
         Inmueble inmueble5 = new Inmueble(5, vecino2, "Ronda2  ");
               
-            //Instancias de la clase ServicioFijo
+            //Instancias de la clase Servicio
         Servicio servicio1 = new Servicio(1, "Jardineria   ", 100);
         Servicio servicio2 = new Servicio(2, "Mantenimiento", 50);
         Servicio servicio3 = new Servicio(1, "Piscina    ", 60);
@@ -61,6 +62,12 @@ public class main {
         Proveedor proveedor4 = new Proveedor(4, "Paddle Club       ", "Ctra. Malaga     ", "669874512","paddleclub@gmail.com");
         Proveedor proveedor5 = new Proveedor(5, "Atlas Services    ", "C/Jaul           ", "669879854","atlas@gmail.com     ");
         
+            //Instancias de la clase GastoCategoria
+        GastoCategoria gastoCategoria1 = new GastoCategoria(1, "Jardines     ", servicio1);
+        GastoCategoria gastoCategoria2 = new GastoCategoria(2, "Mantenimiento", servicio2);
+        GastoCategoria gastoCategoria3 = new GastoCategoria(1, "Piscinas     ", servicio3);
+        GastoCategoria gastoCategoria4 = new GastoCategoria(2, "Paddle       ", servicio4);
+        GastoCategoria gastoCategoria5 = new GastoCategoria(2, "Conserjeria  ", servicio5);
         
             //Instancias de la clase Gasto
         Gasto gasto1 = new Gasto(
@@ -70,7 +77,7 @@ public class main {
                    LocalDate.parse("29/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
                    proveedor1,
                   "JR345",
-                   servicio1,
+                   gastoCategoria1,
                      1000,
                    false
         );
@@ -81,7 +88,7 @@ public class main {
                    LocalDate.parse("20/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
                    proveedor4,
                   "JR345",
-                   servicio4,
+                   gastoCategoria4,
                      300,
                    false
         );
@@ -92,7 +99,7 @@ public class main {
                    LocalDate.parse("20/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
                    proveedor5,
                   "Consj45",
-                   servicio5,
+                   gastoCategoria5,
                      1400, 
                    false
         );
@@ -118,23 +125,28 @@ public class main {
             //Guardamos los servicios fijos instanciados dentro de un ArrayList de Servicios Fijos //CAMBIAR!!!!!
             //Al ser servicios fijos se incluiran en todos los inmuebles creados
         comunidadCrud.saveServicio(servicio1);
-        comunidadCrud.asignarServicioInmuebles(servicio1);
+        servicio1.definirFijo(comunidadCrud);
         comunidadCrud.saveServicio(servicio2);
-        comunidadCrud.asignarServicioInmuebles(servicio2);
+        servicio2.definirFijo(comunidadCrud);
+            //Asigna todos los servicios fijos a todos lo inmuebles
+        comunidadCrud.getServicioTipos().asignarServiciosFijosInmuebles(comunidadCrud);
         
             //Guardamos los servicios opcionales dentro de un Array de Servicios opcionales //CAMBIAR!!!!
-        comunidadCrud.saveServicioOpcional(servicio);
-        comunidadCrud.saveServicioOpcional(servicio);
+        comunidadCrud.saveServicio(servicio3);
+        servicio3.definirOpcional(comunidadCrud);
+        comunidadCrud.saveServicio(servicio4);
+        servicio4.definirOpcional(comunidadCrud);
         
             //Asignamos varios servicios opcionales a varios inmuebles
-        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional1, inmueble1);
-        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional2, inmueble1);
-        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional1, inmueble2);
-        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional2, inmueble2);
-        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional1, inmueble3);
-        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional2, inmueble3);
-        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional3, inmueble3);
-        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional3, inmueble2);
+        inmueble1.asignarServicioInmueble(servicio5, LocalDate.MAX);
+//        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional1, inmueble1);
+//        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional2, inmueble1);
+//        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional1, inmueble2);
+//        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional2, inmueble2);
+//        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional1, inmueble3);
+//        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional2, inmueble3);
+//        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional3, inmueble3);
+//        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional3, inmueble2);
         
             //Guardamos los proveedores instanciados dentro de un ArrayList de proveedores
         comunidadCrud.saveProveedor(proveedor1);
@@ -161,59 +173,59 @@ public class main {
         
     //Operaciones de impresion EN CONSOLA    
         
-            //Generamos una variable con la lista completa cada clase y la imprimimos por pantalla una vez editados
-        List<Vecino> vecinosEdit = admin.viewVecinos();
-        List<Inmueble> inmueblesEditados = admin.viewInmuebles();
-        List<Categoria> categoriasEditadas = admin.viewCategorias();
-        List<ServicioFijo> serviciosFijosEdit = admin.viewServiciosFijos();
-        List<ServicioOpcional> serviciosOpcionalesEdit = admin.viewServiciosOpcionales();
-        List<Proveedor> proveedoresEdit = admin.viewProveedores();
-        List<Gasto> gastosEdit = admin.viewGastos();
-        
-        System.out.println("\n\nVALOR FINAL DEL ARRAY DE VECINOS \n");
-        System.out.println(vecinosEdit);
-        System.out.println("\n\nVALOR FINAL DEL ARRAY DE INMUEBLES \n");
-        System.out.println(inmueblesEditados);
-        System.out.println("\n\nVALOR FINAL DEL ARRAY DE CATEGORIAS \n");
-        System.out.println(categoriasEditadas);
-        System.out.println("\n\nVALOR FINAL DEL ARRAY DE SERVICIOS FIJOS \n");
-        System.out.println(serviciosFijosEdit);
-        System.out.println("\n\nVALOR FINAL DEL ARRAY DE SERVICIOS OPCIONALES \n");
-        System.out.println(serviciosOpcionalesEdit);
-        System.out.println("\n\nVALOR FINAL DEL ARRAY DE PROVEEDORES \n");
-        System.out.println(proveedoresEdit);
-        System.out.println("\n\nVALOR FINAL DEL ARRAY DE GASTOS \n");
-        System.out.println(gastosEdit);
-        
-    //Operaciones con LIQUIDACIONES
-    
-            //Generacion de liquidaciones entre fechas especificadas
-        List<Liquidacion> liquidacionesEdit = admin.generarLiquidaciones(
-                 LocalDate.parse("01/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
-                   LocalDate.parse("30/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")));
-
-              // Impresion en consola de todas las liquidaciones generadas
-        System.out.println("\n\n    GENERACION DE LIQUIDACIONES \n");
-        System.out.println("========================================== \n");
-        System.out.println(liquidacionesEdit);
-        
-        
-            //Generacion de liquidaciones por INMUEBLE especificado
-        List<Liquidacion> liquidacionesInmueble = admin.consultaLiquidacionInmueble(inmueble5);
-
-              // Impresion en consola de todas las liquidaciones consultadas
-        System.out.println("\n\n   CONSULTA DE LIQUIDACIONES POR INMUEBLE \n");
-        System.out.println("========================================== \n");
-        System.out.println(liquidacionesInmueble);
-        
-            //Generacion de liquidaciones por VECINO especificado
-        List<Liquidacion> liquidacionesVecino = admin.consultaLiquidacionVecino(vecino2);
-
-              // Impresion en consola de todas las liquidaciones consultadas
-        System.out.println("\n\n   CONSULTA DE LIQUIDACIONES POR VECINO \n");
-        System.out.println("========================================== \n");
-        System.out.println(liquidacionesVecino);
-        
+//            //Generamos una variable con la lista completa cada clase y la imprimimos por pantalla una vez editados
+//        List<Vecino> vecinosEdit = admin.viewVecinos();
+//        List<Inmueble> inmueblesEditados = admin.viewInmuebles();
+//        List<GastoCategoria> categoriasEditadas = admin.viewCategorias();
+//        List<ServicioFijo> serviciosFijosEdit = admin.viewServiciosFijos();
+//        List<ServicioOpcional> serviciosOpcionalesEdit = admin.viewServiciosOpcionales();
+//        List<Proveedor> proveedoresEdit = admin.viewProveedores();
+//        List<Gasto> gastosEdit = admin.viewGastos();
+//        
+//        System.out.println("\n\nVALOR FINAL DEL ARRAY DE VECINOS \n");
+//        System.out.println(vecinosEdit);
+//        System.out.println("\n\nVALOR FINAL DEL ARRAY DE INMUEBLES \n");
+//        System.out.println(inmueblesEditados);
+//        System.out.println("\n\nVALOR FINAL DEL ARRAY DE CATEGORIAS \n");
+//        System.out.println(categoriasEditadas);
+//        System.out.println("\n\nVALOR FINAL DEL ARRAY DE SERVICIOS FIJOS \n");
+//        System.out.println(serviciosFijosEdit);
+//        System.out.println("\n\nVALOR FINAL DEL ARRAY DE SERVICIOS OPCIONALES \n");
+//        System.out.println(serviciosOpcionalesEdit);
+//        System.out.println("\n\nVALOR FINAL DEL ARRAY DE PROVEEDORES \n");
+//        System.out.println(proveedoresEdit);
+//        System.out.println("\n\nVALOR FINAL DEL ARRAY DE GASTOS \n");
+//        System.out.println(gastosEdit);
+//        
+//    //Operaciones con LIQUIDACIONES
+//    
+//            //Generacion de liquidaciones entre fechas especificadas
+//        List<Liquidacion> liquidacionesEdit = admin.generarLiquidaciones(
+//                 LocalDate.parse("01/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
+//                   LocalDate.parse("30/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")));
+//
+//              // Impresion en consola de todas las liquidaciones generadas
+//        System.out.println("\n\n    GENERACION DE LIQUIDACIONES \n");
+//        System.out.println("========================================== \n");
+//        System.out.println(liquidacionesEdit);
+//        
+//        
+//            //Generacion de liquidaciones por INMUEBLE especificado
+//        List<Liquidacion> liquidacionesInmueble = admin.consultaLiquidacionInmueble(inmueble5);
+//
+//              // Impresion en consola de todas las liquidaciones consultadas
+//        System.out.println("\n\n   CONSULTA DE LIQUIDACIONES POR INMUEBLE \n");
+//        System.out.println("========================================== \n");
+//        System.out.println(liquidacionesInmueble);
+//        
+//            //Generacion de liquidaciones por VECINO especificado
+//        List<Liquidacion> liquidacionesVecino = admin.consultaLiquidacionVecino(vecino2);
+//
+//              // Impresion en consola de todas las liquidaciones consultadas
+//        System.out.println("\n\n   CONSULTA DE LIQUIDACIONES POR VECINO \n");
+//        System.out.println("========================================== \n");
+//        System.out.println(liquidacionesVecino);
+//        
         
 //        List<Gasto> gastosEdit2 = admin.viewGastos();
 //        System.out.println("\n\nVALOR FINAL DEL ARRAY DE GASTOS \n");

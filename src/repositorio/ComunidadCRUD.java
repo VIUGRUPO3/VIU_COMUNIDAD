@@ -9,33 +9,20 @@ package repositorio;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import repositorio.Categoria;
-import repositorio.Categoria;
-import repositorio.Gasto;
-import repositorio.Gasto;
-import repositorio.Inmueble;
-import repositorio.Inmueble;
-import repositorio.InterfaceComunidadCRUD;
-import repositorio.Liquidacion;
-import repositorio.Liquidacion;
-import repositorio.Proveedor;
-import repositorio.Proveedor;
-import repositorio.Servicio;
-import repositorio.Servicio;
-import repositorio.Vecino;
-import repositorio.Vecino;
 
 
-public class ComunidadCRUD implements InterfaceComunidadCRUD {
+public class ComunidadCRUD implements ComunidadCRUDInterface {
     
 //1. Atributos
     protected List<Vecino> vecinos;
     protected List<Inmueble> inmuebles;
-    protected List<Categoria> categorias;
+    protected List<GastoCategoria> categorias;
     protected List<Servicio> servicios;
+    protected List<ServicioCuenta> serviciosCuenta;
     protected List<Proveedor> proveedores;
     protected List<Gasto> gastos;
     protected List<Liquidacion> liquidaciones;
+    protected ServicioTipos servicioTipos;
     //Asociacion de inmueble sin propietario a comunidad
     Vecino vecino = new Vecino(0, "Comunidad", "000", "666555222", "comunidad@viu.es");
     
@@ -46,9 +33,11 @@ public class ComunidadCRUD implements InterfaceComunidadCRUD {
         this.inmuebles = new ArrayList();
         this.categorias = new ArrayList();
         this.servicios = new ArrayList();
+        this.serviciosCuenta = new ArrayList();
         this.proveedores = new ArrayList();
         this.gastos = new ArrayList();
         this.liquidaciones = new ArrayList();
+        this.servicioTipos = new ServicioTipos();
     }
     
 
@@ -64,7 +53,7 @@ public class ComunidadCRUD implements InterfaceComunidadCRUD {
         return inmuebles;
     }
 
-    public List<Categoria> getCategorias() {
+    public List<GastoCategoria> getCategorias() {
         return categorias;
     }
 
@@ -88,6 +77,15 @@ public class ComunidadCRUD implements InterfaceComunidadCRUD {
     public Vecino getVecino() {
         return vecino;
     }
+
+    public List<ServicioCuenta> getServiciosCuenta() {
+        return serviciosCuenta;
+    }
+
+    public ServicioTipos getServicioTipos() {
+        return servicioTipos;
+    }
+    
     
     
     
@@ -157,13 +155,13 @@ public class ComunidadCRUD implements InterfaceComunidadCRUD {
     
 //SERVICIOS
      
-        //Metodo que almacena un objeto servicioFijo dentro de un ArrayList de serviciosFijos
+        //Metodo que almacena un objeto servicioFijo dentro de un ArrayList de servicios
     @Override
     public void saveServicio(Servicio servicio){
         servicios.add(servicio);
     }
     
-       //Metodo que devuelve la lista de serviciosFijos
+       //Metodo que devuelve la lista de servicios
     @Override
     public List<Servicio> viewServicios(){
         return servicios;
@@ -172,41 +170,58 @@ public class ComunidadCRUD implements InterfaceComunidadCRUD {
         //Metodo que actualiza los datos del inmueble especificado en parametros
     @Override
     public void updateServicio(Servicio servicio, String nombre, double tarifa){
-        servicio.nombre = nombre;
-        servicio.tarifa = tarifa;
+        servicio.setNombre(nombre); 
+        servicio.setTarifa(tarifa); 
         
     }
 
-        //Metodo que borra un objeto servicioFijo del ArrayList de serviciosFijos
+        //Metodo que borra un objeto servicioFijo del ArrayList de servicios
     @Override
     public void deleteServicio(Servicio servicio){
         servicios.remove(servicios.indexOf(servicio));
     }
+    
+//SERVICIOS CUENTA
+     
+        //Metodo que almacena un objeto servicioFijo dentro de un ArrayList de serviciosCuenta
+    @Override
+    public void saveServiciosCuenta(ServicioCuenta servicioCuenta){
+        serviciosCuenta.add(servicioCuenta);
+    }
+    
+       //Metodo que devuelve la lista de serviciosCuenta
+    @Override
+    public List<ServicioCuenta> viewServiciosCuenta(){
+        return serviciosCuenta;
+    }    
+     
+       
+       
 
-//CATEGORIAS (CONCEPTOS/RUBROS
+//CATEGORIAS (CONCEPTOS/RUBROS)
     
         //Metodo que almacena un objeto inmueble dentro de un ArrayList de Inmuebles
     @Override
-    public void saveCategoria(Categoria categoria){
+    public void saveCategoria(GastoCategoria categoria){
         categorias.add(categoria);
     }
 
         //Metodo que devuelve la lista de inmuebles
     @Override
-    public List<Categoria> viewCategorias(){
+    public List<GastoCategoria> viewCategorias(){
         return categorias;
     }
       
         //Metodo que actualiza los datos del inmueble especificado en parametros
     @Override
-    public void updateCategoria(Categoria categoria, Servicio servicio, String nombre){
+    public void updateCategoria(GastoCategoria categoria, Servicio servicio, String nombre){
         categoria.setServicio(servicio);
         categoria.setNombre(nombre);
     }
     
         //Metodo que borra un objeto vecino del ArrayList de Inmuebles
     @Override
-    public void deleteCategoria(Categoria categoria){
+    public void deleteCategoria(GastoCategoria categoria){
         categorias.remove(categorias.indexOf(categoria));
     }
     
@@ -252,7 +267,7 @@ public class ComunidadCRUD implements InterfaceComunidadCRUD {
         
         //Actualiza los datos del proveedor en el ArrayList de PROVEEDORES
     @Override
-    public void updateGasto(Gasto gasto, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante,Categoria categoria, double importe, boolean liquidado){
+    public void updateGasto(Gasto gasto, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante,GastoCategoria categoria, double importe, boolean liquidado){
         gasto.setGasto(descripcion, fechaRegistro, fechaPago, proveedor, comprobante, categoria, importe, liquidado);
     }
 
@@ -283,7 +298,7 @@ public class ComunidadCRUD implements InterfaceComunidadCRUD {
         liquidaciones.remove(liquidaciones.indexOf(liquidacion));
     }
     
-
+        
     
     
     

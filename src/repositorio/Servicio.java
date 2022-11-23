@@ -8,10 +8,9 @@ package repositorio;
 public class Servicio {
     
     //1. Atributos
-    protected int id;
-    protected String nombre;
-    protected double tarifa;
-    protected TipoServicio tipoServicio;    
+    private int id;
+    private String nombre;
+    private double tarifa;
      
     //2. Constructores
     public Servicio() {}
@@ -23,13 +22,39 @@ public class Servicio {
     }
     
      //3. Metodos
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public double getTarifa() {
+        return tarifa;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setTarifa(double tarifa) {
+        this.tarifa = tarifa;
+    }
     
-    public void definirFijo (Servicio servicio) {
-        this.tipoServicio.addServiciosFijos(servicio);
+    
+    
+    public void definirFijo  (ComunidadCRUD comunidadCRUD) {
+        comunidadCRUD.servicioTipos.addServiciosFijos(this);
         }
     
-    public void definirOpcional (Servicio servicio) {
-        this.tipoServicio.addServiciosOpcionales(servicio);
+    public void definirOpcional (ComunidadCRUD comunidadCRUD) {
+        comunidadCRUD.servicioTipos.addServiciosOpcionales(this);
     }  
     
     

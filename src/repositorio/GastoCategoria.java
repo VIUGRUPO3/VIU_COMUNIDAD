@@ -5,7 +5,7 @@
 package repositorio;
 
 
-public class Categoria {
+public class GastoCategoria {
     
     //1.Atributos
     
@@ -15,9 +15,9 @@ public class Categoria {
     
     //2.Constructores
 
-    public Categoria() {}
+    public GastoCategoria() {}
 
-    public Categoria(int id, String nombre, Servicio servicio) {
+    public GastoCategoria(int id, String nombre, Servicio servicio) {
         this.id = id;
         this.nombre = nombre;
         this.servicio = servicio;

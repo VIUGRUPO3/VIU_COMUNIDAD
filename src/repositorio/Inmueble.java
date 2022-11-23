@@ -4,6 +4,7 @@
 
 package repositorio;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class Inmueble {
     private int id;
     private Vecino vecino;
     private String direccion;
-    protected List<Servicio> servicios = new ArrayList();
+     
 
 
     
@@ -33,6 +34,7 @@ public class Inmueble {
 
     //3. Metodos
     
+        //Getters
         // Metodo getId, para obtener el identificar de inmueble
     public int getId (){
        return this.id;
@@ -56,7 +58,9 @@ public class Inmueble {
     }
     
     
-
+    
+    
+        //Setters
     public void setVecino(Vecino vecino) {
         this.vecino = vecino;
     }
@@ -66,14 +70,24 @@ public class Inmueble {
         this.vecino = vecino;
         this.direccion = direccion;
     }
-
     
+    
+
+        //Metodo asignar un servicio a un inmueble
+    public void asignarServicioInmueble (Servicio servicio, LocalDate fechaAlta){
+        ServicioCuenta servicioCuenta = new ServicioCuenta(this, servicio, fechaAlta);
+    }
+    
+        //Metodo desasignar un servicio a un inmueble
+    public void desAsignarServicioInmueble (ServicioCuenta servicioCuenta, LocalDate fechaBaja){
+        servicioCuenta.setFechaBaja(fechaBaja);
+    }
     
         
         //Metodo toString que sobreescribe el heredado de la clase Object ////REVISAR
     @Override
     public String toString() {
-        return "Inmueble" + id + "\nvecin - " + vecino.nombre + "\ndirec - " + direccion + "\n- Serv Fijos asociados - \n" + servicios + "\n- Serv Opcionales asoc - \n" + servicios +"\n}\n\n";
+        return "Inmueble" + id + "\nvecin - " + vecino.nombre + "\ndirec - " + direccion + "\n}\n\n";
     }
    
 
