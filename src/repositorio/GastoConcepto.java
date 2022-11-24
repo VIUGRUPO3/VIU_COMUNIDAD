@@ -5,19 +5,19 @@
 package repositorio;
 
 
-public class GastoCategoria {
+abstract class  GastoConcepto {
     
     //1.Atributos
     
-    private int id;
+    private String id;
     private String nombre;
     private Servicio servicio;
     
     //2.Constructores
 
-    public GastoCategoria() {}
+    public GastoConcepto() {}
 
-    public GastoCategoria(int id, String nombre, Servicio servicio) {
+    public GastoConcepto(String id, String nombre, Servicio servicio) {
         this.id = id;
         this.nombre = nombre;
         this.servicio = servicio;
@@ -26,7 +26,7 @@ public class GastoCategoria {
     //3.Metodos
     //Getters
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -40,7 +40,7 @@ public class GastoCategoria {
     
     //Setters
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -52,7 +52,11 @@ public class GastoCategoria {
         this.servicio = servicio;
     }
     
+    public void asignacionConceptos (GastoConceptoCompuesto gastoConceptoCompuesto ) {
+        gastoConceptoCompuesto.getGastosConcepto().add(this);
 
+}
+    
     
     
     @Override

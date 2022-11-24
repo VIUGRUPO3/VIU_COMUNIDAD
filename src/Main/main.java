@@ -10,9 +10,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import repositorio.Admin;
-import repositorio.GastoCategoria;
 import repositorio.ComunidadCRUD;
 import repositorio.Gasto;
+import repositorio.GastoConceptoCompuesto;
+import repositorio.GastoConceptoSimple;
 import repositorio.Inmueble;
 import repositorio.Liquidacion;
 import repositorio.Proveedor;
@@ -51,9 +52,9 @@ public class main {
             //Instancias de la clase Servicio
         Servicio servicio1 = new Servicio(1, "Jardineria   ", 100);
         Servicio servicio2 = new Servicio(2, "Mantenimiento", 50);
-        Servicio servicio3 = new Servicio(1, "Piscina    ", 60);
-        Servicio servicio4 = new Servicio(2, "Paddle     ", 30);
-        Servicio servicio5 = new Servicio(2, "Conserjeria", 20);
+        Servicio servicio3 = new Servicio(3, "Piscina    ", 60);
+        Servicio servicio4 = new Servicio(4, "Paddle     ", 30);
+        Servicio servicio5 = new Servicio(5, "Conserjeria", 20);
        
              //Instancias de la clase Proveedor
         Proveedor proveedor1 = new Proveedor(1, "Jardines Eden     ", "C/Serrano, 3     ", "666888777","jardineden@gmail.com");
@@ -62,12 +63,36 @@ public class main {
         Proveedor proveedor4 = new Proveedor(4, "Paddle Club       ", "Ctra. Malaga     ", "669874512","paddleclub@gmail.com");
         Proveedor proveedor5 = new Proveedor(5, "Atlas Services    ", "C/Jaul           ", "669879854","atlas@gmail.com     ");
         
-            //Instancias de la clase GastoCategoria
-        GastoCategoria gastoCategoria1 = new GastoCategoria(1, "Jardines     ", servicio1);
-        GastoCategoria gastoCategoria2 = new GastoCategoria(2, "Mantenimiento", servicio2);
-        GastoCategoria gastoCategoria3 = new GastoCategoria(1, "Piscinas     ", servicio3);
-        GastoCategoria gastoCategoria4 = new GastoCategoria(2, "Paddle       ", servicio4);
-        GastoCategoria gastoCategoria5 = new GastoCategoria(2, "Conserjeria  ", servicio5);
+            //Instancias de la clase GastoConceptoCompuestos
+        GastoConceptoCompuesto gastoConcepto1 = new GastoConceptoCompuesto("1", "Paddle       ", servicio4);
+        
+                //Estos conceptos son Simples pero subconceptos de GastosCompuesto Paddle 
+                    GastoConceptoCompuesto gastoConcepto1_1 = new GastoConceptoCompuesto("1_1", "Pista     ", servicio4);
+                    
+                        //Estos conceptos son Simples pero subconceptos de GastosCompuesto Paddle 
+                            GastoConceptoSimple gastoConcepto1_1_1 = new GastoConceptoSimple("1_1_1", "Pintura     ", servicio4);
+                            GastoConceptoSimple gastoConcepto1_1_2 = new GastoConceptoSimple("1_1_2", "Asfalto       ", servicio4);
+                            GastoConceptoSimple gastoConcepto1_1_3 = new GastoConceptoSimple("1_1_3", "Red   ", servicio4);
+                   
+                    GastoConceptoSimple gastoConcepto1_2 = new GastoConceptoSimple("1_2", "Cubierta       ", servicio4);
+                    GastoConceptoSimple gastoConcepto1_3 = new GastoConceptoSimple("1_3", "Materiales   ", servicio4);
+
+            //Instancias de la clase GastosConceptoSimple    
+        GastoConceptoSimple gastoConcepto2 = new GastoConceptoSimple("2", "Jardines     ", servicio1);
+        GastoConceptoSimple gastoConcepto3 = new GastoConceptoSimple("3", "Mantenimiento", servicio2);
+        GastoConceptoSimple gastoConcepto4 = new GastoConceptoSimple("4", "Piscinas     ", servicio3);
+        GastoConceptoSimple gastoConcepto5 = new GastoConceptoSimple("5", "Conserjeria  ", servicio5);
+        
+
+            //Asignar Subconcetos a Comceptos (Jerarquia solicitada en enunciado de actividad)
+        gastoConcepto1_1.asignacionConceptos(gastoConcepto1);
+            gastoConcepto1_1_1.asignacionConceptos(gastoConcepto1_1);
+            gastoConcepto1_1_2.asignacionConceptos(gastoConcepto1_1);
+            gastoConcepto1_1_3.asignacionConceptos(gastoConcepto1_1);
+        gastoConcepto1_2.asignacionConceptos(gastoConcepto1);
+        gastoConcepto1_3.asignacionConceptos(gastoConcepto1);
+        
+      
         
             //Instancias de la clase Gasto
         Gasto gasto1 = new Gasto(
@@ -77,7 +102,7 @@ public class main {
                    LocalDate.parse("29/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
                    proveedor1,
                   "JR345",
-                   gastoCategoria1,
+                   gastoConcepto2,
                      1000,
                    false
         );
@@ -88,7 +113,7 @@ public class main {
                    LocalDate.parse("20/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
                    proveedor4,
                   "JR345",
-                   gastoCategoria4,
+                   gastoConcepto1_1_3,
                      300,
                    false
         );
@@ -99,7 +124,7 @@ public class main {
                    LocalDate.parse("20/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
                    proveedor5,
                   "Consj45",
-                   gastoCategoria5,
+                   gastoConcepto5,
                      1400, 
                    false
         );
@@ -122,31 +147,28 @@ public class main {
         comunidadCrud.saveInmueble(inmueble5);
         
           
-            //Guardamos los servicios fijos instanciados dentro de un ArrayList de Servicios Fijos //CAMBIAR!!!!!
+            //Guardamos los servicios fijos instanciados dentro de un ArrayList de Servicios Fijos 
             //Al ser servicios fijos se incluiran en todos los inmuebles creados
         comunidadCrud.saveServicio(servicio1);
         servicio1.definirFijo(comunidadCrud);
         comunidadCrud.saveServicio(servicio2);
         servicio2.definirFijo(comunidadCrud);
             //Asigna todos los servicios fijos a todos lo inmuebles
-        comunidadCrud.getServicioTipos().asignarServiciosFijosInmuebles(comunidadCrud);
+        comunidadCrud.getServicioTipos().asignarServiciosFijosInmuebles(comunidadCrud, LocalDate.parse("2022-11-01"));
         
             //Guardamos los servicios opcionales dentro de un Array de Servicios opcionales //CAMBIAR!!!!
         comunidadCrud.saveServicio(servicio3);
         servicio3.definirOpcional(comunidadCrud);
         comunidadCrud.saveServicio(servicio4);
         servicio4.definirOpcional(comunidadCrud);
-        
+     
             //Asignamos varios servicios opcionales a varios inmuebles
-        inmueble1.asignarServicioInmueble(servicio5, LocalDate.MAX);
-//        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional1, inmueble1);
-//        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional2, inmueble1);
-//        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional1, inmueble2);
-//        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional2, inmueble2);
-//        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional1, inmueble3);
-//        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional2, inmueble3);
-//        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional3, inmueble3);
-//        comunidadCrud.asignarServicioOpcionalInmueble(servicioOpcional3, inmueble2);
+        comunidadCrud.getServicioTipos().asignarServiciosOpcionalInmuebles(comunidadCrud, servicio3, inmueble1, LocalDate.parse("2022-11-01"));
+        comunidadCrud.getServicioTipos().asignarServiciosOpcionalInmuebles(comunidadCrud, servicio3, inmueble2, LocalDate.parse("2022-11-01"));
+        comunidadCrud.getServicioTipos().asignarServiciosOpcionalInmuebles(comunidadCrud, servicio3, inmueble3, LocalDate.parse("2022-11-01"));
+        comunidadCrud.getServicioTipos().asignarServiciosOpcionalInmuebles(comunidadCrud, servicio3, inmueble4, LocalDate.parse("2022-11-01"));
+        comunidadCrud.getServicioTipos().asignarServiciosOpcionalInmuebles(comunidadCrud, servicio3, inmueble5, LocalDate.parse("2022-11-01"));
+        comunidadCrud.getServicioTipos().asignarServiciosOpcionalInmuebles(comunidadCrud, servicio4, inmueble1, LocalDate.parse("2022-11-01"));
         
             //Guardamos los proveedores instanciados dentro de un ArrayList de proveedores
         comunidadCrud.saveProveedor(proveedor1);
@@ -167,197 +189,6 @@ public class main {
         }else{
             System.out.println("Error de autenticacion");
         }
-
-    
-        
-        
-    //Operaciones de impresion EN CONSOLA    
-        
-//            //Generamos una variable con la lista completa cada clase y la imprimimos por pantalla una vez editados
-//        List<Vecino> vecinosEdit = admin.viewVecinos();
-//        List<Inmueble> inmueblesEditados = admin.viewInmuebles();
-//        List<GastoCategoria> categoriasEditadas = admin.viewCategorias();
-//        List<ServicioFijo> serviciosFijosEdit = admin.viewServiciosFijos();
-//        List<ServicioOpcional> serviciosOpcionalesEdit = admin.viewServiciosOpcionales();
-//        List<Proveedor> proveedoresEdit = admin.viewProveedores();
-//        List<Gasto> gastosEdit = admin.viewGastos();
-//        
-//        System.out.println("\n\nVALOR FINAL DEL ARRAY DE VECINOS \n");
-//        System.out.println(vecinosEdit);
-//        System.out.println("\n\nVALOR FINAL DEL ARRAY DE INMUEBLES \n");
-//        System.out.println(inmueblesEditados);
-//        System.out.println("\n\nVALOR FINAL DEL ARRAY DE CATEGORIAS \n");
-//        System.out.println(categoriasEditadas);
-//        System.out.println("\n\nVALOR FINAL DEL ARRAY DE SERVICIOS FIJOS \n");
-//        System.out.println(serviciosFijosEdit);
-//        System.out.println("\n\nVALOR FINAL DEL ARRAY DE SERVICIOS OPCIONALES \n");
-//        System.out.println(serviciosOpcionalesEdit);
-//        System.out.println("\n\nVALOR FINAL DEL ARRAY DE PROVEEDORES \n");
-//        System.out.println(proveedoresEdit);
-//        System.out.println("\n\nVALOR FINAL DEL ARRAY DE GASTOS \n");
-//        System.out.println(gastosEdit);
-//        
-//    //Operaciones con LIQUIDACIONES
-//    
-//            //Generacion de liquidaciones entre fechas especificadas
-//        List<Liquidacion> liquidacionesEdit = admin.generarLiquidaciones(
-//                 LocalDate.parse("01/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
-//                   LocalDate.parse("30/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")));
-//
-//              // Impresion en consola de todas las liquidaciones generadas
-//        System.out.println("\n\n    GENERACION DE LIQUIDACIONES \n");
-//        System.out.println("========================================== \n");
-//        System.out.println(liquidacionesEdit);
-//        
-//        
-//            //Generacion de liquidaciones por INMUEBLE especificado
-//        List<Liquidacion> liquidacionesInmueble = admin.consultaLiquidacionInmueble(inmueble5);
-//
-//              // Impresion en consola de todas las liquidaciones consultadas
-//        System.out.println("\n\n   CONSULTA DE LIQUIDACIONES POR INMUEBLE \n");
-//        System.out.println("========================================== \n");
-//        System.out.println(liquidacionesInmueble);
-//        
-//            //Generacion de liquidaciones por VECINO especificado
-//        List<Liquidacion> liquidacionesVecino = admin.consultaLiquidacionVecino(vecino2);
-//
-//              // Impresion en consola de todas las liquidaciones consultadas
-//        System.out.println("\n\n   CONSULTA DE LIQUIDACIONES POR VECINO \n");
-//        System.out.println("========================================== \n");
-//        System.out.println(liquidacionesVecino);
-//        
-        
-//        List<Gasto> gastosEdit2 = admin.viewGastos();
-//        System.out.println("\n\nVALOR FINAL DEL ARRAY DE GASTOS \n");
-//        System.out.println(gastosEdit2);
-//        
-//        List<Liquidacion> liquidacionesEdit2 = admin.generarLiquidaciones(
-//                 LocalDate.parse("01/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
-//                   LocalDate.parse("30/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")));
-//
-//              // Impresion en consola de todas las liquidaciones generadas
-//        System.out.println("\n\n    GENERACION DE LIQUIDACIONES \n");
-//        System.out.println("========================================== \n");
-//        System.out.println(liquidacionesEdit2);
-        
-        
-        
-        
-        
-    //--------------------------------------------------------CODIGO DE PRUEBA DE FUNCIONALIDADES ------------------------------------------    
-        //Operaciones de prueba eliminacion, update e impresion de VECINOS
-        
-    //            //Generamos una variable con la lista completa de vecinos y la imprimimos por pantalla
-    //        List<Vecino> vecinos = admin.viewVecinos();
-    //        System.out.println("VALOR INICIAL DEL ARRAY DE VECINOS \n");
-    //        System.out.println(vecinos);
-    //        
-    //        //Eliminamos un vecino del ArrayList de Vecinos
-    //        admin.deleteVecino(vecino5);
-    //        
-    //            //Actualizamos los datos del vecino seleccionado
-    //        admin.updateVecino(vecino4, "Maria", "wer", "666555444", "maria@viu.es");
-        
-        
-    //Operaciones de  prueba de eliminacion, update e impresion de INMUEBLES
-    
-    //            //Generamos una variable con la lista completa de inmuebles y la imprimimos por pantalla
-    //        List<Inmueble> inmuebles = admin.viewInmuebles();
-    //        System.out.println("\n\nVALOR INICIAL DEL ARRAY DE INMUEBLES \n");
-    //        System.out.println(inmuebles);
-    //        
-    //        //Eliminamos un inmueble del ArrayList de Inmuebles
-    //        admin.deleteInmueble(inmueble5);
-    //        
-    //            //Actualizamos los datos del inmueble seleccionado
-    //        admin.updateInmueble(inmueble4, vecino1, "Colon");
-    //        
-    //            //Eliminamos un vecino del ArrayList de Vecinos. Comprobamos si tiene inmuebles y desasignamos en ese caso
-    //        admin.deleteVecino(vecino3);
-    //        
-    
-    //Operaciones de prueba de eliminacion, update e impresion de CATEGORIAS
-        
-    //            //Generamos una variable con la lista completa de categorias y la imprimimos por pantalla
-    //        List<Categoria> categorias = admin.viewCategorias();
-    //        System.out.println("\n\nVALOR INICIAL DEL ARRAY DE CATEGORIAS \n");
-    //        System.out.println(categorias);
-    //        
-    //            //Eliminamos una categoria del ArrayList de Categorias
-    //        //admin.deleteCategoria(categoria3);
-    //        
-    //            //Actualizamos los datos del inmueble seleccionado
-    //        //admin.updateCategoria(categoria2, "Tasas e Impuestos");
-        
-            
-                
-    //Operaciones de prueba de eliminacion, update e impresion de SERVICIOS FIJOS
-    
-    //            //Imprime el array de serviciosFijos
-    //        List<ServicioFijo> serviciosFijos = admin.viewServiciosFijos();
-    //        System.out.println("\n\nVALOR INICIAL DEL ARRAY DE SERVICIOS FIJOS \n");
-    //        System.out.println(serviciosFijos);
-    //    
-    //            //Desasignacion del ServicioFijo que se va a eliminar de todos los inmuebles
-    //        //admin.desasignarServicioFijoInmuebles(servicioFijo1);
-    //
-    //            //Eliminacion del servicio Fijo
-    //        //admin.deleteServicioFijo(servicioFijo1);
-    //        
-    //            //Update del serviciofijo asi como de todos los serviciosFijos asignados a los inmuebles
-    //        //admin.updateServicioFijo(servicioFijo2, "Basura", 30, categoria1);
-        
-    
-    //Operaciones de eliminacion, update e impresion de SERVICIOS OPCIONALES
-    
-    //            //Imprime el array de serviciosOpcionales
-    //        List<ServicioOpcional> serviciosOpcionales = admin.viewServiciosOpcionales();
-    //        System.out.println("\n\nVALOR INICIAL DEL ARRAY DE SERVICIOS OPCIONALES \n");
-    //        System.out.println(serviciosOpcionales);
-    //    
-    //            //Desasignacion del ServicioFijo que se va a eliminar de todos los inmuebles
-    //        //admin.desasignarServicioOpcionalInmueble(servicioOpcional1, inmueble3);
-    //
-    //            //Eliminacion del servicio Opcional
-    //        //admin.desasignarServicioOcionalInmuebles(servicioOpcional2);
-    //        //admin.deleteServicioOpcional(servicioOpcional2);
-    //        
-    //            //Update del serviciofijo asi como de todos los serviciosFijos asignados a los inmuebles
-    //        //admin.updateServicioOpcional(servicioOpcional1, "Gimnasio", 50, categoria3);
-        
-       
-    //Operaciones de eliminacion, update e impresion de PROVEEDORES
-       
-    //            //Generamos una variable con la lista completa de inmuebles y la imprimimos por pantalla
-    //        List<Proveedor> proveedores = admin.viewProveedores();
-    //        System.out.println("\n\nVALOR INICIAL DEL ARRAY DE PROVEEDORES \n");
-    //        System.out.println(proveedores);
-    //        
-    //            //Eliminamos un proveedor del ArrayList de proveedores
-    //        //admin.deleteProveedor(proveedor5);
-    //        
-    //            //Actualizamos los datos del inmueble seleccionado
-    //        admin.updateProveedor(proveedor1, "Garden Express", "C/Altamira, 33", "665842684", "gardenex@gmail.com");
-        
-    //Operaciones de prueba de eliminacion, update e impresion de GASTOS
-       
-    //            //Generamos una variable con la lista completa de inmuebles y la imprimimos por pantalla
-    //        List<Gasto> gastos = admin.viewGastos();
-    //        System.out.println("\n\nVALOR INICIAL DEL ARRAY DE GASTOS \n");
-    //        System.out.println(gastos);
-    //        
-    //            //Eliminamos un gasto del ArrayList de Gasto
-    //        admin.deleteGasto(gasto1);
-    //        
-    //            //Actualizamos los datos del inmueble seleccionado
-    //        admin.updateGasto(gasto1,
-    //                 "Talado Setos",
-    //                 LocalDate.parse("01/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
-    //                    LocalDate.parse("30/11/2022",DateTimeFormatter.ofPattern("d/M/yyyy")),
-    //                    proveedor4,
-    //                   "GRF3",
-    //                    categoria2,
-    //                      500);
         
     }
     

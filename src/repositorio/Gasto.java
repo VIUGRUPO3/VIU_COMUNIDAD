@@ -16,15 +16,15 @@ public class Gasto {
     private LocalDate fechaPago;
     private Proveedor proveedor;
     private String comprobante;
-    private GastoCategoria categoria;
+    private GastoConcepto categoria;
     private boolean liquidado;
-    private double importe;
+    private double importe; //Este importe se reparte entre todos vecinos que tengan el servicio
     
     //2.Constructores
 
     public Gasto() {}
 
-    public Gasto(int id, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, GastoCategoria categoria, double importe, boolean liquidado) {
+    public Gasto(int id, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, GastoConcepto categoria, double importe, boolean liquidado) {
         this.id = id;
         this.descripcion = descripcion;
         this.fechaRegistro = fechaRegistro;
@@ -54,7 +54,7 @@ public class Gasto {
         return comprobante;
     }
 
-    public GastoCategoria getCategoria() {
+    public GastoConcepto getCategoria() {
         return categoria;
     }   
 
@@ -78,7 +78,7 @@ public class Gasto {
         this.liquidado = liquidado;
     }
 
-    public void setGasto(String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, GastoCategoria categoria, double importe, boolean liquidado) {
+    public void setGasto(String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, GastoConcepto categoria, double importe, boolean liquidado) {
         this.descripcion = descripcion;
         this.fechaRegistro = fechaRegistro;
         this.fechaPago = fechaPago;

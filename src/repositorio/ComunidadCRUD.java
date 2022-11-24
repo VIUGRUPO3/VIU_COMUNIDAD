@@ -16,7 +16,7 @@ public class ComunidadCRUD implements ComunidadCRUDInterface {
 //1. Atributos
     protected List<Vecino> vecinos;
     protected List<Inmueble> inmuebles;
-    protected List<GastoCategoria> categorias;
+    protected List<GastoConcepto> categorias;
     protected List<Servicio> servicios;
     protected List<ServicioCuenta> serviciosCuenta;
     protected List<Proveedor> proveedores;
@@ -53,7 +53,7 @@ public class ComunidadCRUD implements ComunidadCRUDInterface {
         return inmuebles;
     }
 
-    public List<GastoCategoria> getCategorias() {
+    public List<GastoConcepto> getCategorias() {
         return categorias;
     }
 
@@ -202,26 +202,26 @@ public class ComunidadCRUD implements ComunidadCRUDInterface {
     
         //Metodo que almacena un objeto inmueble dentro de un ArrayList de Inmuebles
     @Override
-    public void saveCategoria(GastoCategoria categoria){
+    public void saveCategoria(GastoConcepto categoria){
         categorias.add(categoria);
     }
 
         //Metodo que devuelve la lista de inmuebles
     @Override
-    public List<GastoCategoria> viewCategorias(){
+    public List<GastoConcepto> viewCategorias(){
         return categorias;
     }
       
         //Metodo que actualiza los datos del inmueble especificado en parametros
     @Override
-    public void updateCategoria(GastoCategoria categoria, Servicio servicio, String nombre){
+    public void updateCategoria(GastoConcepto categoria, Servicio servicio, String nombre){
         categoria.setServicio(servicio);
         categoria.setNombre(nombre);
     }
     
         //Metodo que borra un objeto vecino del ArrayList de Inmuebles
     @Override
-    public void deleteCategoria(GastoCategoria categoria){
+    public void deleteCategoria(GastoConcepto categoria){
         categorias.remove(categorias.indexOf(categoria));
     }
     
@@ -267,7 +267,7 @@ public class ComunidadCRUD implements ComunidadCRUDInterface {
         
         //Actualiza los datos del proveedor en el ArrayList de PROVEEDORES
     @Override
-    public void updateGasto(Gasto gasto, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante,GastoCategoria categoria, double importe, boolean liquidado){
+    public void updateGasto(Gasto gasto, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante,GastoConcepto categoria, double importe, boolean liquidado){
         gasto.setGasto(descripcion, fechaRegistro, fechaPago, proveedor, comprobante, categoria, importe, liquidado);
     }
 
