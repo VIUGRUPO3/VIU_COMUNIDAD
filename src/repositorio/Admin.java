@@ -36,11 +36,18 @@ public class Admin extends Usuario{
     }
     
     public void bajaVecino (ComunidadCRUD comunidadCRUD, Vecino vecinoBorrar){
-        comunidadCRUD.vecinos.forEach(vecino -> {
-            if(vecino == vecinoBorrar){
-                //TODO: Implemetar eliminacion de vecino
+        Vecino comunidad = comunidadCRUD.vecino;        // Asignamos el vecino "Comunidad" al espacio de memoria que ocupaba el vecino eliminado
+        comunidadCRUD.inmuebles.forEach(inmueble -> {
+            if(inmueble.getVecino() == vecinoBorrar){
+                inmueble.setVecino(comunidad);
             }
         });
+        comunidadCRUD.vecinos.forEach(vecino -> {
+            if(vecino == vecinoBorrar){
+                comunidadCRUD.vecinos.set(comunidadCRUD.vecinos.indexOf(vecino), comunidad);
+            }
+        });
+        
     }
     
     public void altaInmueble (ComunidadCRUD comunidadCRUD, int id, Vecino vecino, String direccion ){

@@ -169,6 +169,7 @@ public class main {
             System.out.println("Error de autenticacion");
         }
         
+        
         admin.bajaVecino(comunidadCrud, comunidadCrud.getVecinos().get(4));
         
         System.out.println("------------------- VECINOS -------------------\n");
@@ -191,6 +192,7 @@ public class main {
         
         comunidadCrud.getVecinos().get(0).consultarLiquidacion(comunidadCrud, comunidadCrud.getLiquidaciones().get(0));
         comunidadCrud.getVecinos().get(0).consultarServicioCuentas(comunidadCrud);
+        
         
     }
     
