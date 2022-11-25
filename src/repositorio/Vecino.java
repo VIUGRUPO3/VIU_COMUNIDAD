@@ -108,6 +108,14 @@ public class Vecino extends Usuario {
             public void setLogged(boolean logged) {
                 this.logged = logged;
             }
+            
+            public void setVecino (String nombre, String clave, String telefono, String email){
+                this.nombre = nombre;
+                this.clave = clave;
+                this.telefono = telefono;
+                this.email = email;
+                
+            }
     
         /** Funcionalidad **/
     
@@ -138,6 +146,28 @@ public class Vecino extends Usuario {
                                 } 
                         });
                     }
+                });
+            }
+            
+            public void bajaVecino (ComunidadCRUD comunidadCRUD, Vecino vecinoBorrar){
+                Vecino comunidad = comunidadCRUD.vecino;        // Asignamos el vecino "Comunidad" al espacio de memoria que ocupaba el vecino eliminado
+                comunidadCRUD.inmuebles.forEach(inmueble -> {
+                if(inmueble.getVecino() == vecinoBorrar){
+                    inmueble.setVecino(comunidad);
+                }
+                });
+                comunidadCRUD.vecinos.forEach(vecino -> {
+                if(vecino == vecinoBorrar){
+                    comunidadCRUD.vecinos.set(comunidadCRUD.vecinos.indexOf(vecino), comunidad);
+
+                    }
+                });  
+            }
+            public void updateVecino (ComunidadCRUD comunidadCRUD, String nombre, String clave, String telefono, String email, Vecino vecinoModificar){
+                comunidadCRUD.vecinos.forEach(vecino ->{
+                    if(vecino == vecinoModificar){
+                        vecino.setVecino(nombre, clave, telefono, email);
+                    } 
                 });
             }
         

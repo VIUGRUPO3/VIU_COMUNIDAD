@@ -92,9 +92,21 @@ public class Inmueble {
         this.direccion = direccion;
     }
     
-    
+    public void bajaInmueble (ComunidadCRUD comunidadCRUD, Inmueble inmuebleBaja){
+        comunidadCRUD.inmuebles.forEach(inmueble -> {
+            if(inmueble == inmuebleBaja){
+                inmueble = null;
+            }
+        }); 
+    }
 
-        
+    public void updateInmueble (ComunidadCRUD comunidadCRUD, Vecino vecino, String direccion, Inmueble inmuebleModificar ){
+        comunidadCRUD.inmuebles.forEach(inmueble ->{
+            if(inmueble == inmuebleModificar){
+                inmueble.setInmueble(vecino, direccion);
+            }
+        }); 
+    }   
     
         
         //Metodo toString que sobreescribe el heredado de la clase Object ////REVISAR

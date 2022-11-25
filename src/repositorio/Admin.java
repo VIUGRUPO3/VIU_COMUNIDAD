@@ -50,19 +50,12 @@ public class Admin extends Usuario{
         comunidadCRUD.vecinos.add(vecino);
     }
     
-    public void bajaVecino (ComunidadCRUD comunidadCRUD, Vecino vecinoBorrar){
-        Vecino comunidad = comunidadCRUD.vecino;        // Asignamos el vecino "Comunidad" al espacio de memoria que ocupaba el vecino eliminado
-        comunidadCRUD.inmuebles.forEach(inmueble -> {
-            if(inmueble.getVecino() == vecinoBorrar){
-                inmueble.setVecino(comunidad);
-            }
-        });
-        comunidadCRUD.vecinos.forEach(vecino -> {
-            if(vecino == vecinoBorrar){
-                comunidadCRUD.vecinos.set(comunidadCRUD.vecinos.indexOf(vecino), comunidad);
-            }
-        });
-        
+    public void borrarVecino (ComunidadCRUD comunidadCRUD, Vecino vecino){
+        vecino.bajaVecino(comunidadCRUD, vecino);
+    }
+    
+    public void editarVecino (ComunidadCRUD comunidadCRUD, String nombre, String clave, String telefono, String email, Vecino vecino){
+        vecino.updateVecino(comunidadCRUD, nombre, clave, telefono, email, vecino);
     }
     
     public void altaInmueble (ComunidadCRUD comunidadCRUD, int id, Vecino vecino, String direccion ){
@@ -70,14 +63,37 @@ public class Admin extends Usuario{
         comunidadCRUD.inmuebles.add(inmueble);
     }
     
+    public void borrarInmueble (ComunidadCRUD comunidadCRUD, Inmueble inmueble){
+        inmueble.bajaInmueble(comunidadCRUD, inmueble);
+    }
+    public void editarInmueble (ComunidadCRUD comunidadCRUD, Vecino vecino, String direccion, Inmueble inmueble ){
+        inmueble.updateInmueble(comunidadCRUD, vecino, direccion, inmueble);
+    }
+    
     public void altaServicio (ComunidadCRUD comunidadCRUD, int id, String nombre, double tarifa){
         Servicio servicio = new Servicio (id, nombre, tarifa);
         comunidadCRUD.servicios.add(servicio);
     }
     
+    public void bajaServicio (ComunidadCRUD comunidadCRUD, Servicio servicio){
+        
+    }
+    
+    public void updateServicio (ComunidadCRUD comunidadCRUD, String nombre, double tarifa, Servicio servicio){
+        
+    }
+    
     public void altaProveedor (ComunidadCRUD comunidadCRUD, int id, String nombre, String direccion, String telefono, String email){
         Proveedor proveedor = new Proveedor(id, nombre, direccion, telefono, email);
         comunidadCRUD.proveedores.add(proveedor);
+    }
+    
+    public void bajaProveedor (ComunidadCRUD comunidadCRUD, Proveedor proveedor){
+        
+    }
+    
+    public void updateProveedor (ComunidadCRUD comunidadCRUD, String nombre, String direccion, String telefono, String email, Proveedor proveedor){
+        
     }
     
     public void altaGastoConceptoCompuesto (ComunidadCRUD comunidadCRUD, String id, String nombre, Servicio servicio){
@@ -93,6 +109,14 @@ public class Admin extends Usuario{
     public void altaGasto (ComunidadCRUD comunidadCRUD, int id, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe, boolean liquidado){
         Gasto gasto = new Gasto(id, descripcion, fechaRegistro, fechaPago, proveedor, comprobante, gastoConcepto, importe, liquidado);
         comunidadCRUD.gastos.add(gasto);
+    }
+    
+    public void borrarGasto(ComunidadCRUD comunidadCRUD, Gasto gasto){
+        
+    }
+    
+    public void editarGasto(ComunidadCRUD comunidadCRUD, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe, boolean liquidado, Gasto gasto){
+        
     }
     
     //Metodo que genera una liquidacion entre las fechas indicadas  

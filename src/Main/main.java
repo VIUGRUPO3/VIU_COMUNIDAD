@@ -154,17 +154,15 @@ public class main {
             //Guardamos los servicios fijos instanciados dentro de un ArrayList de Servicios Fijos 
             //Al ser servicios fijos se incluiran en todos los inmuebles creados
         comunidadCrud.getServicios().get(0).definirFijo(comunidadCrud);
-        //servicio1.definirFijo(comunidadCrud);
         comunidadCrud.getServicios().get(1).definirFijo(comunidadCrud);
-        //servicio2.definirFijo(comunidadCrud);
+        
             //Asigna todos los servicios fijos a todos lo inmuebles
         comunidadCrud.getServicioTipos().asignarServiciosFijosInmuebles(comunidadCrud, LocalDate.parse("2022-11-01"));
         
             //Guardamos los servicios opcionales dentro de un Array de Servicios opcionales //CAMBIAR!!!!
         comunidadCrud.getServicios().get(2).definirOpcional(comunidadCrud);
-        //servicio3.definirOpcional(comunidadCrud);
         comunidadCrud.getServicios().get(3).definirOpcional(comunidadCrud);
-        //servicio4.definirOpcional(comunidadCrud);
+
      
             //Asignamos varios servicios opcionales a varios inmuebles
         comunidadCrud.getServicioTipos().asignarServiciosOpcionalInmuebles(comunidadCrud, comunidadCrud.getServicios().get(2), comunidadCrud.getInmuebles().get(0), LocalDate.parse("2022-11-01"));
@@ -188,7 +186,7 @@ public class main {
         }
         
         
-        admin.bajaVecino(comunidadCrud, comunidadCrud.getVecinos().get(4));
+        admin.borrarVecino(comunidadCrud, comunidadCrud.getVecinos().get(4));
         
         System.out.println("------------------- VECINOS -------------------\n");
         System.out.println(comunidadCrud.getVecinos());
