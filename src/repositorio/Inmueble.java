@@ -74,20 +74,23 @@ public class Inmueble {
     
 
         //Metodo asignar un servicio a un inmueble
-    public void asignarServicioInmueble (Servicio servicio, LocalDate fechaAlta){
-        ServicioCuenta servicioCuenta = new ServicioCuenta(this, servicio, fechaAlta);
-    }
+    //public void asignarServicioInmueble (Servicio servicio, LocalDate fechaAlta){
+    //    ServicioCuenta servicioCuenta = new ServicioCuenta(this, servicio, fechaAlta);
+    //}
     
-        //Metodo desasignar un servicio a un inmueble
-    public void desAsignarServicioInmueble (ServicioCuenta servicioCuenta, LocalDate fechaBaja){
-        servicioCuenta.setFechaBaja(fechaBaja);
-    }
+//        //Metodo desasignar un servicio a un inmueble
+//    public void desAsignarServicioInmueble (ServicioCuenta servicioCuenta, LocalDate fechaBaja){
+//        servicioCuenta.setFechaBaja(fechaBaja);
+//    }
     
         
         //Metodo toString que sobreescribe el heredado de la clase Object ////REVISAR
     @Override
     public String toString() {
-        return "Inmueble" + id + "\nvecin - " + vecino.nombre + "\ndirec - " + direccion + "\n}\n\n";
+        return "------Inmueble" + id +"------"
+                + "\nPropietario - " + vecino.nombre 
+                + "\ndirecccion  - " + direccion 
+                + "\n";
     }
    
 

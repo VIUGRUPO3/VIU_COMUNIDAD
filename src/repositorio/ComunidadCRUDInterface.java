@@ -32,15 +32,15 @@ public interface ComunidadCRUDInterface {
     public abstract void deleteServicio(Servicio servicio);
     
     //Metodos CRUD de ServicioCuenta
-    public void saveServiciosCuenta(ServicioCuenta servicioCuenta);
+    public abstract void saveServiciosCuenta(ServicioCuenta servicioCuenta);
     public abstract List<ServicioCuenta> viewServiciosCuenta();
     
     
-    //Metodos CRUD de Categoria
-    public abstract void saveCategoria(GastoConcepto categoria);
-    public abstract List<GastoConcepto> viewCategorias();
-    public abstract void updateCategoria(GastoConcepto categoria, Servicio servicio, String nombre);
-    public abstract void deleteCategoria(GastoConcepto categoria);
+    //Metodos CRUD de GastosConcepto
+    public abstract void saveGastosConcepto(GastoConcepto categoria);
+    public abstract List<GastoConcepto> viewGastosConcepto();
+    public abstract void updateGastosConcepto(GastoConcepto gastoConcepto, Servicio servicio, String nombre);
+    public abstract void deleteGastosConcepto(GastoConcepto gastoConcepto);
     
     //Metodos CRUD de Proveedor
     public abstract void saveProveedor(Proveedor proveedor);

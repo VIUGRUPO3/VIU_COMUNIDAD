@@ -16,7 +16,7 @@ public class Gasto {
     private LocalDate fechaPago;
     private Proveedor proveedor;
     private String comprobante;
-    private GastoConcepto categoria;
+    private GastoConcepto gastoConcepto;
     private boolean liquidado;
     private double importe; //Este importe se reparte entre todos vecinos que tengan el servicio
     
@@ -24,14 +24,14 @@ public class Gasto {
 
     public Gasto() {}
 
-    public Gasto(int id, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, GastoConcepto categoria, double importe, boolean liquidado) {
+    public Gasto(int id, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe, boolean liquidado) {
         this.id = id;
         this.descripcion = descripcion;
         this.fechaRegistro = fechaRegistro;
         this.fechaPago = fechaPago;
         this.proveedor = proveedor;
         this.comprobante = comprobante;
-        this.categoria = categoria;
+        this.gastoConcepto = gastoConcepto;
         this.importe = importe;
         this.liquidado = liquidado;
     }
@@ -54,8 +54,8 @@ public class Gasto {
         return comprobante;
     }
 
-    public GastoConcepto getCategoria() {
-        return categoria;
+    public GastoConcepto getGastoConcepto() {
+        return gastoConcepto;
     }   
 
     public LocalDate getFechaRegistro() {
@@ -78,13 +78,13 @@ public class Gasto {
         this.liquidado = liquidado;
     }
 
-    public void setGasto(String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, GastoConcepto categoria, double importe, boolean liquidado) {
+    public void setGasto(String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe, boolean liquidado) {
         this.descripcion = descripcion;
         this.fechaRegistro = fechaRegistro;
         this.fechaPago = fechaPago;
         this.proveedor = proveedor;
         this.comprobante = comprobante;
-        this.categoria = categoria;
+        this.gastoConcepto = gastoConcepto;
         this.importe = importe;
         this.liquidado = liquidado;
     }
@@ -93,7 +93,7 @@ public class Gasto {
 
     @Override
     public String toString() {
-        return "--------Gasto" + id + "--------\n fechaRegistro - " + fechaRegistro + "\n fechaPago    - " + fechaPago + "\n comprobante  - " + comprobante + "\n categoria    - " + categoria + "\n liquidado    - " + liquidado + "\n" + proveedor + "\n--------TOTAL--------\n    " + importe + "Euros \n\n";
+        return "--------Gasto" + id + "--------\n fechaRegistro - " + fechaRegistro + "\n fechaPago    - " + fechaPago + "\n comprobante  - " + comprobante + "\n concepto    - " + gastoConcepto + "\n liquidado    - " + liquidado + "\n" + proveedor + "\n--------TOTAL--------\n    " + importe + "Euros \n\n";
     }
     
     

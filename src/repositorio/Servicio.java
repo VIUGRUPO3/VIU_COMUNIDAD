@@ -11,6 +11,7 @@ public class Servicio {
     private int id;
     private String nombre;
     private double tarifa;
+    private  int inmueblesAdheridos;
      
     //2. Constructores
     public Servicio() {}
@@ -19,6 +20,7 @@ public class Servicio {
         this.id = id;
         this.nombre = nombre;
         this.tarifa = tarifa;
+        this.inmueblesAdheridos = 0;
     }
     
      //3. Metodos
@@ -58,7 +60,15 @@ public class Servicio {
     }  
     
     
-    
+    public int inmueblesAdheridos (ComunidadCRUD comunidadCRUD){
+       inmueblesAdheridos = 0;
+       comunidadCRUD.serviciosCuenta.forEach(servicioCuenta ->{
+           if(servicioCuenta.getServicio() == this){
+               inmueblesAdheridos = inmueblesAdheridos + 1;
+           }
+       });
+       return inmueblesAdheridos;
+   }
     
     @Override
     public String toString() {

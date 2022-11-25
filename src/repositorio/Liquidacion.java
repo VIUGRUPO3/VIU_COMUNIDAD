@@ -5,8 +5,6 @@
 package repositorio;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.ArrayList;
 
 
 public class Liquidacion {
@@ -16,6 +14,7 @@ public class Liquidacion {
     private int id;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
+    
     
 //    private List<DetalleLiquidacionGasto> gastoLiquidado;
 //    private List<DetalleLiquidacionServicio> servicioLiquidado;
@@ -54,16 +53,22 @@ public class Liquidacion {
 
    //liquidacion.generarLiquidacion(01/11/2022, 30/11/2022, comunidadCrud, liquidacionDetalle)
    
-   public void generarLiquidacion(LocalDate fechaInicio, LocalDate fechaFin, ComunidadCRUD comunidadCRUD){
-       Liquidacion liquidacion = new Liquidacion(id, fechaInicio, fechaFin);
+   public void generarLiquidacion(LocalDate fechaInicio, LocalDate fechaFin, ComunidadCRUD comunidadCRUD, Liquidacion liquidacion){
        comunidadCRUD.inmuebles.forEach(inmueble ->{
            LiquidacionDetalle liquidacionDetalle = new LiquidacionDetalle(liquidacion, inmueble);
            liquidacionDetalle.identificarServiciosInmueble(comunidadCRUD);
+           liquidacionDetalle.identificarGastosInmueble(comunidadCRUD, fechaInicio, fechaFin);
+           liquidacionDetalle.calcularLiquidacion(comunidadCRUD);
+           comunidadCRUD.liquidacionesDetalle.add(liquidacionDetalle);
        });
        
+       comunidadCRUD.liquidaciones.add(liquidacion);
+       
    }
+   
+   
     
-   public void generarLiquidacionInmueble(LocalDate fechaInicio, LocalDate fechaFin, ComunidadCRUD comunidadCRUD, Inmueble inmueble){
+   public void consultarLiquidacionInmueble(LocalDate fechaInicio, LocalDate fechaFin, ComunidadCRUD comunidadCRUD, Inmueble inmueble){
        Liquidacion liquidacion = new Liquidacion(id, fechaInicio, fechaFin);
        LiquidacionDetalle liquidacionDetalle = new LiquidacionDetalle(liquidacion, inmueble);
        liquidacionDetalle.identificarServiciosInmueble(comunidadCRUD);
@@ -76,11 +81,11 @@ public class Liquidacion {
    
     @Override
     public String toString() {
-        return "  -------Liquidacion Nº" + id + "-------"
-                + "\n------------------------------------" 
+        return "  -----------Liquidacion Nº" + id + "------------"
+                + "\n----------------------------------------------" 
                 + "\nInicio - " + fechaInicio 
-                + "\nFin - " + fechaFin 
-                + "\n\n";
+                + "   ->   Fin -    " + fechaFin 
+                + "\n----------------------------------------------";
     }
     
     

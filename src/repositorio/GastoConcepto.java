@@ -5,7 +5,7 @@
 package repositorio;
 
 
-abstract class  GastoConcepto {
+public class  GastoConcepto {
     
     //1.Atributos
     
@@ -52,8 +52,8 @@ abstract class  GastoConcepto {
         this.servicio = servicio;
     }
     
-    public void asignacionConceptos (GastoConceptoCompuesto gastoConceptoCompuesto ) {
-        gastoConceptoCompuesto.getGastosConcepto().add(this);
+    public void asignacionConceptos (GastoConceptoCompuesto gastoConcepto ) {
+        gastoConcepto.getGastosConcepto().add(this);
 
 }
     
@@ -61,7 +61,7 @@ abstract class  GastoConcepto {
     
     @Override
     public String toString() {
-        return id + " - " + nombre;
+        return id + " - " + nombre + "\n";
     }
     
     

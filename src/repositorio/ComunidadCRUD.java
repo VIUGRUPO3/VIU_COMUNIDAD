@@ -16,12 +16,13 @@ public class ComunidadCRUD implements ComunidadCRUDInterface {
 //1. Atributos
     protected List<Vecino> vecinos;
     protected List<Inmueble> inmuebles;
-    protected List<GastoConcepto> categorias;
+    protected List<GastoConcepto> gastosConcepto;
     protected List<Servicio> servicios;
     protected List<ServicioCuenta> serviciosCuenta;
     protected List<Proveedor> proveedores;
     protected List<Gasto> gastos;
     protected List<Liquidacion> liquidaciones;
+    protected List<LiquidacionDetalle> liquidacionesDetalle;
     protected ServicioTipos servicioTipos;
     //Asociacion de inmueble sin propietario a comunidad
     Vecino vecino = new Vecino(0, "Comunidad", "000", "666555222", "comunidad@viu.es");
@@ -31,12 +32,13 @@ public class ComunidadCRUD implements ComunidadCRUDInterface {
     public ComunidadCRUD() {
         this.vecinos = new ArrayList();
         this.inmuebles = new ArrayList();
-        this.categorias = new ArrayList();
+        this.gastosConcepto = new ArrayList();
         this.servicios = new ArrayList();
         this.serviciosCuenta = new ArrayList();
         this.proveedores = new ArrayList();
         this.gastos = new ArrayList();
         this.liquidaciones = new ArrayList();
+        this.liquidacionesDetalle = new ArrayList();
         this.servicioTipos = new ServicioTipos();
     }
     
@@ -53,8 +55,8 @@ public class ComunidadCRUD implements ComunidadCRUDInterface {
         return inmuebles;
     }
 
-    public List<GastoConcepto> getCategorias() {
-        return categorias;
+    public List<GastoConcepto> getGastosConcepto() {
+        return gastosConcepto;
     }
 
     public List<Servicio> getServicios() {
@@ -73,6 +75,11 @@ public class ComunidadCRUD implements ComunidadCRUDInterface {
     public List<Liquidacion> getLiquidaciones() {
         return liquidaciones;
     }
+
+    public List<LiquidacionDetalle> getLiquidacionesDetalle() {
+        return liquidacionesDetalle;
+    }
+    
 
     public Vecino getVecino() {
         return vecino;
@@ -202,27 +209,27 @@ public class ComunidadCRUD implements ComunidadCRUDInterface {
     
         //Metodo que almacena un objeto inmueble dentro de un ArrayList de Inmuebles
     @Override
-    public void saveCategoria(GastoConcepto categoria){
-        categorias.add(categoria);
+    public void saveGastosConcepto(GastoConcepto categoria){
+        gastosConcepto.add(categoria);
     }
 
         //Metodo que devuelve la lista de inmuebles
     @Override
-    public List<GastoConcepto> viewCategorias(){
-        return categorias;
+    public List<GastoConcepto> viewGastosConcepto(){
+        return gastosConcepto;
     }
       
         //Metodo que actualiza los datos del inmueble especificado en parametros
     @Override
-    public void updateCategoria(GastoConcepto categoria, Servicio servicio, String nombre){
-        categoria.setServicio(servicio);
-        categoria.setNombre(nombre);
+    public void updateGastosConcepto(GastoConcepto gastoConcepto, Servicio servicio, String nombre){
+        gastoConcepto.setServicio(servicio);
+        gastoConcepto.setNombre(nombre);
     }
     
         //Metodo que borra un objeto vecino del ArrayList de Inmuebles
     @Override
-    public void deleteCategoria(GastoConcepto categoria){
-        categorias.remove(categorias.indexOf(categoria));
+    public void deleteGastosConcepto(GastoConcepto gastoConcepto){
+        gastosConcepto.remove(gastosConcepto.indexOf(gastoConcepto));
     }
     
 //PROVEEDORES
@@ -299,9 +306,7 @@ public class ComunidadCRUD implements ComunidadCRUDInterface {
     }
     
         
-    
-    
-    
+
     
     
 }

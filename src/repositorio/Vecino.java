@@ -77,8 +77,41 @@ public class Vecino extends Usuario {
         this.logged = logged;
     }
     
+    //Metodo para consultar las liquidaciones de un vecino
     
+    public void consultarLiquidacion (ComunidadCRUD comunidadCRUD, Liquidacion liquidacion){
+        System.out.println("------------------------------------------------\n");
+        System.out.println("CONSULTA DE LIQUIDACION DE:  " + this.nombre + "\n");
+        comunidadCRUD.inmuebles.forEach(inmueble -> {
+            if(inmueble.getVecino() == this){
+                comunidadCRUD.liquidacionesDetalle.forEach(liquidacionDetalle ->{
+                   if(liquidacionDetalle.getLiquidacion() == liquidacion && liquidacionDetalle.getInmueble() == inmueble){
+                       
+                       System.out.println(liquidacionDetalle);
+                   } 
+                });
+            }
+        });
+    }
  
+    //Metodo para consultar las cuentas de servicio de un vecino
+    
+    public void consultarServicioCuentas (ComunidadCRUD comunidadCRUD){
+        System.out.println("------------------------------------------------\n");
+        System.out.println("CONSULTA DE SERVICIOS DE:  " + this.nombre + "\n");
+        comunidadCRUD.inmuebles.forEach(inmueble -> {
+            if(inmueble.getVecino() == this) {
+                comunidadCRUD.serviciosCuenta.forEach(servicioCuenta -> {
+                   if(servicioCuenta.getInmueble() == inmueble){
+                       System.out.println(servicioCuenta);
+                   } 
+                });
+            }
+        });
+    }
+    
+    
+   
        
 }
 

@@ -78,8 +78,15 @@ public class ServicioCuenta {
        this.setFechaAlta(fechaAlta);
        this.setFechaBaja(fechaBaja);
    }
+   
+   
+
+    @Override
+    public String toString() {
+        return "CUENTA SERVICIO \n"  + inmueble + "\nservicio - " + servicio + "\nfechaAlta - " + fechaAlta + "\nfechaBaja - " + fechaBaja + "\n-----------------------------\n\n";
+    }
     
-    
+   
     
     
     
