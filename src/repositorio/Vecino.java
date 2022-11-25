@@ -9,37 +9,27 @@
 *       @author:Martin Gonzalez Dominguez
 * @version: 01/12/2022/A 
 * 
-* ########################## INFO ##########################
-*
-* Descripción:
-*   - 
-* Peculiaridades:
-*   - N/A
-* Herencias:
-*   - Clase heredada de Usuario
-* Extends:
-*   - Usuario
+
 * 
 ****/
-
 
 /** Paquete **/
     package repositorio;
     
-/** Librerias **/
-    /** N/A: No se identifican Librerias adicionales **/
    
 
-/** 
-* Clase que hereda de Usuario 
-**/
+
+/**
+ *  Clase que gestiona el tipo de usuario Vecino, hereda de Usuario
+ * */
+
 public class Vecino extends Usuario {
 
-    /** 1. Atributos **/
+    // Atributos 
     
-        /** N/A: No se identifican atributos **/
+        /** Todos los atributos son heredados de la clase Usuario **/
     
-    /** 2. Constructores **/
+    // Constructores 
     
         public Vecino() {}
 
@@ -54,61 +44,127 @@ public class Vecino extends Usuario {
             super(id, nombre, clave, telefono, email);
         }
     
-    /** 3.Metodos **/
+    // Metodos 
 
-        /** Getters **/
-        
+        // Getters 
+            /** 
+             * Metodo para consultar el id de un vecino 
+             * 
+             * @return id identificador de vecino
+             **/
             public int getId() {
                 return id;
             }
-
+            
+            /** 
+             * Metodo para consultar el nombre de un vecino 
+             * 
+             * @return nombre nombre de vecino
+             **/
             public String getNombre() {
                 return nombre;
             }
 
+            /** 
+             * Metodo para consultar la clave de un vecino 
+             * 
+             * @return clave clave de vecino
+             **/
             public String getClave() {
                 return clave;
             }
 
+            /** 
+             * Metodo para consultar el telefono de un vecino 
+             * 
+             * @return telefono telefono de vecino
+             **/           
             public String getTelefono() {
                 return telefono;
             }
-
+            
+            /** 
+             * Metodo para consultar el email de un vecino 
+             * 
+             * @return email correo de vecino
+             **/  
             public String getEmail() {
                 return email;
             }
 
+            /** 
+             * Metodo para consultar si un vecino está logueado
+             * 
+             * @return logged booleano que devuelve si el vecino está logueado
+             **/              
             public boolean isLogged() {
                 return logged;
             }
      
 
-        /** Setters **/
-    
+        // Setters 
+            /** 
+             * Metodo para asignar una id a un vecino
+             * 
+             * @param id identificador de vecino
+             **/      
             public void setId(int id) {
                 this.id = id;
             }
 
+            /** 
+             * Metodo para asignar un nombre a un vecino
+             * 
+             * @param nombre nombre del vecino
+             **/      
             public void setNombre(String nombre) {
                 this.nombre = nombre;
             }
 
+            /** 
+             * Metodo para asignar una id a un vecino
+             * 
+             * @param clave clave del vecino
+             **/      
             public void setClave(String clave) {
                 this.clave = clave;
             }
 
+            /** 
+             * Metodo para asignar un telefono a un vecino
+             * 
+             * @param telefono telefono de un vecino
+             **/      
             public void setTelefono(String telefono) {
                 this.telefono = telefono;
             }
 
+            /** 
+             * Metodo para asignar un correo a un vecino
+             * 
+             * @param email correo de un vecino
+             **/      
             public void setEmail(String email) {
                 this.email = email;
             }
 
+            /** 
+             * Metodo para asignar si un vecino está logueado o no
+             * 
+             * @param logged booleano que indica si el usuario está logueado
+             **/      
             public void setLogged(boolean logged) {
                 this.logged = logged;
             }
             
+            /** 
+             * Metodo para asignar valores a los atributos de vecino
+             * 
+             * @param nombre nombre del vecino
+             * @param clave clave del usuario
+             * @param telefono telefono del usuario
+             * @param email correo del usuario
+             **/      
             public void setVecino (String nombre, String clave, String telefono, String email){
                 this.nombre = nombre;
                 this.clave = clave;
@@ -117,9 +173,13 @@ public class Vecino extends Usuario {
                 
             }
     
-        /** Funcionalidad **/
+        // Funcionalidad
     
-            /** Metodo para consultar las liquidaciones de un vecino **/
+            /** Metodo para consultar las liquidaciones de un vecino 
+            * 
+            * @param comunidadCRUD objeto comunidad que contiene toda la información de la comunidad
+            * @param liquidacion objeto que contiene la cabecera de la liquidación
+            **/
             public void consultarLiquidacion (ComunidadCRUD comunidadCRUD, Liquidacion liquidacion){
                 System.out.println("------------------------------------------------\n");
                 System.out.println("CONSULTA DE LIQUIDACION DE:  " + this.nombre + "\n");
@@ -134,7 +194,10 @@ public class Vecino extends Usuario {
                 });
             }
 
-            /** Metodo para consultar las cuentas de servicio de un vecino **/
+            /** Metodo para consultar las cuentas de servicio de un vecino
+            *
+            * @param comunidadCRUD objeto comunidad que contiene toda la información de la comunidad
+            **/
             public void consultarServicioCuentas (ComunidadCRUD comunidadCRUD){
                 System.out.println("------------------------------------------------\n");
                 System.out.println("CONSULTA DE SERVICIOS DE:  " + this.nombre + "\n");
@@ -149,6 +212,11 @@ public class Vecino extends Usuario {
                 });
             }
             
+            /** Metodo para consultar las cuentas de servicio de un vecino
+            *
+            * @param comunidadCRUD objeto comunidad que contiene toda la información de la comunidad
+            * @param vecinoBorrar id del vecino
+            **/
             public void bajaVecino (ComunidadCRUD comunidadCRUD, Vecino vecinoBorrar){
                 Vecino comunidad = comunidadCRUD.vecino;        // Asignamos el vecino "Comunidad" al espacio de memoria que ocupaba el vecino eliminado
                 comunidadCRUD.inmuebles.forEach(inmueble -> {
@@ -163,6 +231,15 @@ public class Vecino extends Usuario {
                     }
                 });  
             }
+            /** Metodo para consultar las cuentas de servicio de un vecino
+            *
+            * @param comunidadCRUD objeto comunidad que contiene toda la información de la comunidad
+            * @param nombre nombre del vecino
+            * @param clave clave del vecino
+            * @param telefono telefono del vecino
+            * @param email correo electronico 
+            * @param vecinoModificar id del vecino a modificar
+            **/
             public void updateVecino (ComunidadCRUD comunidadCRUD, String nombre, String clave, String telefono, String email, Vecino vecinoModificar){
                 comunidadCRUD.vecinos.forEach(vecino ->{
                     if(vecino == vecinoModificar){
@@ -171,9 +248,9 @@ public class Vecino extends Usuario {
                 });
             }
         
-        /** Print **/
+        // Print 
         
-          /** N/A: No se identifican Metodos Print **/
+          // N/A: No se identifican Metodos Print 
     
    
        
