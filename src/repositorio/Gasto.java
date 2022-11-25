@@ -1,4 +1,21 @@
-// Autor Grupo 3
+/****
+* 
+* Asignatura: 21GIIN Proyectos Programación
+* Autor: Grupo 3
+* Miembros:
+*      - Fernando Hernandez Fernandez
+*      - Javier Barbero Sales
+*      - Martin Gonzalez Dominguez
+*
+* ########################## INFO ##########################
+*
+* Descripción: 
+* Peculiaridades:
+* Herencias:
+* Extends:
+* 
+****/
+
 
 package repositorio;
 

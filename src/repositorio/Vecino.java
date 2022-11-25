@@ -1,115 +1,149 @@
-// Autor Grupo 3
+/****
+* 
+* Asignatura: 21GIIN Proyectos Programación
+* Profesor: Eduardo Zamudio
+* @author: Grupo 3
+* Miembros:
+*       @author:Fernando Hernandez Fernandez
+*       @author:Javier Barbero Sales
+*       @author:Martin Gonzalez Dominguez
+* @version: 01/12/2022/A 
+* 
+* ########################## INFO ##########################
+*
+* Descripción:
+*   - 
+* Peculiaridades:
+*   - N/A
+* Herencias:
+*   - Clase heredada de Usuario
+* Extends:
+*   - Usuario
+* 
+****/
 
-//************************ INFO ************************
 
+/** Paquete **/
+    package repositorio;
+    
+/** Librerias **/
+    /** N/A: No se identifican Librerias adicionales **/
+   
 
-
-package repositorio;
-
-
-/*Clase que hereda de Usuario*/
-
+/** 
+* Clase que hereda de Usuario 
+**/
 public class Vecino extends Usuario {
 
-    //1. Atributos
+    /** 1. Atributos **/
     
+        /** N/A: No se identifican atributos **/
     
+    /** 2. Constructores **/
     
-    //2. Constructores
+        public Vecino() {}
+
+        /**
+        * @param id Identificador unico de Vecino
+        * @param nombre Nombre comun completo Vecino
+        * @param clave Clave / Contraseña de acceso del Vecino
+        * @param telefono Telefono asociado a Vecino
+        * @param email Email asociado a vecino
+        **/
+        public Vecino(int id, String nombre, String clave, String telefono, String email) {
+            super(id, nombre, clave, telefono, email);
+        }
     
-    public Vecino() {}
+    /** 3.Metodos **/
 
-    public Vecino(int id, String nombre, String clave, String telefono, String email) {
-        super(id, nombre, clave, telefono, email);
-    }
-    
-    //3.Metodos
+        /** Getters **/
+        
+            public int getId() {
+                return id;
+            }
 
-    //Getters
-    public int getId() {
-        return id;
-    }
+            public String getNombre() {
+                return nombre;
+            }
 
-    public String getNombre() {
-        return nombre;
-    }
+            public String getClave() {
+                return clave;
+            }
 
-    public String getClave() {
-        return clave;
-    }
+            public String getTelefono() {
+                return telefono;
+            }
 
-    public String getTelefono() {
-        return telefono;
-    }
+            public String getEmail() {
+                return email;
+            }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public boolean isLogged() {
-        return logged;
-    }
+            public boolean isLogged() {
+                return logged;
+            }
      
 
-    //Setters
+        /** Setters **/
     
-    public void setId(int id) {
-        this.id = id;
-    }
-   
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+            public void setId(int id) {
+                this.id = id;
+            }
 
-    public void setClave(String clave) {
-        this.clave = clave;
-    }
+            public void setNombre(String nombre) {
+                this.nombre = nombre;
+            }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
+            public void setClave(String clave) {
+                this.clave = clave;
+            }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+            public void setTelefono(String telefono) {
+                this.telefono = telefono;
+            }
 
-    public void setLogged(boolean logged) {
-        this.logged = logged;
-    }
+            public void setEmail(String email) {
+                this.email = email;
+            }
+
+            public void setLogged(boolean logged) {
+                this.logged = logged;
+            }
     
-    //Metodo para consultar las liquidaciones de un vecino
+        /** Funcionalidad **/
     
-    public void consultarLiquidacion (ComunidadCRUD comunidadCRUD, Liquidacion liquidacion){
-        System.out.println("------------------------------------------------\n");
-        System.out.println("CONSULTA DE LIQUIDACION DE:  " + this.nombre + "\n");
-        comunidadCRUD.inmuebles.forEach(inmueble -> {
-            if(inmueble.getVecino() == this){
-                comunidadCRUD.liquidacionesDetalle.forEach(liquidacionDetalle ->{
-                   if(liquidacionDetalle.getLiquidacion() == liquidacion && liquidacionDetalle.getInmueble() == inmueble){
-                       
-                       System.out.println(liquidacionDetalle);
-                   } 
+            /** Metodo para consultar las liquidaciones de un vecino **/
+            public void consultarLiquidacion (ComunidadCRUD comunidadCRUD, Liquidacion liquidacion){
+                System.out.println("------------------------------------------------\n");
+                System.out.println("CONSULTA DE LIQUIDACION DE:  " + this.nombre + "\n");
+                comunidadCRUD.inmuebles.forEach(inmueble -> {
+                    if(inmueble.getVecino() == this){
+                        comunidadCRUD.liquidacionesDetalle.forEach(liquidacionDetalle ->{
+                            if(liquidacionDetalle.getLiquidacion() == liquidacion && liquidacionDetalle.getInmueble() == inmueble){
+                                System.out.println(liquidacionDetalle);
+                                } 
+                        });
+                    }
                 });
             }
-        });
-    }
- 
-    //Metodo para consultar las cuentas de servicio de un vecino
-    
-    public void consultarServicioCuentas (ComunidadCRUD comunidadCRUD){
-        System.out.println("------------------------------------------------\n");
-        System.out.println("CONSULTA DE SERVICIOS DE:  " + this.nombre + "\n");
-        comunidadCRUD.inmuebles.forEach(inmueble -> {
-            if(inmueble.getVecino() == this) {
-                comunidadCRUD.serviciosCuenta.forEach(servicioCuenta -> {
-                   if(servicioCuenta.getInmueble() == inmueble){
-                       System.out.println(servicioCuenta);
-                   } 
+
+            /** Metodo para consultar las cuentas de servicio de un vecino **/
+            public void consultarServicioCuentas (ComunidadCRUD comunidadCRUD){
+                System.out.println("------------------------------------------------\n");
+                System.out.println("CONSULTA DE SERVICIOS DE:  " + this.nombre + "\n");
+                comunidadCRUD.inmuebles.forEach(inmueble -> {
+                    if(inmueble.getVecino() == this) {
+                        comunidadCRUD.serviciosCuenta.forEach(servicioCuenta -> {
+                            if(servicioCuenta.getInmueble() == inmueble){
+                                System.out.println(servicioCuenta);
+                                } 
+                        });
+                    }
                 });
             }
-        });
-    }
-    
+        
+        /** Print **/
+        
+          /** N/A: No se identifican Metodos Print **/
     
    
        

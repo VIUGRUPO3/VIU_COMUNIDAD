@@ -1,13 +1,32 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+/****
+* 
+* Asignatura: 21GIIN Proyectos Programación
+* Profesor: Eduardo Zamudio
+* @author: Grupo 3
+* Miembros:
+*       @author:Fernando Hernandez Fernandez
+*       @author:Javier Barbero Sales
+*       @author:Martin Gonzalez Dominguez
+* @version: 01/12/2022/A 
+* 
+* ########################## INFO ##########################
+*
+* Descripción:
+*   - 
+* Peculiaridades:
+*   - Clase Abstracta, ya que no se instanciara ningun objeto de esta clase.
+* Herencias:
+*   - N/A
+* Extends:
+*   - N/A
+* 
+****/
+
+
+
+
 package repositorio;
 
-/**
- *
- * @author fer
- */
 public class GastoLiquidacion {
     
     //1.Atributos
