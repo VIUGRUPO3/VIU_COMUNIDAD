@@ -92,8 +92,8 @@ public class Liquidacion {
    public void generarLiquidacion(LocalDate fechaInicio, LocalDate fechaFin, ComunidadCRUD comunidadCRUD, Liquidacion liquidacion){
        comunidadCRUD.inmuebles.forEach(inmueble ->{
            LiquidacionDetalle liquidacionDetalle = new LiquidacionDetalle(liquidacion, inmueble);
-           liquidacionDetalle.identificarServiciosInmueble(comunidadCRUD);
-           liquidacionDetalle.identificarGastosInmueble(comunidadCRUD, fechaInicio, fechaFin, liquidacion);
+           liquidacionDetalle.identificarServiciosDetalle(comunidadCRUD);
+           liquidacionDetalle.identificarGastosDetalle(comunidadCRUD, fechaInicio, fechaFin, liquidacion);
            liquidacionDetalle.calcularLiquidacion(comunidadCRUD);          
            comunidadCRUD.liquidacionesDetalle.add(liquidacionDetalle);
        });
@@ -108,7 +108,7 @@ public class Liquidacion {
    public void consultarLiquidacionInmueble(LocalDate fechaInicio, LocalDate fechaFin, ComunidadCRUD comunidadCRUD, Inmueble inmueble){
        Liquidacion liquidacion = new Liquidacion(id, fechaInicio, fechaFin);
        LiquidacionDetalle liquidacionDetalle = new LiquidacionDetalle(liquidacion, inmueble);
-       liquidacionDetalle.identificarServiciosInmueble(comunidadCRUD);
+       liquidacionDetalle.identificarServiciosDetalle(comunidadCRUD);
         
    }
 
