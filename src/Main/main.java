@@ -29,7 +29,7 @@ import java.time.format.DateTimeFormatter;
 import repositorio.Admin;
 import repositorio.ComunidadCRUD;
 import repositorio.GastoConceptoCompuesto;
-import repositorio.GastoConceptoSimple;
+
 
 
 

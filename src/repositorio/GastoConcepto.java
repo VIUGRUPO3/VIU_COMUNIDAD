@@ -26,7 +26,7 @@
 package repositorio;
 
 
-public class  GastoConcepto {
+public abstract class  GastoConcepto {
     
     //1.Atributos
     
@@ -75,9 +75,7 @@ public class  GastoConcepto {
     
     public void asignacionConceptos (GastoConceptoCompuesto gastoConcepto ) {
         gastoConcepto.getGastosConcepto().add(this);
-    }
-    
-    
+    }    
     
     @Override
     public String toString() {
