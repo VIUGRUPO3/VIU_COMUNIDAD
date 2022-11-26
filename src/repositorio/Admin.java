@@ -20,7 +20,9 @@ import java.time.LocalDate;
 
 
 
-//Clase encargada de realizar todas las operaciones con los usuarios vecinos, implementa la interfaz UserInterfaceOps
+/**
+ *  Clase que gestiona el tipo de usuario Admin, hereda de Usuario
+ * */
 public class Admin extends Usuario{
 
     
