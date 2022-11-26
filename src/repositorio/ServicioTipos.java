@@ -81,12 +81,12 @@ public class ServicioTipos {
                 this.serviciosOpcionales.add(servicio);
             }
 
-            public void asignarServiciosFijosInmuebles (ComunidadCRUD comunidadCRUD, LocalDate fechaAlta){
+            public void asignarServiciosFijosInmuebles (ComunidadCRUD comunidadCRUD, Servicio servicio, LocalDate fechaAlta){
                 comunidadCRUD.inmuebles.forEach(inmueble ->{
-                    comunidadCRUD.servicioTipos.getServiciosFijos().forEach(servicioFijo ->{
-                        ServicioCuenta servicioCuenta = new ServicioCuenta(inmueble, servicioFijo, fechaAlta); 
+                    //comunidadCRUD.servicioTipos.getServiciosFijos().forEach(servicioFijo ->{
+                        ServicioCuenta servicioCuenta = new ServicioCuenta(inmueble, servicio, fechaAlta); 
                         comunidadCRUD.serviciosCuenta.add(servicioCuenta);
-                    });
+                    //});
                 });
             }
 

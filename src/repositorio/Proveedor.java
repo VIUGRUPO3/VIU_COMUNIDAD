@@ -61,7 +61,21 @@ public class Proveedor {
         this.email = email;
     }
 
+    public void bajaProveedor(ComunidadCRUD comunidadCRUD, Proveedor proveedorBorrar){
+        comunidadCRUD.proveedores.forEach(proveedor ->{
+            if(proveedor == proveedorBorrar){
+                proveedor = null;
+            }
+        });
+    }
     
+    public void updateProveedor(ComunidadCRUD comunidadCRUD, String nombre, String direccion, String telefono, String email, Proveedor proveedorModificar){
+        comunidadCRUD.proveedores.forEach(proveedor ->{
+            if(proveedor == proveedorModificar){
+                proveedor.setProveedor(nombre, direccion, telefono, email);
+            }
+        });
+    }
     
     
 

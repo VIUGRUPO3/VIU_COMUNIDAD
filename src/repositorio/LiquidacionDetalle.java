@@ -125,7 +125,7 @@ public class LiquidacionDetalle {
     
     //Metodo que identifica los gastos que han generado los servicios a los que esta adscrito el inmueble
     
-    public void identificarGastosInmueble(ComunidadCRUD comunidadCRUD, LocalDate fechaInicio, LocalDate fechaFin){  
+    public void identificarGastosInmueble(ComunidadCRUD comunidadCRUD, LocalDate fechaInicio, LocalDate fechaFin, Liquidacion liquidacion){ 
         comunidadCRUD.gastos.forEach(gasto->{
             if(gasto.isLiquidado() == false && (
                 (gasto.getFechaRegistro().isAfter(fechaInicio) && gasto.getFechaRegistro().isBefore(fechaFin)) ||
@@ -137,11 +137,12 @@ public class LiquidacionDetalle {
                         if(gastoConcepto.getServicio() == servicio){
                             GastoLiquidacion gastoLiquidacion = new GastoLiquidacion(gastoConcepto.getNombre(), gasto.getImporte()/servicio.inmueblesAdheridos(comunidadCRUD));
                             gastosLiquidacion.add(gastoLiquidacion);
+                            liquidacion.getGastosLiquidados().add(gasto);
                         }
                     });
                 }   
-                });  
-            }           
+                }); 
+            }             
         });
     }
     

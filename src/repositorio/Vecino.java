@@ -38,7 +38,7 @@ public class Vecino extends Usuario {
         * @param nombre Nombre comun completo Vecino
         * @param clave Clave / Contraseña de acceso del Vecino
         * @param telefono Telefono asociado a Vecino
-        * @param email Email asociado a vecino
+        * @param email Email asociado a Vecino
         **/
         public Vecino(int id, String nombre, String clave, String telefono, String email) {
             super(id, nombre, clave, telefono, email);

@@ -26,6 +26,8 @@
 package repositorio;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Liquidacion {
@@ -35,6 +37,7 @@ public class Liquidacion {
     private int id;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
+    private List<Gasto> gastosLiquidados;
     
     
 //    private List<DetalleLiquidacionGasto> gastoLiquidado;
@@ -50,6 +53,7 @@ public class Liquidacion {
         this.id = id;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
+        this.gastosLiquidados = new ArrayList();
     }
 
     
@@ -72,22 +76,34 @@ public class Liquidacion {
         return fechaFin;
     }
 
+    public List<Gasto> getGastosLiquidados() {
+        return gastosLiquidados;
+    }
+    
+     //Marca como liquidados todos los gastos correspondientes a la liquidacion
+   public void liquidarGastos(Liquidacion liquidacion){
+       liquidacion.gastosLiquidados.forEach(gasto ->{
+           gasto.setLiquidado(true);
+       });
+   }
+
    //liquidacion.generarLiquidacion(01/11/2022, 30/11/2022, comunidadCrud, liquidacionDetalle)
    
    public void generarLiquidacion(LocalDate fechaInicio, LocalDate fechaFin, ComunidadCRUD comunidadCRUD, Liquidacion liquidacion){
        comunidadCRUD.inmuebles.forEach(inmueble ->{
            LiquidacionDetalle liquidacionDetalle = new LiquidacionDetalle(liquidacion, inmueble);
            liquidacionDetalle.identificarServiciosInmueble(comunidadCRUD);
-           liquidacionDetalle.identificarGastosInmueble(comunidadCRUD, fechaInicio, fechaFin);
-           liquidacionDetalle.calcularLiquidacion(comunidadCRUD);
+           liquidacionDetalle.identificarGastosInmueble(comunidadCRUD, fechaInicio, fechaFin, liquidacion);
+           liquidacionDetalle.calcularLiquidacion(comunidadCRUD);          
            comunidadCRUD.liquidacionesDetalle.add(liquidacionDetalle);
        });
-       
+       liquidacion.liquidarGastos(liquidacion);
        comunidadCRUD.liquidaciones.add(liquidacion);
        
    }
    
    
+  
     
    public void consultarLiquidacionInmueble(LocalDate fechaInicio, LocalDate fechaFin, ComunidadCRUD comunidadCRUD, Inmueble inmueble){
        Liquidacion liquidacion = new Liquidacion(id, fechaInicio, fechaFin);

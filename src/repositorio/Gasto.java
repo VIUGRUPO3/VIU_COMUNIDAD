@@ -106,7 +106,21 @@ public class Gasto {
         this.liquidado = liquidado;
     }
     
+    public void bajaGasto (ComunidadCRUD comunidadCRUD, Gasto gastoBorrar){
+        comunidadCRUD.gastos.forEach(gasto ->{
+            if(gasto == gastoBorrar){
+                gasto = null;
+            }
+        });
+    }
     
+    public void updateGasto (ComunidadCRUD comunidadCRUD, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe, boolean liquidado, Gasto gastoModificar ){
+        comunidadCRUD.gastos.forEach(gasto ->{
+            if(gasto == gastoModificar){
+                gasto.setGasto(descripcion, fechaRegistro, fechaPago, proveedor, comprobante, gastoConcepto, importe, liquidado);
+            }
+        });
+    }
 
     @Override
     public String toString() {

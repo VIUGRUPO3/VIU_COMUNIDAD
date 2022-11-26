@@ -70,6 +70,11 @@ public class Servicio {
         this.tarifa = tarifa;
     }
     
+    public void setServicio (String nombre, double tarifa){
+        this.nombre = nombre;
+        this.tarifa = tarifa;
+    }
+    
     
     
     public void definirFijo  (ComunidadCRUD comunidadCRUD) {
@@ -90,6 +95,22 @@ public class Servicio {
        });
        return inmueblesAdheridos;
    }
+    
+    public void bajaServicio (ComunidadCRUD comunidadCRUD, Servicio servicioBorrar){
+        comunidadCRUD.servicios.forEach(servicio ->{
+            if(servicio == servicioBorrar){
+                servicio = null;
+            }
+        });
+    }
+    
+    public void updateServicio (ComunidadCRUD comunidadCRUD, String nombre, double tarifa, Servicio servicioModificar ){
+        comunidadCRUD.servicios.forEach(servicio ->{
+            if(servicio == servicioModificar){
+                servicio.setServicio(nombre, tarifa);
+            }
+        });
+    }
     
     @Override
     public String toString() {
