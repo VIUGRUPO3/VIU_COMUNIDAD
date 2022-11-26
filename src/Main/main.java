@@ -29,6 +29,9 @@ import java.time.format.DateTimeFormatter;
 import repositorio.Admin;
 import repositorio.ComunidadCRUD;
 import repositorio.GastoConceptoCompuesto;
+import repositorio.GastoConceptoSimple;
+
+
 
 public class main {
 
@@ -102,13 +105,14 @@ public class main {
         
 
             //Asignar Subconceptos a Comceptos (Jerarquia solicitada en enunciado de actividad)
-        comunidadCRUD.getGastosConcepto().get(1).asignacionConceptos((GastoConceptoCompuesto) comunidadCRUD.getGastosConcepto().get(0));
-            comunidadCRUD.getGastosConcepto().get(2).asignacionConceptos((GastoConceptoCompuesto) comunidadCRUD.getGastosConcepto().get(1));
-            comunidadCRUD.getGastosConcepto().get(3).asignacionConceptos((GastoConceptoCompuesto) comunidadCRUD.getGastosConcepto().get(1));
-            comunidadCRUD.getGastosConcepto().get(4).asignacionConceptos((GastoConceptoCompuesto) comunidadCRUD.getGastosConcepto().get(1));
-        comunidadCRUD.getGastosConcepto().get(5).asignacionConceptos((GastoConceptoCompuesto) comunidadCRUD.getGastosConcepto().get(0));
-        comunidadCRUD.getGastosConcepto().get(6).asignacionConceptos((GastoConceptoCompuesto) comunidadCRUD.getGastosConcepto().get(0));
+        admin.jerarquizarConceptos(comunidadCRUD.getGastosConcepto().get(1), (GastoConceptoCompuesto) comunidadCRUD.getGastosConcepto().get(0));
+                admin.jerarquizarConceptos(comunidadCRUD.getGastosConcepto().get(2), (GastoConceptoCompuesto) comunidadCRUD.getGastosConcepto().get(1));
+                admin.jerarquizarConceptos(comunidadCRUD.getGastosConcepto().get(3), (GastoConceptoCompuesto) comunidadCRUD.getGastosConcepto().get(1));
+                admin.jerarquizarConceptos(comunidadCRUD.getGastosConcepto().get(4), (GastoConceptoCompuesto) comunidadCRUD.getGastosConcepto().get(1));
+        admin.jerarquizarConceptos(comunidadCRUD.getGastosConcepto().get(5), (GastoConceptoCompuesto) comunidadCRUD.getGastosConcepto().get(0));
+        admin.jerarquizarConceptos(comunidadCRUD.getGastosConcepto().get(6), (GastoConceptoCompuesto) comunidadCRUD.getGastosConcepto().get(0));
 
+        
         
            
             //Instancias de la clase Gasto

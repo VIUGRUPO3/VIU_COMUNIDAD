@@ -57,4 +57,6 @@ public class GastoConceptoCompuesto extends GastoConcepto {
         this.gastosConcepto = gastosConcepto;
     }
     
+   
+    
 }

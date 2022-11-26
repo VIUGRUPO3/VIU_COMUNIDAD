@@ -295,6 +295,9 @@ public class Admin extends Usuario{
         public void asignarServicioOpcional (ComunidadCRUD comunidadCRUD, Servicio servicio, Inmueble inmueble, LocalDate fechaAlta){
             comunidadCRUD.getServicioTipos().asignarServicioOpcionalInmueble(comunidadCRUD, servicio, inmueble, LocalDate.parse("2022-11-01"));
         }
-                  
-
+        
+        public void jerarquizarConceptos(GastoConcepto gastoConcepto, GastoConceptoCompuesto gastoConceptoCompuestoPadre){
+            gastoConcepto.asignacionConceptos(gastoConceptoCompuestoPadre);
+        }
+       
 }

@@ -40,6 +40,6 @@ public class GastoConceptoSimple extends GastoConcepto{
     
     //3.Metodos
 
-
+   
     
 }

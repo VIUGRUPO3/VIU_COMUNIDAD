@@ -75,8 +75,7 @@ public class  GastoConcepto {
     
     public void asignacionConceptos (GastoConceptoCompuesto gastoConcepto ) {
         gastoConcepto.getGastosConcepto().add(this);
-
-}
+    }
     
     
     
