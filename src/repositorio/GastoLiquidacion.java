@@ -56,7 +56,7 @@ public class GastoLiquidacion {
     
     //Setters
 
-    public void setGastoConcepto(String nmbreConcepto) {
+    public void setNombreConcepto(String nombreConcepto) {
         this.nombreConcepto = nombreConcepto;
     }
 
