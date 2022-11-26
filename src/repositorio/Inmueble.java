@@ -66,18 +66,12 @@ public class Inmueble {
        return this.direccion;
     }
 
-    
-    public String getNombreVecino() {
-        return vecino.nombre;
-    }
 
     public Vecino getVecino() {
         return vecino;
     }
     
-    
-    
-    
+
         //Setters
     public void setVecino(Vecino vecino) {
         this.vecino = vecino;
