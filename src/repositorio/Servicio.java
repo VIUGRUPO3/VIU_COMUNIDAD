@@ -32,7 +32,7 @@ public class Servicio {
     private int id;
     private String nombre;
     private double tarifa;
-    private  int inmueblesAdheridos;
+    private int inmueblesAdheridos;
      
     //2. Constructores
     public Servicio() {}

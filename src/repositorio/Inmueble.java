@@ -66,9 +66,6 @@ public class Inmueble {
        return this.direccion;
     }
 
-    public int getVecinoId() {
-        return vecino.id;
-    }
     
     public String getNombreVecino() {
         return vecino.nombre;

@@ -98,18 +98,4 @@ public class ServicioTipos {
         /** Print **/
             
             /** N/A: No se identifican Metodos Print **/
-
-
-
-
-
-            
-    
-
-
-
-
-    
-
-
 }
