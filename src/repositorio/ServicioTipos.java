@@ -90,7 +90,7 @@ public class ServicioTipos {
                 });
             }
 
-            public void asignarServiciosOpcionalInmuebles (ComunidadCRUD comunidadCRUD, Servicio servicio, Inmueble inmueble, LocalDate fechaAlta){
+            public void asignarServicioOpcionalInmueble (ComunidadCRUD comunidadCRUD, Servicio servicio, Inmueble inmueble, LocalDate fechaAlta){
                 ServicioCuenta servicioCuenta = new ServicioCuenta(inmueble, servicio, fechaAlta); 
                 comunidadCRUD.serviciosCuenta.add(servicioCuenta);
             }

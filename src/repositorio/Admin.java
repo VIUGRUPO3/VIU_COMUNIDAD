@@ -293,7 +293,7 @@ public class Admin extends Usuario{
         * @param fechaAlta fecha inicial del disfrute del servicio
         **/
         public void asignarServicioOpcional (ComunidadCRUD comunidadCRUD, Servicio servicio, Inmueble inmueble, LocalDate fechaAlta){
-            comunidadCRUD.getServicioTipos().asignarServiciosOpcionalInmuebles(comunidadCRUD, servicio, inmueble, LocalDate.parse("2022-11-01"));
+            comunidadCRUD.getServicioTipos().asignarServicioOpcionalInmueble(comunidadCRUD, servicio, inmueble, LocalDate.parse("2022-11-01"));
         }
                   
 
