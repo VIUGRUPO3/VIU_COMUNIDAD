@@ -88,8 +88,10 @@ public class LiquidacionDetalle {
         this.totalLiquidacion = totalLiquidacion;
     }
     
-    //Metodo que calcula el total del detalle de liquidacion
-    
+    /** Metodo que calcula el total del detalle de liquidacion
+     * 
+     * @param comunidadCRUD objeto comunidad que contiene toda la información de la comunidad
+     */
     public void calcularLiquidacion (ComunidadCRUD comunidadCRUD){
                this.serviciosLiquidacion.forEach(servicio -> {
                    this.totalLiquidacion = totalLiquidacion + servicio.getTarifa();           
@@ -99,8 +101,10 @@ public class LiquidacionDetalle {
                });
     }
     
-    //Metodo que identifica los servicios a los que esta adscrito cada inmueble
-    
+    /** Metodo que identifica los servicios a los que esta adscrito cada inmueble
+     * 
+     * @param comunidadCRUD objeto comunidad que contiene toda la información de la comunidad
+     */
     public void identificarServiciosDetalle(ComunidadCRUD comunidadCRUD){  
         comunidadCRUD.serviciosCuenta.forEach(servicioCuenta ->{
             if(servicioCuenta.getInmueble() == this.inmueble){
@@ -109,8 +113,13 @@ public class LiquidacionDetalle {
         });       
     }
     
-    //Metodo que identifica los gastos que han generado los servicios a los que esta adscrito el inmueble
-    
+    /** Metodo que identifica los gastos que han generado los servicios a los que esta adscrito el inmueble
+     * 
+     * @param comunidadCRUD
+     * @param fechaInicio
+     * @param fechaFin
+     * @param liquidacion 
+     */
     public void identificarGastosDetalle(ComunidadCRUD comunidadCRUD, LocalDate fechaInicio, LocalDate fechaFin, Liquidacion liquidacion){ 
         comunidadCRUD.gastos.forEach(gasto->{
             if(gasto.isLiquidado() == false && (

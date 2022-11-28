@@ -10,7 +10,9 @@
 // Paquete
 package repositorio;
 
-
+/** Clase abtracta que crea el concepto de gasto para un servicio
+ * 
+ */
 public abstract class  GastoConcepto {
     
     //1.Atributos
