@@ -1,7 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
+// Asignatura: 21GIIN Proyectos Programación
+// Profesor: Eduardo Zamudio
+// @author: Grupo 3
+// Miembros:
+//       @author:Fernando Hernandez Fernandez
+//       @author:Javier Barbero Sales
+//       @author:Martin Gonzalez Dominguez
+// @version: 01/12/2022/
+
+// Paquete
 package usuario;
 
 import java.time.LocalDate;
@@ -15,7 +21,6 @@ import repositorio.Servicio;
 
 /**
  *
- * @author fer
  */
 public interface AdminInterface {
     
