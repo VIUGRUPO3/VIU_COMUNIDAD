@@ -26,7 +26,7 @@ public class Admin extends Usuario{
     
     // Constructores 
 
-    public Admin() {}
+
     
     /**
     * @param id Identificador unico de Admin

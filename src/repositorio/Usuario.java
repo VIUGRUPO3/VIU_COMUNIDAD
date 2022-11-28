@@ -33,7 +33,6 @@ protected boolean logged;
     
 //Constructor
        
-public Usuario(){}
 
 /**
 * @param id Identificador unico de Vecino

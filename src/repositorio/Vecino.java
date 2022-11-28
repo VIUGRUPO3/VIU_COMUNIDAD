@@ -25,7 +25,7 @@ public class Vecino extends Usuario {
     
     // Constructores 
     
-        public Vecino() {}
+
 
         /**
         * @param id Identificador unico de Vecino

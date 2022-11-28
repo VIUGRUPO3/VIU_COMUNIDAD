@@ -30,7 +30,7 @@ public class main {
         
             //Instancia de la clase usada para realizar el Almacenamiento/tratamiendo de datos de la comunidad (BD)
         ComunidadCRUD comunidadCRUD = new ComunidadCRUD ();
-        Admin admin = new Admin();
+        Admin admin = new Admin(1, "Admin","1234", "666555444","grupo3@viu.es");
         
         
         
