@@ -8,9 +8,27 @@
 // @version: 01/12/2022/
 
 // Paquete
-package repositorio;
+package usuario;
 
 import java.time.LocalDate;
+import repositorio.ComunidadCRUD;
+import repositorio.ComunidadCRUD;
+import repositorio.Gasto;
+import repositorio.Gasto;
+import repositorio.GastoConcepto;
+import repositorio.GastoConcepto;
+import repositorio.GastoConceptoCompuesto;
+import repositorio.GastoConceptoCompuesto;
+import repositorio.GastoConceptoSimple;
+import repositorio.GastoConceptoSimple;
+import repositorio.Inmueble;
+import repositorio.Inmueble;
+import repositorio.Liquidacion;
+import repositorio.Liquidacion;
+import repositorio.Proveedor;
+import repositorio.Proveedor;
+import repositorio.Servicio;
+import repositorio.Servicio;
 
 
 
@@ -55,7 +73,7 @@ public class Admin extends Usuario{
         **/    
         public void altaVecino (ComunidadCRUD comunidadCRUD, int id, String nombre, String clave, String telefono, String email ){
             Vecino vecino = new Vecino(id, nombre, clave, telefono, email);
-            comunidadCRUD.vecinos.add(vecino);
+            comunidadCRUD.getVecinos().add(vecino);
         }
 
         /** Metodo para eliminar un Vecino de la Comunidad quedando sus inmuebles a cargo de la Comunidad
@@ -89,7 +107,7 @@ public class Admin extends Usuario{
         **/  
         public void altaInmueble (ComunidadCRUD comunidadCRUD, int id, Vecino vecino, String direccion ){
             Inmueble inmueble = new Inmueble (id, vecino, direccion);
-            comunidadCRUD.inmuebles.add(inmueble);
+            comunidadCRUD.getInmuebles().add(inmueble);
         }
 
         /** Metodo para dar de baja una instancia de la clase Inmueble y eliminarlo de la comunidad 
@@ -121,7 +139,7 @@ public class Admin extends Usuario{
         **/
         public void altaServicio (ComunidadCRUD comunidadCRUD, int id, String nombre, double tarifa){
             Servicio servicio = new Servicio (id, nombre, tarifa);
-            comunidadCRUD.servicios.add(servicio);
+            comunidadCRUD.getServicios().add(servicio);
         }
 
         /** Metodo para dar de baja una instancia de la clase Servicio y eliminarlo de la Comunidad  
@@ -155,7 +173,7 @@ public class Admin extends Usuario{
         **/
         public void altaProveedor (ComunidadCRUD comunidadCRUD, int id, String nombre, String direccion, String telefono, String email){
             Proveedor proveedor = new Proveedor(id, nombre, direccion, telefono, email);
-            comunidadCRUD.proveedores.add(proveedor);
+            comunidadCRUD.getProveedores().add(proveedor);
         }
 
         /** Metodo para dar de baja una instancia de la clase Proveedor y eliminarlo de la Comunidad  
@@ -189,7 +207,7 @@ public class Admin extends Usuario{
         **/
         public void altaGastoConceptoCompuesto (ComunidadCRUD comunidadCRUD, String id, String nombre, Servicio servicio){
             GastoConceptoCompuesto gastoConceptoCompuesto = new GastoConceptoCompuesto(id, nombre, servicio);
-            comunidadCRUD.gastosConcepto.add(gastoConceptoCompuesto);
+            comunidadCRUD.getGastosConcepto().add(gastoConceptoCompuesto);
         }
 
         /** Metodo para dar de alta una instancia de la clase GastoConceptoSimple y añadirlo a la Comunidad, un concepto de gasto asociara un gasto a un servicio para su inclusion en las liquidaciones pertinentes 
@@ -201,7 +219,7 @@ public class Admin extends Usuario{
         **/
         public void altaGastoConceptoSimple (ComunidadCRUD comunidadCRUD, String id, String nombre, Servicio servicio){
             GastoConceptoSimple gastoConceptoSimple = new GastoConceptoSimple(id, nombre, servicio);
-            comunidadCRUD.gastosConcepto.add(gastoConceptoSimple);
+            comunidadCRUD.getGastosConcepto().add(gastoConceptoSimple);
         }
 
         /** Metodo para dar de alta una instancia de la clase Gasto y añadirlo a la Comunidad  
@@ -219,7 +237,7 @@ public class Admin extends Usuario{
         **/
         public void altaGasto (ComunidadCRUD comunidadCRUD, int id, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe, boolean liquidado){
             Gasto gasto = new Gasto(id, descripcion, fechaRegistro, fechaPago, proveedor, comprobante, gastoConcepto, importe, liquidado);
-            comunidadCRUD.gastos.add(gasto);
+            comunidadCRUD.getGastos().add(gasto);
         }
 
         /** Metodo para dar de baja una instancia de la clase Gasto y eliminarlo de la Comunidad  

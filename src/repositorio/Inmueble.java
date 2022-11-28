@@ -10,6 +10,7 @@
 // Paquete
 package repositorio;
 
+import usuario.Vecino;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,7 +90,7 @@ public class Inmueble {
     @Override
     public String toString() {
         return "------Inmueble" + id +"------"
-                + "\nPropietario - " + vecino.nombre 
+                + "\nPropietario - " + vecino.getNombre()
                 + "\ndirecccion  - " + direccion 
                 + "\n";
     }

@@ -8,8 +8,13 @@
 // @version: 01/12/2022/
 
 // Paquete
-    package repositorio;
+    package usuario;
     
+import repositorio.ComunidadCRUD;
+import repositorio.ComunidadCRUD;
+import repositorio.Liquidacion;
+import repositorio.Liquidacion;
+
    
 
 
@@ -177,9 +182,9 @@ public class Vecino extends Usuario {
             public void consultarLiquidacion (ComunidadCRUD comunidadCRUD, Liquidacion liquidacion){
                 System.out.println("------------------------------------------------\n");
                 System.out.println("CONSULTA DE LIQUIDACION DE:  " + this.nombre + "\n");
-                comunidadCRUD.inmuebles.forEach(inmueble -> {
+                comunidadCRUD.getInmuebles().forEach(inmueble -> {
                     if(inmueble.getVecino() == this){
-                        comunidadCRUD.liquidacionesDetalle.forEach(liquidacionDetalle ->{
+                        comunidadCRUD.getLiquidacionesDetalle().forEach(liquidacionDetalle ->{
                             if(liquidacionDetalle.getLiquidacion() == liquidacion && liquidacionDetalle.getInmueble() == inmueble){
                                 System.out.println(liquidacionDetalle);
                                 } 
@@ -195,9 +200,9 @@ public class Vecino extends Usuario {
             public void consultarServicioCuentas (ComunidadCRUD comunidadCRUD){
                 System.out.println("------------------------------------------------\n");
                 System.out.println("CONSULTA DE SERVICIOS DE:  " + this.nombre + "\n");
-                comunidadCRUD.inmuebles.forEach(inmueble -> {
+                comunidadCRUD.getInmuebles().forEach(inmueble -> {
                     if(inmueble.getVecino() == this) {
-                        comunidadCRUD.serviciosCuenta.forEach(servicioCuenta -> {
+                        comunidadCRUD.getServiciosCuenta().forEach(servicioCuenta -> {
                             if(servicioCuenta.getInmueble() == inmueble){
                                 System.out.println(servicioCuenta);
                                 } 
@@ -212,15 +217,15 @@ public class Vecino extends Usuario {
             * @param vecinoBorrar id del vecino
             **/
             public void bajaVecino (ComunidadCRUD comunidadCRUD, Vecino vecinoBorrar){
-                Vecino comunidad = comunidadCRUD.vecino;        // Asignamos el vecino "Comunidad" al espacio de memoria que ocupaba el vecino eliminado
-                comunidadCRUD.inmuebles.forEach(inmueble -> {
+                Vecino comunidad = comunidadCRUD.getVecino();        // Asignamos el vecino "Comunidad" al espacio de memoria que ocupaba el vecino eliminado
+                comunidadCRUD.getInmuebles().forEach(inmueble -> {
                 if(inmueble.getVecino() == vecinoBorrar){
                     inmueble.setVecino(comunidad);
                 }
                 });
-                comunidadCRUD.vecinos.forEach(vecino -> {
+                comunidadCRUD.getVecinos().forEach(vecino -> {
                 if(vecino == vecinoBorrar){
-                    comunidadCRUD.vecinos.set(comunidadCRUD.vecinos.indexOf(vecino), comunidad);
+                    comunidadCRUD.getVecinos().set(comunidadCRUD.getVecinos().indexOf(vecino), comunidad);
 
                     }
                 });  
@@ -235,7 +240,7 @@ public class Vecino extends Usuario {
             * @param vecinoModificar id del vecino a modificar
             **/
             public void updateVecino (ComunidadCRUD comunidadCRUD, String nombre, String clave, String telefono, String email, Vecino vecinoModificar){
-                comunidadCRUD.vecinos.forEach(vecino ->{
+                comunidadCRUD.getVecinos().forEach(vecino ->{
                     if(vecino == vecinoModificar){
                         vecino.setVecino(nombre, clave, telefono, email);
                     } 

@@ -12,7 +12,7 @@ package Main;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import repositorio.Admin;
+import usuario.Admin;
 import repositorio.ComunidadCRUD;
 import repositorio.GastoConceptoCompuesto;
 
