@@ -1,23 +1,15 @@
-/****
-* 
-* Asignatura: 21GIIN Proyectos Programación
-* Profesor: Eduardo Zamudio
-* @author: Grupo 3
-* Miembros:
-*       @author:Fernando Hernandez Fernandez
-*       @author:Javier Barbero Sales
-*       @author:Martin Gonzalez Dominguez
-* @version: 01/12/2022/A 
-* 
+// Asignatura: 21GIIN Proyectos Programación
+// Profesor: Eduardo Zamudio
+// @author: Grupo 3
+// Miembros:
+//       @author:Fernando Hernandez Fernandez
+//       @author:Javier Barbero Sales
+//       @author:Martin Gonzalez Dominguez
+// @version: 01/12/2022/
 
-* 
-****/
-
-/** Paquete **/
+// Paquete
     package repositorio;
 
-/** Librerias **/
-    /** N/A: No se identifican Librerias adicionales **/
 
 /** 
 * Se declara como clase abstracta ya que define unicamente la estructura de la clase.

@@ -1,19 +1,13 @@
-/****
-* 
-* Asignatura: 21GIIN Proyectos Programación
-* Profesor: Eduardo Zamudio
-* @author: Grupo 3
-* Miembros:
-*       @author:Fernando Hernandez Fernandez
-*       @author:Javier Barbero Sales
-*       @author:Martin Gonzalez Dominguez
-* @version: 01/12/2022/A 
-* 
+// Asignatura: 21GIIN Proyectos Programación
+// Profesor: Eduardo Zamudio
+// @author: Grupo 3
+// Miembros:
+//       @author:Fernando Hernandez Fernandez
+//       @author:Javier Barbero Sales
+//       @author:Martin Gonzalez Dominguez
+// @version: 01/12/2022/
 
-* 
-****/
-
-/** Paquete **/
+// Paquete
     package repositorio;
     
    
@@ -27,7 +21,7 @@ public class Vecino extends Usuario {
 
     // Atributos 
     
-        /** Todos los atributos son heredados de la clase Usuario **/
+        // Todos los atributos son heredados de la clase Usuario
     
     // Constructores 
     
@@ -250,7 +244,7 @@ public class Vecino extends Usuario {
         
         // Print 
         
-          // N/A: No se identifican Metodos Print 
+          // No se identifican Metodos Print 
     
    
        
