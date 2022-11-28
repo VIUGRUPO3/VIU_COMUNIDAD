@@ -26,7 +26,7 @@ import repositorio.Servicio;
 /**
  *  Clase que gestiona el tipo de usuario Admin, hereda de Usuario
  * */
-public class Admin extends Usuario{
+public class Admin extends Usuario implements AdminInterface{
 
     
     // Atributos 
