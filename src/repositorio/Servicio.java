@@ -10,18 +10,27 @@
 // Paquete
 package repositorio;
 
-
+/** Clase Servicio que se utiliza para la gestion de alta de servicios
+ * 
+ * 
+ */
 public class Servicio {
     
-    //1. Atributos
+    //Atributos
     private int id;
     private String nombre;
     private double tarifa;
     private int inmueblesAdheridos;
      
-    //2. Constructores
+    //Constructores
     public Servicio() {}
 
+    /** 
+     * 
+     * @param id objeto id de servicio
+     * @param nombre objeto nombre de servicio
+     * @param tarifa objeto tarifa de servicio
+     */
     public Servicio(int id, String nombre, double tarifa) {
         this.id = id;
         this.nombre = nombre;
@@ -29,78 +38,122 @@ public class Servicio {
         this.inmueblesAdheridos = 0;
     }
     
-     //3. Metodos
+     //Metodos
+        
+        //Getters
+            /** Metodo obtiene el Id de servicio
+             * 
+             * @return id identificar de servicio 
+             */
+            public int getId() {
+                return id;
+            }
+            
+            /** Metodo obtiene el nombre del servicio
+             * 
+             * @return nombre string nombre de servicio 
+             */
+            public String getNombre() {
+                return nombre;
+            }
+            
+            /** Metodo que obtiene la tarifa asociada al servicio
+             * 
+             * @return tarifa coste del servicio 
+             */
+            public double getTarifa() {
+                return tarifa;
+            }
+        
+        //Setters
+            
+            /** Metodo Establece el id del servicio
+             * 
+             * @param id identificador de servicio 
+             */
+            public void setId(int id) {
+                this.id = id;
+            }
+            
+            /** Metodo Establece el nombre del servicio
+             * 
+             * @param nombre objeto nombre del servicio
+             */
+            public void setNombre(String nombre) {
+                this.nombre = nombre;
+            }
+            
+            /** Metodo establece tarifa del servicio
+             * 
+             * @param tarifa objeto precio del servicio 
+             */
+            public void setTarifa(double tarifa) {
+                this.tarifa = tarifa;
+            }
+            
+            /** Metodo establece el objeto servicio con su Nombre y tarifa
+             * 
+             * @param nombre objeto nombre servicio
+             * @param tarifa objeto coste servicio
+             */
+            public void setServicio (String nombre, double tarifa){
+                this.nombre = nombre;
+                this.tarifa = tarifa;
+            }
 
-    public int getId() {
-        return id;
-    }
 
-    public String getNombre() {
-        return nombre;
-    }
+            
+        //Funcionalidad
+            /** Metodo establece como fijo un servicio identificado
+             * 
+             * @param comunidadCRUD objeto comunidad que contiene toda la información de la comunidad
+             */
+            public void definirFijo  (ComunidadCRUD comunidadCRUD) {
+                comunidadCRUD.servicioTipos.addServiciosFijos(this);
+                }
+            /** Metodo establece como opcional un servicio identificado
+             * 
+             * @param comunidadCRUD objeto comunidad que contiene toda la información de la comunidad
+             */
+            public void definirOpcional (ComunidadCRUD comunidadCRUD) {
+                comunidadCRUD.servicioTipos.addServiciosOpcionales(this);
+            }  
 
-    public double getTarifa() {
-        return tarifa;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setTarifa(double tarifa) {
-        this.tarifa = tarifa;
-    }
-    
-    public void setServicio (String nombre, double tarifa){
-        this.nombre = nombre;
-        this.tarifa = tarifa;
-    }
-    
-    
-    
-    public void definirFijo  (ComunidadCRUD comunidadCRUD) {
-        comunidadCRUD.servicioTipos.addServiciosFijos(this);
-        }
-    
-    public void definirOpcional (ComunidadCRUD comunidadCRUD) {
-        comunidadCRUD.servicioTipos.addServiciosOpcionales(this);
-    }  
-    
-    
-    public int inmueblesAdheridos (ComunidadCRUD comunidadCRUD){
-       inmueblesAdheridos = 0;
-       comunidadCRUD.serviciosCuenta.forEach(servicioCuenta ->{
-           if(servicioCuenta.getServicio() == this){
-               inmueblesAdheridos = inmueblesAdheridos + 1;
+            /** Metodo establece como fijo un servicio identificado
+             * 
+             * @param comunidadCRUD objeto comunidad que contiene toda la información de la comunidad
+             */
+            public int inmueblesAdheridos (ComunidadCRUD comunidadCRUD){
+               inmueblesAdheridos = 0;
+               comunidadCRUD.serviciosCuenta.forEach(servicioCuenta ->{
+                   if(servicioCuenta.getServicio() == this){
+                       inmueblesAdheridos = inmueblesAdheridos + 1;
+                   }
+               });
+               return inmueblesAdheridos;
            }
-       });
-       return inmueblesAdheridos;
-   }
-    
-    public void bajaServicio (ComunidadCRUD comunidadCRUD, Servicio servicioBorrar){
-        comunidadCRUD.servicios.forEach(servicio ->{
-            if(servicio == servicioBorrar){
-                servicio = null;
+
+            public void bajaServicio (ComunidadCRUD comunidadCRUD, Servicio servicioBorrar){
+                comunidadCRUD.servicios.forEach(servicio ->{
+                    if(servicio == servicioBorrar){
+                        servicio = null;
+                    }
+                });
             }
-        });
-    }
-    
-    public void updateServicio (ComunidadCRUD comunidadCRUD, String nombre, double tarifa, Servicio servicioModificar ){
-        comunidadCRUD.servicios.forEach(servicio ->{
-            if(servicio == servicioModificar){
-                servicio.setServicio(nombre, tarifa);
+
+            public void updateServicio (ComunidadCRUD comunidadCRUD, String nombre, double tarifa, Servicio servicioModificar ){
+                comunidadCRUD.servicios.forEach(servicio ->{
+                    if(servicio == servicioModificar){
+                        servicio.setServicio(nombre, tarifa);
+                    }
+                });
             }
-        });
-    }
-    
-    @Override
-    public String toString() {
-        return nombre + " -> "+ tarifa + "Euros \n";
-    }
+        
+        //Print
+            @Override
+            public String toString() {
+                return nombre + " -> "+ tarifa + "Euros \n";
+            }
 
     
 }
