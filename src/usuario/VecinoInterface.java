@@ -18,6 +18,7 @@ import repositorio.Liquidacion;
  */
 public interface VecinoInterface {
     
+
     public abstract void bajaVecino (ComunidadCRUD comunidadCRUD, Vecino vecinoBorrar);
     public abstract void updateVecino (ComunidadCRUD comunidadCRUD, String nombre, String clave, String telefono, String email, Vecino vecinoModificar);
     public abstract void consultarLiquidacion (ComunidadCRUD comunidadCRUD, Liquidacion liquidacion);
