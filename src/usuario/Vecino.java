@@ -11,8 +11,6 @@
     package usuario;
     
 import repositorio.ComunidadCRUD;
-import repositorio.ComunidadCRUD;
-import repositorio.Liquidacion;
 import repositorio.Liquidacion;
 
    

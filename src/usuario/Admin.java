@@ -12,22 +12,13 @@ package usuario;
 
 import java.time.LocalDate;
 import repositorio.ComunidadCRUD;
-import repositorio.ComunidadCRUD;
-import repositorio.Gasto;
 import repositorio.Gasto;
 import repositorio.GastoConcepto;
-import repositorio.GastoConcepto;
-import repositorio.GastoConceptoCompuesto;
 import repositorio.GastoConceptoCompuesto;
 import repositorio.GastoConceptoSimple;
-import repositorio.GastoConceptoSimple;
-import repositorio.Inmueble;
 import repositorio.Inmueble;
 import repositorio.Liquidacion;
-import repositorio.Liquidacion;
 import repositorio.Proveedor;
-import repositorio.Proveedor;
-import repositorio.Servicio;
 import repositorio.Servicio;
 
 
