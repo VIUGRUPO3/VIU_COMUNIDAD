@@ -17,71 +17,83 @@
 **/
 abstract class Usuario {
 
-    /** 1. Atributos **/
+//Atributos 
 
-        /**
-        * Declaración de atributos como protected para no ser accedidos por otras clases fuera del paquete.
-        **/
+/**
+* Declaración de atributos como protected para no ser accedidos por otras clases fuera del paquete.
+**/
 
-        protected int id;
-        protected String nombre;
-        protected String clave;
-        protected String telefono;
-        protected String email;
-        protected boolean logged;
+protected int id;
+protected String nombre;
+protected String clave;
+protected String telefono;
+protected String email;
+protected boolean logged;
     
     
-    /** 2. Constructor **/
+//Constructor
        
-        public Usuario(){}
+public Usuario(){}
 
-        /**
-        * @param id Identificador unico de Vecino
-        * @param nombre Nombre comun completo Vecino
-        * @param clave Clave / Contraseña de acceso del Vecino
-        * @param telefono Telefono asociado a Vecino
-        * @param email Email asociado a vecino
-        **/
-        public Usuario(int id, String nombre, String clave, String telefono, String email) {
-            this.id = id;
-            this.nombre = nombre;
-            this.clave = clave;
-            this.telefono = telefono;
-            this.email = email;
-            }
+/**
+* @param id Identificador unico de Vecino
+* @param nombre Nombre comun completo Vecino
+* @param clave Clave / Contraseña de acceso del Vecino
+* @param telefono Telefono asociado a Vecino
+* @param email Email asociado a vecino
+**/
+public Usuario(int id, String nombre, String clave, String telefono, String email) {
+    this.id = id;
+    this.nombre = nombre;
+    this.clave = clave;
+    this.telefono = telefono;
+    this.email = email;
+    }
 
-    /** 3. Metodos **/
+// Metodos
         
-        /** Getters **/
+    //Getters 
+
+        public int getId (){
+           return id;
+        }
+
+    // Setters 
+
+        //No se identifican Setters
+
+    // Funcionalidad
+
+        /** 
+        * Metodo validacion de login
+        * @param email email del usaurios (vecino/admin)
+        * @param clave string clave para acceder al sistema
+        * @return devuelve una variable logged con valor "true" en caso de validación OK
+        */
+        public boolean login(String email, String clave){
+            if(this.email == email && this.clave == clave){
+                  logged = true;
+                }
+            return logged;
+        }
         
-            public int getId (){
-               return id;
-            }
-    
-        /** Setters **/ 
-        
-            /** N/A: No se identifican Setters **/
-        
-        /** Funcionalidad **/
-                
-            /** Metodo validacion de login **/
-            public boolean login(String email, String clave){
-                if(this.email == email && this.clave == clave){
-                      logged = true;
-                    }
-                return logged;
-            }
-            /** Metodo que devuelve si el usuario esta logeado **/
-            public boolean isLogged() {
-                return logged;
-            }
-        
-        /** Print **/
-        
-            /** Metodo toString que sobreescribe el heredado de la clase Object **/
-            @Override
-            public String toString() {
-                return "Usuario" + id + "\nnombr - " + nombre + "\nclave - " + clave + "\ntelef - " + telefono + "\nemail - " + email + "\n\n";
-            }   
+        /** 
+         * Metodo que devuelve si el usuario esta logeado
+         * @return  devuelve variable "logged" en caso de usaurio logado
+         */
+        public boolean isLogged() {
+            return logged;
+        }
+
+    //Print
+
+        /** 
+        * Metodo toString que sobreescribe el heredado de la clase Object 
+        * @return cadena string con los parametros de registro del usuario
+        */
+        @Override
+        public String toString() {
+            return "Usuario" + id + "\nnombr - " + nombre + "\nclave - " + clave + "\ntelef - " + telefono + "\nemail - " + email + "\n\n";
+        }   
 
 }

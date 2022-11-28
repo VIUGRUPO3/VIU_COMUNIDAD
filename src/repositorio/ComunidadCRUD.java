@@ -8,79 +8,79 @@
 // @version: 01/12/2022/
 
 // Paquete
-    package repositorio;
+package repositorio;
 
 
-    import java.time.LocalDate;
-    import java.util.ArrayList;
-    import java.util.List;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+*  Clase que gestiona la Comunidad, almacena las colecciones de todos los objetos de la comunidad
+**/
+public class ComunidadCRUD {
+
+// Atributos
 
     /**
-     *  Clase que gestiona la Comunidad, almacena las colecciones de todos los objetos de la comunidad
-     * */
-    public class ComunidadCRUD {
+    *  Coleccion de Vecinos pertenecientes a la Comunidad
+    * */
+    protected List<Vecino> vecinos;
+    /**
+    *  Coleccion de Inmuebles pertenecientes a la Comunidad
+    * */
+    protected List<Inmueble> inmuebles;
+    /**
+    *  Coleccion de Conceptos de Gastos pertenecientes a la Comunidad
+    * */
+    protected List<GastoConcepto> gastosConcepto;
+    /**
+    *  Coleccion de Servicios pertenecientes a la Comunidad
+    * */
+    protected List<Servicio> servicios;
+    /**
+    *  Coleccion de Cuentas de Servicios pertenecientes a la Comunidad
+    * */
+    protected List<ServicioCuenta> serviciosCuenta;
+    /**
+    *  Coleccion de Proveedores que usa la Comunidad
+    * */
+    protected List<Proveedor> proveedores;
+    /**
+    *  Coleccion de Gastos pertenecientes a la Comunidad
+    * */
+    protected List<Gasto> gastos;
+    /**
+    *  Coleccion de Liquidaciones efectuadas por la Comunidad
+    * */
+    protected List<Liquidacion> liquidaciones;
+    /**
+    *  Coleccion de Detalle de liquidaciones de cada inmueble de la Comunidad
+    * */
+    protected List<LiquidacionDetalle> liquidacionesDetalle;
+    /**
+    *  Coleccion de Servicios de la comunidad organizados segun su tipo
+    * */
+    protected ServicioTipos servicioTipos;
+    /**
+    *  Vecino Comunidad 
+    * */
+    protected Vecino vecino = new Vecino(0, "Comunidad", "000", "666555222", "comunidad@viu.es");
 
-    // Atributos
+// Constructores
 
-        /**
-        *  Coleccion de Vecinos pertenecientes a la Comunidad
-        * */
-        protected List<Vecino> vecinos;
-        /**
-        *  Coleccion de Inmuebles pertenecientes a la Comunidad
-        * */
-        protected List<Inmueble> inmuebles;
-        /**
-        *  Coleccion de Conceptos de Gastos pertenecientes a la Comunidad
-        * */
-        protected List<GastoConcepto> gastosConcepto;
-        /**
-        *  Coleccion de Servicios pertenecientes a la Comunidad
-        * */
-        protected List<Servicio> servicios;
-        /**
-        *  Coleccion de Cuentas de Servicios pertenecientes a la Comunidad
-        * */
-        protected List<ServicioCuenta> serviciosCuenta;
-        /**
-        *  Coleccion de Proveedores que usa la Comunidad
-        * */
-        protected List<Proveedor> proveedores;
-        /**
-        *  Coleccion de Gastos pertenecientes a la Comunidad
-        * */
-        protected List<Gasto> gastos;
-        /**
-        *  Coleccion de Liquidaciones efectuadas por la Comunidad
-        * */
-        protected List<Liquidacion> liquidaciones;
-        /**
-        *  Coleccion de Detalle de liquidaciones de cada inmueble de la Comunidad
-        * */
-        protected List<LiquidacionDetalle> liquidacionesDetalle;
-        /**
-        *  Coleccion de Servicios de la comunidad organizados segun su tipo
-        * */
-        protected ServicioTipos servicioTipos;
-        /**
-        *  Vecino Comunidad 
-        * */
-        protected Vecino vecino = new Vecino(0, "Comunidad", "000", "666555222", "comunidad@viu.es");
-
-    // Constructores
-
-        public ComunidadCRUD() {
-            this.vecinos = new ArrayList();
-            this.inmuebles = new ArrayList();
-            this.gastosConcepto = new ArrayList();
-            this.servicios = new ArrayList();
-            this.serviciosCuenta = new ArrayList();
-            this.proveedores = new ArrayList();
-            this.gastos = new ArrayList();
-            this.liquidaciones = new ArrayList();
-            this.liquidacionesDetalle = new ArrayList();
-            this.servicioTipos = new ServicioTipos();
-        }
+public ComunidadCRUD() {
+    this.vecinos = new ArrayList();
+    this.inmuebles = new ArrayList();
+    this.gastosConcepto = new ArrayList();
+    this.servicios = new ArrayList();
+    this.serviciosCuenta = new ArrayList();
+    this.proveedores = new ArrayList();
+    this.gastos = new ArrayList();
+    this.liquidaciones = new ArrayList();
+    this.liquidacionesDetalle = new ArrayList();
+    this.servicioTipos = new ServicioTipos();
+}
 
 
     // Metodos
