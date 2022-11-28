@@ -22,7 +22,7 @@ public class Admin extends Usuario{
     
     // Atributos 
     
-        /** Todos los atributos son heredados de la clase Usuario **/
+        // Todos los atributos son heredados de la clase Usuario
     
     // Constructores 
 

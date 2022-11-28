@@ -64,8 +64,8 @@ public Usuario(int id, String nombre, String clave, String telefono, String emai
 
     // Funcionalidad
 
-        /** 
-        * Metodo validacion de login
+        /** Metodo validacion de login
+        * 
         * @param email email del usaurios (vecino/admin)
         * @param clave string clave para acceder al sistema
         * @return devuelve una variable logged con valor "true" en caso de validación OK
@@ -77,8 +77,8 @@ public Usuario(int id, String nombre, String clave, String telefono, String emai
             return logged;
         }
         
-        /** 
-         * Metodo que devuelve si el usuario esta logeado
+        /** Metodo que devuelve si el usuario esta logeado
+         * 
          * @return  devuelve variable "logged" en caso de usaurio logado
          */
         public boolean isLogged() {
@@ -87,8 +87,8 @@ public Usuario(int id, String nombre, String clave, String telefono, String emai
 
     //Print
 
-        /** 
-        * Metodo toString que sobreescribe el heredado de la clase Object 
+        /** Metodo toString que sobreescribe el heredado de la clase Object 
+        * 
         * @return cadena string con los parametros de registro del usuario
         */
         @Override
