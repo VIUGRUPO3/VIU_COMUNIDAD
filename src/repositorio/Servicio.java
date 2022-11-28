@@ -9,16 +9,7 @@
 *       @author:Martin Gonzalez Dominguez
 * @version: 01/12/2022/A 
 * 
-* ########################## INFO ##########################
-*
-* Descripción:
-*   - 
-* Peculiaridades:
-*   - Clase Abstracta, ya que no se instanciara ningun objeto de esta clase.
-* Herencias:
-*   - N/A
-* Extends:
-*   - N/A
+
 * 
 ****/
 

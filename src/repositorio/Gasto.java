@@ -1,18 +1,15 @@
 /****
 * 
 * Asignatura: 21GIIN Proyectos Programación
-* Autor: Grupo 3
+* Profesor: Eduardo Zamudio
+* @author: Grupo 3
 * Miembros:
-*      - Fernando Hernandez Fernandez
-*      - Javier Barbero Sales
-*      - Martin Gonzalez Dominguez
-*
-* ########################## INFO ##########################
-*
-* Descripción: 
-* Peculiaridades:
-* Herencias:
-* Extends:
+*       @author:Fernando Hernandez Fernandez
+*       @author:Javier Barbero Sales
+*       @author:Martin Gonzalez Dominguez
+* @version: 01/12/2022/A 
+* 
+
 * 
 ****/
 
