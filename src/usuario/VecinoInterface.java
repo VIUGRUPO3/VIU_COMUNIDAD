@@ -13,7 +13,8 @@ package usuario;
 import repositorio.ComunidadCRUD;
 import repositorio.Liquidacion;
 
-/**
+/** Interface de la clase vecino
+ * 
  *
  */
 public interface VecinoInterface {
