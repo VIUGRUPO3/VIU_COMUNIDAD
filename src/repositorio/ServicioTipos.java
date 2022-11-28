@@ -14,22 +14,30 @@
     import java.util.ArrayList;
     import java.util.List;
 
-
+/** Clase que identifica la gestion del tipo de servicio FIjo / opcional
+ *
+ */
 public class ServicioTipos {
     
-/** 1. Atributos **/
+//Atributos
 
+/**
+*  Coleccion de Servicios Fijos
+* */
 private List<Servicio> serviciosFijos;
+/**
+*  Coleccion de Servicios Opcionales
+* */
 private List<Servicio> serviciosOpcionales;
 
-/** 2. Constructores **/
+//Constructores
 
 public ServicioTipos() {
     this.serviciosFijos = new ArrayList(); 
     this.serviciosOpcionales = new ArrayList();
 }
 
-/**
+/** Constructor 
 * @param serviciosFijos Lista para almacenar los servicios identificados como Fijos / obligatorios a los vecinos
 * @param serviciosOpcionales Lista para almacenar los servicios identificados como Opcionales a los vecinos
 **/

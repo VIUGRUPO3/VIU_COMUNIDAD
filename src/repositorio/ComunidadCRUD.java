@@ -83,105 +83,114 @@ public ComunidadCRUD() {
 }
 
 
-    // Metodos
+// Metodos
 
-        //Getters
-            /** 
-            * Metodo para consultar el listado de Vecinos 
-            * 
-            * @return vecinos Lista de Vecinos
-            **/
-            public List<Vecino> getVecinos() {
-                return vecinos;
-            }
+    //Getters
+        /** 
+        * Metodo para consultar el listado de Vecinos 
+        * 
+        * @return vecinos Lista de Vecinos
+        **/
+        public List<Vecino> getVecinos() {
+            return vecinos;
+        }
 
-            /** 
-            * Metodo para consultar el listado de Inmuebles 
-            * 
-            * @return inmuebles Lista de Inmuebles
-            **/
-            public List<Inmueble> getInmuebles() {
-                return inmuebles;
-            }
+        /** 
+        * Metodo para consultar el listado de Inmuebles 
+        * 
+        * @return inmuebles Lista de Inmuebles
+        **/
+        public List<Inmueble> getInmuebles() {
+            return inmuebles;
+        }
 
-            /** 
-            * Metodo para consultar el listado de Conceptos de Gasto 
-            * 
-            * @return gastosConcepto Lista de Conceptos de Gasto
-            **/
-            public List<GastoConcepto> getGastosConcepto() {
-                return gastosConcepto;
-            }
+        /** 
+        * Metodo para consultar el listado de Conceptos de Gasto 
+        * 
+        * @return gastosConcepto Lista de Conceptos de Gasto
+        **/
+        public List<GastoConcepto> getGastosConcepto() {
+            return gastosConcepto;
+        }
 
-            /** 
-            * Metodo para consultar el listado de Servicios 
-            * 
-            * @return servicios Lista de Servicios
-            **/
-            public List<Servicio> getServicios() {
-                return servicios;
-            }
+        /** 
+        * Metodo para consultar el listado de Servicios 
+        * 
+        * @return servicios Lista de Servicios
+        **/
+        public List<Servicio> getServicios() {
+            return servicios;
+        }
 
-            /** 
-            * Metodo para consultar el listado de Proveedores 
-            * 
-            * @return proveedores Lista de Proveedores
-            **/
-            public List<Proveedor> getProveedores() {
-                return proveedores;
-            }
+        /** 
+        * Metodo para consultar el listado de Proveedores 
+        * 
+        * @return proveedores Lista de Proveedores
+        **/
+        public List<Proveedor> getProveedores() {
+            return proveedores;
+        }
 
-            /** 
-            * Metodo para consultar el listado de Gastos 
-            * 
-            * @return gastos Lista de Gastos
-            **/
-            public List<Gasto> getGastos() {
-                return gastos;
-            }
+        /** 
+        * Metodo para consultar el listado de Gastos 
+        * 
+        * @return gastos Lista de Gastos
+        **/
+        public List<Gasto> getGastos() {
+            return gastos;
+        }
 
-            /** 
-            * Metodo para consultar el listado de liquidaciones 
-            * 
-            * @return liquidaciones Lista de Liquidaciones
-            **/
-            public List<Liquidacion> getLiquidaciones() {
-                return liquidaciones;
-            }
+        /** 
+        * Metodo para consultar el listado de liquidaciones 
+        * 
+        * @return liquidaciones Lista de Liquidaciones
+        **/
+        public List<Liquidacion> getLiquidaciones() {
+            return liquidaciones;
+        }
 
-            /** 
-            * Metodo para consultar el listado de Detalle de liquidacion 
-            * 
-            * @return liquidacionDetalle Lista de Detalle de Liquidacion
-            **/
-            public List<LiquidacionDetalle> getLiquidacionesDetalle() {
-                return liquidacionesDetalle;
-            }
+        /** 
+        * Metodo para consultar el listado de Detalle de liquidacion 
+        * 
+        * @return liquidacionDetalle Lista de Detalle de Liquidacion
+        **/
+        public List<LiquidacionDetalle> getLiquidacionesDetalle() {
+            return liquidacionesDetalle;
+        }
 
-            /** 
-            * Metodo para consultar el Vecino Comunidad 
-            * 
-            * @return vecino Devuelve el vecino Comunidad
-            **/
-            public Vecino getVecino() {
-                return vecino;
-            }
+        /** 
+        * Metodo para consultar el Vecino Comunidad 
+        * 
+        * @return vecino Devuelve el vecino Comunidad
+        **/
+        public Vecino getVecino() {
+            return vecino;
+        }
 
-            /** 
-            * Metodo para consultar el listado de Cuentas de Servicios 
-            * 
-            * @return serviciosCuenta Lista de Cuentas de Servicio
-            **/
-            public List<ServicioCuenta> getServiciosCuenta() {
-                return serviciosCuenta;
-            }
+        /** 
+        * Metodo para consultar el listado de Cuentas de Servicios 
+        * 
+        * @return serviciosCuenta Lista de Cuentas de Servicio
+        **/
+        public List<ServicioCuenta> getServiciosCuenta() {
+            return serviciosCuenta;
+        }
 
-            /** 
-            * Metodo para consultar el listado los Servicios segun su tipologia 
-            * 
-            * @return servicioTipos Lista de Servcios segun su tipologia
-            **/
-            public ServicioTipos getServicioTipos() {
-                return servicioTipos;
-            } 
+        /** 
+        * Metodo para consultar el listado los Servicios segun su tipologia 
+        * 
+        * @return servicioTipos Lista de Servcios segun su tipologia
+        **/
+        public ServicioTipos getServicioTipos() {
+            return servicioTipos;
+        } 
+        
+    //Setters
+        //No se identifican metodos Setters
+        
+    // Funcionales
+        // No se identifican metodos funcionales especificos
+        
+    //Print
+        // No se indentifican metodos print especificos
     }
