@@ -10,6 +10,9 @@
 // Paquete
 package repositorio;
 
+/**
+ *  Clase que gestiona el tipo de gasto con concepto simple, hereda de la clase GastoConcepto
+ * */
 public class GastoConceptoSimple extends GastoConcepto{
 
    
@@ -19,7 +22,13 @@ public class GastoConceptoSimple extends GastoConcepto{
     //2.Constructores
 
     public GastoConceptoSimple() {}
-    
+    /**
+    * Constructor de la clase GastoConceptoSimple
+    * 
+    * @param id id del GastoConceptoSimple
+    * @param nombre nombre del gasto
+    * @param servicio servicio asociado al gasto indicado
+    **/
     public GastoConceptoSimple(String id, String nombre, Servicio servicio) {
         super(id, nombre, servicio);
     }

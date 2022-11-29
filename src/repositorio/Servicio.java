@@ -10,10 +10,9 @@
 // Paquete
 package repositorio;
 
-/** Clase Servicio que se utiliza para la gestion de alta de servicios
- * 
- * 
- */
+/**
+ *  Clase que gestiona las operaciones referentes a servicios
+ * */
 public class Servicio {
     
     //Atributos
@@ -122,6 +121,8 @@ public class Servicio {
             /** Metodo establece como fijo un servicio identificado
              * 
              * @param comunidadCRUD objeto comunidad que contiene toda la información de la comunidad
+             * 
+             * @return inmueblesAdheridos el numero de inmuebles adheridos al objeto comunidad
              */
             public int inmueblesAdheridos (ComunidadCRUD comunidadCRUD){
                inmueblesAdheridos = 0;
@@ -133,6 +134,12 @@ public class Servicio {
                return inmueblesAdheridos;
            }
 
+            /** 
+             * Metodo que permite dar de baja un servicio
+             * 
+             * @param comunidadCRUD objeto que contiene la informacion de la comunidad y sus objetos correspondientes
+             * @param servicioBorrar objeto de servicio a borrar
+             **/
             public void bajaServicio (ComunidadCRUD comunidadCRUD, Servicio servicioBorrar){
                 comunidadCRUD.servicios.forEach(servicio ->{
                     if(servicio == servicioBorrar){
@@ -141,6 +148,14 @@ public class Servicio {
                 });
             }
 
+            /** 
+             * Metodo que permite actualizar la informacion de un servicio
+             * 
+             * @param comunidadCRUD objeto que contiene la informacion de la comunidad y sus objetos correspondientes
+             * @param nombre nombre del servicio
+             * @param tarifa tarifa del servicio
+             * @param servicioModificar objeto servicio que va a ser modificado
+             **/
             public void updateServicio (ComunidadCRUD comunidadCRUD, String nombre, double tarifa, Servicio servicioModificar ){
                 comunidadCRUD.servicios.forEach(servicio ->{
                     if(servicio == servicioModificar){
@@ -149,6 +164,11 @@ public class Servicio {
                 });
             }
         
+        /** 
+        * Metodo toString que devuelve el nombre y tarifa del servicio actual
+        * 
+        * @return String nombre + " -> "+ tarifa + "Euros \n"
+        **/
         //Print
             @Override
             public String toString() {

@@ -13,9 +13,6 @@
 import repositorio.ComunidadCRUD;
 import repositorio.Liquidacion;
 
-   
-
-
 /**
  *  Clase que gestiona el tipo de usuario Vecino, hereda de Usuario
  * */
@@ -31,6 +28,8 @@ public class Vecino extends Usuario implements VecinoInterface {
 
 
         /**
+         * Constructor de la clase Vecino
+         * 
         * @param id Identificador unico de Vecino
         * @param nombre Nombre comun completo Vecino
         * @param clave Clave / Contraseña de acceso del Vecino
