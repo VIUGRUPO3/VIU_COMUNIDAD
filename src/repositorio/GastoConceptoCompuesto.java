@@ -54,6 +54,7 @@ public class GastoConceptoCompuesto extends GastoConcepto {
     /** 
     * Metodo setGastosConcepto, para asociar un listado de gastos a un gasto compuesto
     * 
+    * @param gastosConcepto lista de gastoConceptos a asociar en el gasto compuesto
     **/
     public void setGastosConcepto(List<GastoConcepto> gastosConcepto) {
         this.gastosConcepto = gastosConcepto;

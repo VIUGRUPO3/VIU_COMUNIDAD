@@ -21,32 +21,32 @@ public interface VecinoInterface {
     
     /** Metodo abstracto de la clase vecino usado por el admin para dar de baja a un vecino
      * 
-     * @param comunidadCRUD
-     * @param vecinoBorrar 
+     * @param comunidadCRUD objeto que almacena todos los datos de la comunidad
+     * @param vecinoBorrar objeto que almacena todos los datos del vecino a borrar
      */
     public abstract void bajaVecino (ComunidadCRUD comunidadCRUD, Vecino vecinoBorrar);
     
     /** Metodo abstracto de la clase vecino usado por el admin para actualizar los datos del vecino
      * 
-     * @param comunidadCRUD
-     * @param nombre
-     * @param clave
-     * @param telefono
-     * @param email
-     * @param vecinoModificar 
+     * @param comunidadCRUD objeto que almacena todos los datos de la comunidad
+     * @param nombre nombre del vecino
+     * @param clave clave de acceso del vecino
+     * @param telefono telefono del vecido
+     * @param email correo electronico del vecino
+     * @param vecinoModificar  objeto vecino a modificar
      */
     public abstract void updateVecino (ComunidadCRUD comunidadCRUD, String nombre, String clave, String telefono, String email, Vecino vecinoModificar);
     
     /** Metodo abstracto usado por la clase vecino para consultar sus liquidaciones
      * 
-     * @param comunidadCRUD
-     * @param liquidacion 
+     * @param comunidadCRUD objeto que almacena todos los datos de la comunidad
+     * @param liquidacion  objeto que almacena todos los datos de la liquidacion
      */
     public abstract void consultarLiquidacion (ComunidadCRUD comunidadCRUD, Liquidacion liquidacion);
     
     /** Metodo abstracto usado por la clase vecino para consultar los servicios a los que estan adscritos sus inmuebles
      * 
-     * @param comunidadCRUD 
+     * @param comunidadCRUD objeto que almacena todos los datos de la comunidad
      */
     public abstract void consultarServicioCuentas (ComunidadCRUD comunidadCRUD);
     
