@@ -198,8 +198,8 @@ public class main {
         admin.imprimirLiquidacion(comunidadCRUD, comunidadCRUD.getLiquidaciones().get(0));
         
         //Consultas realizadas por la clase Vecino (liquidaciones y servicios de inmuebles propios)
-        comunidadCRUD.getVecinos().get(0).consultarLiquidacion(comunidadCRUD, comunidadCRUD.getLiquidaciones().get(0));
-        comunidadCRUD.getVecinos().get(0).consultarServicioCuentas(comunidadCRUD);
+        //comunidadCRUD.getVecinos().get(0).consultarLiquidacion(comunidadCRUD, comunidadCRUD.getLiquidaciones().get(0));
+       // comunidadCRUD.getVecinos().get(0).consultarServicioCuentas(comunidadCRUD);
         
         
     }
