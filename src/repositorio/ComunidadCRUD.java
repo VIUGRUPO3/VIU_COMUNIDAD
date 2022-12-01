@@ -58,6 +58,14 @@ public class ComunidadCRUD {
     *  Coleccion de Detalle de liquidaciones de cada inmueble de la Comunidad
     * */
     protected List<LiquidacionDetalle> liquidacionesDetalle;
+    /**
+    *  Coleccion de Detalle de liquidaciones de cada inmueble de la Comunidad
+    * */
+    protected List<LiquidacionDetalleServicio> liquidacionesDetalleServicio;
+    /**
+    *  Coleccion de Detalle de liquidaciones de cada inmueble de la Comunidad
+    * */
+    protected List<LiquidacionDetalleGasto> liquidacionesDetalleGasto;
 
     /**
     *  Vecino Comunidad 
@@ -76,6 +84,8 @@ public ComunidadCRUD() {
     this.gastos = new ArrayList();
     this.liquidaciones = new ArrayList();
     this.liquidacionesDetalle = new ArrayList();
+    this.liquidacionesDetalleServicio = new ArrayList();
+    this.liquidacionesDetalleGasto = new ArrayList();
 }
 
 
@@ -152,6 +162,24 @@ public ComunidadCRUD() {
         **/
         public List<LiquidacionDetalle> getLiquidacionesDetalle() {
             return liquidacionesDetalle;
+        }
+        
+        /** 
+        * Metodo para consultar el listado de Detalle de liquidacion 
+        * 
+        * @return liquidacionDetalle Lista de Detalle de Liquidacion
+        **/
+        public List<LiquidacionDetalleServicio> getLiquidacionesDetalleServicio() {
+            return liquidacionesDetalleServicio;
+        }
+        
+        /** 
+        * Metodo para consultar el listado de Detalle de liquidacion 
+        * 
+        * @return liquidacionDetalle Lista de Detalle de Liquidacion
+        **/
+        public List<LiquidacionDetalleGasto> getLiquidacionesDetalleGasto() {
+            return liquidacionesDetalleGasto;
         }
 
         /** 

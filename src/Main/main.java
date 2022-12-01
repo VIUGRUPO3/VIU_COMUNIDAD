@@ -158,9 +158,7 @@ public class main {
 
         
 
-        //Creacion de una liquidacion 
         
-        admin.liquidar(comunidadCRUD, 1, LocalDate.parse("2022-11-01"), LocalDate.parse("2022-11-30"));
         
         // Autentificacion 
         login = comunidadCRUD.getVecinos().get(1).login("fer@viu.es     ", "def ");
@@ -190,9 +188,17 @@ public class main {
         System.out.println("------------ DETALLE LIQUIDACIONES ------------\n");
         System.out.println(comunidadCRUD.getLiquidacionesDetalle());
         
+        
+        
+        
         //Consultas realizadas por la clase Vecino (liquidaciones y servicios de inmuebles propios)
-        comunidadCRUD.getVecinos().get(0).consultarLiquidacion(comunidadCRUD, comunidadCRUD.getLiquidaciones().get(0));
+        //comunidadCRUD.getVecinos().get(0).consultarLiquidacion(comunidadCRUD, comunidadCRUD.getLiquidaciones().get(0));
         comunidadCRUD.getVecinos().get(0).consultarServicioCuentas(comunidadCRUD);
+        
+        //Creacion de una liquidacion 
+        
+        admin.liquidar(comunidadCRUD, 1, LocalDate.parse("2022-11-01"), LocalDate.parse("2022-11-30"));
+        admin.imprimirLiquidacion(comunidadCRUD, comunidadCRUD.getLiquidaciones().get(0));
         
         
     }

@@ -271,6 +271,10 @@ public class Admin extends Usuario implements AdminInterface{
             Liquidacion liquidacion = new Liquidacion(id, fechaInicio, fechaFin);
             liquidacion.generarLiquidacion(fechaInicio, fechaFin, comunidadCRUD, liquidacion);
         }
+        
+        public void imprimirLiquidacion(ComunidadCRUD comunidadCRUD, Liquidacion liquidacion){
+            liquidacion.imprimirLiquidacion(comunidadCRUD, liquidacion);
+        }
 
         /** Metodo que define un servicio como Fijo y lo asigna a todos los inmuebles de la comunidad  
         * 

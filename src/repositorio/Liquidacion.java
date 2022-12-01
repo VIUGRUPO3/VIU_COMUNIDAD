@@ -116,17 +116,100 @@ public class Liquidacion {
     **/   
    public void generarLiquidacion(LocalDate fechaInicio, LocalDate fechaFin, ComunidadCRUD comunidadCRUD, Liquidacion liquidacion){
        comunidadCRUD.inmuebles.forEach(inmueble ->{
-           LiquidacionDetalle liquidacionDetalle = new LiquidacionDetalle(liquidacion, inmueble);
-           liquidacionDetalle.identificarServiciosDetalle(comunidadCRUD);
-           liquidacionDetalle.identificarGastosDetalle(comunidadCRUD, fechaInicio, fechaFin, liquidacion);
-           liquidacionDetalle.calcularLiquidacion(comunidadCRUD);          
-           comunidadCRUD.liquidacionesDetalle.add(liquidacionDetalle);
+           this.identificarServicios(comunidadCRUD, inmueble, liquidacion);
+           this.identificarGastos(comunidadCRUD, fechaInicio, fechaFin, liquidacion, inmueble);
        });
        liquidacion.liquidarGastos(liquidacion);
        comunidadCRUD.liquidaciones.add(liquidacion);
        
    }
    
+   public void imprimirLiquidacion(ComunidadCRUD comunidadCRUD, Liquidacion liquidacionPrint){
+       comunidadCRUD.liquidaciones.forEach(liquidacion ->{
+           if(liquidacion == liquidacionPrint){
+               comunidadCRUD.inmuebles.forEach(inmueble ->{
+                    double totalServicios = 0;
+                    double totalGastos = 0;
+                    double totalInmueble = 0;
+                    System.out.println("\n" + inmueble);
+                    System.out.println("---------------SERVICIOS---------------");
+                    for(int index = 0; index < comunidadCRUD.liquidacionesDetalleServicio.size(); index++){
+                        if(comunidadCRUD.liquidacionesDetalleServicio.get(index).getLiquidacion() == liquidacionPrint && comunidadCRUD.liquidacionesDetalleServicio.get(index).getInmueble() == inmueble){
+                            System.out.println(comunidadCRUD.liquidacionesDetalleServicio.get(index));
+                            totalServicios = totalServicios + comunidadCRUD.liquidacionesDetalleServicio.get(index).getCuota();
+                        }
+                    }
+
+                    System.out.println("-------------------------------------------");
+                    System.out.println("\n TOTAL SERVICIOS - " + totalServicios + "\n");
+                    System.out.println("---------------GASTOS---------------");
+                    for(int index2 = 0; index2 < comunidadCRUD.liquidacionesDetalleGasto.size(); index2++){
+                        if(comunidadCRUD.liquidacionesDetalleGasto.get(index2).getLiquidacion() == liquidacionPrint && comunidadCRUD.liquidacionesDetalleGasto.get(index2).getInmueble() == inmueble){
+                            System.out.println(comunidadCRUD.liquidacionesDetalleGasto.get(index2));
+                            totalGastos = totalGastos + comunidadCRUD.liquidacionesDetalleGasto.get(index2).getCuota();
+                        }
+                    }
+                    System.out.println("-------------------------------------------");
+                    System.out.println("\n TOTAL GASTOS - " + totalGastos + "\n");
+                    totalInmueble = totalGastos + totalServicios;  
+                    System.out.println("-------------------------------------------");
+                    System.out.println("\n                       TOTAL INMUEBLE - " + totalInmueble + "\n\n");
+
+
+                    });
+               
+           }
+       });
+   }
+   /** Metodo que identifica los servicios a los que esta adscrito cada inmueble
+     * 
+     * @param comunidadCRUD objeto comunidad que contiene toda la información de la comunidad
+     */
+    public void identificarServicios(ComunidadCRUD comunidadCRUD, Inmueble inmueble, Liquidacion liquidacion){  
+        comunidadCRUD.serviciosCuenta.forEach(servicioCuenta ->{
+            if(servicioCuenta.getInmueble() == inmueble){
+                LiquidacionDetalleServicio liquidacionDetalleServicio = new LiquidacionDetalleServicio(servicioCuenta.getServicio(), liquidacion, inmueble, servicioCuenta.getServicio().getTarifa());
+                comunidadCRUD.liquidacionesDetalleServicio.add(liquidacionDetalleServicio);
+            }
+        });       
+    }
+    
+    public void identificarGastos(ComunidadCRUD comunidadCRUD, LocalDate fechaInicio, LocalDate fechaFin, Liquidacion liquidacion, Inmueble inmueble){ 
+        comunidadCRUD.gastos.forEach(gasto->{
+            if(gasto.isLiquidado() == false && (
+                (gasto.getFechaRegistro().isAfter(fechaInicio) && gasto.getFechaRegistro().isBefore(fechaFin)) ||
+                (gasto.getFechaRegistro().isEqual(fechaInicio) || gasto.getFechaRegistro().isEqual(fechaFin))
+               )){
+                comunidadCRUD.gastosConcepto.forEach(gastoConcepto ->{
+                if(gasto.getGastoConcepto() == gastoConcepto){
+                    
+                    comunidadCRUD.liquidacionesDetalleServicio.forEach(liquidacionDetalleServicio -> {
+                        if(gastoConcepto.getServicio() == liquidacionDetalleServicio.getServicio() && liquidacionDetalleServicio.getInmueble() == inmueble){
+                            //GastoLiquidacion gastoLiquidacion = new GastoLiquidacion(gastoConcepto.getNombre(), gasto.getImporte()/liquidacionDetalleServicio.getServicio().inmueblesAdheridos(comunidadCRUD));
+                            LiquidacionDetalleGasto liquidacionDetalleGasto = new LiquidacionDetalleGasto(gastoConcepto.getNombre(), liquidacion, inmueble, gasto.getImporte()/liquidacionDetalleServicio.getServicio().inmueblesAdheridos(comunidadCRUD));
+                            comunidadCRUD.liquidacionesDetalleGasto.add(liquidacionDetalleGasto);
+                            this.gastosLiquidados.add(gasto);
+                        }
+                    });
+                }   
+                }); 
+            }             
+        });
+    }
+    
+   
+//   public void generarLiquidacion(LocalDate fechaInicio, LocalDate fechaFin, ComunidadCRUD comunidadCRUD, Liquidacion liquidacion){
+//       comunidadCRUD.inmuebles.forEach(inmueble ->{
+//           LiquidacionDetalle liquidacionDetalle = new LiquidacionDetalle(liquidacion, inmueble);
+//           liquidacionDetalle.identificarServiciosDetalle(comunidadCRUD);
+//           liquidacionDetalle.identificarGastosDetalle(comunidadCRUD, fechaInicio, fechaFin, liquidacion);
+//           liquidacionDetalle.calcularLiquidacion(comunidadCRUD);          
+//           comunidadCRUD.liquidacionesDetalle.add(liquidacionDetalle);
+//       });
+//       liquidacion.liquidarGastos(liquidacion);
+//       comunidadCRUD.liquidaciones.add(liquidacion);
+//       
+//   }
    
   
     /** 
@@ -138,10 +221,7 @@ public class Liquidacion {
     * @param inmueble objeto inmueble del cual se va a generar la liquidacion
     **/    
    public void consultarLiquidacionInmueble(LocalDate fechaInicio, LocalDate fechaFin, ComunidadCRUD comunidadCRUD, Inmueble inmueble){
-       Liquidacion liquidacion = new Liquidacion(id, fechaInicio, fechaFin);
-       LiquidacionDetalle liquidacionDetalle = new LiquidacionDetalle(liquidacion, inmueble);
-       liquidacionDetalle.identificarServiciosDetalle(comunidadCRUD);
-        
+       
    }
 
     // Metodo generar gastos en Liquidacion
