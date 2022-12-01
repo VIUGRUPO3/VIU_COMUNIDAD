@@ -90,8 +90,9 @@ public interface AdminInterface {
      * @param id identificador de servicio
      * @param nombre nombre del servicio
      * @param tarifa tarifa del servicio
+     * @param opcional tipo de servicio
      */
-    public abstract void altaServicio (ComunidadCRUD comunidadCRUD, int id, String nombre, double tarifa);
+    public abstract void altaServicio (ComunidadCRUD comunidadCRUD, int id, String nombre, double tarifa, boolean opcional);
     
     /**
      * Metodo que permite dar de baja un servicio
@@ -107,9 +108,10 @@ public interface AdminInterface {
      * @param comunidadCRUD objeto comunidad que contiene toda la información de la Comunidad
      * @param nombre nombre del servicio
      * @param tarifa tarifa del servicio
+     * @param opcional tipo de servicio
      * @param servicio objeto servicio que contiene toda la informacion del servicio
      */
-    public abstract void updateServicio (ComunidadCRUD comunidadCRUD, String nombre, double tarifa, Servicio servicio);
+    public abstract void updateServicio (ComunidadCRUD comunidadCRUD, String nombre, double tarifa, boolean opcional, Servicio servicio);
     
     /**
      * Metodo que permite dar de alta un proveedor
@@ -220,16 +222,9 @@ public interface AdminInterface {
      * @param servicio objeto servicio que contiene toda la información del servicio
      * @param fechaAlta fecha de alta del servicio fijo
      */
-    public abstract void definirServicioFijo(ComunidadCRUD comunidadCRUD, Servicio servicio, LocalDate fechaAlta);
+    public abstract void asignarServicioFijo(ComunidadCRUD comunidadCRUD, Servicio servicio, LocalDate fechaAlta);
     
-    /**
-     * Metodo que permite definir un servicio opcional
-     * 
-     * @param comunidadCRUD objeto comunidad que contiene toda la información de la Comunidad
-     * @param servicio objeto servicio que contiene toda la información del servicio
-     */
-    public abstract void definirServicoOpcional (ComunidadCRUD comunidadCRUD, Servicio servicio);
-    
+
     /**
      * Metodo que permite asignar un servicio opcional
      * 

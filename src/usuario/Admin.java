@@ -127,9 +127,10 @@ public class Admin extends Usuario implements AdminInterface{
         * @param id identificador de la instancia Servicio
         * @param nombre nombre descriptivo del Servicio
         * @param tarifa tarifa que se cobrara a los que utilicen el Servicio
+        * @param opcional tipo de servicio
         **/
-        public void altaServicio (ComunidadCRUD comunidadCRUD, int id, String nombre, double tarifa){
-            Servicio servicio = new Servicio (id, nombre, tarifa);
+        public void altaServicio (ComunidadCRUD comunidadCRUD, int id, String nombre, double tarifa, boolean opcional){
+            Servicio servicio = new Servicio (id, nombre, tarifa, opcional);
             comunidadCRUD.getServicios().add(servicio);
         }
 
@@ -147,10 +148,11 @@ public class Admin extends Usuario implements AdminInterface{
         * @param comunidadCRUD objeto comunidad que contiene toda la información de la comunidad
         * @param nombre nombre descriptivo del Servicio
         * @param tarifa tarifa que se cobrara a los que utilicen el Servicio
+        * @param opcional tipo de servicio
         * @param servicio instancia de la clase Servicio que actualizara los datos
         **/
-        public void updateServicio (ComunidadCRUD comunidadCRUD, String nombre, double tarifa, Servicio servicio){
-            servicio.updateServicio(comunidadCRUD, nombre, tarifa, servicio);
+        public void updateServicio (ComunidadCRUD comunidadCRUD, String nombre, double tarifa, boolean opcional, Servicio servicio){
+            servicio.updateServicio(comunidadCRUD, nombre, tarifa, opcional, servicio);
         }
 
         /** Metodo para dar de alta una instancia de la clase Proveedor y añadirlo a la Comunidad  
@@ -276,19 +278,10 @@ public class Admin extends Usuario implements AdminInterface{
         * @param servicio instancia de la clase Servicio que se va a definir como fijo
         * @param fechaAlta fecha inicial del disfrute del servicio
         **/
-        public void definirServicioFijo(ComunidadCRUD comunidadCRUD, Servicio servicio, LocalDate fechaAlta){
-            servicio.definirFijo(comunidadCRUD);
-            comunidadCRUD.getServicioTipos().asignarServiciosFijosInmuebles(comunidadCRUD, servicio, fechaAlta);
+        public void asignarServicioFijo(ComunidadCRUD comunidadCRUD, Servicio servicio, LocalDate fechaAlta){
+            servicio.asignarServiciosFijosInmuebles(comunidadCRUD, fechaAlta);
         }
 
-        /** Metodo que define un servicio como Opcional 
-        * 
-        * @param comunidadCRUD objeto comunidad que contiene toda la información de la comunidad
-        * @param servicio instancia de la clase Servicio que de va a definir como fijo
-        **/
-        public void definirServicoOpcional (ComunidadCRUD comunidadCRUD, Servicio servicio){
-            servicio.definirOpcional(comunidadCRUD);
-        }
 
         /** Metodo que define un servicio como Opcional 
         * 
@@ -298,7 +291,7 @@ public class Admin extends Usuario implements AdminInterface{
         * @param fechaAlta fecha inicial del disfrute del servicio
         **/
         public void asignarServicioOpcional (ComunidadCRUD comunidadCRUD, Servicio servicio, Inmueble inmueble, LocalDate fechaAlta){
-            comunidadCRUD.getServicioTipos().asignarServicioOpcionalInmueble(comunidadCRUD, servicio, inmueble, LocalDate.parse("2022-11-01"));
+            servicio.asignarServicioOpcionalInmueble(comunidadCRUD, inmueble, fechaAlta);
         }
         
         public void jerarquizarConceptos(GastoConcepto gastoConcepto, GastoConceptoCompuesto gastoConceptoCompuestoPadre){

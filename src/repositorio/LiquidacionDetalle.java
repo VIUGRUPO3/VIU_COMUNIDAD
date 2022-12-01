@@ -23,6 +23,8 @@ public class LiquidacionDetalle {
     /**
     *  Se definen los atributos principales de la clase LiquidacionDetalle: liquidacion, inmueble, serviciosLiquidacion, gastosLiquidacion, totalLiquidacion
     * */
+    
+   
     private Liquidacion liquidacion;
     private Inmueble inmueble;
     private List<Servicio> serviciosLiquidacion;

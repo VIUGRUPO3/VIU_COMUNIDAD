@@ -58,10 +58,7 @@ public class ComunidadCRUD {
     *  Coleccion de Detalle de liquidaciones de cada inmueble de la Comunidad
     * */
     protected List<LiquidacionDetalle> liquidacionesDetalle;
-    /**
-    *  Coleccion de Servicios de la comunidad organizados segun su tipo
-    * */
-    protected ServicioTipos servicioTipos;
+
     /**
     *  Vecino Comunidad 
     * */
@@ -79,7 +76,6 @@ public ComunidadCRUD() {
     this.gastos = new ArrayList();
     this.liquidaciones = new ArrayList();
     this.liquidacionesDetalle = new ArrayList();
-    this.servicioTipos = new ServicioTipos();
 }
 
 
@@ -176,14 +172,6 @@ public ComunidadCRUD() {
             return serviciosCuenta;
         }
 
-        /** 
-        * Metodo para consultar el listado los Servicios segun su tipologia 
-        * 
-        * @return servicioTipos Lista de Servcios segun su tipologia
-        **/
-        public ServicioTipos getServicioTipos() {
-            return servicioTipos;
-        } 
         
     //Setters
         //No se identifican metodos Setters

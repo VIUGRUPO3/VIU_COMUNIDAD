@@ -51,11 +51,11 @@ public class main {
         
               
             //Instancias de la clase Servicio
-        admin.altaServicio(comunidadCRUD, 1, "Jardineria   ", 100);
-        admin.altaServicio(comunidadCRUD, 2, "Mantenimiento", 50);
-        admin.altaServicio(comunidadCRUD, 3, "Piscina      ", 60);
-        admin.altaServicio(comunidadCRUD, 4, "Paddle       ", 30);
-        admin.altaServicio(comunidadCRUD, 5, "Conserjeria  ", 20);
+        admin.altaServicio(comunidadCRUD, 1, "Jardineria   ", 100, false);
+        admin.altaServicio(comunidadCRUD, 2, "Mantenimiento", 50, false);
+        admin.altaServicio(comunidadCRUD, 3, "Piscina      ", 60, true);
+        admin.altaServicio(comunidadCRUD, 4, "Paddle       ", 30, true);
+        admin.altaServicio(comunidadCRUD, 5, "Conserjeria  ", 20, true);
         
        
              //Instancias de la clase Proveedor
@@ -134,14 +134,14 @@ public class main {
           
              //Define un servicio como fijo y se lo asigna a todos los inmuebles de la comunidad
              
-        admin.definirServicioFijo(comunidadCRUD, comunidadCRUD.getServicios().get(0),LocalDate.parse("2022-11-01"));
-        admin.definirServicioFijo(comunidadCRUD, comunidadCRUD.getServicios().get(1),LocalDate.parse("2022-11-01"));
+        admin.asignarServicioFijo(comunidadCRUD, comunidadCRUD.getServicios().get(0),LocalDate.parse("2022-11-01"));
+        admin.asignarServicioFijo(comunidadCRUD, comunidadCRUD.getServicios().get(1),LocalDate.parse("2022-11-01"));
         
         
-            //Guardamos los servicios opcionales dentro de un Array de Servicios opcionales //CAMBIAR!!!!
-        
-        admin.definirServicoOpcional(comunidadCRUD, comunidadCRUD.getServicios().get(2));
-        admin.definirServicoOpcional(comunidadCRUD, comunidadCRUD.getServicios().get(3));
+//            //Guardamos los servicios opcionales dentro de un Array de Servicios opcionales //CAMBIAR!!!!
+//        
+//        admin.asignarServicoOpcional(comunidadCRUD, comunidadCRUD.getServicios().get(2));
+//        admin.asignarServicoOpcional(comunidadCRUD, comunidadCRUD.getServicios().get(3));
         
 
      

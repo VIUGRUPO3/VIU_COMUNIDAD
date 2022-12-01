@@ -10,6 +10,8 @@
 // Paquete
 package repositorio;
 
+import java.time.LocalDate;
+
 /**
  *  Clase que gestiona las operaciones referentes a servicios
  * */
@@ -19,7 +21,8 @@ public class Servicio {
     private int id;
     private String nombre;
     private double tarifa;
-    private int inmueblesAdheridos;
+    private boolean opcional;
+
      
     //Constructores
     public Servicio() {}
@@ -29,17 +32,30 @@ public class Servicio {
      * @param id objeto id de servicio
      * @param nombre objeto nombre de servicio
      * @param tarifa objeto tarifa de servicio
+     * @param opcional objeto tipo servicio opcional
      */
-    public Servicio(int id, String nombre, double tarifa) {
+    public Servicio(int id, String nombre, double tarifa, boolean opcional) {
         this.id = id;
         this.nombre = nombre;
         this.tarifa = tarifa;
-        this.inmueblesAdheridos = 0;
+        this.opcional= opcional;
+
     }
     
      //Metodos
         
         //Getters
+            
+            /** Metodo obtiene si el servicio es Opcional
+             * 
+             * @return opcional tipo de servicio 
+             */
+            public boolean isOpcional() {
+                return opcional;
+            }
+    
+            
+    
             /** Metodo obtiene el Id de servicio
              * 
              * @return id identificar de servicio 
@@ -66,6 +82,15 @@ public class Servicio {
         
         //Setters
             
+            /** Metodo establece si el servicio es Opcional
+             * 
+             * @param opcional tipo de servicio 
+             */
+            public void setOpcional(boolean opcional) {
+                this.opcional = opcional;
+            }
+            
+                           
             /** Metodo Establece el id del servicio
              * 
              * @param id identificador de servicio 
@@ -95,28 +120,16 @@ public class Servicio {
              * @param nombre objeto nombre servicio
              * @param tarifa objeto coste servicio
              */
-            public void setServicio (String nombre, double tarifa){
+            public void setServicio (String nombre, double tarifa, boolean opcional){
                 this.nombre = nombre;
                 this.tarifa = tarifa;
+                this.opcional = opcional;
             }
 
 
             
         //Funcionalidad
-            /** Metodo establece como fijo un servicio identificado
-             * 
-             * @param comunidadCRUD objeto comunidad que contiene toda la información de la comunidad
-             */
-            public void definirFijo  (ComunidadCRUD comunidadCRUD) {
-                comunidadCRUD.servicioTipos.addServiciosFijos(this);
-                }
-            /** Metodo establece como opcional un servicio identificado
-             * 
-             * @param comunidadCRUD objeto comunidad que contiene toda la información de la comunidad
-             */
-            public void definirOpcional (ComunidadCRUD comunidadCRUD) {
-                comunidadCRUD.servicioTipos.addServiciosOpcionales(this);
-            }  
+
 
             /** Metodo establece como fijo un servicio identificado
              * 
@@ -125,13 +138,17 @@ public class Servicio {
              * @return inmueblesAdheridos el numero de inmuebles adheridos al objeto comunidad
              */
             public int inmueblesAdheridos (ComunidadCRUD comunidadCRUD){
-               inmueblesAdheridos = 0;
-               comunidadCRUD.serviciosCuenta.forEach(servicioCuenta ->{
-                   if(servicioCuenta.getServicio() == this){
-                       inmueblesAdheridos = inmueblesAdheridos + 1;
-                   }
-               });
-               return inmueblesAdheridos;
+                //ToDo: Implementación metodo para obtener resultado variable calculado "inmueblesAdheridos" como consulta de BD
+                
+                int inmueblesAdheridos = 0;
+                for(int index = 0; index < comunidadCRUD.serviciosCuenta.size(); index++){
+                    
+                    if (comunidadCRUD.serviciosCuenta.get(index).getServicio()== this){
+                        inmueblesAdheridos++;
+                    };
+                }
+                return inmueblesAdheridos;
+
            }
 
             /** 
@@ -154,22 +171,51 @@ public class Servicio {
              * @param comunidadCRUD objeto que contiene la informacion de la comunidad y sus objetos correspondientes
              * @param nombre nombre del servicio
              * @param tarifa tarifa del servicio
+             * @param opcional tipo de servicio
              * @param servicioModificar objeto servicio que va a ser modificado
              **/
-            public void updateServicio (ComunidadCRUD comunidadCRUD, String nombre, double tarifa, Servicio servicioModificar ){
+            public void updateServicio (ComunidadCRUD comunidadCRUD, String nombre, double tarifa, boolean opcional, Servicio servicioModificar ){
                 comunidadCRUD.servicios.forEach(servicio ->{
                     if(servicio == servicioModificar){
-                        servicio.setServicio(nombre, tarifa);
+                        servicio.setServicio(nombre, tarifa, opcional);
                     }
                 });
             }
+            
+            /** Metodo que asigna los serviciosFIjos a los inmuebles, como son fijos se asignan a todos los inmuebles
+             * 
+             * @param comunidadCRUD objeto comunidad que contiene toda la información de la comunidad
+             * @param fechaAlta objeto fecha de alta del servicio
+             */
+            public void asignarServiciosFijosInmuebles (ComunidadCRUD comunidadCRUD, LocalDate fechaAlta){
+                comunidadCRUD.inmuebles.forEach(inmueble ->{
+                        ServicioCuenta servicioCuenta = new ServicioCuenta(inmueble, this, fechaAlta); 
+                        comunidadCRUD.serviciosCuenta.add(servicioCuenta);
+                });
+            }
+
+            /** Metodo que asigna los servicios opcionales a los inmuebles que lo solicitan
+             * 
+             * @param comunidadCRUD objeto comunidad que contiene toda la información de la comunidad
+             * @param inmueble Objeto inmueble al que se va a incluir el servicio
+             * @param fechaAlta objeto fecha de alta del servicio
+             */
+            public void asignarServicioOpcionalInmueble (ComunidadCRUD comunidadCRUD, Inmueble inmueble, LocalDate fechaAlta){
+                ServicioCuenta servicioCuenta = new ServicioCuenta(inmueble, this, fechaAlta); 
+                comunidadCRUD.serviciosCuenta.add(servicioCuenta);
+            }
+            
+            
+            
         
-        /** 
-        * Metodo toString que devuelve el nombre y tarifa del servicio actual
-        * 
-        * @return String nombre + " -> "+ tarifa + "Euros \n"
-        **/
+
         //Print
+        
+            /** 
+            * Metodo toString que devuelve el nombre y tarifa del servicio actual
+            * 
+            * @return String nombre + " -> "+ tarifa + "Euros \n"
+            **/
             @Override
             public String toString() {
                 return nombre + " -> "+ tarifa + "Euros \n";
