@@ -8,7 +8,7 @@ package repositorio;
  *
  * @author fer
  */
-public class LiquidacionDetalleServicio extends LiquidacionDetalle2 {
+public class LiquidacionDetalleServicio extends LiquidacionDetalle {
     
     //Atributos
     private Servicio servicio;

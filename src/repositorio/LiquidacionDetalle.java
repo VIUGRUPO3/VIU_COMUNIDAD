@@ -17,7 +17,7 @@ import java.util.List;
 /**
  *  Clase que gestiona el la clase LiquidacionDetalle, que contiene los detalles de las liquidaciones
  * */
-abstract class LiquidacionDetalle2 {
+abstract class LiquidacionDetalle {
     
     //1.Atributos
     /**
@@ -31,7 +31,7 @@ abstract class LiquidacionDetalle2 {
     
     //2.Constructores
 
-    public LiquidacionDetalle2() {}
+    public LiquidacionDetalle() {}
 
     /**
     * Constructor de la clase LiquidacionDetalle
@@ -39,7 +39,7 @@ abstract class LiquidacionDetalle2 {
     * @param liquidacion objeto liquidacion a asociar
     * @param inmueble objeto inmueble al que va asociada dicha liquidacion
     **/
-    public LiquidacionDetalle2(Liquidacion liquidacion, Inmueble inmueble, double cuota) {
+    public LiquidacionDetalle(Liquidacion liquidacion, Inmueble inmueble, double cuota) {
         this.liquidacion = liquidacion;
         this.inmueble = inmueble;
         this.cuota = cuota;

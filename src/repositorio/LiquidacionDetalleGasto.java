@@ -8,7 +8,7 @@ package repositorio;
  *
  * @author fer
  */
-public class LiquidacionDetalleGasto extends LiquidacionDetalle2 {
+public class LiquidacionDetalleGasto extends LiquidacionDetalle {
     
     //Atributos
     private String gastoConcepto;
