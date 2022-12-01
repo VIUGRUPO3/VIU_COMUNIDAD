@@ -183,22 +183,23 @@ public class main {
         System.out.println(comunidadCRUD.getGastosConcepto());
         System.out.println("-------------------- GASTO --------------------\n");
         System.out.println(comunidadCRUD.getGastos());
-        System.out.println("---------------- LIQUIDACIONES ----------------\n");
-        System.out.println(comunidadCRUD.getLiquidaciones());
-        System.out.println("------------ DETALLE LIQUIDACIONES ------------\n");
-        System.out.println(comunidadCRUD.getLiquidacionesDetalle());
+        
+
         
         
         
         
-        //Consultas realizadas por la clase Vecino (liquidaciones y servicios de inmuebles propios)
-        //comunidadCRUD.getVecinos().get(0).consultarLiquidacion(comunidadCRUD, comunidadCRUD.getLiquidaciones().get(0));
-        comunidadCRUD.getVecinos().get(0).consultarServicioCuentas(comunidadCRUD);
+        
         
         //Creacion de una liquidacion 
         
         admin.liquidar(comunidadCRUD, 1, LocalDate.parse("2022-11-01"), LocalDate.parse("2022-11-30"));
+        System.out.println("---------------- LIQUIDACIONES ----------------\n"); 
         admin.imprimirLiquidacion(comunidadCRUD, comunidadCRUD.getLiquidaciones().get(0));
+        
+        //Consultas realizadas por la clase Vecino (liquidaciones y servicios de inmuebles propios)
+        comunidadCRUD.getVecinos().get(0).consultarLiquidacion(comunidadCRUD, comunidadCRUD.getLiquidaciones().get(0));
+        comunidadCRUD.getVecinos().get(0).consultarServicioCuentas(comunidadCRUD);
         
         
     }

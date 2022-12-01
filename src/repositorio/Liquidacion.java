@@ -27,12 +27,7 @@ public class Liquidacion {
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     private List<Gasto> gastosLiquidados;
-    
-    
-//    private List<DetalleLiquidacionGasto> gastoLiquidado;
-//    private List<DetalleLiquidacionServicio> servicioLiquidado;
-//    private Inmueble inmueble;
-    
+           
     
     //2.Constructores
 
@@ -104,7 +99,6 @@ public class Liquidacion {
        });
    }
 
-   //liquidacion.generarLiquidacion(01/11/2022, 30/11/2022, comunidadCrud, liquidacionDetalle)
 
     /** 
     * Metodo para generar una liquidacion 
@@ -124,8 +118,14 @@ public class Liquidacion {
        
    }
    
+   /**Metodo que imprime una liquidacion
+    * 
+    * @param comunidadCRUD almacena todos los datos de la comunidad
+    * @param liquidacionPrint Liquidacion que se desea imprimir
+    */
    public void imprimirLiquidacion(ComunidadCRUD comunidadCRUD, Liquidacion liquidacionPrint){
        comunidadCRUD.liquidaciones.forEach(liquidacion ->{
+           System.out.println(liquidacionPrint);
            if(liquidacion == liquidacionPrint){
                comunidadCRUD.inmuebles.forEach(inmueble ->{
                     double totalServicios = 0;
@@ -174,6 +174,14 @@ public class Liquidacion {
         });       
     }
     
+    /** Metodo que identifica los gastos de la liquidacion
+     * 
+     * @param comunidadCRUD
+     * @param fechaInicio 
+     * @param fechaFin
+     * @param liquidacion
+     * @param inmueble 
+     */
     public void identificarGastos(ComunidadCRUD comunidadCRUD, LocalDate fechaInicio, LocalDate fechaFin, Liquidacion liquidacion, Inmueble inmueble){ 
         comunidadCRUD.gastos.forEach(gasto->{
             if(gasto.isLiquidado() == false && (
@@ -197,35 +205,32 @@ public class Liquidacion {
         });
     }
     
-   
-//   public void generarLiquidacion(LocalDate fechaInicio, LocalDate fechaFin, ComunidadCRUD comunidadCRUD, Liquidacion liquidacion){
-//       comunidadCRUD.inmuebles.forEach(inmueble ->{
-//           LiquidacionDetalle liquidacionDetalle = new LiquidacionDetalle(liquidacion, inmueble);
-//           liquidacionDetalle.identificarServiciosDetalle(comunidadCRUD);
-//           liquidacionDetalle.identificarGastosDetalle(comunidadCRUD, fechaInicio, fechaFin, liquidacion);
-//           liquidacionDetalle.calcularLiquidacion(comunidadCRUD);          
-//           comunidadCRUD.liquidacionesDetalle.add(liquidacionDetalle);
-//       });
-//       liquidacion.liquidarGastos(liquidacion);
-//       comunidadCRUD.liquidaciones.add(liquidacion);
-//       
-//   }
-   
-  
-    /** 
-    * Metodo para consultar la liquidacion de un inmueble
-    * 
-    * @param fechaInicio fecha de inicio de la liquidacion
-    * @param fechaFin fecha de fin de la liquidacion
-    * @param comunidadCRUD objeto que contiene las liquidaciones de una comunidad
-    * @param inmueble objeto inmueble del cual se va a generar la liquidacion
-    **/    
-   public void consultarLiquidacionInmueble(LocalDate fechaInicio, LocalDate fechaFin, ComunidadCRUD comunidadCRUD, Inmueble inmueble){
+    /** Metodo para imprimir las liquidaciones de un inmueble espeificado
+     * 
+     * @param comunidadCRUD
+     * @param liquidacion
+     * @param inmueble 
+     */ 
+   public void imprimirLiquidacionInmueble(ComunidadCRUD comunidadCRUD, Liquidacion liquidacion, Inmueble inmueble){
+      
+               
+               System.out.println("---------------SERVICIOS---------------");
+               for(int index = 0; index < comunidadCRUD.liquidacionesDetalleServicio.size(); index++){                   
+                   if(comunidadCRUD.liquidacionesDetalleServicio.get(index).getInmueble() == inmueble && comunidadCRUD.liquidacionesDetalleServicio.get(index).getLiquidacion() == liquidacion){
+                       System.out.println(comunidadCRUD.liquidacionesDetalleServicio.get(index));
+                   }
+               }
+               System.out.println("---------------GASTOS---------------");
+               for(int index2 = 0; index2 < comunidadCRUD.liquidacionesDetalleGasto.size(); index2++){
+                   if(comunidadCRUD.liquidacionesDetalleGasto.get(index2).getInmueble() == inmueble && comunidadCRUD.liquidacionesDetalleGasto.get(index2).getLiquidacion() == liquidacion){
+                       System.out.println(comunidadCRUD.liquidacionesDetalleGasto.get(index2));
+                   }
+               }
+           
        
    }
 
-    // Metodo generar gastos en Liquidacion
-   
+    
    
     /** 
     * Metodo que devuelve el periodo de una liquidacion

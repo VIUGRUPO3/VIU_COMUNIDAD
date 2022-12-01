@@ -270,6 +270,7 @@ public class Admin extends Usuario implements AdminInterface{
         public void liquidar(ComunidadCRUD comunidadCRUD, int id, LocalDate fechaInicio, LocalDate fechaFin){
             Liquidacion liquidacion = new Liquidacion(id, fechaInicio, fechaFin);
             liquidacion.generarLiquidacion(fechaInicio, fechaFin, comunidadCRUD, liquidacion);
+            comunidadCRUD.getLiquidaciones().add(liquidacion);
         }
         
         public void imprimirLiquidacion(ComunidadCRUD comunidadCRUD, Liquidacion liquidacion){

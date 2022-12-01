@@ -219,12 +219,12 @@ public class Vecino extends Usuario implements VecinoInterface {
                 System.out.println("------------------------------------------------\n");
                 System.out.println("CONSULTA DE LIQUIDACION DE:  " + this.nombre + "\n");
                 comunidadCRUD.getInmuebles().forEach(inmueble -> {
-                    if(inmueble.getVecino() == this){
-                        comunidadCRUD.getLiquidacionesDetalle().forEach(liquidacionDetalle ->{
-                            if(liquidacionDetalle.getLiquidacion() == liquidacion && liquidacionDetalle.getInmueble() == inmueble){
-                                System.out.println(liquidacionDetalle);
-                                } 
-                        });
+                   
+                    
+                    if(inmueble.getVecino() == this){  
+                        System.out.println("\n" + liquidacion + "\n");
+                        System.out.println(inmueble);
+                        liquidacion.imprimirLiquidacionInmueble(comunidadCRUD, liquidacion, inmueble);  
                     }
                 });
             }
