@@ -29,13 +29,13 @@ public class LiquidacionDetalleGasto extends LiquidacionDetalle {
     
     //Getters
 
-    public String getGastoLiquidacion() {
+    public String getGastoConcepto() {
         return gastoConcepto;
     }
     
     //Setters
 
-    public void setGastoLiquidacion(String gastoConcepto) {
+    public void setGastoConcepto(String gastoConcepto) {
         this.gastoConcepto = gastoConcepto;
     }
 

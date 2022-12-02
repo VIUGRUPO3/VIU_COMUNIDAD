@@ -100,7 +100,7 @@ abstract class LiquidacionDetalle {
      * 
      * @param totalLiquidacion cantidad total de la liquidacion
      **/
-    public void setTotalLiquidacion(double cuota) {
+    public void setCuota(double cuota) {
         this.cuota = cuota;
     }
     
