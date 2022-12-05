@@ -8,7 +8,7 @@
 // @version: 01/12/2022/
 // Paquete
 package repositorio;
-
+ 
 import usuario.Vecino;
 import java.util.ArrayList;
 import java.util.List;
