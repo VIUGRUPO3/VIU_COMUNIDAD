@@ -16,12 +16,14 @@ import usuario.Admin;
 import repositorio.ComunidadCRUD;
 import repositorio.GastoConceptoCompuesto;
 
-
-
-
+/**
+ * Clase que gestiona el programa principal
+ */
 public class main {
 
     /**
+     * Método principal del programa
+     * 
      * @param args the command line arguments
      */
     public static void main(String[] args) {

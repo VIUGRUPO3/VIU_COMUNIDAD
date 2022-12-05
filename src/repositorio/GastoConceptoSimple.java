@@ -6,35 +6,35 @@
 //       @author:Javier Barbero Sales
 //       @author:Martin Gonzalez Dominguez
 // @version: 01/12/2022/
-
 // Paquete
 package repositorio;
 
 /**
- *  Clase que gestiona el tipo de gasto con concepto simple, hereda de la clase GastoConcepto
- * */
-public class GastoConceptoSimple extends GastoConcepto{
+ * Clase que gestiona el tipo de gasto con concepto simple, hereda de la clase
+ * GastoConcepto
+ *
+ */
+public class GastoConceptoSimple extends GastoConcepto {
 
-   
     //1.Atributos
-
-    
     //2.Constructores
-
-    public GastoConceptoSimple() {}
     /**
-    * Constructor de la clase GastoConceptoSimple
-    * 
-    * @param id id del GastoConceptoSimple
-    * @param nombre nombre del gasto
-    * @param servicio servicio asociado al gasto indicado
-    **/
+     * Constructor de la clase GastoConceptoSimple
+     */
+    public GastoConceptoSimple() {
+    }
+
+    /**
+     * Constructor de la clase GastoConceptoSimple
+     *
+     * @param id id del GastoConceptoSimple
+     * @param nombre nombre del gasto
+     * @param servicio servicio asociado al gasto indicado
+    *
+     */
     public GastoConceptoSimple(String id, String nombre, Servicio servicio) {
         super(id, nombre, servicio);
     }
-    
-    //3.Metodos
 
-   
-    
+    //3.Métodos
 }
