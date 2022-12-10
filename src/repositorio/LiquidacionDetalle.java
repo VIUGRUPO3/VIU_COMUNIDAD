@@ -9,10 +9,6 @@
 // Paquete
 package repositorio;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Clase que gestiona el la clase LiquidacionDetalle, que contiene los detalles
  * de las liquidaciones

@@ -20,7 +20,8 @@ public class Vecino extends Usuario implements VecinoInterface {
 
     // Atributos 
     // Todos los atributos son heredados de la clase Usuario
-    // Constructores 
+    
+// Constructores 
     /**
      * Constructor de la clase Vecino
      *
