@@ -7,18 +7,18 @@
 //       @author:Martin Gonzalez Dominguez
 // @version: 01/12/2022/
 // Paquete
-package usuario;
+package modelo.usuario;
 
 import java.time.LocalDate;
-import repositorio.ComunidadCRUD;
-import repositorio.Gasto;
-import repositorio.GastoConcepto;
-import repositorio.GastoConceptoCompuesto;
-import repositorio.GastoConceptoSimple;
-import repositorio.Inmueble;
-import repositorio.Liquidacion;
-import repositorio.Proveedor;
-import repositorio.Servicio;
+import modelo.ComunidadCRUD;
+import modelo.Gasto;
+import modelo.GastoConcepto;
+import modelo.GastoConceptoCompuesto;
+import modelo.GastoConceptoSimple;
+import modelo.Inmueble;
+import modelo.Liquidacion;
+import modelo.Proveedor;
+import modelo.Servicio;
 
 /**
  * Clase que gestiona el tipo de usuario Admin, hereda de Usuario
@@ -34,13 +34,18 @@ public class Admin extends Usuario implements AdminInterface {
      * 
      * @param id Identificador unico de Admin
      * @param nombre Nombre comun completo Admin
+     * @param apellidos Apellidos del vecino
+     * @param userName nombre de usuario de acceso a la aplicacion
      * @param clave Clave / Contraseña de acceso del Admin
      * @param telefono Telefono asociado a Admin
      * @param email Email asociado a Admin
     *
      */
-    public Admin(int id, String nombre, String clave, String telefono, String email) {
-        super(id, nombre, clave, telefono, email);
+    public Admin(int id, String nombre, String apellidos, String userName, String clave, String telefono, String email) {
+        super(id, nombre, apellidos, userName, clave, telefono, email);
+    }
+    public Admin( String nombre, String apellidos, String userName, String clave, String telefono, String email) {
+        super(nombre, apellidos, userName, clave, telefono, email);
     }
 
 // Métodos
@@ -53,13 +58,15 @@ public class Admin extends Usuario implements AdminInterface {
      * la Comunidad
      * @param id identificador unico del objeto Vecino
      * @param nombre nombre propio del objeto Vecino
+     * @param apellidos Apellidos del vecino
+     * @param userName Nombre de usuario de acceso a la aplicacion
      * @param clave clave de acceso a la aplicacion para este Vecino
      * @param telefono telefono de contacto del Vecino
      * @param email email de contacto del Vecino
         *
      */
-    public void altaVecino(ComunidadCRUD comunidadCRUD, int id, String nombre, String clave, String telefono, String email) {
-        Vecino vecino = new Vecino(id, nombre, clave, telefono, email);
+    public void altaVecino(ComunidadCRUD comunidadCRUD, int id, String nombre, String apellidos, String userName, String clave, String telefono, String email) {
+        Vecino vecino = new Vecino(id, nombre, apellidos, userName, clave, telefono, email);
         comunidadCRUD.getVecinos().add(vecino);
     }
 
@@ -72,6 +79,7 @@ public class Admin extends Usuario implements AdminInterface {
      * @param vecino instancia de la clase Vecino que se va a eliminar
         *
      */
+    @Override
     public void bajaVecino(ComunidadCRUD comunidadCRUD, Vecino vecino) {
         vecino.bajaVecino(comunidadCRUD, vecino);
     }
@@ -89,6 +97,7 @@ public class Admin extends Usuario implements AdminInterface {
      * la informacion
         *
      */
+    @Override
     public void updateVecino(ComunidadCRUD comunidadCRUD, String nombre, String clave, String telefono, String email, Vecino vecino) {
         vecino.updateVecino(comunidadCRUD, nombre, clave, telefono, email, vecino);
     }
@@ -104,6 +113,7 @@ public class Admin extends Usuario implements AdminInterface {
      * @param direccion direccion completa del Inmueble
         *
      */
+    @Override
     public void altaInmueble(ComunidadCRUD comunidadCRUD, int id, Vecino vecino, String direccion) {
         Inmueble inmueble = new Inmueble(id, vecino, direccion);
         comunidadCRUD.getInmuebles().add(inmueble);
@@ -119,6 +129,7 @@ public class Admin extends Usuario implements AdminInterface {
      * eliminara de la comunidad
         *
      */
+    @Override
     public void bajaInmueble(ComunidadCRUD comunidadCRUD, Inmueble inmueble) {
         inmueble.bajaInmueble(comunidadCRUD, inmueble);
     }
@@ -133,6 +144,7 @@ public class Admin extends Usuario implements AdminInterface {
      * @param inmueble instancia de la clase Inmueble que actualizara los datos
         *
      */
+    @Override
     public void updateInmueble(ComunidadCRUD comunidadCRUD, Vecino vecino, String direccion, Inmueble inmueble) {
         inmueble.updateInmueble(comunidadCRUD, vecino, direccion, inmueble);
     }
@@ -149,6 +161,7 @@ public class Admin extends Usuario implements AdminInterface {
      * @param opcional tipo de servicio
         *
      */
+    @Override
     public void altaServicio(ComunidadCRUD comunidadCRUD, int id, String nombre, double tarifa, boolean opcional) {
         Servicio servicio = new Servicio(id, nombre, tarifa, opcional);
         comunidadCRUD.getServicios().add(servicio);
@@ -164,6 +177,7 @@ public class Admin extends Usuario implements AdminInterface {
      * eliminara de la Comunidad 
         *
      */
+    @Override
     public void bajaServicio(ComunidadCRUD comunidadCRUD, Servicio servicio) {
         servicio.bajaServicio(comunidadCRUD, servicio);
     }
@@ -179,6 +193,7 @@ public class Admin extends Usuario implements AdminInterface {
      * @param servicio instancia de la clase Servicio que actualizara los datos
         *
      */
+    @Override
     public void updateServicio(ComunidadCRUD comunidadCRUD, String nombre, double tarifa, boolean opcional, Servicio servicio) {
         servicio.updateServicio(comunidadCRUD, nombre, tarifa, opcional, servicio);
     }
@@ -196,6 +211,7 @@ public class Admin extends Usuario implements AdminInterface {
      * @param email email de contacto del Proveedor
         *
      */
+    @Override
     public void altaProveedor(ComunidadCRUD comunidadCRUD, int id, String nombre, String direccion, String telefono, String email) {
         Proveedor proveedor = new Proveedor(id, nombre, direccion, telefono, email);
         comunidadCRUD.getProveedores().add(proveedor);
@@ -211,6 +227,7 @@ public class Admin extends Usuario implements AdminInterface {
      * eliminara de la Comunidad 
         *
      */
+    @Override
     public void bajaProveedor(ComunidadCRUD comunidadCRUD, Proveedor proveedor) {
         proveedor.bajaProveedor(comunidadCRUD, proveedor);
     }
@@ -227,6 +244,7 @@ public class Admin extends Usuario implements AdminInterface {
      * @param proveedor instancia de la clase Servicio que actualizara los datos
         *
      */
+    @Override
     public void updateProveedor(ComunidadCRUD comunidadCRUD, String nombre, String direccion, String telefono, String email, Proveedor proveedor) {
         proveedor.updateProveedor(comunidadCRUD, nombre, direccion, telefono, email, proveedor);
     }
@@ -244,6 +262,7 @@ public class Admin extends Usuario implements AdminInterface {
      * compuesto
         *
      */
+    @Override
     public void altaGastoConceptoCompuesto(ComunidadCRUD comunidadCRUD, String id, String nombre, Servicio servicio) {
         GastoConceptoCompuesto gastoConceptoCompuesto = new GastoConceptoCompuesto(id, nombre, servicio);
         comunidadCRUD.getGastosConcepto().add(gastoConceptoCompuesto);
@@ -262,6 +281,7 @@ public class Admin extends Usuario implements AdminInterface {
      * compuesto
         *
      */
+    @Override
     public void altaGastoConceptoSimple(ComunidadCRUD comunidadCRUD, String id, String nombre, Servicio servicio) {
         GastoConceptoSimple gastoConceptoSimple = new GastoConceptoSimple(id, nombre, servicio);
         comunidadCRUD.getGastosConcepto().add(gastoConceptoSimple);
@@ -286,6 +306,7 @@ public class Admin extends Usuario implements AdminInterface {
      * liquidacion o esta pendiente 
         *
      */
+    @Override
     public void altaGasto(ComunidadCRUD comunidadCRUD, int id, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe, boolean liquidado) {
         Gasto gasto = new Gasto(id, descripcion, fechaRegistro, fechaPago, proveedor, comprobante, gastoConcepto, importe, liquidado);
         comunidadCRUD.getGastos().add(gasto);
@@ -301,6 +322,7 @@ public class Admin extends Usuario implements AdminInterface {
      * de la Comunidad 
         *
      */
+    @Override
     public void bajaGasto(ComunidadCRUD comunidadCRUD, Gasto gasto) {
         gasto.bajaGasto(comunidadCRUD, gasto);
 
@@ -324,6 +346,7 @@ public class Admin extends Usuario implements AdminInterface {
      * @param gasto instancia de la clase Servicio que actualizara los datos
         *
      */
+    @Override
     public void updateGasto(ComunidadCRUD comunidadCRUD, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe, boolean liquidado, Gasto gasto) {
         gasto.updateGasto(comunidadCRUD, descripcion, fechaRegistro, fechaPago, proveedor, comprobante, gastoConcepto, importe, liquidado, gasto);
     }
@@ -338,6 +361,7 @@ public class Admin extends Usuario implements AdminInterface {
      * @param fechaFin fecha final del periodo a liquidar
         *
      */
+    @Override
     public void liquidar(ComunidadCRUD comunidadCRUD, int id, LocalDate fechaInicio, LocalDate fechaFin) {
         Liquidacion liquidacion = new Liquidacion(id, fechaInicio, fechaFin);
         liquidacion.generarLiquidacion(fechaInicio, fechaFin, comunidadCRUD, liquidacion);
@@ -367,6 +391,7 @@ public class Admin extends Usuario implements AdminInterface {
      * @param fechaAlta fecha inicial del disfrute del servicio
         *
      */
+    @Override
     public void asignarServicioFijo(ComunidadCRUD comunidadCRUD, Servicio servicio, LocalDate fechaAlta) {
         servicio.asignarServiciosFijosInmuebles(comunidadCRUD, fechaAlta);
     }
@@ -382,6 +407,7 @@ public class Admin extends Usuario implements AdminInterface {
      * @param fechaAlta fecha inicial del disfrute del servicio
         *
      */
+    @Override
     public void asignarServicioOpcional(ComunidadCRUD comunidadCRUD, Servicio servicio, Inmueble inmueble, LocalDate fechaAlta) {
         servicio.asignarServicioOpcionalInmueble(comunidadCRUD, inmueble, fechaAlta);
     }
@@ -394,6 +420,7 @@ public class Admin extends Usuario implements AdminInterface {
      * a un objeto gastoConcepto padre
      * @param gastoConceptoCompuestoPadre el objeto gastoConcepto padre
      */
+    @Override
     public void jerarquizarConceptos(GastoConcepto gastoConcepto, GastoConceptoCompuesto gastoConceptoCompuestoPadre) {
         gastoConcepto.asignacionConceptos(gastoConceptoCompuestoPadre);
     }

@@ -7,7 +7,7 @@
 //       @author:Martin Gonzalez Dominguez
 // @version: 01/12/2022/
 // Paquete
-package repositorio;
+package modelo;
 
 /**
  * Clase que gestiona el la clase LiquidacionDetalle, que contiene los detalles

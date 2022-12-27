@@ -7,16 +7,16 @@
 //       @author:Martin Gonzalez Dominguez
 // @version: 01/12/2022/
 // Paquete
-package usuario;
+package modelo.usuario;
 
 import java.time.LocalDate;
-import repositorio.ComunidadCRUD;
-import repositorio.Gasto;
-import repositorio.GastoConcepto;
-import repositorio.GastoConceptoCompuesto;
-import repositorio.Inmueble;
-import repositorio.Proveedor;
-import repositorio.Servicio;
+import modelo.ComunidadCRUD;
+import modelo.Gasto;
+import modelo.GastoConcepto;
+import modelo.GastoConceptoCompuesto;
+import modelo.Inmueble;
+import modelo.Proveedor;
+import modelo.Servicio;
 
 /**
  * Interface que permite aunar todos los métodos relacionados con el
@@ -32,11 +32,13 @@ public interface AdminInterface {
      * la comunidad
      * @param id identificador del vecino
      * @param nombre nombre del vecino a dar de alta
+     * @param apellidos Apellidos del vecino
+     * @param userName Nombre de usuario de acceso a la aplicacion
      * @param clave clave del vecino a dar de alta
      * @param telefono telefono del vecino a dar de alta
      * @param email correo electronico del vecino a dar de alta
      */
-    public abstract void altaVecino(ComunidadCRUD comunidadCRUD, int id, String nombre, String clave, String telefono, String email);
+    public abstract void altaVecino(ComunidadCRUD comunidadCRUD, int id, String nombre, String apellidos, String userName, String clave, String telefono, String email);
 
     /**
      * Método que permite dar de baja un vecino

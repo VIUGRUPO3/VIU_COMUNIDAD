@@ -7,9 +7,9 @@
 //       @author:Martin Gonzalez Dominguez
 // @version: 01/12/2022/
 // Paquete
-package repositorio;
+package modelo;
  
-import usuario.Vecino;
+import modelo.usuario.Vecino;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,7 +76,7 @@ public class ComunidadCRUD {
      * Vecino Comunidad
      *
      */
-    protected Vecino vecino = new Vecino(0, "Comunidad", "000", "666555222", "comunidad@viu.es");
+    protected Vecino vecino = new Vecino(0, "Comunidad", "VIU", "comunidad", "000", "666555222", "comunidad@viu.es");
 
 // Constructores
     /**

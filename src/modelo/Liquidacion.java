@@ -7,7 +7,7 @@
 //       @author:Martin Gonzalez Dominguez
 // @version: 01/12/2022/
 // Paquete
-package repositorio;
+package modelo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

@@ -7,10 +7,10 @@
 //       @author:Martin Gonzalez Dominguez
 // @version: 01/12/2022/
 // Paquete
-package usuario;
+package modelo.usuario;
 
-import repositorio.ComunidadCRUD;
-import repositorio.Liquidacion;
+import modelo.ComunidadCRUD;
+import modelo.Liquidacion;
 
 /**
  * Interface de la clase vecino

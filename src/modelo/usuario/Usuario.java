@@ -7,7 +7,7 @@
 //       @author:Martin Gonzalez Dominguez
 // @version: 01/12/2022/
 // Paquete
-package usuario;
+package modelo.usuario;
 
 /**
  * Se declara como clase abstracta ya que define unicamente la estructura de la
@@ -30,7 +30,16 @@ abstract class Usuario {
      * Nombre del usuario
      */
     protected String nombre;
+    
+    /**
+     * Nombre del usuario
+     */
+    protected String apellidos;
 
+    /**
+     * Nombre del usuario
+     */
+    protected String userName;
     /**
      * Clave de acceso del usuario
      */
@@ -62,14 +71,29 @@ abstract class Usuario {
      * @param email Email asociado a vecino
      *
      */
-    public Usuario(int id, String nombre, String clave, String telefono, String email) {
+    public Usuario(int id, String nombre, String apellidos, String userName, String clave, String telefono, String email) {
         this.id = id;
         this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.userName = userName;
         this.clave = clave;
         this.telefono = telefono;
         this.email = email;
     }
 
+    public Usuario( String nombre, String apellidos, String userName, String clave, String telefono, String email) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.userName = userName;
+        this.clave = clave;
+        this.telefono = telefono;
+        this.email = email;
+    }
+
+    public Usuario() {
+    }
+    
+    
 // Métodos
     //Getters 
     /**
@@ -80,6 +104,32 @@ abstract class Usuario {
     public int getId() {
         return id;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+    
+    
 
     // Setters 
     //No se identifican Setters
@@ -92,8 +142,8 @@ abstract class Usuario {
      * @return devuelve una variable logged con valor "true" en caso de
      * validación OK
      */
-    public boolean login(String email, String clave) {
-        if (this.email == email && this.clave == clave) {
+    public boolean login(String userName, String clave) {
+        if (this.userName == userName && this.clave == clave) {
             logged = true;
         }
         return logged;

@@ -7,10 +7,10 @@
 //       @author:Martin Gonzalez Dominguez
 // @version: 01/12/2022/
 // Paquete
-package usuario;
+package modelo.usuario;
 
-import repositorio.ComunidadCRUD;
-import repositorio.Liquidacion;
+import modelo.ComunidadCRUD;
+import modelo.Liquidacion;
 
 /**
  * Clase que gestiona el tipo de usuario Vecino, hereda de Usuario
@@ -27,15 +27,27 @@ public class Vecino extends Usuario implements VecinoInterface {
      *
      * @param id Identificador unico de Vecino
      * @param nombre Nombre comun completo Vecino
+     * @param apellidos Apellidos del vecino
+     * @param userName nombre de usuario de acceso a la aplicacion
      * @param clave Clave / Contraseña de acceso del Vecino
      * @param telefono Telefono asociado a Vecino
      * @param email Email asociado a Vecino
      *
      */
-    public Vecino(int id, String nombre, String clave, String telefono, String email) {
-        super(id, nombre, clave, telefono, email);
+    public Vecino(int id, String nombre, String apellidos, String userName, String clave, String telefono, String email) {
+        super(id, nombre, apellidos, userName, clave, telefono, email);
+    }
+    
+    public Vecino(String nombre, String apellidos, String userName, String clave, String telefono, String email) {
+        super(nombre, apellidos, userName, clave, telefono, email);
     }
 
+    public Vecino() {
+    }
+
+    
+    
+    
     // Métodos 
     // Getters 
     /**
@@ -119,6 +131,16 @@ public class Vecino extends Usuario implements VecinoInterface {
         this.nombre = nombre;
     }
 
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    
+    
     /**
      * Método para asignar una id a un vecino
      *

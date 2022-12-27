@@ -7,9 +7,9 @@
 //       @author:Martin Gonzalez Dominguez
 // @version: 01/12/2022/
 // Paquete
-package repositorio;
+package modelo;
 
-import usuario.Vecino;
+import modelo.usuario.Vecino;
 
 /**
  * Clase que gestiona el tipo Inmueble

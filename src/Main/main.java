@@ -10,11 +10,16 @@
 // Paquete
 package Main;
 
+import controlador.Controlador;
+import dao.ServicioUsuarios;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import usuario.Admin;
-import repositorio.ComunidadCRUD;
-import repositorio.GastoConceptoCompuesto;
+import modelo.usuario.Admin;
+import modelo.ComunidadCRUD;
+import modelo.GastoConceptoCompuesto;
+import vista.LoginFrame;
 
 /**
  * Clase que gestiona el programa principal
@@ -26,22 +31,22 @@ public class main {
      * 
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
         
         boolean login;
         
             //Instancia de la clase usada para realizar el Almacenamiento/tratamiendo de datos de la comunidad (BD)
         ComunidadCRUD comunidadCRUD = new ComunidadCRUD ();
-        Admin admin = new Admin(1, "Admin","1234", "666555444","grupo3@viu.es");
+        Admin admin = new Admin(1, "Admin","Admin", "Admin", "1234", "666555444","grupo3@viu.es");
         
         
         
             //instancias de la clase Vecino 
-        admin.altaVecino(comunidadCRUD,1,"Martin    ","abc ","666778899","martin@viu.es  ");
-        admin.altaVecino(comunidadCRUD,2,"Fernando  ","def ","690002255","fer@viu.es     ");
-        admin.altaVecino(comunidadCRUD,3,"Javier    ","ert ","651214542","javi@viu.es    ");
-        admin.altaVecino(comunidadCRUD,4,"Antonio   ","qwe ","658923455","antonio@viu.es ");
-        admin.altaVecino(comunidadCRUD,5,"Mateo  ","qwe2","658923452","mateo@viu.es");
+        admin.altaVecino(comunidadCRUD,1,"Martin    ", "VIU", "martin","abc ","666778899","martin@viu.es  ");
+        admin.altaVecino(comunidadCRUD,2,"Javier  ", "VIU", "javibarb","def ","690002255","fer@viu.es     ");
+        admin.altaVecino(comunidadCRUD,3,"Javier2    ", "VIU", "Prueba","ert ","651214542","javi@viu.es    ");
+        admin.altaVecino(comunidadCRUD,4,"Antonio   ", "VIU", "tony","qwe ","658923455","antonio@viu.es ");
+        admin.altaVecino(comunidadCRUD,5,"Mateo     ", "VIU", "martin","qwe2","658923452","mateo@viu.es   ");
         
         
             //Instancias de la clase Inmueble
@@ -202,7 +207,17 @@ public class main {
         //Consultas realizadas por la clase Vecino (liquidaciones y servicios de inmuebles propios)
         //comunidadCRUD.getVecinos().get(0).consultarLiquidacion(comunidadCRUD, comunidadCRUD.getLiquidaciones().get(0));
        // comunidadCRUD.getVecinos().get(0).consultarServicioCuentas(comunidadCRUD);
+        ServicioUsuarios su = new ServicioUsuarios();
+        //su.insertarVecinoDB(comunidadCRUD.getVecinos().get(3));
+        //su.borrarVecino(comunidadCRUD.getVecinos().get(3));
+        su.listarVecinos();
+        su.buscarNombre("Fernan");
         
+        
+        
+        //Arriba pruebas, aqui comienza la app.
+        Controlador ctrl = new Controlador();
+        ctrl.iniciarApp();
         
     }
     
