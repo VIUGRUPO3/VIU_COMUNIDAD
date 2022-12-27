@@ -100,7 +100,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("/Users/fer/NetBeansProjects/VIU_COMUNIDAD/src/resources/City1.png")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/City1.png"))); // NOI18N
         jLabel6.setToolTipText("");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

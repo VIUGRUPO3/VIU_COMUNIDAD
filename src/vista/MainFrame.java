@@ -142,32 +142,32 @@ public class MainFrame extends javax.swing.JFrame {
         btnLiquidaciones.setBackground(new java.awt.Color(232, 231, 255));
         btnLiquidaciones.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
         btnLiquidaciones.setForeground(new java.awt.Color(51, 51, 51));
-        btnLiquidaciones.setIcon(new javax.swing.ImageIcon("/Users/fer/NetBeansProjects/VIU_COMUNIDAD/src/resources/Liquidaciones.png")); // NOI18N
+        btnLiquidaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Liquidaciones.png"))); // NOI18N
         btnLiquidaciones.setText("Liquidaciones");
 
         btnProveedores.setBackground(new java.awt.Color(232, 231, 255));
         btnProveedores.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
         btnProveedores.setForeground(new java.awt.Color(51, 51, 51));
-        btnProveedores.setIcon(new javax.swing.ImageIcon("/Users/fer/NetBeansProjects/VIU_COMUNIDAD/src/resources/Proveedores.png")); // NOI18N
+        btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Proveedores.png"))); // NOI18N
         btnProveedores.setText("Proveedores");
 
         btnGastos.setBackground(new java.awt.Color(232, 231, 255));
         btnGastos.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
         btnGastos.setForeground(new java.awt.Color(51, 51, 51));
-        btnGastos.setIcon(new javax.swing.ImageIcon("/Users/fer/NetBeansProjects/VIU_COMUNIDAD/src/resources/Gastos.png")); // NOI18N
+        btnGastos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Gastos.png"))); // NOI18N
         btnGastos.setText("Gastos");
         btnGastos.setToolTipText("");
 
         btnServicios.setBackground(new java.awt.Color(232, 231, 255));
         btnServicios.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
         btnServicios.setForeground(new java.awt.Color(51, 51, 51));
-        btnServicios.setIcon(new javax.swing.ImageIcon("/Users/fer/NetBeansProjects/VIU_COMUNIDAD/src/resources/Servicios.png")); // NOI18N
+        btnServicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Servicios.png"))); // NOI18N
         btnServicios.setText("Servicios");
 
         btnInmuebles.setBackground(new java.awt.Color(232, 231, 255));
         btnInmuebles.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
         btnInmuebles.setForeground(new java.awt.Color(51, 51, 51));
-        btnInmuebles.setIcon(new javax.swing.ImageIcon("/Users/fer/NetBeansProjects/VIU_COMUNIDAD/src/resources/Inmuebles.png")); // NOI18N
+        btnInmuebles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Inmuebles.png"))); // NOI18N
         btnInmuebles.setText("Inmuebles");
         btnInmuebles.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -178,7 +178,7 @@ public class MainFrame extends javax.swing.JFrame {
         btnUsuarios.setBackground(new java.awt.Color(232, 231, 255));
         btnUsuarios.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
         btnUsuarios.setForeground(new java.awt.Color(51, 51, 51));
-        btnUsuarios.setIcon(new javax.swing.ImageIcon("/Users/fer/NetBeansProjects/VIU_COMUNIDAD/src/resources/User.png")); // NOI18N
+        btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/User.png"))); // NOI18N
         btnUsuarios.setText("Usuarios");
         btnUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -228,7 +228,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         panelFooter.setBackground(new java.awt.Color(232, 231, 255));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("/Users/fer/NetBeansProjects/VIU_COMUNIDAD/src/resources/bottom.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/bottom.png"))); // NOI18N
 
         panelFooter.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -378,7 +378,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel7.setText("Gestion de usuarios");
 
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setIcon(new javax.swing.ImageIcon("/Users/fer/NetBeansProjects/VIU_COMUNIDAD/src/resources/User50.png")); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/User50.png"))); // NOI18N
 
         jTable1.setFont(new java.awt.Font("SF Pro Display", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -432,7 +432,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jDesktopPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE))
         );
 
         registroVecinoFrame.setBackground(new java.awt.Color(255, 255, 255));
@@ -481,7 +481,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon("/Users/fer/NetBeansProjects/VIU_COMUNIDAD/src/resources/User50.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/User50.png"))); // NOI18N
 
         jLabel6.setBackground(new java.awt.Color(51, 51, 51));
         jLabel6.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
@@ -655,7 +655,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setIcon(new javax.swing.ImageIcon("/Users/fer/NetBeansProjects/VIU_COMUNIDAD/src/resources/User50.png")); // NOI18N
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/User50.png"))); // NOI18N
 
         jLabel17.setBackground(new java.awt.Color(51, 51, 51));
         jLabel17.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
@@ -830,7 +830,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel24.setIcon(new javax.swing.ImageIcon("/Users/fer/NetBeansProjects/VIU_COMUNIDAD/src/resources/User50.png")); // NOI18N
+        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/User50.png"))); // NOI18N
 
         jLabel25.setBackground(new java.awt.Color(51, 51, 51));
         jLabel25.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
@@ -1106,7 +1106,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel31.setText("Gestion Inmuebles");
 
         jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel32.setIcon(new javax.swing.ImageIcon("/Users/fer/NetBeansProjects/VIU_COMUNIDAD/src/resources/Inmuebles50.png")); // NOI18N
+        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Inmuebles50.png"))); // NOI18N
 
         jTable2.setFont(new java.awt.Font("SF Pro Display", 0, 12)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -1160,7 +1160,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jDesktopPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE))
         );
 
         panelDatos.setLayer(gestionUsuariosFrame, javax.swing.JLayeredPane.DEFAULT_LAYER);
