@@ -37,6 +37,15 @@ public class MainFrameVecino extends javax.swing.JFrame {
     private void initComponents() {
 
         panelCabecera = new javax.swing.JDesktopPane();
+        panelFooter = new javax.swing.JDesktopPane();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
         panelDatos = new javax.swing.JDesktopPane();
         gestionUsuariosFrame = new javax.swing.JInternalFrame();
         jDesktopPane3 = new javax.swing.JDesktopPane();
@@ -87,21 +96,84 @@ public class MainFrameVecino extends javax.swing.JFrame {
         jTable3 = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         btnCancelarEU1 = new javax.swing.JButton();
-        panelFooter = new javax.swing.JDesktopPane();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VIU Comunidad");
         setResizable(false);
 
         panelCabecera.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout panelCabeceraLayout = new javax.swing.GroupLayout(panelCabecera);
+        panelCabecera.setLayout(panelCabeceraLayout);
+        panelCabeceraLayout.setHorizontalGroup(
+            panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1042, Short.MAX_VALUE)
+        );
+        panelCabeceraLayout.setVerticalGroup(
+            panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 677, Short.MAX_VALUE)
+        );
+
+        panelFooter.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel13.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel13.setText("Tipo:");
+
+        jLabel36.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel36.setText("Usuario:");
+
+        jLabel37.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel37.setText("XXXXXXXXX");
+
+        jLabel38.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel38.setText("Vecino");
+
+        jLabel39.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel39.setText("XXXXXXXXX");
+
+        panelFooter.setLayer(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        panelFooter.setLayer(jLabel36, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        panelFooter.setLayer(jLabel37, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        panelFooter.setLayer(jLabel38, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        panelFooter.setLayer(jLabel39, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout panelFooterLayout = new javax.swing.GroupLayout(panelFooter);
+        panelFooter.setLayout(panelFooterLayout);
+        panelFooterLayout.setHorizontalGroup(
+            panelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFooterLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel38)
+                .addContainerGap())
+        );
+        panelFooterLayout.setVerticalGroup(
+            panelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFooterLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel36)
+                    .addComponent(jLabel37)
+                    .addComponent(jLabel38)
+                    .addComponent(jLabel39))
+                .addContainerGap(11, Short.MAX_VALUE))
+        );
+
+        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icono2.png"))); // NOI18N
+
+        jLabel34.setFont(new java.awt.Font("72 Light", 1, 12)); // NOI18N
+        jLabel34.setText("VIU Comunidad (Grupo3)");
+
+        jLabel35.setFont(new java.awt.Font("72 Light", 0, 12)); // NOI18N
+        jLabel35.setText("Gestión y Administración de Comunidades");
 
         panelDatos.setBackground(new java.awt.Color(255, 255, 255));
         panelDatos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -577,7 +649,7 @@ public class MainFrameVecino extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCancelarEU, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtNombreEU, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                        .addComponent(txtNombreEU)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -664,7 +736,7 @@ public class MainFrameVecino extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 948, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -677,7 +749,7 @@ public class MainFrameVecino extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCancelarEU1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -749,79 +821,6 @@ public class MainFrameVecino extends javax.swing.JFrame {
                     .addContainerGap(663, Short.MAX_VALUE)))
         );
 
-        panelCabecera.setLayer(panelDatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout panelCabeceraLayout = new javax.swing.GroupLayout(panelCabecera);
-        panelCabecera.setLayout(panelCabeceraLayout);
-        panelCabeceraLayout.setHorizontalGroup(
-            panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCabeceraLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        panelCabeceraLayout.setVerticalGroup(
-            panelCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCabeceraLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        panelFooter.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel13.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel13.setText("Tipo:");
-
-        jLabel36.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel36.setText("Usuario:");
-
-        jLabel37.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel37.setText("XXXXXXXXX");
-
-        jLabel38.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel38.setText("Vecino");
-
-        panelFooter.setLayer(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        panelFooter.setLayer(jLabel36, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        panelFooter.setLayer(jLabel37, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        panelFooter.setLayer(jLabel38, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout panelFooterLayout = new javax.swing.GroupLayout(panelFooter);
-        panelFooter.setLayout(panelFooterLayout);
-        panelFooterLayout.setHorizontalGroup(
-            panelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelFooterLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel36)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel37)
-                .addGap(74, 74, 74)
-                .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel38)
-                .addContainerGap(720, Short.MAX_VALUE))
-        );
-        panelFooterLayout.setVerticalGroup(
-            panelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelFooterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel36)
-                    .addComponent(jLabel37)
-                    .addComponent(jLabel38))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icono2.png"))); // NOI18N
-
-        jLabel34.setFont(new java.awt.Font("72 Light", 1, 12)); // NOI18N
-        jLabel34.setText("VIU Comunidad (Grupo3)");
-
-        jLabel35.setFont(new java.awt.Font("72 Light", 0, 12)); // NOI18N
-        jLabel35.setText("Gestión y Administración de Comunidades");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -837,9 +836,12 @@ public class MainFrameVecino extends javax.swing.JFrame {
                             .addComponent(jLabel34)
                             .addComponent(jLabel35)))
                     .addComponent(panelFooter))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(18, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(25, 25, 25)
+                    .addComponent(panelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 1030, Short.MAX_VALUE)
+                    .addGap(25, 25, 25)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -854,22 +856,25 @@ public class MainFrameVecino extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelCabecera)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelFooter)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
+                .addComponent(panelFooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(76, 76, 76)
+                    .addComponent(panelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
+                    .addGap(77, 77, 77)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPasswordRAFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordRAFocusGained
-        txtPasswordRV.setText("");
+        
     }//GEN-LAST:event_txtPasswordRAFocusGained
 
     private void btnAltaAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaAdminMouseClicked
-        ctrl.registrarAdmin();
-        ctrl.cargarTablaUsuarios(gUNombreText.getText());
+        uc.registrarAdmin();
+        uc.cargarTablaUsuarios(gUNombreText.getText());
         registroAdminFrame.hide();
     }//GEN-LAST:event_btnAltaAdminMouseClicked
 
@@ -878,7 +883,7 @@ public class MainFrameVecino extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPasswordEUFocusGained
 
     private void btnGuardarEUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarEUMouseClicked
-        ctrl.updateUsuario();
+        uc.updateUsuario();
         edicionVecinoFrame.hide();;
     }//GEN-LAST:event_btnGuardarEUMouseClicked
 
@@ -891,7 +896,7 @@ public class MainFrameVecino extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarAltaAdminMouseClicked
 
     private void btnBorrarUsuarioGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarUsuarioGUMouseClicked
-        ctrl.eliminarUsuario();
+        uc.eliminarUsuario();
     }//GEN-LAST:event_btnBorrarUsuarioGUMouseClicked
 
     private void btnEditarUsuarioGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarUsuarioGUMouseClicked
@@ -899,13 +904,13 @@ public class MainFrameVecino extends javax.swing.JFrame {
             if (edicionVecinoFrame.isVisible() == false) {
                 dimensionarFrameDatos(edicionVecinoFrame);
             }
-            ctrl.cargarFormUsuario();
+            uc.cargarFormUsuario();
             edicionVecinoFrame.show();
         }
     }//GEN-LAST:event_btnEditarUsuarioGUMouseClicked
 
     private void btnFiltrarUsuariosGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarUsuariosGUMouseClicked
-        ctrl.cargarTablaUsuarios(gUNombreText.getText());
+        uc.cargarTablaUsuarios(gUNombreText.getText());
     }//GEN-LAST:event_btnFiltrarUsuariosGUMouseClicked
 
     private void btnAltaAdminGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaAdminGUMouseClicked
@@ -916,10 +921,7 @@ public class MainFrameVecino extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAltaAdminGUMouseClicked
 
     private void btnAltaVecinoGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaVecinoGUMouseClicked
-        if (registroVecinoFrame.isVisible() == false) {
-            dimensionarFrameDatos(registroVecinoFrame);
-        }
-        registroVecinoFrame.show();
+        
     }//GEN-LAST:event_btnAltaVecinoGUMouseClicked
 
     private void btnEditarUsuarioGUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarUsuarioGUActionPerformed
@@ -985,16 +987,12 @@ public class MainFrameVecino extends javax.swing.JFrame {
     }
 
     private void dimensionarFrameDatos(JInternalFrame jIF) {
-        jIF.setLocation((btnUsuarios.location().x),
-                (btnUsuarios.location().y + btnUsuarios.getSize().height + 5));
-        jIF.setSize(JFrame.WIDTH - 30, JFrame.HEIGHT - jLabel4.getSize().height - 30 - btnUsuarios.getSize().height);
-        jIF.setVisible(true);
-        jIF.show();
+        
 
     }
 
     public void inicioMain() {
-        registroVecinoFrame.hide();
+        edicionVecinoFrame.hide();
         gestionUsuariosFrame.hide();
         registroAdminFrame.hide();
     }
@@ -1034,9 +1032,9 @@ public class MainFrameVecino extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
+    public javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel4;
+    public javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

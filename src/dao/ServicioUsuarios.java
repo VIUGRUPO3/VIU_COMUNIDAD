@@ -28,21 +28,21 @@ import modelo.usuario.Admin;
  */
 public class ServicioUsuarios {
     //Atributos
-    
+
     //Constructores
     /**
      * Constructor de la clase
      */
     public ServicioUsuarios() {
     }
-    
+
     //Metodos
-    
     /**
      * Metodo que conecta con la base de datos de servidor
+     *
      * @return
      * @throws IOException
-     * @throws ClassNotFoundException 
+     * @throws ClassNotFoundException
      */
     public Connection conectarBD() throws IOException, ClassNotFoundException {
         InputStream config;
@@ -63,13 +63,14 @@ public class ServicioUsuarios {
         }
         return null;
     }
-    
+
     /**
      * Metodo que inserta una instancia de la clase Vecino en la base de datos
+     *
      * @param vecino Objeto de la clase Vecino
      */
     public void insertarVecinoDB(Vecino vecino) {
-        int idUser =0;
+        int idUser = 0;
         String sql = "insert into usuarios (nombre, apellidos, userName, clave, telefono, email) values (?,?,?,?,?,?)";
         String sql2 = "insert into usuarios_roles (nombre, role, idUser) values (?,?,?)";
         try {
@@ -85,7 +86,7 @@ public class ServicioUsuarios {
                 stmt.execute();
                 Statement stmt3 = conn.createStatement();
                 ResultSet rs = stmt3.executeQuery("select * from usuarios where  id=(select max(id) from usuarios)");
-                while (rs.next()){
+                while (rs.next()) {
                     idUser = rs.getInt("id");
                 }
             }
@@ -101,10 +102,35 @@ public class ServicioUsuarios {
         }
     }
     
-    /**
-     * Metodo que inserta una instancia de la clase Admin en la base de datos
-     * @param vecino Objeto de la clase Admin
-     */
+    
+    public void updateUsuario(Vecino v) {
+        String sql = "update usuarios set nombre = ? , apellidos = ?, userName =?, clave =?, telefono =?, email =? where id = ?";
+        String sql2 = "update usuarios_roles set nombre = ? where idUser = ?";
+        try {
+            Connection conn = conectarBD();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            {
+                stmt.setString(1, v.getNombre());
+                stmt.setString(2, v.getApellidos());
+                stmt.setString(3, v.getUserName());
+                stmt.setString(4, v.getClave());
+                stmt.setString(5, v.getTelefono());
+                stmt.setString(6, v.getEmail());
+                stmt.setInt(7, v.getId());
+                stmt.execute();
+            }
+            PreparedStatement stmt2 = conn.prepareStatement(sql2);
+            {
+                stmt2.setString(1, v.getNombre());
+                stmt2.setInt(2, v.getId());
+                stmt2.execute();
+            }
+        } catch (IOException | ClassNotFoundException | SQLException e) {
+            throw new RuntimeException("error SQL", e);
+        }
+    }
+
+    
     public void insertarAdminDB(Admin admin) {
         int idUser = 0;
         String sql = "insert into usuarios (nombre, apellidos, userName, clave, telefono, email) values (?,?,?,?,?,?)";
@@ -122,7 +148,7 @@ public class ServicioUsuarios {
                 stmt.execute();
                 Statement stmt3 = conn.createStatement();
                 ResultSet rs = stmt3.executeQuery("select * from usuarios where  id=(select max(id) from usuarios)");
-                while (rs.next()){
+                while (rs.next()) {
                     idUser = rs.getInt("id");
                 }
             }
@@ -137,9 +163,10 @@ public class ServicioUsuarios {
             throw new RuntimeException("error SQL", e);
         }
     }
-    
+
     /**
      * Metodo que elimina un vecino de la base de datos
+     *
      * @param vecino objeto de la clase vecino
      */
     public void borrarVecino(Vecino vecino) {
@@ -161,9 +188,11 @@ public class ServicioUsuarios {
             throw new RuntimeException("error SQL", e);
         }
     }
-    
+
     /**
-     * Metodo que devuelve una lista de los vecinos almacenados en la base de datos
+     * Metodo que devuelve una lista de los vecinos almacenados en la base de
+     * datos
+     *
      * @return lista de vecinos
      */
     public List<Vecino> listarVecinos() {
@@ -188,10 +217,13 @@ public class ServicioUsuarios {
         }
         return lista;
     }
+
     /**
-     * Metodo que busca dentro de los registros todos los vecinos que contengan en su nombre el parametro pasado por referencia
+     * Metodo que busca dentro de los registros todos los vecinos que contengan
+     * en su nombre el parametro pasado por referencia
+     *
      * @param nombre
-     * @return 
+     * @return
      */
     public List<Vecino> buscarNombre(String nombre) {
         List<Vecino> lista = new ArrayList();
@@ -218,12 +250,15 @@ public class ServicioUsuarios {
         System.out.println(lista);
         return lista;
     }
+
     /**
-     * Metodo que genera la consulta parametrizada para realizar la busqueda porNombre
+     * Metodo que genera la consulta parametrizada para realizar la busqueda
+     * porNombre
+     *
      * @param con
      * @param nombre
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     private PreparedStatement busquedaNombre(Connection con, String nombre) throws SQLException {
         String sql = "select * from usuarios where nombre like ?";
@@ -231,11 +266,13 @@ public class ServicioUsuarios {
         ps.setString(1, nombre + "%");
         return ps;
     }
-    
+
     /**
-     * Metodo que busca dentro de los registros todos los vecinos que contengan en su nombre el parametro pasado por referencia
+     * Metodo que busca dentro de los registros todos los vecinos que contengan
+     * en su nombre el parametro pasado por referencia
+     *
      * @param nombre
-     * @return 
+     * @return
      */
     public Vecino buscarId(int id) {
         Vecino v = new Vecino();
@@ -252,58 +289,66 @@ public class ServicioUsuarios {
                     v.setUserName(rs.getString("userName"));
                     v.setClave(rs.getString("clave"));
                     v.setTelefono(rs.getString("telefono"));
-                    v.setEmail(rs.getString("email"));                                   
+                    v.setEmail(rs.getString("email"));
                 }
             }
         } catch (IOException | ClassNotFoundException | SQLException e) {
             throw new RuntimeException("error SQL", e);
         }
-        
+
         return v;
     }
+
     /**
-     * Metodo que genera la consulta parametrizada para realizar la busqueda porNombre
+     * Metodo que genera la consulta parametrizada para realizar la busqueda
+     * porNombre
+     *
      * @param con
      * @param nombre
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     private PreparedStatement busquedaId(Connection con, int id) throws SQLException {
         String sql = "select * from usuarios where id like ?";
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, id );
+        ps.setInt(1, id);
         return ps;
     }
+
     /**
      * Metodo que autentica a un vecino
+     *
      * @param userName
-     * @param pwd 
+     * @param pwd
      */
-    public boolean comprobarCredenciales(String userName, String pwd) {
+    public Vecino comprobarCredenciales(String userName, String pwd) {
         try {
             Connection conn = conectarBD();
             PreparedStatement stmt = consultaCredenciales(conn, userName, pwd);
             ResultSet rs = stmt.executeQuery();
-            
-                if (rs.next()==false) {
-                    System.out.println("USUARIO ERRONEO");
-                    return false;
-                } else {
-                    System.out.println("USUARIO AUTENTICADO");
-                    return true;
-                }
-            
+
+            if (rs.next() == false) {
+                System.out.println("USUARIO ERRONEO");
+                return null;
+            } else {
+                System.out.println("USUARIO AUTENTICADO");
+                Vecino v = buscarId(rs.getInt("id"));
+                return v;
+            }
+
         } catch (IOException | ClassNotFoundException | SQLException e) {
             throw new RuntimeException("error SQL", e);
         }
     }
+
     /**
      * Metodo que genera la consulta para autenticar a un vecino
+     *
      * @param con
      * @param userName
      * @param pwd
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     private PreparedStatement consultaCredenciales(Connection con, String userName, String pwd) throws SQLException {
         String sql = "select * from usuarios where userName like ? and clave like ?";
@@ -313,39 +358,37 @@ public class ServicioUsuarios {
         return ps;
     }
     
-    
-    
-    public void updateUsuario(Vecino v) {
-        String sql = "update usuarios set nombre = ? , apellidos = ?, userName =?, clave =?, telefono =?, email =? where id = ?";
-        
+    public String obtenerTipoUsuario(Vecino v) {
         try {
             Connection conn = conectarBD();
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            {
-                stmt.setString(1, v.getNombre());
-                stmt.setString(2, v.getApellidos());
-                stmt.setString(3, v.getUserName());
-                stmt.setString(4, v.getClave());
-                stmt.setString(5, v.getTelefono());
-                stmt.setString(6, v.getEmail());
-                stmt.setInt(7, v.getId());
-                stmt.execute();
+            PreparedStatement stmt = consultaTipoUsuario(conn, v);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next() == false) {
+                return null;
+            } else {
+                return rs.getString("role");
             }
+
         } catch (IOException | ClassNotFoundException | SQLException e) {
             throw new RuntimeException("error SQL", e);
         }
     }
-    
-    private PreparedStatement actualizarDatos(Connection con, Vecino v) throws SQLException {
-        String sql = "update usuarios set nombre = ? , apellidos = ?, userName =?, clave =?, telefono =?, email =? where id = ?";
+
+    /**
+     * Metodo que genera la consulta para autenticar a un vecino
+     *
+     * @param con
+     * @param userName
+     * @param pwd
+     * @return
+     * @throws SQLException
+     */
+    private PreparedStatement consultaTipoUsuario(Connection con, Vecino v) throws SQLException {
+        String sql = "select * from usuarios_roles where idUser like ?";
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setString(1, v.getNombre());
-        ps.setString(2, v.getApellidos());
-        ps.setString(3, v.getUserName());
-        ps.setString(4, v.getClave());
-        ps.setString(5, v.getTelefono());
-        ps.setString(6, v.getEmail());
-        ps.setInt(7, v.getId());
+        ps.setInt(1, v.getId());
+        
         return ps;
     }
 
