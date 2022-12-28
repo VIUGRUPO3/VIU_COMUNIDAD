@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.usuario.Admin;
 import modelo.usuario.Vecino;
-import vista.MainFrame;
+import vista.MainFrameAdmin;
 
 /**
  *

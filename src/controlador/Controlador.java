@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import modelo.usuario.Admin;
 import modelo.usuario.Vecino;
 import vista.LoginFrame;
-import vista.MainFrame;
+import vista.MainFrameAdmin;
 
 /**
  *
@@ -22,7 +22,7 @@ public class Controlador {
 
     //Atributos
     UsuarioControlador uc = new UsuarioControlador();
-    static MainFrame mainFrame = new MainFrame();
+    static MainFrameAdmin mainFrame = new MainFrameAdmin();
 
     //Constructores
     public Controlador() {
