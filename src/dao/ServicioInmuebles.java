@@ -70,7 +70,6 @@ public class ServicioInmuebles {
      * @param vecino Objeto de la clase Vecino
      */
     public void insertarInmuebleDB(Inmueble i) {
-        int idUser = 0;
         String sql = "insert into inmuebles (direccion) values (?)";
         try {
             Connection conn = conectarBD();
@@ -158,14 +157,19 @@ public class ServicioInmuebles {
      */
     public List<Inmueble> buscarDireccion(String direccion) {
         List<Inmueble> lista = new ArrayList();
-
+        Vecino v = null;
         try {
             Connection conn = conectarBD();
             PreparedStatement stmt = busquedaDireccion(conn, direccion);
             ResultSet rs = stmt.executeQuery();
             {
                 while (rs.next()) {
-                    Vecino v = su.buscarId(rs.getInt("vecinoId"));
+                    if(rs.getInt("vecinoId") > 0){
+                        v = su.buscarId(rs.getInt("vecinoId"));
+                    }else{
+                        v = null;
+                    }
+                    
                     lista.add(new Inmueble(rs.getInt("id"),
                             v,rs.getString("direccion")));
                 }
@@ -173,7 +177,7 @@ public class ServicioInmuebles {
         } catch (IOException | ClassNotFoundException | SQLException e) {
             throw new RuntimeException("error SQL", e);
         }
-        System.out.println(lista);
+        
         return lista;
     }
 
@@ -187,7 +191,7 @@ public class ServicioInmuebles {
      * @throws SQLException
      */
     private PreparedStatement busquedaDireccion(Connection con, String direccion) throws SQLException {
-        String sql = "select * from inmueble where direccion like ?";
+        String sql = "select * from inmuebles where direccion like ?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, direccion + "%");
         return ps;

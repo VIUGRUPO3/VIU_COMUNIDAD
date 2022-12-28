@@ -73,13 +73,13 @@ public class InmuebleControlador {
             ctrl.mainFrameAdmin.txtNombreEI.setText(v.getNombre());
             ctrl.mainFrameAdmin.txtApellidosEI.setText(v.getApellidos());
             ctrl.mainFrameAdmin.txtTelefonoEI.setText(v.getTelefono());
-            ctrl.mainFrameAdmin.txtEmailEU.setText(v.getEmail());
+            ctrl.mainFrameAdmin.txtEmailEI.setText(v.getEmail());
         }else{
             ctrl.mainFrameAdmin.txtIdVecinoEI.setText("");
             ctrl.mainFrameAdmin.txtNombreEI.setText("");
             ctrl.mainFrameAdmin.txtApellidosEI.setText("");
             ctrl.mainFrameAdmin.txtTelefonoEI.setText("");
-            ctrl.mainFrameAdmin.txtEmailEU.setText("");
+            ctrl.mainFrameAdmin.txtEmailEI.setText("");
         }
 
     }
@@ -99,7 +99,12 @@ public class InmuebleControlador {
         DefaultTableModel model = (DefaultTableModel) ctrl.mainFrameAdmin.jTable2.getModel();
         model.setNumRows(0);
         for (int i = 0; i < lista.size(); i++) {
-            model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getDireccion(), lista.get(i).getVecino().getNombre() + " " + lista.get(i).getVecino().getApellidos()});
+            if(lista.get(i).getVecino()!=null){
+               model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getDireccion(), lista.get(i).getVecino().getNombre() + " " + lista.get(i).getVecino().getApellidos()}); 
+            }else{
+                model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getDireccion(), " " });
+            }
+            
         }
     }
 
