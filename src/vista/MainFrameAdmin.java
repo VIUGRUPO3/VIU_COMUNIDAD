@@ -64,6 +64,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         btnFiltrarUsuariosGU = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        btnBorrarUsuarioGU3 = new javax.swing.JButton();
         registroAdminFrame = new javax.swing.JInternalFrame();
         jLabel14 = new javax.swing.JLabel();
         txtNombreRA = new javax.swing.JTextField();
@@ -100,6 +101,16 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jTable3 = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         btnCancelarEU1 = new javax.swing.JButton();
+        gestionInmueblesFrame = new javax.swing.JInternalFrame();
+        btnAltaVecinoGU1 = new javax.swing.JButton();
+        btnEditarUsuarioGU1 = new javax.swing.JButton();
+        btnBorrarUsuarioGU1 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        gUNombreText1 = new javax.swing.JTextField();
+        btnFiltrarUsuariosGU1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        btnBorrarUsuarioGU2 = new javax.swing.JButton();
         edicionInmuebleFrame = new javax.swing.JInternalFrame();
         jPanel3 = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
@@ -382,6 +393,17 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jTable1.setRowHeight(25);
         jScrollPane1.setViewportView(jTable1);
 
+        btnBorrarUsuarioGU3.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
+        btnBorrarUsuarioGU3.setForeground(new java.awt.Color(51, 51, 51));
+        btnBorrarUsuarioGU3.setText("Cancelar");
+        btnBorrarUsuarioGU3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnBorrarUsuarioGU3.setOpaque(true);
+        btnBorrarUsuarioGU3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBorrarUsuarioGU3MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout gestionUsuariosFrameLayout = new javax.swing.GroupLayout(gestionUsuariosFrame.getContentPane());
         gestionUsuariosFrame.getContentPane().setLayout(gestionUsuariosFrameLayout);
         gestionUsuariosFrameLayout.setHorizontalGroup(
@@ -391,19 +413,24 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 .addGroup(gestionUsuariosFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(gestionUsuariosFrameLayout.createSequentialGroup()
-                        .addComponent(btnAltaVecinoGU, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnAltaAdminGU, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEditarUsuarioGU, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBorrarUsuarioGU, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(gestionUsuariosFrameLayout.createSequentialGroup()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(gUNombreText, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnFiltrarUsuariosGU, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(gestionUsuariosFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(gestionUsuariosFrameLayout.createSequentialGroup()
+                                .addComponent(btnAltaVecinoGU, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnAltaAdminGU, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnEditarUsuarioGU, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnBorrarUsuarioGU, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnBorrarUsuarioGU3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(gestionUsuariosFrameLayout.createSequentialGroup()
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(gUNombreText, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnFiltrarUsuariosGU, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         gestionUsuariosFrameLayout.setVerticalGroup(
@@ -412,10 +439,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(gestionUsuariosFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAltaAdminGU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAltaVecinoGU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEditarUsuarioGU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnBorrarUsuarioGU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAltaVecinoGU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(10, 10, 10)
+                    .addComponent(btnBorrarUsuarioGU3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(gestionUsuariosFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(gUNombreText, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -796,6 +824,154 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 .addGap(107, 107, 107))
         );
 
+        gestionInmueblesFrame.setBackground(new java.awt.Color(255, 255, 255));
+        gestionInmueblesFrame.setBorder(null);
+        gestionInmueblesFrame.setForeground(new java.awt.Color(255, 255, 255));
+        gestionInmueblesFrame.setTitle("Gestion Inmuebles");
+        gestionInmueblesFrame.setPreferredSize(new java.awt.Dimension(986, 586));
+        gestionInmueblesFrame.setVisible(false);
+
+        btnAltaVecinoGU1.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
+        btnAltaVecinoGU1.setForeground(new java.awt.Color(51, 51, 51));
+        btnAltaVecinoGU1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/edificios.png"))); // NOI18N
+        btnAltaVecinoGU1.setText("Alta Inmueble");
+        btnAltaVecinoGU1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnAltaVecinoGU1.setOpaque(true);
+        btnAltaVecinoGU1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAltaVecinoGU1MouseClicked(evt);
+            }
+        });
+
+        btnEditarUsuarioGU1.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
+        btnEditarUsuarioGU1.setForeground(new java.awt.Color(51, 51, 51));
+        btnEditarUsuarioGU1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editar.png"))); // NOI18N
+        btnEditarUsuarioGU1.setText("Editar");
+        btnEditarUsuarioGU1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnEditarUsuarioGU1.setOpaque(true);
+        btnEditarUsuarioGU1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditarUsuarioGU1MouseClicked(evt);
+            }
+        });
+
+        btnBorrarUsuarioGU1.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
+        btnBorrarUsuarioGU1.setForeground(new java.awt.Color(51, 51, 51));
+        btnBorrarUsuarioGU1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/borrar.png"))); // NOI18N
+        btnBorrarUsuarioGU1.setText("Eliminar");
+        btnBorrarUsuarioGU1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnBorrarUsuarioGU1.setOpaque(true);
+        btnBorrarUsuarioGU1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBorrarUsuarioGU1MouseClicked(evt);
+            }
+        });
+
+        jLabel12.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel12.setFont(new java.awt.Font("72 Light", 0, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel12.setText("Direccion");
+
+        gUNombreText1.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
+        gUNombreText1.setForeground(new java.awt.Color(51, 51, 51));
+
+        btnFiltrarUsuariosGU1.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
+        btnFiltrarUsuariosGU1.setForeground(new java.awt.Color(51, 51, 51));
+        btnFiltrarUsuariosGU1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/buscar.png"))); // NOI18N
+        btnFiltrarUsuariosGU1.setText("Consultar");
+        btnFiltrarUsuariosGU1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnFiltrarUsuariosGU1.setOpaque(true);
+        btnFiltrarUsuariosGU1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFiltrarUsuariosGU1MouseClicked(evt);
+            }
+        });
+        btnFiltrarUsuariosGU1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiltrarUsuariosGU1ActionPerformed(evt);
+            }
+        });
+
+        jTable2.setFont(new java.awt.Font("SF Pro Display", 0, 12)); // NOI18N
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "id", "Direccion"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTable2.setRowHeight(25);
+        jScrollPane2.setViewportView(jTable2);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(0).setPreferredWidth(10);
+        }
+
+        btnBorrarUsuarioGU2.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
+        btnBorrarUsuarioGU2.setForeground(new java.awt.Color(51, 51, 51));
+        btnBorrarUsuarioGU2.setText("Cancelar");
+        btnBorrarUsuarioGU2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnBorrarUsuarioGU2.setOpaque(true);
+        btnBorrarUsuarioGU2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBorrarUsuarioGU2MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout gestionInmueblesFrameLayout = new javax.swing.GroupLayout(gestionInmueblesFrame.getContentPane());
+        gestionInmueblesFrame.getContentPane().setLayout(gestionInmueblesFrameLayout);
+        gestionInmueblesFrameLayout.setHorizontalGroup(
+            gestionInmueblesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gestionInmueblesFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(gestionInmueblesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(gestionInmueblesFrameLayout.createSequentialGroup()
+                        .addComponent(btnAltaVecinoGU1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEditarUsuarioGU1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBorrarUsuarioGU1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBorrarUsuarioGU2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(gestionInmueblesFrameLayout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(gUNombreText1, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnFiltrarUsuariosGU1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
+        );
+        gestionInmueblesFrameLayout.setVerticalGroup(
+            gestionInmueblesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gestionInmueblesFrameLayout.createSequentialGroup()
+                .addGroup(gestionInmueblesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnAltaVecinoGU1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(btnEditarUsuarioGU1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnBorrarUsuarioGU2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnBorrarUsuarioGU1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(gestionInmueblesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel12)
+                    .addGroup(gestionInmueblesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnFiltrarUsuariosGU1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(gUNombreText1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         edicionInmuebleFrame.setBackground(new java.awt.Color(255, 255, 255));
         edicionInmuebleFrame.setBorder(null);
         edicionInmuebleFrame.setForeground(new java.awt.Color(255, 255, 255));
@@ -1027,6 +1203,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         panelDatos.setLayer(gestionUsuariosFrame, javax.swing.JLayeredPane.DEFAULT_LAYER);
         panelDatos.setLayer(registroAdminFrame, javax.swing.JLayeredPane.DEFAULT_LAYER);
         panelDatos.setLayer(edicionVecinoFrame, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        panelDatos.setLayer(gestionInmueblesFrame, javax.swing.JLayeredPane.DEFAULT_LAYER);
         panelDatos.setLayer(edicionInmuebleFrame, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout panelDatosLayout = new javax.swing.GroupLayout(panelDatos);
@@ -1051,6 +1228,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                         .addComponent(edicionInmuebleFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addComponent(edicionVecinoFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addContainerGap()))
+            .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelDatosLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(gestionInmueblesFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         panelDatosLayout.setVerticalGroup(
             panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1071,6 +1253,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                     .addComponent(edicionVecinoFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(edicionInmuebleFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelDatosLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(gestionInmueblesFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
@@ -1143,9 +1330,10 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUsuariosMouseClicked
 
     private void btnInmueblesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInmueblesMouseClicked
-        if (edicionInmuebleFrame.isVisible() == false) {
-            dimensionarFrameDatos(edicionInmuebleFrame);
+        if (gestionInmueblesFrame.isVisible() == false) {
+            dimensionarFrameDatos(gestionInmueblesFrame);
         }
+        gestionInmueblesFrame.show();
     }//GEN-LAST:event_btnInmueblesMouseClicked
 
     private void txtPasswordEUFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordEUFocusGained
@@ -1214,6 +1402,34 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         edicionInmuebleFrame.hide();
     }//GEN-LAST:event_btnCancelarEU2MouseClicked
 
+    private void btnAltaVecinoGU1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaVecinoGU1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAltaVecinoGU1MouseClicked
+
+    private void btnEditarUsuarioGU1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarUsuarioGU1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditarUsuarioGU1MouseClicked
+
+    private void btnBorrarUsuarioGU1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarUsuarioGU1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBorrarUsuarioGU1MouseClicked
+
+    private void btnFiltrarUsuariosGU1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarUsuariosGU1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFiltrarUsuariosGU1MouseClicked
+
+    private void btnFiltrarUsuariosGU1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarUsuariosGU1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFiltrarUsuariosGU1ActionPerformed
+
+    private void btnBorrarUsuarioGU2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarUsuarioGU2MouseClicked
+        gestionInmueblesFrame.hide();
+    }//GEN-LAST:event_btnBorrarUsuarioGU2MouseClicked
+
+    private void btnBorrarUsuarioGU3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarUsuarioGU3MouseClicked
+        gestionUsuariosFrame.hide();
+    }//GEN-LAST:event_btnBorrarUsuarioGU3MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1278,13 +1494,19 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnAltaAdmin;
     private javax.swing.JButton btnAltaAdminGU;
     private javax.swing.JButton btnAltaVecinoGU;
+    private javax.swing.JButton btnAltaVecinoGU1;
     private javax.swing.JButton btnBorrarUsuarioGU;
+    private javax.swing.JButton btnBorrarUsuarioGU1;
+    private javax.swing.JButton btnBorrarUsuarioGU2;
+    private javax.swing.JButton btnBorrarUsuarioGU3;
     private javax.swing.JButton btnCancelarAltaAdmin;
     private javax.swing.JButton btnCancelarEU;
     private javax.swing.JButton btnCancelarEU1;
     private javax.swing.JButton btnCancelarEU2;
     private javax.swing.JButton btnEditarUsuarioGU;
+    private javax.swing.JButton btnEditarUsuarioGU1;
     private javax.swing.JButton btnFiltrarUsuariosGU;
+    private javax.swing.JButton btnFiltrarUsuariosGU1;
     private javax.swing.JButton btnGastos;
     private javax.swing.JButton btnGuardarEU;
     private javax.swing.JButton btnGuardarEU1;
@@ -1296,8 +1518,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     public javax.swing.JInternalFrame edicionInmuebleFrame;
     public javax.swing.JInternalFrame edicionVecinoFrame;
     public javax.swing.JTextField gUNombreText;
+    public javax.swing.JTextField gUNombreText1;
+    private javax.swing.JInternalFrame gestionInmueblesFrame;
     private javax.swing.JInternalFrame gestionUsuariosFrame;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -1332,9 +1557,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     public javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JDesktopPane panelCabecera;
     private javax.swing.JDesktopPane panelDatos;
