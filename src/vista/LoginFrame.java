@@ -4,7 +4,7 @@
  */
 package vista;
 
-import controlador.usuario.UsuarioControlador;
+import controlador.modelos.UsuarioControlador;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

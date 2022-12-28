@@ -55,6 +55,12 @@ public class Inmueble {
         this.direccion = direccion;
     }
 
+    public Inmueble(String direccion) {
+        this.direccion = direccion;
+    }
+    
+    
+
     //3. Métodos
     //Getters
     /**
@@ -110,6 +116,16 @@ public class Inmueble {
         this.vecino = vecino;
         this.direccion = direccion;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+    
+    
 
     /**
      * Método para dar de baja un inmueble

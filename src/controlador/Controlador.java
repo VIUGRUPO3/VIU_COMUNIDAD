@@ -4,7 +4,7 @@
  */
 package controlador;
 
-import controlador.usuario.UsuarioControlador;
+import controlador.modelos.UsuarioControlador;
 import java.awt.Component;
 import java.util.HashMap;
 import java.util.List;

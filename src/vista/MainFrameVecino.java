@@ -5,7 +5,7 @@
 package vista;
 
 import controlador.Controlador;
-import controlador.usuario.UsuarioControlador;
+import controlador.modelos.UsuarioControlador;
 import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JFrame;

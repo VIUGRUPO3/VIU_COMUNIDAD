@@ -5,7 +5,8 @@
 package vista;
 
 import controlador.Controlador;
-import controlador.usuario.UsuarioControlador;
+import controlador.modelos.InmuebleControlador;
+import controlador.modelos.UsuarioControlador;
 import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,6 +20,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
     Controlador ctrl = new Controlador();
     UsuarioControlador uc = new UsuarioControlador();
+    InmuebleControlador ic = new InmuebleControlador();
 
     /**
      * Creates new form MainFrame
@@ -102,35 +104,35 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         btnCancelarEU1 = new javax.swing.JButton();
         gestionInmueblesFrame = new javax.swing.JInternalFrame();
-        btnAltaVecinoGU1 = new javax.swing.JButton();
-        btnEditarUsuarioGU1 = new javax.swing.JButton();
-        btnBorrarUsuarioGU1 = new javax.swing.JButton();
+        btnAltaInmuebleGI = new javax.swing.JButton();
+        javax.swing.JButton btnEditarInmuebleGI = new javax.swing.JButton();
+        btnBorrarInmuebleGI = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
-        gUNombreText1 = new javax.swing.JTextField();
-        btnFiltrarUsuariosGU1 = new javax.swing.JButton();
+        gIDireccionText = new javax.swing.JTextField();
+        btnFiltrarInmueblesGI = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        btnBorrarUsuarioGU2 = new javax.swing.JButton();
+        btnCancelarGI = new javax.swing.JButton();
         edicionInmuebleFrame = new javax.swing.JInternalFrame();
         jPanel3 = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
-        txtIdEU1 = new javax.swing.JTextField();
+        txtIdEI = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
-        txtNombreEU1 = new javax.swing.JTextField();
-        btnGuardarEU1 = new javax.swing.JButton();
+        txtDireccionEI = new javax.swing.JTextField();
+        btnGuardarEI = new javax.swing.JButton();
         btnCancelarEU2 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        txtIdEU2 = new javax.swing.JTextField();
+        txtIdVecinoEI = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
-        txtIdEU3 = new javax.swing.JTextField();
+        txtNombreEI = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
-        txtIdEU4 = new javax.swing.JTextField();
+        txtApellidosEI = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
-        txtIdEU5 = new javax.swing.JTextField();
+        txtTelefonoEI = new javax.swing.JTextField();
         jLabel41 = new javax.swing.JLabel();
-        txtIdEU6 = new javax.swing.JTextField();
+        txtEmailEI = new javax.swing.JTextField();
         jTabbedPane1 = new javax.swing.JTabbedPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -831,39 +833,39 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         gestionInmueblesFrame.setPreferredSize(new java.awt.Dimension(986, 586));
         gestionInmueblesFrame.setVisible(false);
 
-        btnAltaVecinoGU1.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
-        btnAltaVecinoGU1.setForeground(new java.awt.Color(51, 51, 51));
-        btnAltaVecinoGU1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/edificios.png"))); // NOI18N
-        btnAltaVecinoGU1.setText("Alta Inmueble");
-        btnAltaVecinoGU1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        btnAltaVecinoGU1.setOpaque(true);
-        btnAltaVecinoGU1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAltaInmuebleGI.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
+        btnAltaInmuebleGI.setForeground(new java.awt.Color(51, 51, 51));
+        btnAltaInmuebleGI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/edificios.png"))); // NOI18N
+        btnAltaInmuebleGI.setText("Alta Inmueble");
+        btnAltaInmuebleGI.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnAltaInmuebleGI.setOpaque(true);
+        btnAltaInmuebleGI.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAltaVecinoGU1MouseClicked(evt);
+                btnAltaInmuebleGIMouseClicked(evt);
             }
         });
 
-        btnEditarUsuarioGU1.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
-        btnEditarUsuarioGU1.setForeground(new java.awt.Color(51, 51, 51));
-        btnEditarUsuarioGU1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editar.png"))); // NOI18N
-        btnEditarUsuarioGU1.setText("Editar");
-        btnEditarUsuarioGU1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        btnEditarUsuarioGU1.setOpaque(true);
-        btnEditarUsuarioGU1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnEditarInmuebleGI.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
+        btnEditarInmuebleGI.setForeground(new java.awt.Color(51, 51, 51));
+        btnEditarInmuebleGI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editar.png"))); // NOI18N
+        btnEditarInmuebleGI.setText("Editar");
+        btnEditarInmuebleGI.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnEditarInmuebleGI.setOpaque(true);
+        btnEditarInmuebleGI.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnEditarUsuarioGU1MouseClicked(evt);
+                btnEditarInmuebleGIMouseClicked(evt);
             }
         });
 
-        btnBorrarUsuarioGU1.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
-        btnBorrarUsuarioGU1.setForeground(new java.awt.Color(51, 51, 51));
-        btnBorrarUsuarioGU1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/borrar.png"))); // NOI18N
-        btnBorrarUsuarioGU1.setText("Eliminar");
-        btnBorrarUsuarioGU1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        btnBorrarUsuarioGU1.setOpaque(true);
-        btnBorrarUsuarioGU1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnBorrarInmuebleGI.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
+        btnBorrarInmuebleGI.setForeground(new java.awt.Color(51, 51, 51));
+        btnBorrarInmuebleGI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/borrar.png"))); // NOI18N
+        btnBorrarInmuebleGI.setText("Eliminar");
+        btnBorrarInmuebleGI.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnBorrarInmuebleGI.setOpaque(true);
+        btnBorrarInmuebleGI.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBorrarUsuarioGU1MouseClicked(evt);
+                btnBorrarInmuebleGIMouseClicked(evt);
             }
         });
 
@@ -872,23 +874,18 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(51, 51, 51));
         jLabel12.setText("Direccion");
 
-        gUNombreText1.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
-        gUNombreText1.setForeground(new java.awt.Color(51, 51, 51));
+        gIDireccionText.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
+        gIDireccionText.setForeground(new java.awt.Color(51, 51, 51));
 
-        btnFiltrarUsuariosGU1.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
-        btnFiltrarUsuariosGU1.setForeground(new java.awt.Color(51, 51, 51));
-        btnFiltrarUsuariosGU1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/buscar.png"))); // NOI18N
-        btnFiltrarUsuariosGU1.setText("Consultar");
-        btnFiltrarUsuariosGU1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        btnFiltrarUsuariosGU1.setOpaque(true);
-        btnFiltrarUsuariosGU1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnFiltrarInmueblesGI.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
+        btnFiltrarInmueblesGI.setForeground(new java.awt.Color(51, 51, 51));
+        btnFiltrarInmueblesGI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/buscar.png"))); // NOI18N
+        btnFiltrarInmueblesGI.setText("Consultar");
+        btnFiltrarInmueblesGI.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnFiltrarInmueblesGI.setOpaque(true);
+        btnFiltrarInmueblesGI.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnFiltrarUsuariosGU1MouseClicked(evt);
-            }
-        });
-        btnFiltrarUsuariosGU1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFiltrarUsuariosGU1ActionPerformed(evt);
+                btnFiltrarInmueblesGIMouseClicked(evt);
             }
         });
 
@@ -898,11 +895,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
             },
             new String [] {
-                "id", "Direccion"
+                "id", "Direccion", "Propietario"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -915,14 +912,14 @@ public class MainFrameAdmin extends javax.swing.JFrame {
             jTable2.getColumnModel().getColumn(0).setPreferredWidth(10);
         }
 
-        btnBorrarUsuarioGU2.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
-        btnBorrarUsuarioGU2.setForeground(new java.awt.Color(51, 51, 51));
-        btnBorrarUsuarioGU2.setText("Cancelar");
-        btnBorrarUsuarioGU2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        btnBorrarUsuarioGU2.setOpaque(true);
-        btnBorrarUsuarioGU2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnCancelarGI.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
+        btnCancelarGI.setForeground(new java.awt.Color(51, 51, 51));
+        btnCancelarGI.setText("Cancelar");
+        btnCancelarGI.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnCancelarGI.setOpaque(true);
+        btnCancelarGI.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBorrarUsuarioGU2MouseClicked(evt);
+                btnCancelarGIMouseClicked(evt);
             }
         });
 
@@ -935,40 +932,40 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 .addGroup(gestionInmueblesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
                     .addGroup(gestionInmueblesFrameLayout.createSequentialGroup()
-                        .addComponent(btnAltaVecinoGU1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAltaInmuebleGI, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEditarUsuarioGU1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEditarInmuebleGI, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBorrarUsuarioGU1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBorrarInmuebleGI, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBorrarUsuarioGU2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancelarGI, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(gestionInmueblesFrameLayout.createSequentialGroup()
                 .addGap(7, 7, 7)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(gUNombreText1, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(gIDireccionText, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnFiltrarUsuariosGU1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addComponent(btnFiltrarInmueblesGI, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         gestionInmueblesFrameLayout.setVerticalGroup(
             gestionInmueblesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gestionInmueblesFrameLayout.createSequentialGroup()
                 .addGroup(gestionInmueblesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnAltaVecinoGU1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(btnEditarUsuarioGU1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBorrarUsuarioGU2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBorrarUsuarioGU1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAltaInmuebleGI, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                    .addComponent(btnEditarInmuebleGI, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCancelarGI, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnBorrarInmuebleGI, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(gestionInmueblesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel12)
                     .addGroup(gestionInmueblesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnFiltrarUsuariosGU1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(gUNombreText1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnFiltrarInmueblesGI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(gIDireccionText, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -988,24 +985,29 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jLabel30.setForeground(new java.awt.Color(51, 51, 51));
         jLabel30.setText("Id");
 
-        txtIdEU1.setEditable(false);
-        txtIdEU1.setBackground(new java.awt.Color(255, 255, 255));
-        txtIdEU1.setFont(new java.awt.Font("72 Light", 0, 14)); // NOI18N
-        txtIdEU1.setForeground(new java.awt.Color(51, 51, 51));
+        txtIdEI.setEditable(false);
+        txtIdEI.setBackground(new java.awt.Color(255, 255, 255));
+        txtIdEI.setFont(new java.awt.Font("72 Light", 0, 14)); // NOI18N
+        txtIdEI.setForeground(new java.awt.Color(51, 51, 51));
 
         jLabel24.setBackground(new java.awt.Color(51, 51, 51));
         jLabel24.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(51, 51, 51));
         jLabel24.setText("Dirección");
 
-        txtNombreEU1.setFont(new java.awt.Font("72 Light", 0, 14)); // NOI18N
-        txtNombreEU1.setForeground(new java.awt.Color(51, 51, 51));
+        txtDireccionEI.setFont(new java.awt.Font("72 Light", 0, 14)); // NOI18N
+        txtDireccionEI.setForeground(new java.awt.Color(51, 51, 51));
 
-        btnGuardarEU1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        btnGuardarEU1.setForeground(new java.awt.Color(51, 51, 51));
-        btnGuardarEU1.setText("Guardar");
-        btnGuardarEU1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        btnGuardarEU1.setOpaque(true);
+        btnGuardarEI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnGuardarEI.setForeground(new java.awt.Color(51, 51, 51));
+        btnGuardarEI.setText("Guardar");
+        btnGuardarEI.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnGuardarEI.setOpaque(true);
+        btnGuardarEI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGuardarEIMouseClicked(evt);
+            }
+        });
 
         btnCancelarEU2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnCancelarEU2.setForeground(new java.awt.Color(51, 51, 51));
@@ -1032,12 +1034,12 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(txtIdEU1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtIdEI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtNombreEU1)))
+                            .addComponent(txtDireccionEI)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnGuardarEU1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnGuardarEI, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14)
                         .addComponent(btnCancelarEU2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -1048,14 +1050,14 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtIdEU1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIdEI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombreEU1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDireccionEI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel24))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardarEU1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGuardarEI, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelarEU2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14))
         );
@@ -1066,20 +1068,20 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel8.setText("Vecino Asociado:");
 
-        txtIdEU2.setEditable(false);
-        txtIdEU2.setBackground(new java.awt.Color(255, 255, 255));
-        txtIdEU2.setFont(new java.awt.Font("72 Light", 0, 14)); // NOI18N
-        txtIdEU2.setForeground(new java.awt.Color(51, 51, 51));
+        txtIdVecinoEI.setEditable(false);
+        txtIdVecinoEI.setBackground(new java.awt.Color(255, 255, 255));
+        txtIdVecinoEI.setFont(new java.awt.Font("72 Light", 0, 14)); // NOI18N
+        txtIdVecinoEI.setForeground(new java.awt.Color(51, 51, 51));
 
         jLabel31.setBackground(new java.awt.Color(51, 51, 51));
         jLabel31.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(51, 51, 51));
         jLabel31.setText("Id");
 
-        txtIdEU3.setEditable(false);
-        txtIdEU3.setBackground(new java.awt.Color(255, 255, 255));
-        txtIdEU3.setFont(new java.awt.Font("72 Light", 0, 14)); // NOI18N
-        txtIdEU3.setForeground(new java.awt.Color(51, 51, 51));
+        txtNombreEI.setEditable(false);
+        txtNombreEI.setBackground(new java.awt.Color(255, 255, 255));
+        txtNombreEI.setFont(new java.awt.Font("72 Light", 0, 14)); // NOI18N
+        txtNombreEI.setForeground(new java.awt.Color(51, 51, 51));
 
         jLabel32.setBackground(new java.awt.Color(51, 51, 51));
         jLabel32.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -1091,30 +1093,30 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jLabel39.setForeground(new java.awt.Color(51, 51, 51));
         jLabel39.setText("Apellidos");
 
-        txtIdEU4.setEditable(false);
-        txtIdEU4.setBackground(new java.awt.Color(255, 255, 255));
-        txtIdEU4.setFont(new java.awt.Font("72 Light", 0, 14)); // NOI18N
-        txtIdEU4.setForeground(new java.awt.Color(51, 51, 51));
+        txtApellidosEI.setEditable(false);
+        txtApellidosEI.setBackground(new java.awt.Color(255, 255, 255));
+        txtApellidosEI.setFont(new java.awt.Font("72 Light", 0, 14)); // NOI18N
+        txtApellidosEI.setForeground(new java.awt.Color(51, 51, 51));
 
         jLabel40.setBackground(new java.awt.Color(51, 51, 51));
         jLabel40.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel40.setForeground(new java.awt.Color(51, 51, 51));
         jLabel40.setText("Telefono");
 
-        txtIdEU5.setEditable(false);
-        txtIdEU5.setBackground(new java.awt.Color(255, 255, 255));
-        txtIdEU5.setFont(new java.awt.Font("72 Light", 0, 14)); // NOI18N
-        txtIdEU5.setForeground(new java.awt.Color(51, 51, 51));
+        txtTelefonoEI.setEditable(false);
+        txtTelefonoEI.setBackground(new java.awt.Color(255, 255, 255));
+        txtTelefonoEI.setFont(new java.awt.Font("72 Light", 0, 14)); // NOI18N
+        txtTelefonoEI.setForeground(new java.awt.Color(51, 51, 51));
 
         jLabel41.setBackground(new java.awt.Color(51, 51, 51));
         jLabel41.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel41.setForeground(new java.awt.Color(51, 51, 51));
         jLabel41.setText("Em@il");
 
-        txtIdEU6.setEditable(false);
-        txtIdEU6.setBackground(new java.awt.Color(255, 255, 255));
-        txtIdEU6.setFont(new java.awt.Font("72 Light", 0, 14)); // NOI18N
-        txtIdEU6.setForeground(new java.awt.Color(51, 51, 51));
+        txtEmailEI.setEditable(false);
+        txtEmailEI.setBackground(new java.awt.Color(255, 255, 255));
+        txtEmailEI.setFont(new java.awt.Font("72 Light", 0, 14)); // NOI18N
+        txtEmailEI.setForeground(new java.awt.Color(51, 51, 51));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -1127,26 +1129,26 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
-                        .addComponent(txtIdEU2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtIdVecinoEI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
-                        .addComponent(txtIdEU3, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombreEI, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtIdEU4))
+                        .addComponent(txtApellidosEI))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
-                                .addComponent(txtIdEU5, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtTelefonoEI, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtIdEU6, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtEmailEI, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -1158,19 +1160,19 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtIdEU2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtIdEU3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdVecinoEI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreEI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtIdEU4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtApellidosEI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtIdEU6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtEmailEI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtIdEU5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtTelefonoEI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -1402,33 +1404,43 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         edicionInmuebleFrame.hide();
     }//GEN-LAST:event_btnCancelarEU2MouseClicked
 
-    private void btnAltaVecinoGU1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaVecinoGU1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAltaVecinoGU1MouseClicked
+    private void btnAltaInmuebleGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaInmuebleGIMouseClicked
+        if(edicionInmuebleFrame.isVisible()==false){
+            dimensionarFrameDatos(edicionInmuebleFrame);
+        }
+        limpiarInmuebleForm();
+        edicionInmuebleFrame.show();
+    }//GEN-LAST:event_btnAltaInmuebleGIMouseClicked
 
-    private void btnEditarUsuarioGU1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarUsuarioGU1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarUsuarioGU1MouseClicked
+    private void btnEditarInmuebleGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarInmuebleGIMouseClicked
+        if (jTable2.getSelectedRow() > 0) {
+            if (edicionInmuebleFrame.isVisible() == false) {
+                dimensionarFrameDatos(edicionInmuebleFrame);
+            }
+            ic.cargarFormInmueble();
+            edicionInmuebleFrame.show();
+        }
+    }//GEN-LAST:event_btnEditarInmuebleGIMouseClicked
 
-    private void btnBorrarUsuarioGU1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarUsuarioGU1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBorrarUsuarioGU1MouseClicked
+    private void btnBorrarInmuebleGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarInmuebleGIMouseClicked
+        ic.eliminarInmueble();
+    }//GEN-LAST:event_btnBorrarInmuebleGIMouseClicked
 
-    private void btnFiltrarUsuariosGU1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarUsuariosGU1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnFiltrarUsuariosGU1MouseClicked
+    private void btnFiltrarInmueblesGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarInmueblesGIMouseClicked
+        ic.cargarTablaInmuebles(gIDireccionText.getText());
+    }//GEN-LAST:event_btnFiltrarInmueblesGIMouseClicked
 
-    private void btnFiltrarUsuariosGU1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarUsuariosGU1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnFiltrarUsuariosGU1ActionPerformed
-
-    private void btnBorrarUsuarioGU2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarUsuarioGU2MouseClicked
+    private void btnCancelarGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarGIMouseClicked
         gestionInmueblesFrame.hide();
-    }//GEN-LAST:event_btnBorrarUsuarioGU2MouseClicked
+    }//GEN-LAST:event_btnCancelarGIMouseClicked
 
     private void btnBorrarUsuarioGU3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarUsuarioGU3MouseClicked
         gestionUsuariosFrame.hide();
     }//GEN-LAST:event_btnBorrarUsuarioGU3MouseClicked
+
+    private void btnGuardarEIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarEIMouseClicked
+        ic.registrarInmueble();
+    }//GEN-LAST:event_btnGuardarEIMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1483,6 +1495,15 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         txtUserNameEU.setText("");
         txtPasswordEU.setText("");
     }
+    
+    private void limpiarInmuebleForm(){
+        txtIdEI.setText("");
+        txtDireccionEI.setText("");
+        txtApellidosEI.setText("");
+        txtTelefonoEI.setText("");
+        txtEmailEI.setText("");
+        txtNombreEI.setText("");
+    }
     public void inicioMain() {
         edicionVecinoFrame.hide();
         gestionUsuariosFrame.hide();
@@ -1493,23 +1514,22 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAltaAdmin;
     private javax.swing.JButton btnAltaAdminGU;
+    private javax.swing.JButton btnAltaInmuebleGI;
     private javax.swing.JButton btnAltaVecinoGU;
-    private javax.swing.JButton btnAltaVecinoGU1;
+    private javax.swing.JButton btnBorrarInmuebleGI;
     private javax.swing.JButton btnBorrarUsuarioGU;
-    private javax.swing.JButton btnBorrarUsuarioGU1;
-    private javax.swing.JButton btnBorrarUsuarioGU2;
     private javax.swing.JButton btnBorrarUsuarioGU3;
     private javax.swing.JButton btnCancelarAltaAdmin;
     private javax.swing.JButton btnCancelarEU;
     private javax.swing.JButton btnCancelarEU1;
     private javax.swing.JButton btnCancelarEU2;
+    private javax.swing.JButton btnCancelarGI;
     private javax.swing.JButton btnEditarUsuarioGU;
-    private javax.swing.JButton btnEditarUsuarioGU1;
+    private javax.swing.JButton btnFiltrarInmueblesGI;
     private javax.swing.JButton btnFiltrarUsuariosGU;
-    private javax.swing.JButton btnFiltrarUsuariosGU1;
     private javax.swing.JButton btnGastos;
+    private javax.swing.JButton btnGuardarEI;
     private javax.swing.JButton btnGuardarEU;
-    private javax.swing.JButton btnGuardarEU1;
     private javax.swing.JButton btnInmuebles;
     private javax.swing.JButton btnLiquidaciones;
     private javax.swing.JButton btnProveedores;
@@ -1517,8 +1537,8 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnUsuarios;
     public javax.swing.JInternalFrame edicionInmuebleFrame;
     public javax.swing.JInternalFrame edicionVecinoFrame;
+    public javax.swing.JTextField gIDireccionText;
     public javax.swing.JTextField gUNombreText;
-    public javax.swing.JTextField gUNombreText1;
     private javax.swing.JInternalFrame gestionInmueblesFrame;
     private javax.swing.JInternalFrame gestionUsuariosFrame;
     private javax.swing.JLabel jLabel11;
@@ -1567,22 +1587,22 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JDesktopPane panelDatos;
     private javax.swing.JDesktopPane panelFooter;
     public javax.swing.JInternalFrame registroAdminFrame;
+    public javax.swing.JTextField txtApellidosEI;
     public javax.swing.JTextField txtApellidosEU;
     public javax.swing.JTextField txtApellidosRA;
+    public javax.swing.JTextField txtDireccionEI;
+    public javax.swing.JTextField txtEmailEI;
     public javax.swing.JTextField txtEmailEU;
     public javax.swing.JTextField txtEmailRA;
+    public javax.swing.JTextField txtIdEI;
     public javax.swing.JTextField txtIdEU;
-    public javax.swing.JTextField txtIdEU1;
-    public javax.swing.JTextField txtIdEU2;
-    public javax.swing.JTextField txtIdEU3;
-    public javax.swing.JTextField txtIdEU4;
-    public javax.swing.JTextField txtIdEU5;
-    public javax.swing.JTextField txtIdEU6;
+    public javax.swing.JTextField txtIdVecinoEI;
+    public javax.swing.JTextField txtNombreEI;
     public javax.swing.JTextField txtNombreEU;
-    public javax.swing.JTextField txtNombreEU1;
     public javax.swing.JTextField txtNombreRA;
     public javax.swing.JPasswordField txtPasswordEU;
     public javax.swing.JPasswordField txtPasswordRA;
+    public javax.swing.JTextField txtTelefonoEI;
     public javax.swing.JTextField txtTelefonoEU;
     public javax.swing.JTextField txtTelefonoRA;
     public javax.swing.JTextField txtUserNameEU;
