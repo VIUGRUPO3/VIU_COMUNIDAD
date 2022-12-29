@@ -1975,7 +1975,13 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFiltrarUserAIMouseClicked
 
     private void btnSeleccionarInmueblesAIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeleccionarInmueblesAIMouseClicked
-        ic.cargarTablaInmueblesSelected(tblInmueblesAI, tblSeleccionInmueblesAI);
+        ic.cargarTablaInmueblesSelected(
+                tblInmueblesAI, 
+                    tblSeleccionInmueblesAI,
+                    btnFiltrarInmuebleAI,
+                    btnLimpiarTablaAI,
+                    btnSeleccionarInmueblesAI,
+                    txtFiltrarInmuebleAI);
     }//GEN-LAST:event_btnSeleccionarInmueblesAIMouseClicked
 
     private void btnLimpiarTablaAIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarTablaAIMouseClicked

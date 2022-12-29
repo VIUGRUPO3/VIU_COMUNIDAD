@@ -127,7 +127,12 @@ public class InmuebleControlador {
     
     
     
-    public void cargarTablaInmueblesSelected(JTable tablaFuente, JTable tablaDestino){
+    public void cargarTablaInmueblesSelected(JTable tablaFuente, JTable tablaDestino , JButton boton, JButton boton2, JButton boton3, JTextField texto){
+        tablaFuente.setEnabled(true);
+        boton.setEnabled(true);
+        boton2.setEnabled(true);
+        boton3.setEnabled(true);
+        texto.setEnabled(true);
         int[] rows = tablaFuente.getSelectedRows();
         DefaultTableModel model = (DefaultTableModel) tablaDestino.getModel();
         model.setNumRows(0);
