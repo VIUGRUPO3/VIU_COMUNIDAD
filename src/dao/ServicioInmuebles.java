@@ -30,12 +30,19 @@ public class ServicioInmuebles {
 
     //Atributos
     ServicioUsuarios su = new ServicioUsuarios();
-
+    private Connection conn;
     //Constructores
     /**
      * Constructor de la clase
      */
     public ServicioInmuebles() {
+        try {
+            this.conn = conectarBD();
+        } catch (IOException ex) {
+            Logger.getLogger(ServicioInmuebles.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ServicioInmuebles.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     //Metodos
@@ -74,13 +81,12 @@ public class ServicioInmuebles {
     public void insertarInmuebleDB(Inmueble i) {
         String sql = "insert into inmuebles (direccion) values (?)";
         try {
-            Connection conn = conectarBD();
             PreparedStatement stmt = conn.prepareStatement(sql);
             {
                 stmt.setString(1, i.getDireccion());
                 stmt.execute();
             }
-        } catch (IOException | ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("error SQL", e);
         }
     }
@@ -93,7 +99,6 @@ public class ServicioInmuebles {
             sql = "update inmuebles set direccion = ?  where id = ?";
         }
         try {
-            Connection conn = conectarBD();
             PreparedStatement stmt = conn.prepareStatement(sql);
             {
                 stmt.setString(1, i.getDireccion());
@@ -106,7 +111,7 @@ public class ServicioInmuebles {
                 }
                 stmt.execute();
             }
-        } catch (IOException | ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("error SQL", e);
         }
     }
@@ -119,13 +124,12 @@ public class ServicioInmuebles {
     public void borrarInmueble(Inmueble i) {
         String sql = "delete from inmuebles where id = ?";
         try {
-            Connection conn = conectarBD();
             PreparedStatement stmt = conn.prepareStatement(sql);
             {
                 stmt.setInt(1, i.getId());
                 stmt.execute();
             }
-        } catch (IOException | ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("error SQL", e);
         }
     }
@@ -138,8 +142,7 @@ public class ServicioInmuebles {
      */
     public List<Inmueble> listarInmuebles() {
         List<Inmueble> lista = new ArrayList();
-        try {
-            Connection conn = conectarBD();
+        try {            
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from inmuebles");
             while (rs.next()) {
@@ -150,7 +153,7 @@ public class ServicioInmuebles {
             }
             System.out.println(lista);
 
-        } catch (IOException | ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("error SQL", e);
         }
         return lista;
@@ -167,7 +170,6 @@ public class ServicioInmuebles {
         List<Inmueble> lista = new ArrayList();
         Vecino v = null;
         try {
-            Connection conn = conectarBD();
             PreparedStatement stmt = busquedaDireccion(conn, direccion);
             ResultSet rs = stmt.executeQuery();
             {
@@ -182,7 +184,7 @@ public class ServicioInmuebles {
                             v, rs.getString("direccion")));
                 }
             }
-        } catch (IOException | ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("error SQL", e);
         }
 
@@ -216,7 +218,6 @@ public class ServicioInmuebles {
         Inmueble i = new Inmueble();
         Vecino v = null;
         try {
-            Connection conn = conectarBD();
             PreparedStatement stmt = busquedaId(conn, id);
             ResultSet rs = stmt.executeQuery();
             {
@@ -233,7 +234,7 @@ public class ServicioInmuebles {
 
                 }
             }
-        } catch (IOException | ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("error SQL", e);
         }
 
@@ -259,7 +260,6 @@ public class ServicioInmuebles {
     public List<Inmueble> listarInmueblesLibres() {
         List<Inmueble> lista = new ArrayList();
         try {
-            Connection conn = conectarBD();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from inmuebles where vecinoId is null");
             while (rs.next()) {
@@ -270,7 +270,7 @@ public class ServicioInmuebles {
             }
             
 
-        } catch (IOException | ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("error SQL", e);
         }
         return lista;
@@ -279,7 +279,7 @@ public class ServicioInmuebles {
     public List<Inmueble> listarVecinosAsignar() {
         List<Inmueble> lista = new ArrayList();
         try {
-            Connection conn = conectarBD();
+            
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from inmuebles where vecinoId is null");
             while (rs.next()) {
@@ -290,7 +290,7 @@ public class ServicioInmuebles {
             }
             
 
-        } catch (IOException | ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("error SQL", e);
         }
         return lista;
