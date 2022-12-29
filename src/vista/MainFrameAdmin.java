@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -113,6 +114,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         btnCancelarGI = new javax.swing.JButton();
+        btnAsignarInmueblesGI = new javax.swing.JButton();
         edicionInmuebleFrame = new javax.swing.JInternalFrame();
         jPanel5 = new javax.swing.JPanel();
         jLabel43 = new javax.swing.JLabel();
@@ -149,26 +151,32 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTable7 = new javax.swing.JTable();
+        tblVecinosAI = new javax.swing.JTable();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTable8 = new javax.swing.JTable();
+        tblInmueblesAI = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSeleccionarInmueblesAI = new javax.swing.JButton();
+        btnSeleccionarVecinoAI = new javax.swing.JButton();
+        btnFiltrarInmuebleAI = new javax.swing.JButton();
+        btnFiltrarUserAI = new javax.swing.JButton();
+        txtFiltrarInmuebleAI = new javax.swing.JTextField();
+        txtFiltrarNombreAI = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
-        jTable9 = new javax.swing.JTable();
+        tblSeleccionInmueblesAI = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
+        lblVecinoIdAI = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
-        jLabel51 = new javax.swing.JLabel();
+        lblVecinoNombreAI = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
-        jLabel53 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        lblVecinoApellidosAI = new javax.swing.JLabel();
+        btnAsignarInmueblesAI = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        btnLimpiarTablaAI = new javax.swing.JButton();
+        javax.swing.JButton btnLimpiarVecinoAI = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VIU Comunidad");
@@ -948,6 +956,17 @@ public class MainFrameAdmin extends javax.swing.JFrame {
             }
         });
 
+        btnAsignarInmueblesGI.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
+        btnAsignarInmueblesGI.setForeground(new java.awt.Color(51, 51, 51));
+        btnAsignarInmueblesGI.setText("Asignar Inmuebles");
+        btnAsignarInmueblesGI.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnAsignarInmueblesGI.setOpaque(true);
+        btnAsignarInmueblesGI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAsignarInmueblesGIMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout gestionInmueblesFrameLayout = new javax.swing.GroupLayout(gestionInmueblesFrame.getContentPane());
         gestionInmueblesFrame.getContentPane().setLayout(gestionInmueblesFrameLayout);
         gestionInmueblesFrameLayout.setHorizontalGroup(
@@ -966,7 +985,8 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                                 .addComponent(btnBorrarInmuebleGI, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnCancelarGI, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(347, 347, 347)
+                                .addComponent(btnAsignarInmueblesGI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(gestionInmueblesFrameLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -980,18 +1000,20 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         gestionInmueblesFrameLayout.setVerticalGroup(
             gestionInmueblesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gestionInmueblesFrameLayout.createSequentialGroup()
-                .addGroup(gestionInmueblesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnEditarInmuebleGI, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBorrarInmuebleGI, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCancelarGI, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAltaInmuebleGI, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addGroup(gestionInmueblesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAsignarInmueblesGI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(gestionInmueblesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnEditarInmuebleGI, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBorrarInmuebleGI, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCancelarGI, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAltaInmuebleGI, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(gestionInmueblesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(gIDireccionText, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
                     .addComponent(btnFiltrarInmueblesGI))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1029,6 +1051,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         btnAsignarEI.setText("Asignar");
         btnAsignarEI.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnAsignarEI.setOpaque(true);
+        btnAsignarEI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAsignarEIMouseClicked(evt);
+            }
+        });
 
         btnCancelarEI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnCancelarEI.setForeground(new java.awt.Color(51, 51, 51));
@@ -1339,12 +1366,9 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
-        jTable7.setModel(new javax.swing.table.DefaultTableModel(
+        tblVecinosAI.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "ID", "Nombre", "Apellidos"
@@ -1365,24 +1389,21 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane7.setViewportView(jTable7);
+        jScrollPane7.setViewportView(tblVecinosAI);
 
-        jTable8.setModel(new javax.swing.table.DefaultTableModel(
+        tblInmueblesAI.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "ID", "Dirección"
+                "ID", "Dirección", "Propietario"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1393,17 +1414,43 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane8.setViewportView(jTable8);
+        jScrollPane8.setViewportView(tblInmueblesAI);
 
         jLabel3.setText("Inmuebles sin asignar:");
 
         jLabel5.setText("Vecinos:");
 
-        jButton1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jButton1.setText("Seleccionar");
+        btnSeleccionarInmueblesAI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnSeleccionarInmueblesAI.setText("Seleccionar");
+        btnSeleccionarInmueblesAI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSeleccionarInmueblesAIMouseClicked(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jButton2.setText("Seleccionar");
+        btnSeleccionarVecinoAI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnSeleccionarVecinoAI.setText("Seleccionar");
+        btnSeleccionarVecinoAI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSeleccionarVecinoAIMouseClicked(evt);
+            }
+        });
+
+        btnFiltrarInmuebleAI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnFiltrarInmuebleAI.setText("Filtrar");
+        btnFiltrarInmuebleAI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFiltrarInmuebleAIMouseClicked(evt);
+            }
+        });
+
+        btnFiltrarUserAI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnFiltrarUserAI.setText("Filtrar");
+        btnFiltrarUserAI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFiltrarUserAIMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -1411,19 +1458,29 @@ public class MainFrameAdmin extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFiltrarInmuebleAI)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnFiltrarInmuebleAI)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFiltrarNombreAI)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnFiltrarUserAI)))
                 .addContainerGap())
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(183, 183, 183)
-                .addComponent(jButton1)
+                .addComponent(btnSeleccionarInmueblesAI)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btnSeleccionarVecinoAI)
                 .addGap(189, 189, 189))
         );
         jPanel8Layout.setVerticalGroup(
@@ -1432,24 +1489,25 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(btnFiltrarInmuebleAI)
+                    .addComponent(btnFiltrarUserAI)
+                    .addComponent(txtFiltrarInmuebleAI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFiltrarNombreAI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnSeleccionarInmueblesAI)
+                    .addComponent(btnSeleccionarVecinoAI))
                 .addContainerGap())
         );
 
-        jTable9.setModel(new javax.swing.table.DefaultTableModel(
+        tblSeleccionInmueblesAI.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "ID", "Dirección"
@@ -1470,7 +1528,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane9.setViewportView(jTable9);
+        jScrollPane9.setViewportView(tblSeleccionInmueblesAI);
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel6.setText("Inmuebles seleccionados:");
@@ -1481,61 +1539,91 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel16.setText("ID");
 
-        jLabel21.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel21.setText("ID");
-        jLabel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        lblVecinoIdAI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblVecinoIdAI.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
         jLabel50.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel50.setText("Nombre:");
 
-        jLabel51.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel51.setText("Nombre");
-        jLabel51.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        lblVecinoNombreAI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblVecinoNombreAI.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
         jLabel52.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel52.setText("Apellidos:");
 
-        jLabel53.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel53.setText("Apellidos");
-        jLabel53.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        lblVecinoApellidosAI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblVecinoApellidosAI.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
-        jButton3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jButton3.setText("Asignar");
+        btnAsignarInmueblesAI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnAsignarInmueblesAI.setText("Asignar");
+        btnAsignarInmueblesAI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAsignarInmueblesAIMouseClicked(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButton4.setText("Cancelar");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+
+        btnLimpiarTablaAI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnLimpiarTablaAI.setText("Limpiar");
+        btnLimpiarTablaAI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLimpiarTablaAIMouseClicked(evt);
+            }
+        });
+
+        btnLimpiarVecinoAI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnLimpiarVecinoAI.setText("Limpiar");
+        btnLimpiarVecinoAI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLimpiarVecinoAIMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel53, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(96, 96, 96))
-            .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(232, 232, 232)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAsignarInmueblesAI, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addContainerGap())
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnLimpiarTablaAI)
+                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel6)
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblVecinoApellidosAI, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblVecinoIdAI, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblVecinoNombreAI, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(96, 96, 96))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addComponent(btnLimpiarVecinoAI)
+                        .addContainerGap())))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1547,23 +1635,27 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnLimpiarTablaAI)
+                            .addComponent(btnLimpiarVecinoAI)))
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel16)
-                            .addComponent(jLabel21))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblVecinoIdAI, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel50)
-                            .addComponent(jLabel51))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblVecinoNombreAI, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel52)
-                            .addComponent(jLabel53))))
+                            .addComponent(lblVecinoApellidosAI, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
+                    .addComponent(btnAsignarInmueblesAI)
                     .addComponent(jButton4))
                 .addGap(59, 59, 59))
         );
@@ -1747,6 +1839,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         if (gestionInmueblesFrame.isVisible() == false) {
             dimensionarFrameDatos(gestionInmueblesFrame);
         }
+        ic.cargarTablaInmuebles("",jTable2);
         gestionInmueblesFrame.show();
     }//GEN-LAST:event_btnInmueblesMouseClicked
 
@@ -1827,7 +1920,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBorrarInmuebleGIMouseClicked
 
     private void btnFiltrarInmueblesGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarInmueblesGIMouseClicked
-        ic.cargarTablaInmuebles(gIDireccionText.getText());
+        ic.cargarTablaInmuebles(gIDireccionText.getText(),jTable2);
     }//GEN-LAST:event_btnFiltrarInmueblesGIMouseClicked
 
     private void btnCancelarGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarGIMouseClicked
@@ -1852,6 +1945,68 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnGuardarEIMouseClicked
+
+    private void btnAsignarEIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignarEIMouseClicked
+        if (asignacionInmuebleFrame.isVisible() == false) {
+                dimensionarFrameDatos(asignacionInmuebleFrame);
+            }
+            asignacionInmuebleFrame.show();
+            ic.cargarTablaInmueblesFromEdit(
+                    tblInmueblesAI, 
+                    tblSeleccionInmueblesAI,
+                    btnFiltrarInmuebleAI,
+                    btnLimpiarTablaAI,
+                    btnSeleccionarInmueblesAI,
+                    txtFiltrarInmuebleAI,
+                    ic.obtenerInmueble(Integer.parseInt(txtIdEI.getText())));
+            ic.cargarTablaVecinosAsignacion("", tblVecinosAI);
+    }//GEN-LAST:event_btnAsignarEIMouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        asignacionInmuebleFrame.hide();
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void btnFiltrarInmuebleAIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarInmuebleAIMouseClicked
+        ic.cargarTablaInmuebles(txtFiltrarInmuebleAI.getText(), tblInmueblesAI);
+    }//GEN-LAST:event_btnFiltrarInmuebleAIMouseClicked
+
+    private void btnFiltrarUserAIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarUserAIMouseClicked
+        ic.cargarTablaVecinosAsignacion(txtFiltrarNombreAI.getText(), tblVecinosAI);
+    }//GEN-LAST:event_btnFiltrarUserAIMouseClicked
+
+    private void btnSeleccionarInmueblesAIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeleccionarInmueblesAIMouseClicked
+        ic.cargarTablaInmueblesSelected(tblInmueblesAI, tblSeleccionInmueblesAI);
+    }//GEN-LAST:event_btnSeleccionarInmueblesAIMouseClicked
+
+    private void btnLimpiarTablaAIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarTablaAIMouseClicked
+        limpiarTablaAsignar();
+    }//GEN-LAST:event_btnLimpiarTablaAIMouseClicked
+
+    private void btnLimpiarVecinoAIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarVecinoAIMouseClicked
+        limpiarUsuarioAsignar();
+    }//GEN-LAST:event_btnLimpiarVecinoAIMouseClicked
+
+    private void btnSeleccionarVecinoAIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeleccionarVecinoAIMouseClicked
+        ic.cargarVecinosSelected(tblVecinosAI, lblVecinoIdAI, lblVecinoNombreAI, lblVecinoApellidosAI);
+    }//GEN-LAST:event_btnSeleccionarVecinoAIMouseClicked
+
+    private void btnAsignarInmueblesAIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignarInmueblesAIMouseClicked
+        if (ic.comprobarAsignacion(tblSeleccionInmueblesAI, lblVecinoIdAI)==true){
+            ic.AsignarInmueble(tblSeleccionInmueblesAI, lblVecinoIdAI);
+            limpiarUsuarioAsignar();
+            limpiarTablaAsignar();
+            ic.cargarTablaInmuebles("", tblInmueblesAI);
+        }
+    }//GEN-LAST:event_btnAsignarInmueblesAIMouseClicked
+
+    private void btnAsignarInmueblesGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignarInmueblesGIMouseClicked
+        if (asignacionInmuebleFrame.isVisible() == false) {
+                dimensionarFrameDatos(asignacionInmuebleFrame);
+            }
+            asignacionInmuebleFrame.show();
+            ic.cargarTablaInmuebles("",tblInmueblesAI);
+            ic.cargarTablaVecinosAsignacion("", tblVecinosAI);                                        
+    }//GEN-LAST:event_btnAsignarInmueblesGIMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1915,6 +2070,17 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         txtEmailEI.setText("");
         txtNombreEI.setText("");
     }
+    
+    private void limpiarTablaAsignar(){
+        DefaultTableModel model = (DefaultTableModel) tblSeleccionInmueblesAI.getModel();
+        model.setNumRows(0);
+    }
+    
+    private void limpiarUsuarioAsignar(){
+        lblVecinoIdAI.setText("");
+        lblVecinoNombreAI.setText("");
+        lblVecinoApellidosAI.setText("");
+    }
     public void inicioMain() {
         edicionVecinoFrame.hide();
         gestionUsuariosFrame.hide();
@@ -1929,6 +2095,8 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnAltaInmuebleGI;
     private javax.swing.JButton btnAltaVecinoGU;
     private javax.swing.JButton btnAsignarEI;
+    private javax.swing.JButton btnAsignarInmueblesAI;
+    private javax.swing.JButton btnAsignarInmueblesGI;
     private javax.swing.JButton btnBorrarInmuebleGI;
     private javax.swing.JButton btnBorrarUsuarioGU;
     private javax.swing.JButton btnCancelarAltaAdmin;
@@ -1938,14 +2106,19 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelarGU;
     private javax.swing.JButton btnDetalleEU;
     private javax.swing.JButton btnEditarUsuarioGU;
+    private javax.swing.JButton btnFiltrarInmuebleAI;
     private javax.swing.JButton btnFiltrarInmueblesGI;
+    private javax.swing.JButton btnFiltrarUserAI;
     private javax.swing.JButton btnFiltrarUsuariosGU;
     private javax.swing.JButton btnGastos;
     private javax.swing.JButton btnGuardarEI;
     private javax.swing.JButton btnGuardarEU;
     private javax.swing.JButton btnInmuebles;
+    private javax.swing.JButton btnLimpiarTablaAI;
     private javax.swing.JButton btnLiquidaciones;
     private javax.swing.JButton btnProveedores;
+    private javax.swing.JButton btnSeleccionarInmueblesAI;
+    private javax.swing.JButton btnSeleccionarVecinoAI;
     private javax.swing.JButton btnServicios;
     private javax.swing.JButton btnUsuarios;
     public javax.swing.JInternalFrame edicionInmuebleFrame;
@@ -1954,9 +2127,6 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     public javax.swing.JTextField gUNombreText;
     private javax.swing.JInternalFrame gestionInmueblesFrame;
     private javax.swing.JInternalFrame gestionUsuariosFrame;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1971,7 +2141,6 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel25;
@@ -1997,9 +2166,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
@@ -2026,13 +2193,16 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
-    private javax.swing.JTable jTable7;
-    private javax.swing.JTable jTable8;
-    private javax.swing.JTable jTable9;
+    public javax.swing.JLabel lblVecinoApellidosAI;
+    public javax.swing.JLabel lblVecinoIdAI;
+    public javax.swing.JLabel lblVecinoNombreAI;
     private javax.swing.JDesktopPane panelCabecera;
     private javax.swing.JDesktopPane panelDatos;
     private javax.swing.JDesktopPane panelFooter;
     public javax.swing.JInternalFrame registroAdminFrame;
+    public javax.swing.JTable tblInmueblesAI;
+    public javax.swing.JTable tblSeleccionInmueblesAI;
+    public javax.swing.JTable tblVecinosAI;
     public javax.swing.JTextField txtApellidosEI;
     public javax.swing.JTextField txtApellidosEU;
     public javax.swing.JTextField txtApellidosRA;
@@ -2040,6 +2210,8 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     public javax.swing.JTextField txtEmailEI;
     public javax.swing.JTextField txtEmailEU;
     public javax.swing.JTextField txtEmailRA;
+    public javax.swing.JTextField txtFiltrarInmuebleAI;
+    public javax.swing.JTextField txtFiltrarNombreAI;
     public javax.swing.JTextField txtIdEI;
     public javax.swing.JTextField txtIdEU;
     public javax.swing.JTextField txtIdVecinoEI;
