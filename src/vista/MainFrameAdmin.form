@@ -379,6 +379,9 @@
         <Property name="text" type="java.lang.String" value="Cerrar Sesi&#xf3;n"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JDesktopPane" name="panelDatos">
       <Properties>
@@ -1261,7 +1264,7 @@
                           <Color blue="f2" green="f2" red="f2" type="rgb"/>
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="3" rowCount="4">
+                          <Table columnCount="3" rowCount="0">
                             <Column editable="false" title="ID" type="java.lang.Object"/>
                             <Column editable="false" title="Direcci&#xf3;n" type="java.lang.Object"/>
                             <Column editable="false" title="Propietario" type="java.lang.Object"/>
@@ -1314,6 +1317,9 @@
                     </Property>
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnDetalleEUMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

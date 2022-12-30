@@ -14,7 +14,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import modelo.Inmueble;
-import modelo.usuario.Admin;
 import modelo.usuario.Vecino;
 
 /**
@@ -24,34 +23,33 @@ import modelo.usuario.Vecino;
 public class InmuebleControlador {
 
     //Atributos
-    private static ServicioInmuebles si = new ServicioInmuebles();
-    private static ServicioUsuarios su = new ServicioUsuarios();
-    private static Controlador ctrl = new Controlador();
+    private ServicioInmuebles si = new ServicioInmuebles();
+    private ServicioUsuarios su = new ServicioUsuarios();
 
     //Constructores
     public InmuebleControlador() {
     }
 
     //Metodos
-    public void registrarInmueble() {
-        String direccion = ctrl.mainFrameAdmin.txtDireccionEI.getText();
+    public void registrarInmueble(JTextField txtDireccionEI, JTable tabla) {
+        String direccion = txtDireccionEI.getText();
         Inmueble i = new Inmueble(direccion);
         si.insertarInmuebleDB(i);
-        cargarTablaInmuebles("",ctrl.mainFrameAdmin.jTable2);
+        cargarTablaInmuebles("", tabla);
     }
 
-    public void updateInmueble() {
-        int id = Integer.parseInt(ctrl.mainFrameAdmin.txtIdEI.getText());
+    public void updateInmueble(JTextField txtIdEI,JTextField txtDireccionEI, JTextField txtIdVecinoEI, JTable tabla) {
+        int id = Integer.parseInt(txtIdEI.getText());
         Vecino v = null;
-        String direccion = ctrl.mainFrameAdmin.txtDireccionEI.getText();
-        if(ctrl.mainFrameAdmin.txtIdVecinoEI.getText().equals("")){
-             v = null;
-        }else{
-            v = su.buscarId(Integer.parseInt(ctrl.mainFrameAdmin.txtIdVecinoEI.getText()));
+        String direccion = txtDireccionEI.getText();
+        if (txtIdVecinoEI.getText().equals("")) {
+            v = null;
+        } else {
+            v = su.buscarId(Integer.parseInt(txtIdVecinoEI.getText()));
         }
         Inmueble i = new Inmueble(id, v, direccion);
         si.updateInmueble(i);
-        cargarTablaInmuebles("",ctrl.mainFrameAdmin.jTable2);
+        cargarTablaInmuebles("", tabla);
     }
 
     public List<Inmueble> obtenerListaInmuebles(String direccion) {
@@ -59,35 +57,43 @@ public class InmuebleControlador {
         return lista;
     }
 
-    public void eliminarInmueble() {
-        int[] lista = ctrl.mainFrameAdmin.jTable2.getSelectedRows();
+    public void eliminarInmueble(JTable tabla) {
+        int[] lista = tabla.getSelectedRows();
         if (lista.length != 0) {
             for (int row : lista) {
-                Inmueble i = si.buscarId(obtenerIdTablaInmuebles(row, ctrl.mainFrameAdmin.jTable2));
+                Inmueble i = si.buscarId(obtenerIdTablaInmuebles(row, tabla));
                 si.borrarInmueble(i);
             }
         }
-        cargarTablaInmuebles("",ctrl.mainFrameAdmin.jTable2);
+        cargarTablaInmuebles("", tabla);
     }
 
-    public void cargarFormInmueble() {
-        int row = ctrl.mainFrameAdmin.jTable2.getSelectedRow();
-        Inmueble i = obtenerInmueble(obtenerIdTablaInmuebles(row, ctrl.mainFrameAdmin.jTable2));
-        ctrl.mainFrameAdmin.txtIdEI.setText(Integer.toString(i.getId()));
-        ctrl.mainFrameAdmin.txtDireccionEI.setText(i.getDireccion());
+    public void cargarFormInmueble(
+            JTextField txtIdEI,
+            JTextField txtDireccionEI,
+            JTextField txtIdVecinoEI,
+            JTextField txtNombreEI,
+            JTextField txtApellidosEI,
+            JTextField txtTelefonoEI,
+            JTextField txtEmailEI,
+            JTable tabla) {
+        int row = tabla.getSelectedRow();
+        Inmueble i = obtenerInmueble(obtenerIdTablaInmuebles(row, tabla));
+        txtIdEI.setText(Integer.toString(i.getId()));
+        txtDireccionEI.setText(i.getDireccion());
         Vecino v = i.getVecino();
         if (v != null) {
-            ctrl.mainFrameAdmin.txtIdVecinoEI.setText(Integer.toString(v.getId()));
-            ctrl.mainFrameAdmin.txtNombreEI.setText(v.getNombre());
-            ctrl.mainFrameAdmin.txtApellidosEI.setText(v.getApellidos());
-            ctrl.mainFrameAdmin.txtTelefonoEI.setText(v.getTelefono());
-            ctrl.mainFrameAdmin.txtEmailEI.setText(v.getEmail());
-        }else{
-            ctrl.mainFrameAdmin.txtIdVecinoEI.setText("");
-            ctrl.mainFrameAdmin.txtNombreEI.setText("");
-            ctrl.mainFrameAdmin.txtApellidosEI.setText("");
-            ctrl.mainFrameAdmin.txtTelefonoEI.setText("");
-            ctrl.mainFrameAdmin.txtEmailEI.setText("");
+            txtIdVecinoEI.setText(Integer.toString(v.getId()));
+            txtNombreEI.setText(v.getNombre());
+            txtApellidosEI.setText(v.getApellidos());
+            txtTelefonoEI.setText(v.getTelefono());
+            txtEmailEI.setText(v.getEmail());
+        } else {
+            txtIdVecinoEI.setText("");
+            txtNombreEI.setText("");
+            txtApellidosEI.setText("");
+            txtTelefonoEI.setText("");
+            txtEmailEI.setText("");
         }
 
     }
@@ -107,27 +113,34 @@ public class InmuebleControlador {
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         model.setNumRows(0);
         for (int i = 0; i < lista.size(); i++) {
-            if(lista.get(i).getVecino()!=null){
-               model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getDireccion(), lista.get(i).getVecino().getNombre() + " " + lista.get(i).getVecino().getApellidos()}); 
-            }else{
-                model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getDireccion(), " " });
+            if (lista.get(i).getVecino() != null) {
+                model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getDireccion(), lista.get(i).getVecino().getNombre() + " " + lista.get(i).getVecino().getApellidos()});
+            } else {
+                model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getDireccion(), " "});
             }
-            
+
         }
     }
-    
+
+    public void cargarTablaInmueblesVecino(int vecinoId, JTable tabla) {
+        List<Inmueble> lista = si.buscarInmueblesVecino(vecinoId);
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        model.setNumRows(0);
+        for (int i = 0; i < lista.size(); i++) {
+            model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getDireccion(), lista.get(i).getVecino().getNombre() + " " + lista.get(i).getVecino().getApellidos()});
+        }
+    }
+
     public void cargarTablaVecinosAsignacion(String nombre, JTable tabla) {
         List<Vecino> lista = su.buscarNombre(nombre);
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         model.setNumRows(0);
         for (int i = 0; i < lista.size(); i++) {
-                model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getNombre(), lista.get(i).getApellidos() });
+            model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getNombre(), lista.get(i).getApellidos()});
         }
     }
-    
-    
-    
-    public void cargarTablaInmueblesSelected(JTable tablaFuente, JTable tablaDestino , JButton boton, JButton boton2, JButton boton3, JTextField texto){
+
+    public void cargarTablaInmueblesSelected(JTable tablaFuente, JTable tablaDestino, JButton boton, JButton boton2, JButton boton3, JTextField texto) {
         tablaFuente.setEnabled(true);
         boton.setEnabled(true);
         boton2.setEnabled(true);
@@ -137,11 +150,11 @@ public class InmuebleControlador {
         DefaultTableModel model = (DefaultTableModel) tablaDestino.getModel();
         model.setNumRows(0);
         for (int i = 0; i < rows.length; i++) {
-                model.addRow(new Object[]{tablaFuente.getValueAt(rows[i], 0), tablaFuente.getValueAt(rows[i], 1)});
+            model.addRow(new Object[]{tablaFuente.getValueAt(rows[i], 0), tablaFuente.getValueAt(rows[i], 1)});
         }
     }
-    
-    public void cargarTablaInmueblesFromEdit(JTable tablaFuente, JTable tablaDestino, JButton boton, JButton boton2, JButton boton3, JTextField texto, Inmueble i){
+
+    public void cargarTablaInmueblesFromEdit(JTable tablaFuente, JTable tablaDestino, JButton boton, JButton boton2, JButton boton3, JTextField texto, Inmueble i) {
         tablaFuente.setEnabled(false);
         boton.setEnabled(false);
         boton2.setEnabled(false);
@@ -151,30 +164,30 @@ public class InmuebleControlador {
         model.setNumRows(0);
         model.addRow(new Object[]{i.getId(), i.getDireccion()});
     }
-    
-    public void cargarVecinosSelected(JTable tabla, JLabel lblId, JLabel lblNombre, JLabel lblApellidos){
+
+    public void cargarVecinosSelected(JTable tabla, JLabel lblId, JLabel lblNombre, JLabel lblApellidos) {
         int row = tabla.getSelectedRow();
-        lblId.setText(Integer.toString((int)tabla.getValueAt(row, 0)));
-        lblNombre.setText((String)tabla.getValueAt(row, 1));
-        lblApellidos.setText((String)tabla.getValueAt(row, 2));
-        
+        lblId.setText(Integer.toString((int) tabla.getValueAt(row, 0)));
+        lblNombre.setText((String) tabla.getValueAt(row, 1));
+        lblApellidos.setText((String) tabla.getValueAt(row, 2));
+
     }
-    
-    public boolean comprobarAsignacion(JTable tabla, JLabel lblId){
+
+    public boolean comprobarAsignacion(JTable tabla, JLabel lblId) {
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         int rows = model.getRowCount();
-        if(rows > 0 && !lblId.equals("")){
+        if (rows > 0 && !lblId.equals("")) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    
-    public void AsignarInmueble(JTable tabla, JLabel lblId){
+
+    public void AsignarInmueble(JTable tabla, JLabel lblId) {
         int rows = tabla.getRowCount();
         Vecino v = su.buscarId(Integer.parseInt(lblId.getText()));
-        for(int i=0; i < rows; i++){
-            Inmueble inmueble = new Inmueble((int)tabla.getValueAt(i, 0), v, (String)tabla.getValueAt(i, 1));
+        for (int i = 0; i < rows; i++) {
+            Inmueble inmueble = new Inmueble((int) tabla.getValueAt(i, 0), v, (String) tabla.getValueAt(i, 1));
             si.updateInmueble(inmueble);
         }
     }

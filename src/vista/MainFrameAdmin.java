@@ -408,6 +408,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cerrar-sesion.png"))); // NOI18N
         jButton1.setText("Cerrar Sesión");
         jButton1.setToolTipText("");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         panelDatos.setBackground(new java.awt.Color(255, 255, 255));
         panelDatos.setPreferredSize(new java.awt.Dimension(1022, 586));
@@ -750,10 +755,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jTable3.setBackground(new java.awt.Color(242, 242, 242));
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "ID", "Dirección", "Propietario"
@@ -779,6 +781,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         btnDetalleEU.setText("Detalle");
         btnDetalleEU.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnDetalleEU.setOpaque(true);
+        btnDetalleEU.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDetalleEUMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -2851,13 +2858,13 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPasswordRAFocusGained
 
     private void btnAltaAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaAdminMouseClicked
-        uc.registrarAdmin();
-        uc.cargarTablaUsuarios(gUNombreText.getText());
+        uc.registrarAdmin(txtNombreRA, txtApellidosRA, txtTelefonoRA, txtEmailRA, txtUserNameRA, txtPasswordRA, jTable1);
+        uc.cargarTablaUsuarios(gUNombreText.getText(), jTable1);
         registroAdminFrame.hide();
     }//GEN-LAST:event_btnAltaAdminMouseClicked
 
     private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
-        uc.cargarTablaUsuarios(gUNombreText.getText());
+        uc.cargarTablaUsuarios(gUNombreText.getText(), jTable1);
         if (gestionUsuariosFrame.isVisible() == false) {
             dimensionarFrameDatos(gestionUsuariosFrame);
         }
@@ -2867,7 +2874,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         if (gestionInmueblesFrame.isVisible() == false) {
             dimensionarFrameDatos(gestionInmueblesFrame);
         }
-        ic.cargarTablaInmuebles("",jTable2);
+        ic.cargarTablaInmuebles("", jTable2);
         gestionInmueblesFrame.show();
     }//GEN-LAST:event_btnInmueblesMouseClicked
 
@@ -2876,10 +2883,10 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPasswordEUFocusGained
 
     private void btnGuardarEUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarEUMouseClicked
-        if(txtIdEU.getText().equals("")){
-            uc.registrarVecino();
-        }else{
-            uc.updateUsuario();
+        if (txtIdEU.getText().equals("")) {
+            uc.registrarVecino(txtNombreEU, txtApellidosEU, txtTelefonoEU, txtEmailEU, txtUserNameEU, txtPasswordEU, jTable1);
+        } else {
+            uc.updateUsuario(txtIdEU, txtNombreEU, txtApellidosEU, txtTelefonoEU, txtEmailEU, txtUserNameEU, txtPasswordEU, jTable1);
         }
         edicionVecinoFrame.hide();;
     }//GEN-LAST:event_btnGuardarEUMouseClicked
@@ -2893,21 +2900,22 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarAltaAdminMouseClicked
 
     private void btnBorrarUsuarioGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarUsuarioGUMouseClicked
-        uc.eliminarUsuario();
+        uc.eliminarUsuario(jTable1);
     }//GEN-LAST:event_btnBorrarUsuarioGUMouseClicked
 
     private void btnEditarUsuarioGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarUsuarioGUMouseClicked
-        if (jTable1.getSelectedRow() > 0) {
+        if (jTable1.getSelectedRow() >= 0) {
             if (edicionVecinoFrame.isVisible() == false) {
                 dimensionarFrameDatos(edicionVecinoFrame);
             }
-            uc.cargarFormUsuario();
+            uc.cargarFormUsuario(jTable1, txtIdEU, txtNombreEU, txtApellidosEU, txtTelefonoEU, txtEmailEU, txtUserNameEU, txtPasswordEU);
+            ic.cargarTablaInmueblesVecino(Integer.parseInt(txtIdEU.getText()), jTable3);
             edicionVecinoFrame.show();
         }
     }//GEN-LAST:event_btnEditarUsuarioGUMouseClicked
 
     private void btnFiltrarUsuariosGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarUsuariosGUMouseClicked
-        uc.cargarTablaUsuarios(gUNombreText.getText());
+        uc.cargarTablaUsuarios(gUNombreText.getText(), jTable1);
     }//GEN-LAST:event_btnFiltrarUsuariosGUMouseClicked
 
     private void btnAltaAdminGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaAdminGUMouseClicked
@@ -2926,7 +2934,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAltaVecinoGUMouseClicked
 
     private void btnAltaInmuebleGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaInmuebleGIMouseClicked
-        if(edicionInmuebleFrame.isVisible()==false){
+        if (edicionInmuebleFrame.isVisible() == false) {
             dimensionarFrameDatos(edicionInmuebleFrame);
         }
         limpiarInmuebleForm();
@@ -2938,17 +2946,25 @@ public class MainFrameAdmin extends javax.swing.JFrame {
             if (edicionInmuebleFrame.isVisible() == false) {
                 dimensionarFrameDatos(edicionInmuebleFrame);
             }
-            ic.cargarFormInmueble();
+            ic.cargarFormInmueble(
+                    txtIdEI,
+                    txtDireccionEI,
+                    txtIdVecinoEI,
+                    txtNombreEI,
+                    txtApellidosEI,
+                    txtTelefonoEI,
+                    txtEmailEI,
+                    jTable2);
             edicionInmuebleFrame.show();
         }
     }//GEN-LAST:event_btnEditarInmuebleGIMouseClicked
 
     private void btnBorrarInmuebleGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarInmuebleGIMouseClicked
-        ic.eliminarInmueble();
+        ic.eliminarInmueble(jTable2);
     }//GEN-LAST:event_btnBorrarInmuebleGIMouseClicked
 
     private void btnFiltrarInmueblesGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarInmueblesGIMouseClicked
-        ic.cargarTablaInmuebles(gIDireccionText.getText(),jTable2);
+        ic.cargarTablaInmuebles(gIDireccionText.getText(), jTable2);
     }//GEN-LAST:event_btnFiltrarInmueblesGIMouseClicked
 
     private void btnCancelarGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarGIMouseClicked
@@ -2964,30 +2980,30 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarEIMouseClicked
 
     private void btnGuardarEIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarEIMouseClicked
-        if(txtIdEI.getText().equals("")){
-            ic.registrarInmueble();
-        }else{
-            ic.updateInmueble();
+        if (txtIdEI.getText().equals("")) {
+            ic.registrarInmueble(txtDireccionEI, jTable2);
+        } else {
+            ic.updateInmueble(txtIdEI, txtDireccionEI, txtIdVecinoEI, jTable2);
         }
         edicionInmuebleFrame.hide();;
-        
-        
+
+
     }//GEN-LAST:event_btnGuardarEIMouseClicked
 
     private void btnAsignarEIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignarEIMouseClicked
         if (asignacionInmuebleFrame.isVisible() == false) {
-                dimensionarFrameDatos(asignacionInmuebleFrame);
-            }
-            asignacionInmuebleFrame.show();
-            ic.cargarTablaInmueblesFromEdit(
-                    tblInmueblesAI, 
-                    tblSeleccionInmueblesAI,
-                    btnFiltrarInmuebleAI,
-                    btnLimpiarTablaAI,
-                    btnSeleccionarInmueblesAI,
-                    txtFiltrarInmuebleAI,
-                    ic.obtenerInmueble(Integer.parseInt(txtIdEI.getText())));
-            ic.cargarTablaVecinosAsignacion("", tblVecinosAI);
+            dimensionarFrameDatos(asignacionInmuebleFrame);
+        }
+        asignacionInmuebleFrame.show();
+        ic.cargarTablaInmueblesFromEdit(
+                tblInmueblesAI,
+                tblSeleccionInmueblesAI,
+                btnFiltrarInmuebleAI,
+                btnLimpiarTablaAI,
+                btnSeleccionarInmueblesAI,
+                txtFiltrarInmuebleAI,
+                ic.obtenerInmueble(Integer.parseInt(txtIdEI.getText())));
+        ic.cargarTablaVecinosAsignacion("", tblVecinosAI);
     }//GEN-LAST:event_btnAsignarEIMouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
@@ -3004,12 +3020,12 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
     private void btnSeleccionarInmueblesAIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeleccionarInmueblesAIMouseClicked
         ic.cargarTablaInmueblesSelected(
-                tblInmueblesAI, 
-                    tblSeleccionInmueblesAI,
-                    btnFiltrarInmuebleAI,
-                    btnLimpiarTablaAI,
-                    btnSeleccionarInmueblesAI,
-                    txtFiltrarInmuebleAI);
+                tblInmueblesAI,
+                tblSeleccionInmueblesAI,
+                btnFiltrarInmuebleAI,
+                btnLimpiarTablaAI,
+                btnSeleccionarInmueblesAI,
+                txtFiltrarInmuebleAI);
     }//GEN-LAST:event_btnSeleccionarInmueblesAIMouseClicked
 
     private void btnLimpiarTablaAIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarTablaAIMouseClicked
@@ -3025,7 +3041,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSeleccionarVecinoAIMouseClicked
 
     private void btnAsignarInmueblesAIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignarInmueblesAIMouseClicked
-        if (ic.comprobarAsignacion(tblSeleccionInmueblesAI, lblVecinoIdAI)==true){
+        if (ic.comprobarAsignacion(tblSeleccionInmueblesAI, lblVecinoIdAI) == true) {
             ic.AsignarInmueble(tblSeleccionInmueblesAI, lblVecinoIdAI);
             limpiarUsuarioAsignar();
             limpiarTablaAsignar();
@@ -3035,11 +3051,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
     private void btnAsignarInmueblesGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignarInmueblesGIMouseClicked
         if (asignacionInmuebleFrame.isVisible() == false) {
-                dimensionarFrameDatos(asignacionInmuebleFrame);
-            }
-            asignacionInmuebleFrame.show();
-            ic.cargarTablaInmuebles("",tblInmueblesAI);
-            ic.cargarTablaVecinosAsignacion("", tblVecinosAI);                                        
+            dimensionarFrameDatos(asignacionInmuebleFrame);
+        }
+        asignacionInmuebleFrame.show();
+        ic.cargarTablaInmuebles("", tblInmueblesAI);
+        ic.cargarTablaVecinosAsignacion("", tblVecinosAI);
     }//GEN-LAST:event_btnAsignarInmueblesGIMouseClicked
 
     private void btnAltaAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaAdminActionPerformed
@@ -3055,7 +3071,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarTablaAIActionPerformed
 
     private void btnAltaInmuebleGI1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaInmuebleGI1MouseClicked
-         if(edicionServicioFrame.isVisible()==false){
+        if (edicionServicioFrame.isVisible() == false) {
             dimensionarFrameDatos(edicionServicioFrame);
         }
         //limpiarInmuebleForm();
@@ -3080,11 +3096,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
     private void btnAsignarInmueblesGI1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignarInmueblesGI1MouseClicked
         if (asignacionServiciosFrame.isVisible() == false) {
-                dimensionarFrameDatos(asignacionServiciosFrame);
-            }
-            asignacionServiciosFrame.show();
-            //ic.cargarTablaInmuebles("",tblInmueblesAI);
-            //ic.cargarTablaVecinosAsignacion("", tblVecinosAI);   
+            dimensionarFrameDatos(asignacionServiciosFrame);
+        }
+        asignacionServiciosFrame.show();
+        //ic.cargarTablaInmuebles("",tblInmueblesAI);
+        //ic.cargarTablaVecinosAsignacion("", tblVecinosAI);   
     }//GEN-LAST:event_btnAsignarInmueblesGI1MouseClicked
 
     private void btnAsignarInmueblesGI1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarInmueblesGI1ActionPerformed
@@ -3155,6 +3171,28 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5MouseClicked
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        ctrl.logoutAdmin();
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void btnDetalleEUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetalleEUMouseClicked
+        if (jTable3.getSelectedRow() >= 0) {
+            if (edicionInmuebleFrame.isVisible() == false) {
+                dimensionarFrameDatos(edicionInmuebleFrame);
+            }
+            ic.cargarFormInmueble(
+                    txtIdEI,
+                    txtDireccionEI,
+                    txtIdVecinoEI,
+                    txtNombreEI,
+                    txtApellidosEI,
+                    txtTelefonoEI,
+                    txtEmailEI,
+                    jTable3);
+            edicionInmuebleFrame.show();
+        }
+    }//GEN-LAST:event_btnDetalleEUMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -3199,7 +3237,8 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jIF.show();
 
     }
-    private void limpiarUserForm(){
+
+    private void limpiarUserForm() {
         txtIdEU.setText("");
         txtNombreEU.setText("");
         txtApellidosEU.setText("");
@@ -3208,8 +3247,8 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         txtUserNameEU.setText("");
         txtPasswordEU.setText("");
     }
-    
-    private void limpiarInmuebleForm(){
+
+    private void limpiarInmuebleForm() {
         txtIdEI.setText("");
         txtDireccionEI.setText("");
         txtApellidosEI.setText("");
@@ -3217,17 +3256,18 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         txtEmailEI.setText("");
         txtNombreEI.setText("");
     }
-    
-    private void limpiarTablaAsignar(){
+
+    private void limpiarTablaAsignar() {
         DefaultTableModel model = (DefaultTableModel) tblSeleccionInmueblesAI.getModel();
         model.setNumRows(0);
     }
-    
-    private void limpiarUsuarioAsignar(){
+
+    private void limpiarUsuarioAsignar() {
         lblVecinoIdAI.setText("");
         lblVecinoNombreAI.setText("");
         lblVecinoApellidosAI.setText("");
     }
+
     public void inicioMain() {
         edicionVecinoFrame.hide();
         gestionUsuariosFrame.hide();

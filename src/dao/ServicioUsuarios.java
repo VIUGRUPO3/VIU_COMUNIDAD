@@ -11,7 +11,6 @@ import java.io.InputStream;
 import modelo.usuario.Vecino;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
@@ -27,16 +26,24 @@ import modelo.usuario.Admin;
  * @author fer
  */
 public class ServicioUsuarios {
-    //Atributos
-
+    
+    private Connection conn;
     //Constructores
     /**
      * Constructor de la clase
      */
     public ServicioUsuarios() {
+        try {
+            this.conn = conectarBD();
+        } catch (IOException ex) {
+            Logger.getLogger(ServicioUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ServicioUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    //Metodos
+//Atributos
+        //Metodos
     /**
      * Metodo que conecta con la base de datos de servidor
      *
@@ -55,7 +62,7 @@ public class ServicioUsuarios {
             String dbPassword = prop.getProperty("db.password");
 
             ConexionDB conDB = new ConexionDB(dbURL, dbUser, dbPassword);
-            Connection conn = conDB.getConnection();
+            conn = conDB.getConnection();
             return conn;
 
         } catch (FileNotFoundException ex) {
@@ -74,7 +81,7 @@ public class ServicioUsuarios {
         String sql = "insert into usuarios (nombre, apellidos, userName, clave, telefono, email) values (?,?,?,?,?,?)";
         String sql2 = "insert into usuarios_roles (nombre, role, idUser) values (?,?,?)";
         try {
-            Connection conn = conectarBD();
+            
             PreparedStatement stmt = conn.prepareStatement(sql);
             {
                 stmt.setString(1, vecino.getNombre());
@@ -89,6 +96,9 @@ public class ServicioUsuarios {
                 while (rs.next()) {
                     idUser = rs.getInt("id");
                 }
+                rs.close();
+                stmt3.close();
+                stmt.close();
             }
             PreparedStatement stmt2 = conn.prepareStatement(sql2);
             {
@@ -96,8 +106,9 @@ public class ServicioUsuarios {
                 stmt2.setString(2, "vecino");
                 stmt2.setInt(3, idUser);
                 stmt2.execute();
+                stmt2.close();
             }
-        } catch (IOException | ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("error SQL", e);
         }
     }
@@ -107,7 +118,7 @@ public class ServicioUsuarios {
         String sql = "update usuarios set nombre = ? , apellidos = ?, userName =?, clave =?, telefono =?, email =? where id = ?";
         String sql2 = "update usuarios_roles set nombre = ? where idUser = ?";
         try {
-            Connection conn = conectarBD();
+            
             PreparedStatement stmt = conn.prepareStatement(sql);
             {
                 stmt.setString(1, v.getNombre());
@@ -118,14 +129,16 @@ public class ServicioUsuarios {
                 stmt.setString(6, v.getEmail());
                 stmt.setInt(7, v.getId());
                 stmt.execute();
+                stmt.close();
             }
             PreparedStatement stmt2 = conn.prepareStatement(sql2);
             {
                 stmt2.setString(1, v.getNombre());
                 stmt2.setInt(2, v.getId());
                 stmt2.execute();
+                stmt2.close();
             }
-        } catch (IOException | ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("error SQL", e);
         }
     }
@@ -136,7 +149,7 @@ public class ServicioUsuarios {
         String sql = "insert into usuarios (nombre, apellidos, userName, clave, telefono, email) values (?,?,?,?,?,?)";
         String sql2 = "insert into usuarios_roles (nombre, role, idUser) values (?,?,?)";
         try {
-            Connection conn = conectarBD();
+            
             PreparedStatement stmt = conn.prepareStatement(sql);
             {
                 stmt.setString(1, admin.getNombre());
@@ -151,6 +164,9 @@ public class ServicioUsuarios {
                 while (rs.next()) {
                     idUser = rs.getInt("id");
                 }
+                rs.close();
+                stmt3.close();
+                stmt.close();
             }
             PreparedStatement stmt2 = conn.prepareStatement(sql2);
             {
@@ -158,8 +174,9 @@ public class ServicioUsuarios {
                 stmt2.setString(2, "admin");
                 stmt2.setInt(3, idUser);
                 stmt2.execute();
+                stmt2.close();
             }
-        } catch (IOException | ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("error SQL", e);
         }
     }
@@ -173,18 +190,20 @@ public class ServicioUsuarios {
         String sql = "delete from usuarios where id = ?";
         String sql2 = "delete from usuarios_roles where idUser = ?";
         try {
-            Connection conn = conectarBD();
+            
             PreparedStatement stmt = conn.prepareStatement(sql);
             {
                 stmt.setInt(1, vecino.getId());
                 stmt.execute();
+                stmt.close();
             }
             PreparedStatement stmt2 = conn.prepareStatement(sql2);
             {
                 stmt2.setInt(1, vecino.getId());
                 stmt2.execute();
+                stmt2.close();
             }
-        } catch (IOException | ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("error SQL", e);
         }
     }
@@ -198,7 +217,7 @@ public class ServicioUsuarios {
     public List<Vecino> listarVecinos() {
         List<Vecino> lista = new ArrayList();
         try {
-            Connection conn = conectarBD();
+            
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from usuarios");
             while (rs.next()) {
@@ -210,9 +229,10 @@ public class ServicioUsuarios {
                         rs.getString("telefono"),
                         rs.getString("email")));
             }
-            System.out.println(lista);
+            rs.close();
+            stmt.close();
 
-        } catch (IOException | ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("error SQL", e);
         }
         return lista;
@@ -229,7 +249,7 @@ public class ServicioUsuarios {
         List<Vecino> lista = new ArrayList();
 
         try {
-            Connection conn = conectarBD();
+            
             PreparedStatement stmt = busquedaNombre(conn, nombre);
             ResultSet rs = stmt.executeQuery();
             {
@@ -242,12 +262,14 @@ public class ServicioUsuarios {
                             rs.getString("clave"),
                             rs.getString("telefono"),
                             rs.getString("email")));
+                    
                 }
+                rs.close();
+                stmt.close();
             }
-        } catch (IOException | ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("error SQL", e);
         }
-        System.out.println(lista);
         return lista;
     }
 
@@ -278,7 +300,7 @@ public class ServicioUsuarios {
         Vecino v = new Vecino();
 
         try {
-            Connection conn = conectarBD();
+            
             PreparedStatement stmt = busquedaId(conn, id);
             ResultSet rs = stmt.executeQuery();
             {
@@ -291,8 +313,10 @@ public class ServicioUsuarios {
                     v.setTelefono(rs.getString("telefono"));
                     v.setEmail(rs.getString("email"));
                 }
+                rs.close();
+                stmt.close();
             }
-        } catch (IOException | ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("error SQL", e);
         }
 
@@ -323,20 +347,26 @@ public class ServicioUsuarios {
      */
     public Vecino comprobarCredenciales(String userName, String pwd) {
         try {
-            Connection conn = conectarBD();
+            
             PreparedStatement stmt = consultaCredenciales(conn, userName, pwd);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next() == false) {
                 System.out.println("USUARIO ERRONEO");
+                rs.close();
+                stmt.close();
                 return null;
             } else {
                 System.out.println("USUARIO AUTENTICADO");
                 Vecino v = buscarId(rs.getInt("id"));
+                rs.close();
+                stmt.close();
                 return v;
             }
+            
+            
 
-        } catch (IOException | ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("error SQL", e);
         }
     }
@@ -360,17 +390,20 @@ public class ServicioUsuarios {
     
     public String obtenerTipoUsuario(Vecino v) {
         try {
-            Connection conn = conectarBD();
+            
             PreparedStatement stmt = consultaTipoUsuario(conn, v);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next() == false) {
+                rs.close();
+                stmt.close();
                 return null;
             } else {
-                return rs.getString("role");
+                String role = rs.getString("role");
+                return role;
             }
 
-        } catch (IOException | ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("error SQL", e);
         }
     }

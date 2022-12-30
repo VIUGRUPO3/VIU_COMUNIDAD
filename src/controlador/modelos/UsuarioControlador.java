@@ -6,31 +6,30 @@ package controlador.modelos;
 
 import controlador.Controlador;
 import dao.ServicioUsuarios;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JPasswordField;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import modelo.usuario.Admin;
 import modelo.usuario.Vecino;
-import vista.MainFrameAdmin;
 
 /**
  *
  * @author fer
  */
 public class UsuarioControlador {
-    private static ServicioUsuarios su = new ServicioUsuarios();
+    
    
 //Atributos
-    private static Controlador ctrl = new Controlador();
+    private ServicioUsuarios su = new ServicioUsuarios();
+    private Controlador ctrl = new Controlador();
     //Constructores
     public UsuarioControlador() {
     }
  
     //Metodos
     public void autenticarUsuario(String userName, String pwd){
-        ServicioUsuarios su = new ServicioUsuarios();
         Vecino v = su.comprobarCredenciales(userName, pwd);
         String tipoUsuario = su.obtenerTipoUsuario(v);
         ctrl.autenticado(v, tipoUsuario);
@@ -38,41 +37,63 @@ public class UsuarioControlador {
     
     
     
-    public void registrarVecino(){
-        String nombre = ctrl.mainFrameAdmin.txtNombreEU.getText();
-        String apellidos = ctrl.mainFrameAdmin.txtApellidosEU.getText();
-        String telefono = ctrl.mainFrameAdmin.txtTelefonoEU.getText();
-        String email = ctrl.mainFrameAdmin.txtEmailEU.getText();
-        String userName = ctrl.mainFrameAdmin.txtUserNameEU.getText();
-        String pwd = ctrl.mainFrameAdmin.txtPasswordEU.getText();
+    public void registrarVecino(
+            JTextField txtNombreEU,
+            JTextField txtApellidosEU,
+            JTextField txtTelefonoEU,
+            JTextField txtEmailEU,
+            JTextField txtUserNameEU,
+            JPasswordField txtPasswordEU, JTable tabla){
+        
+        String nombre = txtNombreEU.getText();
+        String apellidos = txtApellidosEU.getText();
+        String telefono = txtTelefonoEU.getText();
+        String email = txtEmailEU.getText();
+        String userName = txtUserNameEU.getText();
+        String pwd = txtPasswordEU.getText();
         Vecino v = new Vecino(nombre, apellidos, userName, pwd, telefono, email);
         su.insertarVecinoDB(v); 
-        cargarTablaUsuarios("");
+        cargarTablaUsuarios("", tabla);
+        
     }
     
-    public void updateUsuario(){
-        int id = Integer.parseInt(ctrl.mainFrameAdmin.txtIdEU.getText());
-        String nombre = ctrl.mainFrameAdmin.txtNombreEU.getText();
-        String apellidos = ctrl.mainFrameAdmin.txtApellidosEU.getText();
-        String telefono = ctrl.mainFrameAdmin.txtTelefonoEU.getText();
-        String email = ctrl.mainFrameAdmin.txtEmailEU.getText();
-        String userName = ctrl.mainFrameAdmin.txtUserNameEU.getText();
-        String clave = ctrl.mainFrameAdmin.txtPasswordEU.getText();
+    public void updateUsuario(
+            JTextField txtIdEU,
+            JTextField txtNombreEU,
+            JTextField txtApellidosEU,
+            JTextField txtTelefonoEU,
+            JTextField txtEmailEU,
+            JTextField txtUserNameEU,
+            JPasswordField txtPasswordEU, JTable tabla){
+        
+        int id = Integer.parseInt(txtIdEU.getText());
+        String nombre = txtNombreEU.getText();
+        String apellidos = txtApellidosEU.getText();
+        String telefono = txtTelefonoEU.getText();
+        String email = txtEmailEU.getText();
+        String userName = txtUserNameEU.getText();
+        String clave = txtPasswordEU.getText();
         Vecino v = new Vecino (id, nombre, apellidos, userName, clave, telefono,email);
         su.updateUsuario(v);
-        cargarTablaUsuarios("");
+        cargarTablaUsuarios("", tabla);
     }
     
-    public void registrarAdmin(){
-        String nombre = ctrl.mainFrameAdmin.txtNombreRA.getText();
-        String apellidos = ctrl.mainFrameAdmin.txtApellidosRA.getText();
-        String telefono = ctrl.mainFrameAdmin.txtTelefonoRA.getText();
-        String email = ctrl.mainFrameAdmin.txtEmailRA.getText();
-        String userName = ctrl.mainFrameAdmin.txtUserNameRA.getText();
-        String pwd = ctrl.mainFrameAdmin.txtPasswordRA.getText();
+    public void registrarAdmin(
+            JTextField txtNombreRA,
+            JTextField txtApellidosRA,
+            JTextField txtTelefonoRA,
+            JTextField txtEmailRA,
+            JTextField txtUserNameRA,
+            JPasswordField txtPasswordRA, JTable tabla){
+        String nombre = txtNombreRA.getText();
+        String apellidos = txtApellidosRA.getText();
+        String telefono = txtTelefonoRA.getText();
+        String email = txtEmailRA.getText();
+        String userName = txtUserNameRA.getText();
+        String pwd = txtPasswordRA.getText();
         Admin a = new Admin(nombre, apellidos, userName, pwd, telefono, email);
         su.insertarAdminDB(a);
-        cargarTablaUsuarios("");
+        cargarTablaUsuarios("", tabla);
     }
     
     public List<Vecino> obtenerListaUsuarios(String nombre){
@@ -80,27 +101,35 @@ public class UsuarioControlador {
         return lista;
     }
     
-    public void eliminarUsuario (){
-        int[] lista = ctrl.mainFrameAdmin.jTable1.getSelectedRows();
+    public void eliminarUsuario (JTable tabla){
+        int[] lista = tabla.getSelectedRows();
         if (lista.length != 0) {
             for (int row : lista) {
-                Vecino v = su.buscarId(obtenerIdTablaUser(row));
+                Vecino v = su.buscarId(obtenerIdTablaUser(row, tabla));
                 su.borrarVecino(v);
             }
         }
-        cargarTablaUsuarios("");
+        cargarTablaUsuarios("", tabla);
     }
     
-    public void cargarFormUsuario(){
-        int row = ctrl.mainFrameAdmin.jTable1.getSelectedRow();
-        Vecino v = obtenerVecino(obtenerIdTablaUser(row));
-        ctrl.mainFrameAdmin.txtIdEU.setText(Integer.toString(v.getId()));
-        ctrl.mainFrameAdmin.txtNombreEU.setText(v.getNombre());
-        ctrl.mainFrameAdmin.txtApellidosEU.setText(v.getApellidos());
-        ctrl.mainFrameAdmin.txtTelefonoEU.setText(v.getTelefono());
-        ctrl.mainFrameAdmin.txtEmailEU.setText(v.getEmail());
-        ctrl.mainFrameAdmin.txtUserNameEU.setText(v.getUserName());
-        ctrl.mainFrameAdmin.txtPasswordEU.setText(v.getClave());
+    public void cargarFormUsuario(
+            JTable tabla, 
+            JTextField txtIdEU,
+            JTextField txtNombreEU,
+            JTextField txtApellidosEU,
+            JTextField txtTelefonoEU,
+            JTextField txtEmailEU,
+            JTextField txtUserNameEU,
+            JPasswordField txtPasswordEU ){
+        int row = tabla.getSelectedRow();
+        Vecino v = obtenerVecino(obtenerIdTablaUser(row, tabla));
+        txtIdEU.setText(Integer.toString(v.getId()));
+        txtNombreEU.setText(v.getNombre());
+        txtApellidosEU.setText(v.getApellidos());
+        txtTelefonoEU.setText(v.getTelefono());
+        txtEmailEU.setText(v.getEmail());
+        txtUserNameEU.setText(v.getUserName());
+        txtPasswordEU.setText(v.getClave());
     }
     
     public Vecino obtenerVecino (int id){
@@ -108,14 +137,14 @@ public class UsuarioControlador {
         return v;
     }
     
-    public int obtenerIdTablaUser(int row) {
-        int id = (int) ctrl.mainFrameAdmin.jTable1.getValueAt(row, 0);
+    public int obtenerIdTablaUser(int row, JTable tabla) {
+        int id = (int) tabla.getValueAt(row, 0);
         return id;
     }
     
-    public void cargarTablaUsuarios(String nombre) {
+    public void cargarTablaUsuarios(String nombre, JTable tabla) {
         List<Vecino> lista = obtenerListaUsuarios(nombre);
-        DefaultTableModel model = (DefaultTableModel) ctrl.mainFrameAdmin.jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         model.setNumRows(0);
         for (int i = 0; i < lista.size(); i++) {
             model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getNombre(), lista.get(i).getApellidos(), lista.get(i).getTelefono(), lista.get(i).getEmail(), lista.get(i).getUserName()});
