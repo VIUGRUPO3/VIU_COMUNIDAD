@@ -11,11 +11,20 @@
 package Main;
 
 import controlador.Controlador;
+import dao.Conexion;
+import dao.ConexionDB;
 import dao.ServicioUsuarios;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.usuario.Admin;
 import modelo.ComunidadCRUD;
 import modelo.GastoConceptoCompuesto;
@@ -214,8 +223,12 @@ public class main {
 //        su.buscarNombre("Fernan");
         
         
-        
         //Arriba pruebas, aqui comienza la app.
+        try {
+            Conexion conexion = new Conexion();
+        } catch (IOException | ClassNotFoundException ex) {
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Controlador ctrl = new Controlador();
         ctrl.iniciarApp();
         

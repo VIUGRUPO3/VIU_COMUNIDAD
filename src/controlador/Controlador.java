@@ -5,6 +5,10 @@
 package controlador;
 
 
+import dao.Conexion;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.usuario.Vecino;
 import vista.LoginFrame;
 import vista.MainFrameAdmin;
@@ -21,6 +25,7 @@ public class Controlador {
     public static MainFrameVecino mainFrameVecino = new MainFrameVecino();
     //Constructores
     public Controlador() {
+        
     }
 
     //Metodos

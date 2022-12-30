@@ -124,6 +124,28 @@ public class Inmueble {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 89 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Inmueble other = (Inmueble) obj;
+        return this.id == other.id;
+    }
     
     
 

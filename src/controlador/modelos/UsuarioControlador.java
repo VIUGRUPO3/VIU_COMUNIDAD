@@ -7,6 +7,7 @@ package controlador.modelos;
 import controlador.Controlador;
 import dao.ServicioUsuarios;
 import java.util.List;
+import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -147,8 +148,21 @@ public class UsuarioControlador {
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         model.setNumRows(0);
         for (int i = 0; i < lista.size(); i++) {
-            model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getNombre(), lista.get(i).getApellidos(), lista.get(i).getTelefono(), lista.get(i).getEmail(), lista.get(i).getUserName()});
+            model.addRow(new Object[]{lista.get(i).getId(), 
+                lista.get(i).getNombre(), 
+                lista.get(i).getApellidos(), 
+                lista.get(i).getTelefono(), 
+                lista.get(i).getEmail(), 
+                lista.get(i).getUserName(), 
+                su.obtenerTipoUsuario(lista.get(i)).toUpperCase()});
         }
+    }
+    
+    public void cargarVecinosSelected(JTable tabla, JLabel lblId, JLabel lblNombre, JLabel lblApellidos) {
+        int row = tabla.getSelectedRow();
+        lblId.setText(Integer.toString((int) tabla.getValueAt(row, 0)));
+        lblNombre.setText((String) tabla.getValueAt(row, 1));
+        lblApellidos.setText((String) tabla.getValueAt(row, 2));
     }
     
     

@@ -10,6 +10,7 @@
 package modelo.usuario;
 
 import java.time.LocalDate;
+import java.util.Date;
 import modelo.ComunidadCRUD;
 import modelo.Gasto;
 import modelo.GastoConcepto;
@@ -258,7 +259,7 @@ public interface AdminInterface {
      * servicio
      * @param fechaAlta fecha de alta del servicio fijo
      */
-    public abstract void asignarServicioFijo(ComunidadCRUD comunidadCRUD, Servicio servicio, LocalDate fechaAlta);
+    public abstract void asignarServicioFijo(ComunidadCRUD comunidadCRUD, Servicio servicio, Date fechaAlta);
 
     /**
      * Método que permite asignar un servicio opcional
@@ -271,7 +272,7 @@ public interface AdminInterface {
      * inmueble
      * @param fechaAlta fecha de alta del servicio opcional
      */
-    public abstract void asignarServicioOpcional(ComunidadCRUD comunidadCRUD, Servicio servicio, Inmueble inmueble, LocalDate fechaAlta);
+    public abstract void asignarServicioOpcional(ComunidadCRUD comunidadCRUD, Servicio servicio, Inmueble inmueble, Date fechaAlta);
 
     /**
      * Método que permite jerarquizar gastos

@@ -10,6 +10,7 @@
 package modelo.usuario;
 
 import java.time.LocalDate;
+import java.util.Date;
 import modelo.ComunidadCRUD;
 import modelo.Gasto;
 import modelo.GastoConcepto;
@@ -391,8 +392,7 @@ public class Admin extends Usuario implements AdminInterface {
      * @param fechaAlta fecha inicial del disfrute del servicio
         *
      */
-    @Override
-    public void asignarServicioFijo(ComunidadCRUD comunidadCRUD, Servicio servicio, LocalDate fechaAlta) {
+    public void asignarServicioFijo(ComunidadCRUD comunidadCRUD, Servicio servicio, Date fechaAlta) {
         servicio.asignarServiciosFijosInmuebles(comunidadCRUD, fechaAlta);
     }
 
@@ -407,8 +407,7 @@ public class Admin extends Usuario implements AdminInterface {
      * @param fechaAlta fecha inicial del disfrute del servicio
         *
      */
-    @Override
-    public void asignarServicioOpcional(ComunidadCRUD comunidadCRUD, Servicio servicio, Inmueble inmueble, LocalDate fechaAlta) {
+    public void asignarServicioOpcional(ComunidadCRUD comunidadCRUD, Servicio servicio, Inmueble inmueble, Date fechaAlta) {
         servicio.asignarServicioOpcionalInmueble(comunidadCRUD, inmueble, fechaAlta);
     }
 

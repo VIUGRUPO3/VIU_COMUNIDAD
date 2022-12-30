@@ -6,7 +6,9 @@ package controlador.modelos;
 
 import controlador.Controlador;
 import dao.ServicioInmuebles;
+import dao.ServicioServicioCuentas;
 import dao.ServicioUsuarios;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,6 +16,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import modelo.Inmueble;
+import modelo.Servicio;
+import modelo.ServicioCuenta;
 import modelo.usuario.Vecino;
 
 /**
@@ -25,6 +29,7 @@ public class InmuebleControlador {
     //Atributos
     private ServicioInmuebles si = new ServicioInmuebles();
     private ServicioUsuarios su = new ServicioUsuarios();
+    private ServicioServicioCuentas ssc = new ServicioServicioCuentas();
 
     //Constructores
     public InmuebleControlador() {
@@ -38,7 +43,7 @@ public class InmuebleControlador {
         cargarTablaInmuebles("", tabla);
     }
 
-    public void updateInmueble(JTextField txtIdEI,JTextField txtDireccionEI, JTextField txtIdVecinoEI, JTable tabla) {
+    public void updateInmueble(JTextField txtIdEI, JTextField txtDireccionEI, JTextField txtIdVecinoEI, JTable tabla) {
         int id = Integer.parseInt(txtIdEI.getText());
         Vecino v = null;
         String direccion = txtDireccionEI.getText();
@@ -62,10 +67,18 @@ public class InmuebleControlador {
         if (lista.length != 0) {
             for (int row : lista) {
                 Inmueble i = si.buscarId(obtenerIdTablaInmuebles(row, tabla));
+                eliminarServicioCuentaServicio(i);
                 si.borrarInmueble(i);
             }
         }
         cargarTablaInmuebles("", tabla);
+    }
+
+    private void eliminarServicioCuentaServicio(Inmueble i) {
+        List<ServicioCuenta> listaServicioCuenta = ssc.buscarServiciosInmueble(i.getId());
+        for (ServicioCuenta sc : listaServicioCuenta) {
+            ssc.borrarServicioCuenta(sc);
+        }
     }
 
     public void cargarFormInmueble(
@@ -165,12 +178,48 @@ public class InmuebleControlador {
         model.addRow(new Object[]{i.getId(), i.getDireccion()});
     }
 
-    public void cargarVecinosSelected(JTable tabla, JLabel lblId, JLabel lblNombre, JLabel lblApellidos) {
-        int row = tabla.getSelectedRow();
-        lblId.setText(Integer.toString((int) tabla.getValueAt(row, 0)));
-        lblNombre.setText((String) tabla.getValueAt(row, 1));
-        lblApellidos.setText((String) tabla.getValueAt(row, 2));
+    public void cargarTablaInmueblesAsignar(JTable tablaFuente, JTable tablaDestino) {
+        int[] rows = tablaFuente.getSelectedRows();
+        DefaultTableModel model = (DefaultTableModel) tablaDestino.getModel();
+        model.setNumRows(0);
+        for (int i = 0; i < rows.length; i++) {
+            model.addRow(new Object[]{tablaFuente.getValueAt(rows[i], 0), tablaFuente.getValueAt(rows[i], 1), tablaFuente.getValueAt(rows[i], 2)});
+        }
 
+    }
+
+    public void cargarTablaInmueblesSinServicio(JTable tablaDestino, JTable tablaServicios) {
+        int rowServicios = tablaServicios.getSelectedRow();
+        int idServicio = (int) tablaServicios.getValueAt(rowServicios, 0);
+        List<Inmueble> lista = obtenerInmueblesSinServicio(idServicio);
+        DefaultTableModel model = (DefaultTableModel) tablaDestino.getModel();
+        model.setNumRows(0);
+        for (int i = 0; i < lista.size(); i++) {
+            model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getDireccion(), lista.get(i).getVecino().getNombre() + " " + lista.get(i).getVecino().getApellidos()});
+        }
+    }
+
+    public List<Inmueble> obtenerInmueblesSinServicio(int idServicio) {
+        List<ServicioCuenta> listaCuentasServicio = ssc.buscarInmublesServicios(idServicio);
+        List<Inmueble> listaInmueblesConServicio = new ArrayList();
+        boolean inmueblePresente = false;
+        for (ServicioCuenta sc : listaCuentasServicio) {
+            listaInmueblesConServicio.add(sc.getInmueble());
+        }
+        List<Inmueble> listaInmuebles = si.listarInmuebles();
+        List<Inmueble> InmueblesDisponibles = new ArrayList();
+        for (Inmueble inmueble : listaInmuebles) {
+            inmueblePresente = false;
+            for (Inmueble inmuebleConServicio : listaInmueblesConServicio) {
+                if (inmuebleConServicio.equals(inmueble)) {
+                    inmueblePresente = true;
+                }
+            }
+            if (inmueblePresente == false) {
+                InmueblesDisponibles.add(inmueble);
+            }
+        }
+        return InmueblesDisponibles;
     }
 
     public boolean comprobarAsignacion(JTable tabla, JLabel lblId) {

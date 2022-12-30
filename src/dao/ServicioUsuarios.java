@@ -33,13 +33,13 @@ public class ServicioUsuarios {
      * Constructor de la clase
      */
     public ServicioUsuarios() {
-        try {
-            this.conn = conectarBD();
-        } catch (IOException ex) {
-            Logger.getLogger(ServicioUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ServicioUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        this.conn = Conexion.conn;
+//        try {
+//            this.conn = conectarBD();
+//        } catch (IOException | ClassNotFoundException ex) {
+//            Logger.getLogger(ServicioUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
 //Atributos
@@ -51,25 +51,25 @@ public class ServicioUsuarios {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public Connection conectarBD() throws IOException, ClassNotFoundException {
-        InputStream config;
-        try {
-            config = new FileInputStream("./src/resources/config.properties");
-            Properties prop = new Properties();
-            prop.load(config);
-            String dbURL = prop.getProperty("db.url");
-            String dbUser = prop.getProperty("db.user");
-            String dbPassword = prop.getProperty("db.password");
-
-            ConexionDB conDB = new ConexionDB(dbURL, dbUser, dbPassword);
-            conn = conDB.getConnection();
-            return conn;
-
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ServicioUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
+//    private Connection conectarBD() throws IOException, ClassNotFoundException {
+//        InputStream config;
+//        try {
+//            config = new FileInputStream("./src/resources/config.properties");
+//            Properties prop = new Properties();
+//            prop.load(config);
+//            String dbURL = prop.getProperty("db.url");
+//            String dbUser = prop.getProperty("db.user");
+//            String dbPassword = prop.getProperty("db.password");
+//
+//            ConexionDB conDB = new ConexionDB(dbURL, dbUser, dbPassword);
+//            conn = conDB.getConnection();
+//            return conn;
+//
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(ServicioUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return null;
+//    }
 
     /**
      * Metodo que inserta una instancia de la clase Vecino en la base de datos

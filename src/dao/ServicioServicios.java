@@ -8,7 +8,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import modelo.usuario.Vecino;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,28 +18,29 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelo.Inmueble;
 
+import modelo.Servicio;
 
 /**
  *
  * @author fer
  */
-public class ServicioInmuebles {
+public class ServicioServicios {
 
     //Atributos
     ServicioUsuarios su = new ServicioUsuarios();
     private Connection conn;
+
     //Constructores
     /**
      * Constructor de la clase
      */
-    public ServicioInmuebles() {
+    public ServicioServicios() {
         this.conn = Conexion.conn;
 //        try {
 //            this.conn = conectarBD();
 //        } catch (IOException | ClassNotFoundException ex) {
-//            Logger.getLogger(ServicioInmuebles.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(ServicioServicios.class.getName()).log(Level.SEVERE, null, ex);
 //        }
     }
 
@@ -52,7 +52,7 @@ public class ServicioInmuebles {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-//    private Connection conectarBD() throws IOException, ClassNotFoundException {
+//    public Connection conectarBD() throws IOException, ClassNotFoundException {
 //        InputStream config;
 //        try {
 //            config = new FileInputStream("./src/resources/config.properties");
@@ -67,22 +67,20 @@ public class ServicioInmuebles {
 //            return conn;
 //
 //        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(ServicioInmuebles.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(ServicioServicios.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //        return null;
 //    }
 
-    /**
-     * Metodo que inserta una instancia de la clase Vecino en la base de datos
-     *
-     * @param vecino Objeto de la clase Vecino
-     */
-    public void insertarInmuebleDB(Inmueble i) {
-        String sql = "insert into inmuebles (direccion) values (?)";
+    
+    public void insertarServicioDB(Servicio s) {
+        String sql = "insert into servicios (nombre, tarifa, opcional) values (?, ?, ?)";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
             {
-                stmt.setString(1, i.getDireccion());
+                stmt.setString(1, s.getNombre());
+                stmt.setDouble(2, s.getTarifa());
+                stmt.setBoolean(3, s.isOpcional());
                 stmt.execute();
                 stmt.close();
             }
@@ -90,25 +88,34 @@ public class ServicioInmuebles {
             throw new RuntimeException("error SQL", e);
         }
     }
-
-    public void updateInmueble(Inmueble i) {
-        String sql = "";
-        if (i.getVecino() != null) {
-            sql = "update inmuebles set direccion = ? , vecinoId = ? where id = ?";
-        } else {
-            sql = "update inmuebles set direccion = ?  where id = ?";
+    
+    public Servicio obtenerUltimoServicio(){
+        int idServicio = 0;
+        try {
+            Statement stmt3 = conn.createStatement();
+            ResultSet rs = stmt3.executeQuery("select * from servicios where  id=(select max(id) from servicios)");
+            while (rs.next()) {
+                idServicio = rs.getInt("id");
+            }
+            rs.close();
+            stmt3.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioServicios.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
+        Servicio s = buscarId(idServicio);
+        return s;
+    }
+
+    public void updateServicio(Servicio s) {
+        String sql = "update servicios set nombre = ? , tarifa = ?, opcional = ? where id = ?";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
             {
-                stmt.setString(1, i.getDireccion());
-                if (i.getVecino() != null) {
-                    stmt.setInt(2, i.getVecino().getId());
-                    stmt.setInt(3, i.getId());
-                } else {
-
-                    stmt.setInt(2, i.getId());
-                }
+                stmt.setString(1, s.getNombre());
+                stmt.setDouble(2, s.getTarifa());
+                stmt.setBoolean(3, s.isOpcional());
+                stmt.setInt(4, s.getId());
                 stmt.execute();
                 stmt.close();
             }
@@ -122,12 +129,12 @@ public class ServicioInmuebles {
      *
      * @param vecino objeto de la clase vecino
      */
-    public void borrarInmueble(Inmueble i) {
-        String sql = "delete from inmuebles where id = ?";
+    public void borrarServicio(Servicio s) {
+        String sql = "delete from servicios where id = ?";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
             {
-                stmt.setInt(1, i.getId());
+                stmt.setInt(1, s.getId());
                 stmt.execute();
                 stmt.close();
             }
@@ -142,20 +149,17 @@ public class ServicioInmuebles {
      *
      * @return lista de vecinos
      */
-    public List<Inmueble> listarInmuebles() {
-        List<Inmueble> lista = new ArrayList();
-        Vecino v = null;
-        try {            
+    public List<Servicio> listarServicios() {
+        List<Servicio> lista = new ArrayList();
+        try {
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from inmuebles");
+            ResultSet rs = stmt.executeQuery("select * from servicios");
             while (rs.next()) {
-                if (rs.getInt("vecinoId") > 0) {
-                        v = su.buscarId(rs.getInt("vecinoId"));
-                    } else {
-                        v = null;
-                    }
-                lista.add(new Inmueble(rs.getInt("id"),
-                        v, rs.getString("direccion")
+                lista.add(new Servicio(
+                        rs.getInt("id"),
+                        rs.getString("nombre"), 
+                        rs.getDouble("tarifa"),
+                        rs.getBoolean("opcional")
                 ));
             }
             rs.close();
@@ -167,6 +171,7 @@ public class ServicioInmuebles {
         return lista;
     }
 
+    
     /**
      * Metodo que busca dentro de los registros todos los vecinos que contengan
      * en su nombre el parametro pasado por referencia
@@ -174,22 +179,19 @@ public class ServicioInmuebles {
      * @param nombre
      * @return
      */
-    public List<Inmueble> buscarDireccion(String direccion) {
-        List<Inmueble> lista = new ArrayList();
-        Vecino v = null;
+    public List<Servicio> buscarServicios(String nombre) {
+        List<Servicio> lista = new ArrayList();
         try {
-            PreparedStatement stmt = busquedaDireccion(conn, direccion);
+            PreparedStatement stmt = busquedaServicios(conn, nombre);
             ResultSet rs = stmt.executeQuery();
             {
                 while (rs.next()) {
-                    if (rs.getInt("vecinoId") > 0) {
-                        v = su.buscarId(rs.getInt("vecinoId"));
-                    } else {
-                        v = null;
-                    }
-
-                    lista.add(new Inmueble(rs.getInt("id"),
-                            v, rs.getString("direccion")));
+                    lista.add(new Servicio(
+                            rs.getInt("id"),
+                            rs.getString("nombre"),
+                            rs.getDouble("tarifa"),
+                            rs.getBoolean("opcional")
+                    ));
                 }
                 rs.close();
                 stmt.close();
@@ -210,10 +212,51 @@ public class ServicioInmuebles {
      * @return
      * @throws SQLException
      */
-    private PreparedStatement busquedaDireccion(Connection con, String direccion) throws SQLException {
-        String sql = "select * from inmuebles where direccion like ?";
+    private PreparedStatement busquedaServicios(Connection con, String nombre) throws SQLException {
+        String sql = "select * from servicios where nombre like ?";
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setString(1, direccion + "%");
+        ps.setString(1, nombre + "%");
+        return ps;
+    }
+    
+    public List<Servicio> buscarServiciosOpcionales(String nombre) {
+        List<Servicio> lista = new ArrayList();
+        try {
+            PreparedStatement stmt = busquedaServiciosOpcionales(conn, nombre);
+            ResultSet rs = stmt.executeQuery();
+            {
+                while (rs.next()) {
+                    lista.add(new Servicio(
+                            rs.getInt("id"),
+                            rs.getString("nombre"),
+                            rs.getDouble("tarifa"),
+                            rs.getBoolean("opcional")
+                    ));
+                }
+                rs.close();
+                stmt.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("error SQL", e);
+        }
+
+        return lista;
+    }
+
+    /**
+     * Metodo que genera la consulta parametrizada para realizar la busqueda
+     * porNombre
+     *
+     * @param con
+     * @param nombre
+     * @return
+     * @throws SQLException
+     */
+    private PreparedStatement busquedaServiciosOpcionales(Connection con, String nombre) throws SQLException {
+        String sql = "select * from servicios where opcional = ? and nombre like ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setBoolean(1, true);
+        ps.setString(2, nombre + "%");
         return ps;
     }
 
@@ -224,24 +267,17 @@ public class ServicioInmuebles {
      * @param nombre
      * @return
      */
-    public Inmueble buscarId(int id) {
-        Inmueble i = new Inmueble();
-        Vecino v = null;
+    public Servicio buscarId(int id) {
+        Servicio s = new Servicio();
         try {
             PreparedStatement stmt = busquedaId(conn, id);
             ResultSet rs = stmt.executeQuery();
             {
                 while (rs.next()) {
-                    if (rs.getInt("vecinoId") > 0) {
-                        v = su.buscarId(rs.getInt("vecinoId"));
-                    } else {
-                        v = null;
-                    }
-
-                    i.setId(rs.getInt("id"));
-                    i.setDireccion(rs.getString("direccion"));
-                    i.setVecino(v);
-
+                    s.setId(rs.getInt("id"));
+                    s.setNombre(rs.getString("nombre"));
+                    s.setTarifa(rs.getDouble("tarifa"));
+                    s.setOpcional(rs.getBoolean("opcional"));
                 }
                 rs.close();
                 stmt.close();
@@ -250,7 +286,7 @@ public class ServicioInmuebles {
             throw new RuntimeException("error SQL", e);
         }
 
-        return i;
+        return s;
     }
 
     /**
@@ -263,51 +299,10 @@ public class ServicioInmuebles {
      * @throws SQLException
      */
     private PreparedStatement busquedaId(Connection con, int id) throws SQLException {
-        String sql = "select * from inmuebles where id like ?";
+        String sql = "select * from servicios where id like ?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, id);
         return ps;
     }
-    
-    public List<Inmueble> buscarInmueblesVecino(int vecinoId) {
-        List<Inmueble> lista = new ArrayList();
-        Vecino v = null;
-        try {
-            PreparedStatement stmt = busquedaInmueblesVecino(conn, vecinoId);
-            ResultSet rs = stmt.executeQuery();
-            {
-                while (rs.next()) {
-                    v = su.buscarId(rs.getInt("vecinoId"));
-                    lista.add(new Inmueble(rs.getInt("id"),
-                            v, rs.getString("direccion")));
-                }
-                rs.close();
-                stmt.close();
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("error SQL", e);
-        }
-
-        return lista;
-    }
-
-    /**
-     * Metodo que genera la consulta parametrizada para realizar la busqueda
-     * porNombre
-     *
-     * @param con
-     * @param nombre
-     * @return
-     * @throws SQLException
-     */
-    private PreparedStatement busquedaInmueblesVecino(Connection con, int vecinoId) throws SQLException {
-        String sql = "select * from inmuebles where vecinoId like ?";
-        PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, vecinoId);
-        return ps;
-    }
-    
-    
-   
 
 }

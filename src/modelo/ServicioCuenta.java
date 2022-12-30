@@ -10,6 +10,7 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * Clase que asocia el servicio con inmueble en base a fecha de alta y baja
@@ -31,12 +32,12 @@ public class ServicioCuenta {
     /**
      * Fecha de alta del servicio
      */
-    private LocalDate fechaAlta;
+    private Date fechaAlta;
 
     /**
      * Fecha de baja del servicio
      */
-    private LocalDate fechaBaja;
+    private Date fechaBaja;
 
     //Constructores
     /**
@@ -52,11 +53,22 @@ public class ServicioCuenta {
      * @param servicio objeto servicio
      * @param fechaAlta Objeto fecha con fecha de alta
      */
-    public ServicioCuenta(Inmueble inmueble, Servicio servicio, LocalDate fechaAlta) {
+    
+    
+    public ServicioCuenta(Inmueble inmueble, Servicio servicio, Date fechaAlta, Date fechaBaja) {
+        this.inmueble = inmueble;
+        this.servicio = servicio;
+        this.fechaAlta = fechaAlta;
+        this.fechaBaja = fechaBaja;
+    }
+
+    public ServicioCuenta(Inmueble inmueble, Servicio servicio, Date fechaAlta) {
         this.inmueble = inmueble;
         this.servicio = servicio;
         this.fechaAlta = fechaAlta;
     }
+    
+    
 
     //Métodos
     //Getters
@@ -83,7 +95,7 @@ public class ServicioCuenta {
      *
      * @return fechaAlta objeto fecha alta
      */
-    public LocalDate getFechaAlta() {
+    public Date getFechaAlta() {
         return fechaAlta;
     }
 
@@ -92,7 +104,7 @@ public class ServicioCuenta {
      *
      * @return fechaBaja objeto fecha de baja
      */
-    public LocalDate getFechaBaja() {
+    public Date getFechaBaja() {
         return fechaBaja;
     }
 
@@ -120,7 +132,7 @@ public class ServicioCuenta {
      *
      * @param fechaBaja objeto fecha baja
      */
-    public void setFechaBaja(LocalDate fechaBaja) {
+    public void setFechaBaja(Date fechaBaja) {
         this.fechaBaja = fechaBaja;
     }
 
@@ -129,7 +141,7 @@ public class ServicioCuenta {
      *
      * @param fechaAlta objeto fecha alta
      */
-    public void setFechaAlta(LocalDate fechaAlta) {
+    public void setFechaAlta(Date fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 
@@ -141,7 +153,7 @@ public class ServicioCuenta {
      * @param fechaAlta objeto fecha alta
      * @param fechaBaja objeto fecha baja
      */
-    public void setServicioCuenta(Inmueble inmueble, Servicio servicio, LocalDate fechaAlta, LocalDate fechaBaja) {
+    public void setServicioCuenta(Inmueble inmueble, Servicio servicio, Date fechaAlta, Date fechaBaja) {
         this.setInmueble(inmueble);
         this.setServicio(servicio);
         this.setFechaAlta(fechaAlta);

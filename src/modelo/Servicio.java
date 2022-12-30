@@ -10,6 +10,7 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * Clase que gestiona las operaciones referentes a servicios
@@ -54,12 +55,20 @@ public class Servicio {
      * @param tarifa objeto tarifa de servicio
      * @param opcional objeto tipo servicio opcional
      */
+    
+    
+    public Servicio(String nombre, double tarifa, boolean opcional) {
+        this.nombre = nombre;
+        this.tarifa = tarifa;
+        this.opcional = opcional;
+
+    }
+
     public Servicio(int id, String nombre, double tarifa, boolean opcional) {
         this.id = id;
         this.nombre = nombre;
         this.tarifa = tarifa;
         this.opcional = opcional;
-
     }
 
     //Métodos
@@ -217,7 +226,7 @@ public class Servicio {
      * la comunidad
      * @param fechaAlta objeto fecha de alta del servicio
      */
-    public void asignarServiciosFijosInmuebles(ComunidadCRUD comunidadCRUD, LocalDate fechaAlta) {
+    public void asignarServiciosFijosInmuebles(ComunidadCRUD comunidadCRUD, Date fechaAlta) {
         comunidadCRUD.inmuebles.forEach(inmueble -> {
             ServicioCuenta servicioCuenta = new ServicioCuenta(inmueble, this, fechaAlta);
             comunidadCRUD.serviciosCuenta.add(servicioCuenta);
@@ -233,7 +242,7 @@ public class Servicio {
      * @param inmueble Objeto inmueble al que se va a incluir el servicio
      * @param fechaAlta objeto fecha de alta del servicio
      */
-    public void asignarServicioOpcionalInmueble(ComunidadCRUD comunidadCRUD, Inmueble inmueble, LocalDate fechaAlta) {
+    public void asignarServicioOpcionalInmueble(ComunidadCRUD comunidadCRUD, Inmueble inmueble, Date fechaAlta) {
         ServicioCuenta servicioCuenta = new ServicioCuenta(inmueble, this, fechaAlta);
         comunidadCRUD.serviciosCuenta.add(servicioCuenta);
     }
