@@ -1407,16 +1407,28 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nombre", "Tarifa", "Tipo"
+                "ID", "Nombre", "Tarifa", "Tipo"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane4.setViewportView(jTable4);
+        if (jTable4.getColumnModel().getColumnCount() > 0) {
+            jTable4.getColumnModel().getColumn(0).setMinWidth(40);
+            jTable4.getColumnModel().getColumn(0).setMaxWidth(40);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -2998,7 +3010,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAltaInmuebleGIMouseClicked
 
     private void btnEditarInmuebleGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarInmuebleGIMouseClicked
-        if (jTable2.getSelectedRow() > 0) {
+        if (jTable2.getSelectedRow() >= 0) {
             if (edicionInmuebleFrame.isVisible() == false) {
                 dimensionarFrameDatos(edicionInmuebleFrame);
             }
@@ -3011,6 +3023,8 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                     txtTelefonoEI,
                     txtEmailEI,
                     jTable2);
+            int idInmueble = ic.obtenerIdTablaInmuebles(jTable2.getSelectedRow(), jTable2);
+            sc.cargarTablaServiciosInmueble(idInmueble, jTable4);
             edicionInmuebleFrame.show();
         }
     }//GEN-LAST:event_btnEditarInmuebleGIMouseClicked

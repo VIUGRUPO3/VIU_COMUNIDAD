@@ -163,12 +163,27 @@ public class ServicioControlador {
 
     public void cargarTablaInmueblesServicio(int idServicio, JTable tabla) {
         List<ServicioCuenta> listaServicioCuenta = ssc.buscarInmublesServicios(idServicio);
-        
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         model.setNumRows(0);
         for(ServicioCuenta sc : listaServicioCuenta){
             Inmueble i = si.buscarId(sc.getInmueble().getId());
             model.addRow(new Object[]{i.getId(), i.getDireccion(), i.getVecino().getNombre() + " " + i.getVecino().getApellidos()});
+        }
+    }
+    
+    public void cargarTablaServiciosInmueble(int idInmueble, JTable tabla) {
+        List<ServicioCuenta> listaServicioCuenta = ssc.buscarServiciosInmueble(idInmueble);
+        String tipoServicio;
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        model.setNumRows(0);
+        for(ServicioCuenta sc : listaServicioCuenta){
+            Servicio s = ss.buscarId(sc.getServicio().getId());
+            if(s.isOpcional()==true){
+                tipoServicio = "Opcional";
+            }else{
+                tipoServicio = "Obligatorio";
+            }
+            model.addRow(new Object[]{s.getId(), s.getNombre(), s.getTarifa(), tipoServicio});
         }
     }
 
