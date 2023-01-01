@@ -22,6 +22,7 @@ public class LoginFrame extends javax.swing.JFrame {
         initComponents();
         
     }
+    //Variable que va a controlar si el usuario está logueado o no, para ocultar el formulario según corresponda.
     public static boolean logueado = false;
     /**
      * This method is called from within the constructor to initialize the form.
