@@ -22,7 +22,7 @@ public class LoginFrame extends javax.swing.JFrame {
         initComponents();
         
     }
-
+    public static boolean logueado = false;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -259,12 +259,7 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_campo_passwordFocusGained
 
     private void boton_aceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_aceptarMouseClicked
-        UsuarioControlador uc = new UsuarioControlador();
-        String userName = campo_usuario.getText();
-        String pwd = campo_password.getText();
-        uc.autenticarUsuario(userName, pwd);
-        this.setVisible(false);
-        this.dispose();
+        actuar_segun_login();
     }//GEN-LAST:event_boton_aceptarMouseClicked
 
     private void campo_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_passwordActionPerformed
@@ -278,13 +273,22 @@ public class LoginFrame extends javax.swing.JFrame {
     private void campo_passwordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campo_passwordKeyTyped
         // Permitir utilizar Enter para aceptar el formulario de login
         if (evt.getKeyChar() == KeyEvent.VK_ENTER){
-            UsuarioControlador uc = new UsuarioControlador();
-            String userName = campo_usuario.getText();
-            String pwd = campo_password.getText();
-            uc.autenticarUsuario(userName, pwd);
+            actuar_segun_login();
         }
+        
     }//GEN-LAST:event_campo_passwordKeyTyped
 
+    private void actuar_segun_login(){
+        UsuarioControlador uc = new UsuarioControlador();
+        String userName = campo_usuario.getText();
+        String pwd = campo_password.getText();
+        uc.autenticarUsuario(userName, pwd);
+        if (logueado == true){
+            this.setVisible(false);
+            this.dispose();
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -317,7 +321,7 @@ public class LoginFrame extends javax.swing.JFrame {
             new LoginFrame().setVisible(true);
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_aceptar;
     private javax.swing.JPasswordField campo_password;

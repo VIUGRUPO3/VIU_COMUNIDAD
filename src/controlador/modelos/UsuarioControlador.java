@@ -35,6 +35,7 @@ public class UsuarioControlador {
         if (v != null){
             String tipoUsuario = su.obtenerTipoUsuario(v);
             ctrl.autenticado(v, tipoUsuario);
+            vista.LoginFrame.logueado = true;
         }
     }
     
