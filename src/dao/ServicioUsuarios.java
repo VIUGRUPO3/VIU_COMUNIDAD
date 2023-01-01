@@ -19,7 +19,9 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.usuario.Admin;
+import vista.LoginFrame;
 
 /**
  *
@@ -352,6 +354,7 @@ public class ServicioUsuarios {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next() == false) {
+                JOptionPane.showMessageDialog(null, "Usuario/Contraseña no válidos", "ERROR", LoginFrame.HEIGHT);
                 System.out.println("USUARIO ERRONEO");
                 rs.close();
                 stmt.close();

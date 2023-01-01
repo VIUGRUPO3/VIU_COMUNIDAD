@@ -32,8 +32,10 @@ public class UsuarioControlador {
     //Metodos
     public void autenticarUsuario(String userName, String pwd){
         Vecino v = su.comprobarCredenciales(userName, pwd);
-        String tipoUsuario = su.obtenerTipoUsuario(v);
-        ctrl.autenticado(v, tipoUsuario);
+        if (v != null){
+            String tipoUsuario = su.obtenerTipoUsuario(v);
+            ctrl.autenticado(v, tipoUsuario);
+        }
     }
     
     
