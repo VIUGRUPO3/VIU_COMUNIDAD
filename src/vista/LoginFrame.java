@@ -276,7 +276,7 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_boton_aceptarActionPerformed
 
     private void campo_passwordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campo_passwordKeyTyped
-        // TODO add your handling code here:
+        // Permitir utilizar Enter para aceptar el formulario de login
         if (evt.getKeyChar() == KeyEvent.VK_ENTER){
             UsuarioControlador uc = new UsuarioControlador();
             String userName = campo_usuario.getText();
