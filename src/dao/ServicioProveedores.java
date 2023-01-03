@@ -38,7 +38,7 @@ public class ServicioProveedores {
                 stmt.setString(1, p.getNombre());
                 stmt.setString(2, p.getDireccion());
                 stmt.setString(3, p.getTelefono());
-                stmt.setString(3, p.getEmail());
+                stmt.setString(4, p.getEmail());
                 stmt.execute();
                 stmt.close();
             }

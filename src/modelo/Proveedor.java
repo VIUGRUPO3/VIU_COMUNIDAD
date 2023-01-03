@@ -67,6 +67,14 @@ public class Proveedor {
         this.email = email;
     }
 
+    public Proveedor(String nombre, String direccion, String telefono, String email) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.email = email;
+    }
+
+    
     //3.Métodos
     /**
      * Método para consultar el id de un proveedor
