@@ -32,9 +32,11 @@ public class GastoConceptoSimple extends GastoConcepto {
      * @param servicio servicio asociado al gasto indicado
     *
      */
-    public GastoConceptoSimple(String id, String nombre, Servicio servicio) {
+    public GastoConceptoSimple(int id, String nombre, Servicio servicio) {
         super(id, nombre, servicio);
     }
 
-    //3.Métodos
+    public GastoConceptoSimple(String nombre, Servicio servicio) {
+        super(nombre, servicio);
+    }
 }

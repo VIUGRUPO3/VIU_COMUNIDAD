@@ -264,7 +264,7 @@ public class Admin extends Usuario implements AdminInterface {
         *
      */
     @Override
-    public void altaGastoConceptoCompuesto(ComunidadCRUD comunidadCRUD, String id, String nombre, Servicio servicio) {
+    public void altaGastoConceptoCompuesto(ComunidadCRUD comunidadCRUD, int id, String nombre, Servicio servicio) {
         GastoConceptoCompuesto gastoConceptoCompuesto = new GastoConceptoCompuesto(id, nombre, servicio);
         comunidadCRUD.getGastosConcepto().add(gastoConceptoCompuesto);
     }
@@ -283,7 +283,7 @@ public class Admin extends Usuario implements AdminInterface {
         *
      */
     @Override
-    public void altaGastoConceptoSimple(ComunidadCRUD comunidadCRUD, String id, String nombre, Servicio servicio) {
+    public void altaGastoConceptoSimple(ComunidadCRUD comunidadCRUD, int id, String nombre, Servicio servicio) {
         GastoConceptoSimple gastoConceptoSimple = new GastoConceptoSimple(id, nombre, servicio);
         comunidadCRUD.getGastosConcepto().add(gastoConceptoSimple);
     }

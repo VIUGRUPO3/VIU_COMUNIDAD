@@ -21,7 +21,7 @@ public abstract class GastoConcepto {
      * ID del GastoConcepto
     *
      */
-    private String id;
+    private int id;
 
     /**
      * Nombre del GastoConcepto
@@ -48,12 +48,18 @@ public abstract class GastoConcepto {
      * @param servicio el objeto servicio asociado a dicho gasto
     *
      */
-    public GastoConcepto(String id, String nombre, Servicio servicio) {
+    public GastoConcepto(int id, String nombre, Servicio servicio) {
         this.id = id;
         this.nombre = nombre;
         this.servicio = servicio;
     }
 
+    public GastoConcepto(String nombre, Servicio servicio) {
+        this.nombre = nombre;
+        this.servicio = servicio;
+    }
+
+    
     //3.Métodos
     //Getters
     /**
@@ -62,7 +68,7 @@ public abstract class GastoConcepto {
      * @return id id correspondiente a dicho GastoConcepto
     *
      */
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -93,7 +99,7 @@ public abstract class GastoConcepto {
      * @param id id a asociar al GastoConcepto
     *
      */
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

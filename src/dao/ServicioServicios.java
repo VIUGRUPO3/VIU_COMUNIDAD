@@ -4,10 +4,7 @@
  */
 package dao;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +12,6 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,7 +24,7 @@ import modelo.Servicio;
 public class ServicioServicios {
 
     //Atributos
-    ServicioUsuarios su = new ServicioUsuarios();
+    private ServicioUsuarios su = new ServicioUsuarios();
     private Connection conn;
 
     //Constructores
@@ -37,40 +33,11 @@ public class ServicioServicios {
      */
     public ServicioServicios() {
         this.conn = Conexion.conn;
-//        try {
-//            this.conn = conectarBD();
-//        } catch (IOException | ClassNotFoundException ex) {
-//            Logger.getLogger(ServicioServicios.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+
     }
 
     //Metodos
-    /**
-     * Metodo que conecta con la base de datos de servidor
-     *
-     * @return
-     * @throws IOException
-     * @throws ClassNotFoundException
-     */
-//    public Connection conectarBD() throws IOException, ClassNotFoundException {
-//        InputStream config;
-//        try {
-//            config = new FileInputStream("./src/resources/config.properties");
-//            Properties prop = new Properties();
-//            prop.load(config);
-//            String dbURL = prop.getProperty("db.url");
-//            String dbUser = prop.getProperty("db.user");
-//            String dbPassword = prop.getProperty("db.password");
-//
-//            ConexionDB conDB = new ConexionDB(dbURL, dbUser, dbPassword);
-//            Connection conn = conDB.getConnection();
-//            return conn;
-//
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(ServicioServicios.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return null;
-//    }
+
 
     
     public void insertarServicioDB(Servicio s) {

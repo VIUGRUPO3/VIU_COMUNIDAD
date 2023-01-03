@@ -42,7 +42,7 @@ public class GastoConceptoCompuesto extends GastoConcepto {
      * @param servicio el servicio asociado al gasto compuesto
     *
      */
-    public GastoConceptoCompuesto(String id, String nombre, Servicio servicio) {
+    public GastoConceptoCompuesto(int id, String nombre, Servicio servicio) {
         super(id, nombre, servicio);
         this.gastosConcepto = new ArrayList();
     }

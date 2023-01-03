@@ -178,7 +178,7 @@ public interface AdminInterface {
      * @param servicio objeto servicio que contiene toda la informacion del
      * servicio
      */
-    public abstract void altaGastoConceptoCompuesto(ComunidadCRUD comunidadCRUD, String id, String nombre, Servicio servicio);
+    public abstract void altaGastoConceptoCompuesto(ComunidadCRUD comunidadCRUD, int id, String nombre, Servicio servicio);
 
     /**
      * Método que permite dar de alta un gasto simple
@@ -190,7 +190,7 @@ public interface AdminInterface {
      * @param servicio objeto servicio que contiene toda la informacion del
      * servicio
      */
-    public abstract void altaGastoConceptoSimple(ComunidadCRUD comunidadCRUD, String id, String nombre, Servicio servicio);
+    public abstract void altaGastoConceptoSimple(ComunidadCRUD comunidadCRUD, int id, String nombre, Servicio servicio);
 
     /**
      * Método que permite dar de alta un gasto

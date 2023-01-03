@@ -4,10 +4,6 @@
  */
 package dao;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import modelo.usuario.Vecino;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,9 +12,6 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import modelo.Inmueble;
 
 
@@ -29,7 +22,7 @@ import modelo.Inmueble;
 public class ServicioInmuebles {
 
     //Atributos
-    ServicioUsuarios su = new ServicioUsuarios();
+    private ServicioUsuarios su = new ServicioUsuarios();
     private Connection conn;
     //Constructores
     /**
@@ -37,46 +30,10 @@ public class ServicioInmuebles {
      */
     public ServicioInmuebles() {
         this.conn = Conexion.conn;
-//        try {
-//            this.conn = conectarBD();
-//        } catch (IOException | ClassNotFoundException ex) {
-//            Logger.getLogger(ServicioInmuebles.class.getName()).log(Level.SEVERE, null, ex);
-//        }
     }
 
     //Metodos
-    /**
-     * Metodo que conecta con la base de datos de servidor
-     *
-     * @return
-     * @throws IOException
-     * @throws ClassNotFoundException
-     */
-//    private Connection conectarBD() throws IOException, ClassNotFoundException {
-//        InputStream config;
-//        try {
-//            config = new FileInputStream("./src/resources/config.properties");
-//            Properties prop = new Properties();
-//            prop.load(config);
-//            String dbURL = prop.getProperty("db.url");
-//            String dbUser = prop.getProperty("db.user");
-//            String dbPassword = prop.getProperty("db.password");
-//
-//            ConexionDB conDB = new ConexionDB(dbURL, dbUser, dbPassword);
-//            Connection conn = conDB.getConnection();
-//            return conn;
-//
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(ServicioInmuebles.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return null;
-//    }
 
-    /**
-     * Metodo que inserta una instancia de la clase Vecino en la base de datos
-     *
-     * @param vecino Objeto de la clase Vecino
-     */
     public void insertarInmuebleDB(Inmueble i) {
         String sql = "insert into inmuebles (direccion) values (?)";
         try {
@@ -117,11 +74,7 @@ public class ServicioInmuebles {
         }
     }
 
-    /**
-     * Metodo que elimina un vecino de la base de datos
-     *
-     * @param vecino objeto de la clase vecino
-     */
+    
     public void borrarInmueble(Inmueble i) {
         String sql = "delete from inmuebles where id = ?";
         try {
