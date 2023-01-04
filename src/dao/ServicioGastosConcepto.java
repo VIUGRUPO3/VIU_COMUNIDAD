@@ -176,7 +176,7 @@ public class ServicioGastosConcepto {
                 while (rs.next()) {
                     
                     Servicio s = ss.buscarId(idServicio);
-                    GastoConcepto gc = new GastoConceptoSimple (rs.getString("nombre"),s);
+                    GastoConcepto gc = new GastoConceptoSimple (rs.getInt("id"), rs.getString("nombre"),s);
                     lista.add(gc);
                 }
                 rs.close();
@@ -197,5 +197,87 @@ public class ServicioGastosConcepto {
         return ps;
     }
    
+    public void insertarJerarquia(int idConceptoPadre,int idConceptoHijo){
+        String sql = "insert into gastosCompuesto (idGastoConcepto, idConceptoPadre) values (?, ?)";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            {
+                stmt.setInt(1, idConceptoHijo);
+                stmt.setInt(2, idConceptoPadre);
+                stmt.execute();
+                stmt.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("error SQL", e);
+        }
+    }
+    
+    public void updateJerarquia(int idConceptoPadre,int idConceptoHijo) {
+        String sql = "update gastosCompuesto set idConceptoPadre = ?  where idConceptoHijo = ?";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            {
+                stmt.setInt(1, idConceptoPadre);
+                stmt.setInt(2, idConceptoHijo);
+                stmt.execute();
+                stmt.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("error SQL", e);
+        }
+    }
+    
+    public boolean existeIdJerarquia(int id) {
+        try {
+            PreparedStatement stmt = busquedaIdJerarquia(conn, id);
+            ResultSet rs = stmt.executeQuery();
+            {
+                while (rs.next()) {
+                    return true;
+                }
+                rs.close();
+                stmt.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("error SQL", e);
+        }
+        return false;
+    }
+
+    
+    private PreparedStatement busquedaIdJerarquia(Connection con, int id) throws SQLException {
+        String sql = "select * from gastosCompuesto where idGastoConcepto like ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, id);
+        return ps;
+    }
+    
+    public List<GastoConcepto> buscarConceptosHijos(int idPadre) {
+        List<GastoConcepto> lista = new ArrayList();
+        try {
+            PreparedStatement stmt = busquedaConceptosHijos(conn, idPadre);
+            ResultSet rs = stmt.executeQuery();
+            {
+                while (rs.next()) {
+                    GastoConcepto gc = buscarId(rs.getInt("idGastoConcepto"));
+                    lista.add(gc);
+                }
+                rs.close();
+                stmt.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("error SQL", e);
+        }
+
+        return lista;
+    }
+
+    
+    private PreparedStatement busquedaConceptosHijos(Connection con, int idPadre) throws SQLException {
+        String sql = "select * from gastosCompuesto where idConceptoPadre = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idPadre);
+        return ps;
+    }
 
 }

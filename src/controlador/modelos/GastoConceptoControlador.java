@@ -102,7 +102,9 @@ public class GastoConceptoControlador {
         model.setNumRows(0);
         for (int i = 0; i < lista.size(); i++) {
             Servicio s = lista.get(i).getServicio();
-            model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getNombre(), s.getNombre()});
+            List<GastoConcepto> hijos = sgc.buscarConceptosHijos(lista.get(i).getId());
+           
+            model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getNombre(), s.getNombre(),hijos});
         }
     }
     
@@ -124,6 +126,54 @@ public class GastoConceptoControlador {
         }
     }
 
+    public void cargarConceptoSelected(JTable tabla, JLabel lblIdJGC, JLabel lblNombreJGC, JLabel lblServicioJGC){
+        int row = tabla.getSelectedRow();
+        GastoConcepto gc = sgc.buscarId((int) tabla.getValueAt(row, 0));
+        
+        lblIdJGC.setText(Integer.toString(gc.getId()));
+        lblNombreJGC.setText(gc.getNombre());
+        lblServicioJGC.setText(gc.getServicio().getNombre() );
+        
+    }
+    
+    public void cargarTablaConceptosPorServicio(JTable tablaDestino, JTable tablaFuente){
+        int rowConcepto = tablaFuente.getSelectedRow();
+        int idConcepto = (int) tablaFuente.getValueAt(rowConcepto, 0);
+        GastoConcepto gc = sgc.buscarId(idConcepto);
+        List<GastoConcepto> lista = sgc.buscarConceptosServicio(gc.getServicio().getId());
+        DefaultTableModel model = (DefaultTableModel) tablaDestino.getModel();
+        model.setNumRows(0);
+        for (int i = 0; i < lista.size(); i++) {
+            if(!lista.get(i).equals(gc)){
+                model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getNombre(), lista.get(i).getServicio().getNombre()});
+            }
+        }
+    }
    
+    public void cargarTablaConceptosAsignar(JTable tablaFuente, JTable tablaDestino){
+        int[] rows = tablaFuente.getSelectedRows();
+        DefaultTableModel model = (DefaultTableModel) tablaDestino.getModel();
+        model.setNumRows(0);
+        for (int i = 0; i < rows.length; i++) {
+            model.addRow(new Object[]{tablaFuente.getValueAt(rows[i], 0), tablaFuente.getValueAt(rows[i], 1), tablaFuente.getValueAt(rows[i], 2)});
+        }
+    }
+    
+    public void registrarJerarquia(JLabel lblIdJGC, JTable tblSeleccionConceptosJGC){
+        int idConceptoPadre = Integer.parseInt((String)lblIdJGC.getText());
+        
+        int rows = tblSeleccionConceptosJGC.getRowCount();
+        for(int i = 0; i<rows ; i++){
+            int idConceptoHijo = (int)tblSeleccionConceptosJGC.getValueAt(i, 0);
+            if(sgc.existeIdJerarquia(idConceptoHijo)==false){
+                sgc.insertarJerarquia(idConceptoPadre, idConceptoHijo);
+            }else{
+                sgc.updateJerarquia(idConceptoPadre, idConceptoHijo);
+            }
+            
+        }
+        
+    }
+    
     //Fin de la clase
 }

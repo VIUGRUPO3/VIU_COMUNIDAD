@@ -195,50 +195,6 @@ public class ServicioControlador {
         lblServicioTipoAS.setText((String) tabla.getValueAt(row, 3));
     }
     
-//    public void cargarTablaVecinosAsignacion(String nombre, JTable tabla) {
-//        List<Vecino> lista = su.buscarNombre(nombre);
-//        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
-//        model.setNumRows(0);
-//        for (int i = 0; i < lista.size(); i++) {
-//            model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getNombre(), lista.get(i).getApellidos()});
-//        }
-//    }
-//
-//    public void cargarTablaInmueblesSelected(JTable tablaFuente, JTable tablaDestino, JButton boton, JButton boton2, JButton boton3, JTextField texto) {
-//        tablaFuente.setEnabled(true);
-//        boton.setEnabled(true);
-//        boton2.setEnabled(true);
-//        boton3.setEnabled(true);
-//        texto.setEnabled(true);
-//        int[] rows = tablaFuente.getSelectedRows();
-//        DefaultTableModel model = (DefaultTableModel) tablaDestino.getModel();
-//        model.setNumRows(0);
-//        for (int i = 0; i < rows.length; i++) {
-//            model.addRow(new Object[]{tablaFuente.getValueAt(rows[i], 0), tablaFuente.getValueAt(rows[i], 1)});
-//        }
-//    }
-//
-//    public void cargarTablaInmueblesFromEdit(JTable tablaFuente, JTable tablaDestino, JButton boton, JButton boton2, JButton boton3, JTextField texto, Inmueble i) {
-//        tablaFuente.setEnabled(false);
-//        boton.setEnabled(false);
-//        boton2.setEnabled(false);
-//        boton3.setEnabled(false);
-//        texto.setEnabled(false);
-//        DefaultTableModel model = (DefaultTableModel) tablaDestino.getModel();
-//        model.setNumRows(0);
-//        model.addRow(new Object[]{i.getId(), i.getDireccion()});
-//    }
-//
-//    public void cargarVecinosSelected(JTable tabla, JLabel lblId, JLabel lblNombre, JLabel lblApellidos) {
-//        int row = tabla.getSelectedRow();
-//        lblId.setText(Integer.toString((int) tabla.getValueAt(row, 0)));
-//        lblNombre.setText((String) tabla.getValueAt(row, 1));
-//        lblApellidos.setText((String) tabla.getValueAt(row, 2));
-//
-//    }
-//
-    
-//AsignarServicio(tblSeleccionInmueblesAI, lblServicioIdAS)
     public void AsignarServicio(JTable tabla, JLabel lblId) {
         int rows = tabla.getRowCount();
         Servicio s = ss.buscarId(Integer.parseInt(lblId.getText()));
