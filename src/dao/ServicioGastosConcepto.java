@@ -93,7 +93,7 @@ public class ServicioGastosConcepto {
             while (rs.next()) {
                 
                 Servicio s = ss.buscarId(rs.getInt("idServicio"));
-                GastoConcepto gc = new GastoConceptoSimple (rs.getString("nombre"),s);
+                GastoConcepto gc = new GastoConceptoSimple (rs.getInt("id"),rs.getString("nombre"),s);
                 lista.add(gc);
             }
             rs.close();

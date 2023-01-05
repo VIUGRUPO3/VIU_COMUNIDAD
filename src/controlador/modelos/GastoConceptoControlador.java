@@ -172,6 +172,23 @@ public class GastoConceptoControlador {
         }
     }
     
+    public void cargarTablaConceptosEdicion(GastoConcepto gc, JTable tabla) {
+        
+        List<GastoConcepto> lista = sgc.listarGastosConceptos();
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        model.setNumRows(0);
+        for (int i = 0; i < lista.size(); i++) {
+            Servicio s = lista.get(i).getServicio();
+            List<GastoConcepto> hijos = sgc.buscarConceptosHijos(lista.get(i).getId());
+       
+            model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getNombre(), s.getNombre(),hijos});
+            if(lista.get(i).equals(gc)){
+                tabla.setRowSelectionInterval(i, i);
+            }
+        
+        }
+    }
+    
     /**
      * Método que carga la lista de EConceptoGastoConceptos en la tabla especificada 
      * @param s Nombre del Servicio a incluir

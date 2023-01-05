@@ -209,7 +209,7 @@ public interface AdminInterface {
      * @param importe importe del gasto
      * @param liquidado booleano que indica si el gasto ya ha sido liquidado
      */
-    public abstract void altaGasto(ComunidadCRUD comunidadCRUD, int id, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe, boolean liquidado);
+    public abstract void altaGasto(ComunidadCRUD comunidadCRUD, int id, String descripcion, Date fechaRegistro, Date fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe, boolean liquidado);
 
     /**
      * Método que permite dar de baja un gasto
@@ -237,7 +237,7 @@ public interface AdminInterface {
      * @param liquidado booleano que indica si el gasto ya ha sido liquidado
      * @param gasto objeto gasto que contiene toda la informacion del gasto
      */
-    public abstract void updateGasto(ComunidadCRUD comunidadCRUD, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe, boolean liquidado, Gasto gasto);
+    public abstract void updateGasto(ComunidadCRUD comunidadCRUD, String descripcion, Date fechaRegistro, Date fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe, boolean liquidado, Gasto gasto);
 
     /**
      * Método que permite calcular las liquidaciones de un vecino

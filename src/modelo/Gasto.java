@@ -10,6 +10,7 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * Clase que gestiona la clase Gasto
@@ -34,12 +35,12 @@ public class Gasto {
     /**
      * Fecha de registro del gasto
      */
-    private LocalDate fechaRegistro;
+    private Date fechaRegistro;
 
     /**
      * Fecha de pago del gasto
      */
-    private LocalDate fechaPago;
+    private Date fechaPago;
 
     /**
      * Proveedor asociado al gasto
@@ -88,7 +89,7 @@ public class Gasto {
      *
      *
      */
-    public Gasto(int id, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe, boolean liquidado) {
+    public Gasto(int id, String descripcion, Date fechaRegistro, Date fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe, boolean liquidado) {
         this.id = id;
         this.descripcion = descripcion;
         this.fechaRegistro = fechaRegistro;
@@ -99,6 +100,36 @@ public class Gasto {
         this.importe = importe;
         this.liquidado = liquidado;
     }
+
+    public Gasto(String descripcion, Date fechaRegistro, Date fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe) {
+        this.descripcion = descripcion;
+        this.fechaRegistro = fechaRegistro;
+        this.fechaPago = fechaPago;
+        this.proveedor = proveedor;
+        this.comprobante = comprobante;
+        this.gastoConcepto = gastoConcepto;
+        this.importe = importe;
+    }
+
+    public Gasto(int id, String descripcion, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe) {
+        this.id = id;
+        this.descripcion = descripcion;
+        this.proveedor = proveedor;
+        this.comprobante = comprobante;
+        this.gastoConcepto = gastoConcepto;
+        this.importe = importe;
+    }
+
+    public Gasto(String descripcion, Date fechaRegistro, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe) {
+        this.descripcion = descripcion;
+        this.fechaRegistro = fechaRegistro;
+        this.proveedor = proveedor;
+        this.comprobante = comprobante;
+        this.gastoConcepto = gastoConcepto;
+        this.importe = importe;
+    }
+    
+    
 
     //3.Métodos
     /**
@@ -158,7 +189,7 @@ public class Gasto {
      * @return fechaRegistro la fecha de registro asociado al gasto
     *
      */
-    public LocalDate getFechaRegistro() {
+    public Date getFechaRegistro() {
         return fechaRegistro;
     }
 
@@ -168,7 +199,7 @@ public class Gasto {
      * @return fechaPago la fecha de pago asociado al gasto
     *
      */
-    public LocalDate getFechaPago() {
+    public Date getFechaPago() {
         return fechaPago;
     }
 
@@ -216,7 +247,7 @@ public class Gasto {
      * @param liquidado estado de liquidacion asociado al gasto
     *
      */
-    public void setGasto(String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe, boolean liquidado) {
+    public void setGasto(String descripcion, Date fechaRegistro, Date fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe, boolean liquidado) {
         this.descripcion = descripcion;
         this.fechaRegistro = fechaRegistro;
         this.fechaPago = fechaPago;
@@ -227,6 +258,40 @@ public class Gasto {
         this.liquidado = liquidado;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public void setFechaPago(Date fechaPago) {
+        this.fechaPago = fechaPago;
+    }
+
+    public void setProveedor(Proveedor proveedor) {
+        this.proveedor = proveedor;
+    }
+
+    public void setComprobante(String comprobante) {
+        this.comprobante = comprobante;
+    }
+
+    public void setGastoConcepto(GastoConcepto gastoConcepto) {
+        this.gastoConcepto = gastoConcepto;
+    }
+
+    public void setImporte(double importe) {
+        this.importe = importe;
+    }
+
+    
+    
     /**
      * Método bajaGasto, da de baja a un gasto
      *
@@ -257,7 +322,7 @@ public class Gasto {
      * @param gastoModificar objeto que contiene el gasto a modificar
     *
      */
-    public void updateGasto(ComunidadCRUD comunidadCRUD, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe, boolean liquidado, Gasto gastoModificar) {
+    public void updateGasto(ComunidadCRUD comunidadCRUD, String descripcion, Date fechaRegistro, Date fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe, boolean liquidado, Gasto gastoModificar) {
         comunidadCRUD.gastos.forEach(gasto -> {
             if (gasto == gastoModificar) {
                 gasto.setGasto(descripcion, fechaRegistro, fechaPago, proveedor, comprobante, gastoConcepto, importe, liquidado);
@@ -272,7 +337,7 @@ public class Gasto {
      */
     @Override
     public String toString() {
-        return "--------Gasto" + id + "--------\n fechaRegistro - " + fechaRegistro + "\n fechaPago    - " + fechaPago + "\n comprobante  - " + comprobante + "\n concepto    - " + gastoConcepto + "\n liquidado    - " + liquidado + "\n" + proveedor + "\n--------TOTAL--------\n    " + importe + "Euros \n\n";
+        return "--------Gasto" + id + descripcion + "--------\n fechaRegistro - " + fechaRegistro + "\n fechaPago    - " + fechaPago + "\n comprobante  - " + comprobante + "\n concepto    - " + gastoConcepto + "\n liquidado    - " + liquidado + "\n" + proveedor + "\n--------TOTAL--------\n    " + importe + "Euros \n\n";
     }
 
 }

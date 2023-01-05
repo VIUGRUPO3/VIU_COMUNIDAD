@@ -14,10 +14,8 @@ import dao.ServicioServicioCuentas;
 import dao.ServicioServicios;
 import dao.ServicioUsuarios;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -26,7 +24,6 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Inmueble;
 import modelo.Servicio;
 import modelo.ServicioCuenta;
-import modelo.usuario.Vecino;
 
 /**
  *

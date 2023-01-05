@@ -75,13 +75,36 @@ public class Proveedor {
     }
 
     
-    //3.Métodos
+    
+    
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 41 * hash + this.id;
+        return hash;
+    }
+
     /**
      * Método para consultar el id de un proveedor
      *
      * @return id identificador del proveedor
      *
      */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Proveedor other = (Proveedor) obj;
+        return this.id == other.id;
+    }
+
     public int getId() {
         return id;
     }

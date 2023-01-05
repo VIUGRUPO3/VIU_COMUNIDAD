@@ -10,7 +10,9 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -212,8 +214,9 @@ public class Liquidacion {
      */
     public void identificarGastos(ComunidadCRUD comunidadCRUD, LocalDate fechaInicio, LocalDate fechaFin, Liquidacion liquidacion, Inmueble inmueble) {
         comunidadCRUD.gastos.forEach(gasto -> {
-            if (gasto.isLiquidado() == false && ((gasto.getFechaRegistro().isAfter(fechaInicio) && gasto.getFechaRegistro().isBefore(fechaFin))
-                    || (gasto.getFechaRegistro().isEqual(fechaInicio) || gasto.getFechaRegistro().isEqual(fechaFin)))) {
+            LocalDate fechaRegistro = convertToLocalDateViaInstant(gasto.getFechaRegistro());
+            if (gasto.isLiquidado() == false && ((fechaRegistro.isAfter(fechaInicio) && fechaRegistro.isBefore(fechaFin))
+                    || (fechaRegistro.isEqual(fechaInicio) || fechaRegistro.isEqual(fechaFin)))) {
                 comunidadCRUD.gastosConcepto.forEach(gastoConcepto -> {
                     if (gasto.getGastoConcepto() == gastoConcepto) {
 
@@ -254,6 +257,12 @@ public class Liquidacion {
             }
         }
 
+    }
+    
+    public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+    return dateToConvert.toInstant()
+      .atZone(ZoneId.systemDefault())
+      .toLocalDate();
     }
 
     /**

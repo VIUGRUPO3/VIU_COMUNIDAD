@@ -308,7 +308,7 @@ public class Admin extends Usuario implements AdminInterface {
         *
      */
     @Override
-    public void altaGasto(ComunidadCRUD comunidadCRUD, int id, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe, boolean liquidado) {
+    public void altaGasto(ComunidadCRUD comunidadCRUD, int id, String descripcion, Date fechaRegistro, Date fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe, boolean liquidado) {
         Gasto gasto = new Gasto(id, descripcion, fechaRegistro, fechaPago, proveedor, comprobante, gastoConcepto, importe, liquidado);
         comunidadCRUD.getGastos().add(gasto);
     }
@@ -348,7 +348,7 @@ public class Admin extends Usuario implements AdminInterface {
         *
      */
     @Override
-    public void updateGasto(ComunidadCRUD comunidadCRUD, String descripcion, LocalDate fechaRegistro, LocalDate fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe, boolean liquidado, Gasto gasto) {
+    public void updateGasto(ComunidadCRUD comunidadCRUD, String descripcion, Date fechaRegistro, Date fechaPago, Proveedor proveedor, String comprobante, GastoConcepto gastoConcepto, double importe, boolean liquidado, Gasto gasto) {
         gasto.updateGasto(comunidadCRUD, descripcion, fechaRegistro, fechaPago, proveedor, comprobante, gastoConcepto, importe, liquidado, gasto);
     }
 
