@@ -213,7 +213,7 @@ public class ServicioGastosConcepto {
     }
     
     public void updateJerarquia(int idConceptoPadre,int idConceptoHijo) {
-        String sql = "update gastosCompuesto set idConceptoPadre = ?  where idConceptoHijo = ?";
+        String sql = "update gastosCompuesto set idConceptoPadre = ?  where idGastoConcepto = ?";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
             {
@@ -278,6 +278,48 @@ public class ServicioGastosConcepto {
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, idPadre);
         return ps;
+    }
+    
+    public GastoConcepto buscarConceptosPadre(int idHijo) {
+        GastoConcepto  gc = null;
+        try {
+            PreparedStatement stmt = busquedaConceptosPadres(conn, idHijo);
+            ResultSet rs = stmt.executeQuery();
+            {
+                while (rs.next()) {
+                    gc = buscarId(rs.getInt("idConceptoPadre"));
+                    
+                }
+                rs.close();
+                stmt.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("error SQL", e);
+        }
+
+        return gc;
+    }
+
+    
+    private PreparedStatement busquedaConceptosPadres(Connection con, int idHijo) throws SQLException {
+        String sql = "select * from gastosCompuesto where idGastoConcepto = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idHijo);
+        return ps;
+    }
+    
+    public void borrarJerarquia(GastoConcepto gc) {
+        String sql = "delete from gastosCompuesto where idGastoConcepto = ?";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            {
+                stmt.setInt(1, gc.getId());
+                stmt.execute();
+                stmt.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("error SQL", e);
+        }
     }
 
 }

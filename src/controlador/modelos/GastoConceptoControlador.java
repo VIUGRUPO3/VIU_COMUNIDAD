@@ -14,19 +14,14 @@ import dao.ServicioInmuebles;
 import dao.ServicioServicioCuentas;
 import dao.ServicioServicios;
 import dao.ServicioUsuarios;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import modelo.GastoConcepto;
 import modelo.GastoConceptoSimple;
-import modelo.Inmueble;
 import modelo.Servicio;
-import modelo.ServicioCuenta;
 
 /**
  * Clase GastoConceptoControlador
@@ -229,8 +224,9 @@ public class GastoConceptoControlador {
         List<GastoConcepto> lista = sgc.buscarConceptosServicio(gc.getServicio().getId());
         DefaultTableModel model = (DefaultTableModel) tablaDestino.getModel();
         model.setNumRows(0);
+        GastoConcepto gcPadre = sgc.buscarConceptosPadre(gc.getId());
         for (int i = 0; i < lista.size(); i++) {
-            if(!lista.get(i).equals(gc)){
+            if(!lista.get(i).equals(gc) && !lista.get(i).equals(gcPadre)){
                 model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getNombre(), lista.get(i).getServicio().getNombre()});
             }
         }
@@ -271,5 +267,12 @@ public class GastoConceptoControlador {
         
     }
     
+    
+    public void borrarJerarquia (JLabel lblIdJGC){
+        int idConcepto = Integer.parseInt(lblIdJGC.getText());
+        GastoConcepto gc = sgc.buscarId(idConcepto);
+        sgc.borrarJerarquia(gc);
+        
+    }
     //Fin de la clase
 }

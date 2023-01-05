@@ -338,6 +338,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         lblNombreJGC = new javax.swing.JLabel();
         jLabel73 = new javax.swing.JLabel();
         lblServicioJGC = new javax.swing.JLabel();
+        btnCancelarJGC1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VIU Comunidad");
@@ -4062,23 +4063,41 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         lblServicioJGC.setMinimumSize(new java.awt.Dimension(64, 20));
         lblServicioJGC.setPreferredSize(new java.awt.Dimension(64, 20));
 
+        btnCancelarJGC1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnCancelarJGC1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cancelar.png"))); // NOI18N
+        btnCancelarJGC1.setText("Quitar Jerarquias");
+        btnCancelarJGC1.setMaximumSize(new java.awt.Dimension(104, 22));
+        btnCancelarJGC1.setMinimumSize(new java.awt.Dimension(104, 22));
+        btnCancelarJGC1.setName(""); // NOI18N
+        btnCancelarJGC1.setPreferredSize(new java.awt.Dimension(104, 22));
+        btnCancelarJGC1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelarJGC1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
         jPanel24.setLayout(jPanel24Layout);
         jPanel24Layout.setHorizontalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel24Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel71, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel73, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblServicioJGC, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                    .addComponent(lblIdJGC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(48, 48, 48)
-                .addComponent(jLabel72, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblNombreJGC, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel24Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel71, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel73, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblServicioJGC, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                            .addComponent(lblIdJGC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel72, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblNombreJGC, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCancelarJGC1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel24Layout.setVerticalGroup(
@@ -4094,7 +4113,9 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel73)
                     .addComponent(lblServicioJGC, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(btnCancelarJGC1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
@@ -4117,7 +4138,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel69)
                     .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 21, Short.MAX_VALUE)
                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel70)
                     .addComponent(jScrollPane22, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -4142,7 +4163,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnJerarquizarJGC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelarJGC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
@@ -4945,11 +4966,23 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
     private void btnJerarquizarJGCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnJerarquizarJGCMouseClicked
         gcc.registrarJerarquia(lblIdJGC, tblSeleccionConceptosJGC);
+        limpiarJerarquiaConceptosForm();
+        limpiarTablaAsignar(tblSeleccionConceptosJGC);
+        gcc.cargarTablaConceptosGC("", tblConceptosGC);
+        JerarquizacionGastosConceptoFrame.hide();
     }//GEN-LAST:event_btnJerarquizarJGCMouseClicked
 
     private void btnCancelarJGCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarJGCMouseClicked
         JerarquizacionGastosConceptoFrame.hide();
     }//GEN-LAST:event_btnCancelarJGCMouseClicked
+
+    private void btnCancelarJGC1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarJGC1MouseClicked
+        gcc.borrarJerarquia(lblIdJGC);
+        limpiarJerarquiaConceptosForm();
+        limpiarTablaAsignar(tblSeleccionConceptosJGC);
+        gcc.cargarTablaConceptosGC("", tblConceptosGC);
+        JerarquizacionGastosConceptoFrame.hide();
+    }//GEN-LAST:event_btnCancelarJGC1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -5034,6 +5067,12 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         txtIdEGC.setText("");
         txtNombreEGC.setText("");
     }
+    
+    private void limpiarJerarquiaConceptosForm() {
+        lblIdJGC.setText("");
+        lblNombreJGC.setText("");
+        lblServicioJGC.setText("");
+    }
 
     private void limpiarTablaAsignar(JTable tabla) {
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
@@ -5093,6 +5132,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelarGI;
     private javax.swing.JButton btnCancelarGU;
     private javax.swing.JButton btnCancelarJGC;
+    private javax.swing.JButton btnCancelarJGC1;
     private javax.swing.JButton btnConceptosGG;
     private javax.swing.JButton btnDetalleEU;
     private javax.swing.JButton btnDetalleInmuebleES;

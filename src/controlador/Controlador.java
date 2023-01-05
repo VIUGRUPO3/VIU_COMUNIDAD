@@ -1,3 +1,5 @@
+package controlador;
+
 // Asignatura: 21GIIN Proyectos Programación
 // Profesor: Eduardo Zamudio
 // @author: Grupo 3
@@ -8,10 +10,6 @@
 // @version: 08/01/2023/package controlador;
 
 
-import dao.Conexion;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import modelo.usuario.Vecino;
 import vista.LoginFrame;
 import vista.MainFrameAdmin;
