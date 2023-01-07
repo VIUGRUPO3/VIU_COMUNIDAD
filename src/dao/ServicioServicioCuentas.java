@@ -190,5 +190,30 @@ public class ServicioServicioCuentas {
         return ps;
     }
    
+    public int ContarInmueblesAsociadosServicio ( Servicio s){
+        String sql = "select count(*) from servicioCuentas where idServicio = ?";
+        int n = 0;
+        try {
+            PreparedStatement stmt = ContarInmuebles(conn, s.getId());
+            ResultSet rs = stmt.executeQuery();
+            {
+                while (rs.next()) {
+                    n = rs.getInt(1);
+                }
+                rs.close();
+                stmt.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("error SQL", e);
+        }
+
+        return n;
+    }
+    private PreparedStatement ContarInmuebles(Connection con, int idServicio) throws SQLException {
+        String sql = "select count(*) from servicioCuentas where idServicio = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idServicio);
+        return ps;
+    }
 
 }

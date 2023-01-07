@@ -65,6 +65,14 @@ public class Liquidacion {
         this.gastosLiquidados = new ArrayList();
     }
 
+    public Liquidacion(LocalDate fechaInicio, LocalDate fechaFin) {
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.gastosLiquidados = new ArrayList();
+    }
+    
+    
+
     //3.Métodos
     //Getters
     /**
@@ -107,6 +115,24 @@ public class Liquidacion {
         return gastosLiquidados;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public void setFechaFin(LocalDate fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    public void setGastosLiquidados(List<Gasto> gastosLiquidados) {
+        this.gastosLiquidados = gastosLiquidados;
+    }
+
+    
+    
     /**
      * Método para establecer como liquidados todos los gastos correspondientes
      * a la liquidacion

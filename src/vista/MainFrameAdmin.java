@@ -4,10 +4,12 @@
  */
 package vista;
 
+import com.toedter.calendar.JDateChooser;
 import controlador.Controlador;
 import controlador.modelos.GastoConceptoControlador;
 import controlador.modelos.GastoControlador;
 import controlador.modelos.InmuebleControlador;
+import controlador.modelos.LiquidacionControlador;
 import controlador.modelos.ProveedorControlador;
 import controlador.modelos.ServicioControlador;
 import controlador.modelos.UsuarioControlador;
@@ -30,6 +32,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     ProveedorControlador pc = new ProveedorControlador();
     GastoConceptoControlador gcc = new GastoConceptoControlador();
     GastoControlador gc = new GastoControlador();
+    LiquidacionControlador lc = new LiquidacionControlador();
 
     /**
      * Creates new form MainFrame
@@ -367,6 +370,35 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jScrollPane24 = new javax.swing.JScrollPane();
         tblProveedoresEG = new javax.swing.JTable();
         jLabel79 = new javax.swing.JLabel();
+        gestionLiquidacionesFrame = new javax.swing.JInternalFrame();
+        javax.swing.JButton btnGenerarLiquidacionEG = new javax.swing.JButton();
+        javax.swing.JButton btnEditarLiquidacionGL = new javax.swing.JButton();
+        jLabel75 = new javax.swing.JLabel();
+        btnFiltrarInmueblesGI3 = new javax.swing.JButton();
+        jScrollPane25 = new javax.swing.JScrollPane();
+        tblLiquidacionesGL = new javax.swing.JTable();
+        btnCancelarGI1 = new javax.swing.JButton();
+        dtConsultaLiquidacionGL = new com.toedter.calendar.JDateChooser();
+        edicionLiquidacionFrame = new javax.swing.JInternalFrame();
+        jPanel27 = new javax.swing.JPanel();
+        jLabel83 = new javax.swing.JLabel();
+        txtIdEL = new javax.swing.JTextField();
+        jLabel84 = new javax.swing.JLabel();
+        btnCancelarEI2 = new javax.swing.JButton();
+        btnGuardarEI1 = new javax.swing.JButton();
+        dtFechaInicioEL = new com.toedter.calendar.JDateChooser();
+        dtFechaFinEL = new com.toedter.calendar.JDateChooser();
+        jLabel93 = new javax.swing.JLabel();
+        jPanel28 = new javax.swing.JPanel();
+        jLabel85 = new javax.swing.JLabel();
+        jLabel94 = new javax.swing.JLabel();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jPanel29 = new javax.swing.JPanel();
+        jScrollPane29 = new javax.swing.JScrollPane();
+        tblServicioDetalleLiquidacionEL = new javax.swing.JTable();
+        jPanel30 = new javax.swing.JPanel();
+        jScrollPane27 = new javax.swing.JScrollPane();
+        tblGastoDetalleLiquidacionEL = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VIU Comunidad");
@@ -379,6 +411,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         btnLiquidaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pago.png"))); // NOI18N
         btnLiquidaciones.setText("Liquidaciones");
         btnLiquidaciones.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnLiquidaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLiquidacionesMouseClicked(evt);
+            }
+        });
 
         btnProveedores.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnProveedores.setForeground(new java.awt.Color(51, 51, 51));
@@ -4559,6 +4596,367 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        gestionLiquidacionesFrame.setBackground(new java.awt.Color(255, 255, 255));
+        gestionLiquidacionesFrame.setBorder(null);
+        gestionLiquidacionesFrame.setForeground(new java.awt.Color(255, 255, 255));
+        gestionLiquidacionesFrame.setTitle("Gestion Liquidaciones");
+        gestionLiquidacionesFrame.setPreferredSize(new java.awt.Dimension(986, 586));
+        gestionLiquidacionesFrame.setVisible(false);
+
+        btnGenerarLiquidacionEG.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnGenerarLiquidacionEG.setForeground(new java.awt.Color(51, 51, 51));
+        btnGenerarLiquidacionEG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/agregar_inmueble.png"))); // NOI18N
+        btnGenerarLiquidacionEG.setText("Generar Liquidacion");
+        btnGenerarLiquidacionEG.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnGenerarLiquidacionEG.setOpaque(true);
+        btnGenerarLiquidacionEG.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGenerarLiquidacionEGMouseClicked(evt);
+            }
+        });
+
+        btnEditarLiquidacionGL.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnEditarLiquidacionGL.setForeground(new java.awt.Color(51, 51, 51));
+        btnEditarLiquidacionGL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editar.png"))); // NOI18N
+        btnEditarLiquidacionGL.setText("Detalle");
+        btnEditarLiquidacionGL.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnEditarLiquidacionGL.setOpaque(true);
+        btnEditarLiquidacionGL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditarLiquidacionGLMouseClicked(evt);
+            }
+        });
+
+        jLabel75.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel75.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel75.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel75.setText("Fecha");
+
+        btnFiltrarInmueblesGI3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnFiltrarInmueblesGI3.setForeground(new java.awt.Color(51, 51, 51));
+        btnFiltrarInmueblesGI3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/buscar.png"))); // NOI18N
+        btnFiltrarInmueblesGI3.setText("Consultar");
+        btnFiltrarInmueblesGI3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnFiltrarInmueblesGI3.setOpaque(true);
+        btnFiltrarInmueblesGI3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFiltrarInmueblesGI3MouseClicked(evt);
+            }
+        });
+
+        tblLiquidacionesGL.setFont(new java.awt.Font("SF Pro Display", 0, 12)); // NOI18N
+        tblLiquidacionesGL.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "id", "Fecha Inicial", "Fecha final"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tblLiquidacionesGL.setRowHeight(25);
+        jScrollPane25.setViewportView(tblLiquidacionesGL);
+        if (tblLiquidacionesGL.getColumnModel().getColumnCount() > 0) {
+            tblLiquidacionesGL.getColumnModel().getColumn(0).setMinWidth(40);
+            tblLiquidacionesGL.getColumnModel().getColumn(0).setPreferredWidth(40);
+            tblLiquidacionesGL.getColumnModel().getColumn(0).setMaxWidth(40);
+        }
+
+        btnCancelarGI1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnCancelarGI1.setForeground(new java.awt.Color(51, 51, 51));
+        btnCancelarGI1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cancelar.png"))); // NOI18N
+        btnCancelarGI1.setText("Cancelar");
+        btnCancelarGI1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnCancelarGI1.setOpaque(true);
+        btnCancelarGI1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelarGI1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout gestionLiquidacionesFrameLayout = new javax.swing.GroupLayout(gestionLiquidacionesFrame.getContentPane());
+        gestionLiquidacionesFrame.getContentPane().setLayout(gestionLiquidacionesFrameLayout);
+        gestionLiquidacionesFrameLayout.setHorizontalGroup(
+            gestionLiquidacionesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gestionLiquidacionesFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(gestionLiquidacionesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane25)
+                    .addGroup(gestionLiquidacionesFrameLayout.createSequentialGroup()
+                        .addGroup(gestionLiquidacionesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel75, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(gestionLiquidacionesFrameLayout.createSequentialGroup()
+                                .addComponent(btnGenerarLiquidacionEG, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnEditarLiquidacionGL, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCancelarGI1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dtConsultaLiquidacionGL, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
+                        .addComponent(btnFiltrarInmueblesGI3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        gestionLiquidacionesFrameLayout.setVerticalGroup(
+            gestionLiquidacionesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gestionLiquidacionesFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(gestionLiquidacionesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGenerarLiquidacionEG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditarLiquidacionGL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCancelarGI1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(17, 17, 17)
+                .addGroup(gestionLiquidacionesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(gestionLiquidacionesFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel75)
+                        .addComponent(btnFiltrarInmueblesGI3))
+                    .addComponent(dtConsultaLiquidacionGL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+        );
+
+        edicionLiquidacionFrame.setBackground(new java.awt.Color(255, 255, 255));
+        edicionLiquidacionFrame.setBorder(null);
+        edicionLiquidacionFrame.setForeground(new java.awt.Color(255, 255, 255));
+        edicionLiquidacionFrame.setTitle("Generar / Detalle Liquidación");
+        edicionLiquidacionFrame.setPreferredSize(new java.awt.Dimension(986, 586));
+        edicionLiquidacionFrame.setVisible(false);
+
+        jPanel27.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel27.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        jPanel27.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel83.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel83.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel83.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel83.setText("Id");
+
+        txtIdEL.setEditable(false);
+        txtIdEL.setBackground(new java.awt.Color(255, 255, 255));
+        txtIdEL.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtIdEL.setForeground(new java.awt.Color(51, 51, 51));
+
+        jLabel84.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel84.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel84.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel84.setText("Fecha Inicio");
+
+        btnCancelarEI2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnCancelarEI2.setForeground(new java.awt.Color(51, 51, 51));
+        btnCancelarEI2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cancelar.png"))); // NOI18N
+        btnCancelarEI2.setText("Cancelar");
+        btnCancelarEI2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnCancelarEI2.setOpaque(true);
+        btnCancelarEI2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelarEI2MouseClicked(evt);
+            }
+        });
+
+        btnGuardarEI1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnGuardarEI1.setForeground(new java.awt.Color(51, 51, 51));
+        btnGuardarEI1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/salvar.png"))); // NOI18N
+        btnGuardarEI1.setText("Generar");
+        btnGuardarEI1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnGuardarEI1.setOpaque(true);
+        btnGuardarEI1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGuardarEI1MouseClicked(evt);
+            }
+        });
+
+        jLabel93.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel93.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel93.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel93.setText("Fecha fin");
+
+        javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
+        jPanel27.setLayout(jPanel27Layout);
+        jPanel27Layout.setHorizontalGroup(
+            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel27Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel83, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel84, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtIdEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dtFechaInicioEL, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel27Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(btnGuardarEI1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancelarEI2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel27Layout.createSequentialGroup()
+                        .addComponent(jLabel93, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(dtFechaFinEL, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19))
+        );
+        jPanel27Layout.setVerticalGroup(
+            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel27Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel83, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtIdEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel84)
+                    .addComponent(dtFechaInicioEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dtFechaFinEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel93))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelarEI2)
+                    .addComponent(btnGuardarEI1))
+                .addGap(14, 14, 14))
+        );
+
+        jPanel28.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        jPanel28.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel85.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel85.setText("Total Liquidación");
+
+        jLabel94.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        jLabel94.setForeground(new java.awt.Color(255, 153, 153));
+        jLabel94.setText("######,##");
+
+        javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
+        jPanel28.setLayout(jPanel28Layout);
+        jPanel28Layout.setHorizontalGroup(
+            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel28Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel85)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel94)
+                .addGap(17, 17, 17))
+        );
+        jPanel28Layout.setVerticalGroup(
+            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel28Layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel85)
+                    .addComponent(jLabel94))
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+
+        jTabbedPane3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+
+        tblServicioDetalleLiquidacionEL.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tblServicioDetalleLiquidacionEL.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Inmueble", "Servicio", "Importe"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane29.setViewportView(tblServicioDetalleLiquidacionEL);
+
+        javax.swing.GroupLayout jPanel29Layout = new javax.swing.GroupLayout(jPanel29);
+        jPanel29.setLayout(jPanel29Layout);
+        jPanel29Layout.setHorizontalGroup(
+            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel29Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane29, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel29Layout.setVerticalGroup(
+            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel29Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane29, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane3.addTab("Servicios", jPanel29);
+
+        tblGastoDetalleLiquidacionEL.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tblGastoDetalleLiquidacionEL.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Inmueble", "Concepto", "Importe"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane27.setViewportView(tblGastoDetalleLiquidacionEL);
+
+        javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
+        jPanel30.setLayout(jPanel30Layout);
+        jPanel30Layout.setHorizontalGroup(
+            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel30Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane27, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel30Layout.setVerticalGroup(
+            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel30Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane27, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane3.addTab("Gastos", jPanel30);
+
+        javax.swing.GroupLayout edicionLiquidacionFrameLayout = new javax.swing.GroupLayout(edicionLiquidacionFrame.getContentPane());
+        edicionLiquidacionFrame.getContentPane().setLayout(edicionLiquidacionFrameLayout);
+        edicionLiquidacionFrameLayout.setHorizontalGroup(
+            edicionLiquidacionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, edicionLiquidacionFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(edicionLiquidacionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTabbedPane3)
+                    .addComponent(jPanel27, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel28, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        edicionLiquidacionFrameLayout.setVerticalGroup(
+            edicionLiquidacionFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(edicionLiquidacionFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         panelDatos.setLayer(gestionUsuariosFrame, javax.swing.JLayeredPane.DEFAULT_LAYER);
         panelDatos.setLayer(registroAdminFrame, javax.swing.JLayeredPane.DEFAULT_LAYER);
         panelDatos.setLayer(edicionVecinoFrame, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -4575,6 +4973,8 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         panelDatos.setLayer(edicionConceptoGastoFrame, javax.swing.JLayeredPane.DEFAULT_LAYER);
         panelDatos.setLayer(JerarquizacionGastosConceptoFrame, javax.swing.JLayeredPane.DEFAULT_LAYER);
         panelDatos.setLayer(edicionGastoFrame, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        panelDatos.setLayer(gestionLiquidacionesFrame, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        panelDatos.setLayer(edicionLiquidacionFrame, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout panelDatosLayout = new javax.swing.GroupLayout(panelDatos);
         panelDatos.setLayout(panelDatosLayout);
@@ -4607,7 +5007,8 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                     .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(gestionInmueblesFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addComponent(gestionServiciosFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addComponent(gestionProveedoresFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addComponent(gestionProveedoresFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(gestionLiquidacionesFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addContainerGap()))
             .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelDatosLayout.createSequentialGroup()
@@ -4641,6 +5042,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                     .addContainerGap()
                     .addComponent(JerarquizacionGastosConceptoFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addContainerGap()))
+            .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelDatosLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(edicionLiquidacionFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         panelDatosLayout.setVerticalGroup(
             panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4671,6 +5077,8 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 .addGroup(panelDatosLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(gestionInmueblesFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(gestionLiquidacionesFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(gestionServiciosFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -4707,6 +5115,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 .addGroup(panelDatosLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(JerarquizacionGastosConceptoFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelDatosLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(edicionLiquidacionFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
@@ -5283,7 +5696,6 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         if (JerarquizacionGastosConceptoFrame.isVisible() == false) {
             dimensionarFrameDatos(JerarquizacionGastosConceptoFrame);
         }
-        //gc.cargarTablaGastos("", tblGastosGG);
         limpiarTablaAsignar(tblConceptosHijosJGC);
         gcc.cargarTablaConceptosGC("", tblConceptosJGC);
         JerarquizacionGastosConceptoFrame.show();
@@ -5386,6 +5798,58 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtImporteEGActionPerformed
 
+    private void btnGenerarLiquidacionEGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarLiquidacionEGMouseClicked
+        if (edicionLiquidacionFrame.isVisible() == false) {
+            dimensionarFrameDatos(edicionLiquidacionFrame);
+        }
+        //limpiarTablaAsignar(tblConceptosHijosJGC);
+        //gcc.cargarTablaConceptosGC("", tblConceptosJGC);
+        edicionLiquidacionFrame.show();
+    }//GEN-LAST:event_btnGenerarLiquidacionEGMouseClicked
+
+    private void btnEditarLiquidacionGLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarLiquidacionGLMouseClicked
+        if (tblLiquidacionesGL.getSelectedRow() >= 0) {
+            if (edicionLiquidacionFrame.isVisible() == false) {
+                dimensionarFrameDatos(edicionLiquidacionFrame);
+            }
+            limpiarEdicionLiquidacion();
+            int row = tblLiquidacionesGL.getSelectedRow();
+            lc.cargarDatosLiquidacion((int)tblLiquidacionesGL.getValueAt(row, 0), dtFechaInicioEL,  dtFechaFinEL, txtIdEL);
+            dtFechaInicioEL.setEnabled(false);
+            dtFechaFinEL.setEnabled(false);
+            lc.cargarTablaLiquidacionDetalleServicios((int)tblLiquidacionesGL.getValueAt(row, 0), tblServicioDetalleLiquidacionEL);
+            lc.cargarTablaLiquidacionDetalleGastos((int)tblLiquidacionesGL.getValueAt(row, 0), tblGastoDetalleLiquidacionEL);
+            edicionLiquidacionFrame.show();
+        }
+    }//GEN-LAST:event_btnEditarLiquidacionGLMouseClicked
+
+    private void btnFiltrarInmueblesGI3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarInmueblesGI3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFiltrarInmueblesGI3MouseClicked
+
+    private void btnCancelarGI1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarGI1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarGI1MouseClicked
+
+    private void btnCancelarEI2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarEI2MouseClicked
+        edicionLiquidacionFrame.hide();
+    }//GEN-LAST:event_btnCancelarEI2MouseClicked
+
+    private void btnGuardarEI1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarEI1MouseClicked
+        lc.generarLiquidacion(dtFechaInicioEL, dtFechaFinEL, tblLiquidacionesGL);
+        lc.cargarTablaLiquidaciones(null, tblLiquidacionesGL);
+        edicionLiquidacionFrame.hide();
+    }//GEN-LAST:event_btnGuardarEI1MouseClicked
+
+    private void btnLiquidacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLiquidacionesMouseClicked
+        if (gestionLiquidacionesFrame.isVisible() == false) {
+            dimensionarFrameDatos(gestionLiquidacionesFrame);
+        }
+        limpiarTablaAsignar(tblLiquidacionesGL);
+        lc.cargarTablaLiquidaciones(dtConsultaLiquidacionGL.getDate(), tblLiquidacionesGL);
+        gestionLiquidacionesFrame.show();
+    }//GEN-LAST:event_btnLiquidacionesMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -5485,6 +5949,12 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         txtComprobanteEG.setText("");
         txtImporteEG.setText("");
     }
+    
+    private void limpiarEdicionLiquidacion() {
+        txtIdEL.setText("");
+        dtFechaInicioEL.setDate(null);
+        dtFechaFinEL.setDate(null);
+    }
 
     private void limpiarTablaAsignar(JTable tabla) {
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
@@ -5539,10 +6009,12 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelarEGC;
     private javax.swing.JButton btnCancelarEI;
     private javax.swing.JButton btnCancelarEI1;
+    private javax.swing.JButton btnCancelarEI2;
     private javax.swing.JButton btnCancelarEI4;
     private javax.swing.JButton btnCancelarEP;
     private javax.swing.JButton btnCancelarEU;
     private javax.swing.JButton btnCancelarGI;
+    private javax.swing.JButton btnCancelarGI1;
     private javax.swing.JButton btnCancelarGU;
     private javax.swing.JButton btnCancelarJGC;
     private javax.swing.JButton btnCancelarJGC1;
@@ -5557,6 +6029,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnFiltrarInmueblesGI;
     private javax.swing.JButton btnFiltrarInmueblesGI1;
     private javax.swing.JButton btnFiltrarInmueblesGI2;
+    private javax.swing.JButton btnFiltrarInmueblesGI3;
     private javax.swing.JButton btnFiltrarProveedoresGP;
     private javax.swing.JButton btnFiltrarServicioAS;
     private javax.swing.JButton btnFiltrarUserAI;
@@ -5564,6 +6037,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnGastos;
     private javax.swing.JButton btnGuardarEG;
     private javax.swing.JButton btnGuardarEI;
+    private javax.swing.JButton btnGuardarEI1;
     private javax.swing.JButton btnGuardarEP;
     private javax.swing.JButton btnGuardarES;
     private javax.swing.JButton btnGuardarEU;
@@ -5584,9 +6058,13 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnServicios;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JComboBox<String> cmbTipoServicioES;
+    private com.toedter.calendar.JDateChooser dtConsultaLiquidacionGL;
+    private com.toedter.calendar.JDateChooser dtFechaFinEL;
+    private com.toedter.calendar.JDateChooser dtFechaInicioEL;
     public javax.swing.JInternalFrame edicionConceptoGastoFrame;
     public javax.swing.JInternalFrame edicionGastoFrame;
     public javax.swing.JInternalFrame edicionInmuebleFrame;
+    public javax.swing.JInternalFrame edicionLiquidacionFrame;
     public javax.swing.JInternalFrame edicionProveedorFrame;
     public javax.swing.JInternalFrame edicionServicioFrame;
     public javax.swing.JInternalFrame edicionVecinoFrame;
@@ -5597,6 +6075,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JInternalFrame gestionConceptosFrame;
     private javax.swing.JInternalFrame gestionGastosFrame;
     private javax.swing.JInternalFrame gestionInmueblesFrame;
+    private javax.swing.JInternalFrame gestionLiquidacionesFrame;
     private javax.swing.JInternalFrame gestionProveedoresFrame;
     private javax.swing.JInternalFrame gestionServiciosFrame;
     private javax.swing.JInternalFrame gestionUsuariosFrame;
@@ -5675,6 +6154,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel74;
+    private javax.swing.JLabel jLabel75;
     private javax.swing.JLabel jLabel76;
     private javax.swing.JLabel jLabel77;
     private javax.swing.JLabel jLabel78;
@@ -5683,7 +6163,12 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel80;
     private javax.swing.JLabel jLabel81;
     private javax.swing.JLabel jLabel82;
+    private javax.swing.JLabel jLabel83;
+    private javax.swing.JLabel jLabel84;
+    private javax.swing.JLabel jLabel85;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel93;
+    private javax.swing.JLabel jLabel94;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -5703,7 +6188,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
+    private javax.swing.JPanel jPanel27;
+    private javax.swing.JPanel jPanel28;
+    private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel30;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -5727,6 +6216,9 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane22;
     private javax.swing.JScrollPane jScrollPane23;
     private javax.swing.JScrollPane jScrollPane24;
+    private javax.swing.JScrollPane jScrollPane25;
+    private javax.swing.JScrollPane jScrollPane27;
+    private javax.swing.JScrollPane jScrollPane29;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -5735,6 +6227,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTabbedPane jTabbedPane3;
     public javax.swing.JTable jTable1;
     private javax.swing.JTable jTable12;
     public javax.swing.JTable jTable2;
@@ -5761,16 +6254,19 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     public javax.swing.JTable tblConceptosGC;
     private javax.swing.JTable tblConceptosHijosJGC;
     private javax.swing.JTable tblConceptosJGC;
+    private javax.swing.JTable tblGastoDetalleLiquidacionEL;
     public javax.swing.JTable tblGastosGG;
     public javax.swing.JTable tblInmueblesAI;
     public javax.swing.JTable tblInmueblesAS;
     private javax.swing.JTable tblInmueblesES;
+    public javax.swing.JTable tblLiquidacionesGL;
     private javax.swing.JTable tblProveedoresEG;
     public javax.swing.JTable tblProveedoresGP;
     public javax.swing.JTable tblSeleccionConceptosJGC;
     public javax.swing.JTable tblSeleccionInmueblesAI;
     public javax.swing.JTable tblSeleccionInmueblesAS;
     private javax.swing.JLabel tblSeleccionServiciosECG;
+    private javax.swing.JTable tblServicioDetalleLiquidacionEL;
     public javax.swing.JTable tblServiciosAS;
     private javax.swing.JTable tblServiciosEGC;
     private javax.swing.JTable tblServiciosEI;
@@ -5797,6 +6293,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     public javax.swing.JTextField txtIdEG;
     public javax.swing.JTextField txtIdEGC;
     public javax.swing.JTextField txtIdEI;
+    public javax.swing.JTextField txtIdEL;
     public javax.swing.JTextField txtIdEP;
     public javax.swing.JTextField txtIdES;
     public javax.swing.JTextField txtIdEU;

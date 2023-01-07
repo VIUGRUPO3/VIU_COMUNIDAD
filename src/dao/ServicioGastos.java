@@ -73,6 +73,21 @@ public class ServicioGastos {
             throw new RuntimeException("error SQL", e);
         }
     }
+    
+    public void liquidarGasto(Gasto g) {
+        String sql = "update gastos set liquidado = ? where id = ?";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            {
+                stmt.setBoolean(1, true);
+                stmt.setInt(2, g.getId());
+                stmt.execute();
+                stmt.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("error SQL", e);
+        }
+    }
 
     public void borrarGasto(Gasto g) {
         String sql = "delete from gastos where id = ?";
@@ -201,4 +216,44 @@ public class ServicioGastos {
         ps.setInt(1, id);
         return ps;
     }
+    
+    public List<Gasto> buscarGastosAsociadosConcepto (GastoConcepto gc){
+        List<Gasto> lista = new ArrayList();
+        try {
+            PreparedStatement stmt = busquedaGastoAsociadoConcepto(conn, gc.getId());
+            ResultSet rs = stmt.executeQuery();
+            {
+                while (rs.next()) { 
+                    Proveedor p = sp.buscarId(rs.getInt("idProveedor"));
+                    Gasto g = new Gasto (
+                        rs.getInt("id"),
+                        rs.getString("descripcion"),
+                        rs.getDate("fechaRegistro"),
+                        rs.getDate("fechaPago"),
+                        p,
+                        rs.getString("comprobante"),
+                        gc,
+                        rs.getDouble("importe"),
+                        rs.getBoolean("liquidado")    
+                    );
+                    lista.add(g);
+                }
+                rs.close();
+                stmt.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("error SQL", e);
+        }
+
+        return lista;
+    }
+
+    
+    private PreparedStatement busquedaGastoAsociadoConcepto(Connection con, int idGastoConcepto) throws SQLException {
+        String sql = "select * from gastos where idConcepto like ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idGastoConcepto);
+        return ps;
+    }
+    
 }
