@@ -180,6 +180,45 @@ public class ServicioGastos {
         return ps;
     }
     
+    public List<Gasto> buscarGastoProveedor(int idProveedor) {
+        List<Gasto> lista = new ArrayList();
+        try {
+            PreparedStatement stmt = busquedaGastoProveedor(conn, idProveedor);
+            ResultSet rs = stmt.executeQuery();
+            {
+                while (rs.next()) { 
+                    Proveedor p = sp.buscarId(idProveedor);
+                    GastoConcepto gc = sgc.buscarId(rs.getInt("idConcepto"));
+                    Gasto g = new Gasto (
+                        rs.getInt("id"),
+                        rs.getString("descripcion"),
+                        rs.getDate("fechaRegistro"),
+                        rs.getDate("fechaPago"),
+                        p,
+                        rs.getString("comprobante"),
+                        gc,
+                        rs.getDouble("importe"),
+                        rs.getBoolean("liquidado")    
+                    );
+                    lista.add(g);
+                }
+                rs.close();
+                stmt.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("error SQL", e);
+        }
+
+        return lista;
+    }
+
+    private PreparedStatement busquedaGastoProveedor(Connection con, int idProveedor) throws SQLException {
+        String sql = "select * from gastos where idProveedor like ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idProveedor);
+        return ps;
+    }
+    
     public Gasto buscarId(int id) {
         Gasto g = new Gasto();
         try {

@@ -124,8 +124,6 @@ public class ProveedorControlador {
         
     }
     
-    public void cargarTablaGastosProveedor(){
-        //TODO implementar metodo de carga de tabla de gastos de un proveedor
-    }
+   
     //Fin de la clase
 }

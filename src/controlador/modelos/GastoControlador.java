@@ -10,18 +10,11 @@ package controlador.modelos;
 
 import dao.ServicioGastos;
 import dao.ServicioGastosConcepto;
-import dao.ServicioInmuebles;
 import dao.ServicioProveedores;
-import dao.ServicioServicioCuentas;
-import dao.ServicioServicios;
-import dao.ServicioUsuarios;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -200,5 +193,29 @@ public class GastoControlador {
         }
     }
 
+    public void cargarTablaGastosProveedor(int idProveedor, JTable tabla) {
+        String estado;
+        List<Gasto> lista = sg.buscarGastoProveedor(idProveedor);
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        model.setNumRows(0);
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).isLiquidado() == true) {
+                estado = "LIQUIDADO";
+            } else {
+                estado = "PENDIENTE";
+            }
+            model.addRow(new Object[]{
+                lista.get(i).getId(),
+                lista.get(i).getDescripcion(),
+                lista.get(i).getFechaRegistro(),
+                lista.get(i).getFechaPago(),
+                lista.get(i).getProveedor().getNombre(),
+                lista.get(i).getComprobante(),
+                lista.get(i).getGastoConcepto().getNombre() + " (" + lista.get(i).getGastoConcepto().getServicio().getNombre() + ")",
+                lista.get(i).getImporte(),
+                estado
+            });
+        }
+    }
     //Fin de la clase
 }

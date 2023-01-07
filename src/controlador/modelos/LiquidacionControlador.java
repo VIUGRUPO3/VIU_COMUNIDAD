@@ -121,29 +121,36 @@ public class LiquidacionControlador {
         }
     }
 
-    public void cargarTablaLiquidacionDetalleServicios(int idLiquidacion, JTable tabla) {
+    public Double cargarTablaLiquidacionDetalleServicios(int idLiquidacion, JTable tabla) {
         String tipo;
+        Double cuotaFinal = 0.0;
         Liquidacion l = sl.buscarId(idLiquidacion);
         List<LiquidacionDetalleServicio> lista = sl.buscarLiquidacionDetalleServicio(l);
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         model.setNumRows(0);
         for (int i = 0; i < lista.size(); i++) {
-
             model.addRow(new Object[]{lista.get(i).getInmueble().getDireccion(), lista.get(i).getServicio().getNombre(), lista.get(i).getCuota()});
+            double cuota = lista.get(i).getCuota();
+            cuotaFinal += cuota;
         }
+        return cuotaFinal;
     }
 
-    public void cargarTablaLiquidacionDetalleGastos(int idLiquidacion, JTable tabla) {
+    public Double cargarTablaLiquidacionDetalleGastos(int idLiquidacion, JTable tabla) {
         String tipo;
+        Double cuotaFinal = 0.0;
         Liquidacion l = sl.buscarId(idLiquidacion);
         List<LiquidacionDetalleGasto> lista = sl.buscarLiquidacionDetalleGasto(l);
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         model.setNumRows(0);
         for (int i = 0; i < lista.size(); i++) {
-
             model.addRow(new Object[]{lista.get(i).getInmueble().getDireccion(), lista.get(i).getGastoLiquidacion(), lista.get(i).getCuota()});
+            Double cuota = lista.get(i).getCuota();
+            cuotaFinal += cuota;
         }
+        return cuotaFinal;
     }
+    
 
     public void cargarDatosLiquidacion(int idLiquidacion, JDateChooser dtFechaInicioEL, JDateChooser dtFechaFinEL, JTextField txtIdEL) {
         Liquidacion l = sl.buscarId(idLiquidacion);
@@ -156,6 +163,7 @@ public class LiquidacionControlador {
 
     public void cargarTablaLiquidacionesInmueble(int idInmueble, JTable tabla) {
         String tipo;
+       
         List<Liquidacion> lista = new ArrayList();
         lista = sl.buscarLiquidacionInmueble(idInmueble);
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();

@@ -280,7 +280,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jPanel18 = new javax.swing.JPanel();
         lblGastosProveedorEP = new javax.swing.JLabel();
         jScrollPane16 = new javax.swing.JScrollPane();
-        jTable12 = new javax.swing.JTable();
+        tblGastosProveedorES = new javax.swing.JTable();
         btnCancelarEI4 = new javax.swing.JButton();
         gestionGastosFrame = new javax.swing.JInternalFrame();
         btnAltaGastoGG = new javax.swing.JButton();
@@ -391,7 +391,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jLabel93 = new javax.swing.JLabel();
         jPanel28 = new javax.swing.JPanel();
         jLabel85 = new javax.swing.JLabel();
-        jLabel94 = new javax.swing.JLabel();
+        lblTotalEL = new javax.swing.JLabel();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel29 = new javax.swing.JPanel();
         jScrollPane29 = new javax.swing.JScrollPane();
@@ -3306,7 +3306,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         lblGastosProveedorEP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblGastosProveedorEP.setText("Gastos facturados:");
 
-        jTable12.setModel(new javax.swing.table.DefaultTableModel(
+        tblGastosProveedorES.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -3332,10 +3332,10 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane16.setViewportView(jTable12);
-        if (jTable12.getColumnModel().getColumnCount() > 0) {
-            jTable12.getColumnModel().getColumn(0).setMinWidth(40);
-            jTable12.getColumnModel().getColumn(0).setMaxWidth(40);
+        jScrollPane16.setViewportView(tblGastosProveedorES);
+        if (tblGastosProveedorES.getColumnModel().getColumnCount() > 0) {
+            tblGastosProveedorES.getColumnModel().getColumn(0).setMinWidth(40);
+            tblGastosProveedorES.getColumnModel().getColumn(0).setMaxWidth(40);
         }
 
         btnCancelarEI4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -4877,9 +4877,9 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jLabel85.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel85.setText("Total Liquidación");
 
-        jLabel94.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jLabel94.setForeground(new java.awt.Color(255, 153, 153));
-        jLabel94.setText("######,##");
+        lblTotalEL.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        lblTotalEL.setForeground(new java.awt.Color(255, 153, 153));
+        lblTotalEL.setText("######,##");
 
         javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
         jPanel28.setLayout(jPanel28Layout);
@@ -4889,7 +4889,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel85)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel94)
+                .addComponent(lblTotalEL)
                 .addGap(17, 17, 17))
         );
         jPanel28Layout.setVerticalGroup(
@@ -4898,7 +4898,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel85)
-                    .addComponent(jLabel94))
+                    .addComponent(lblTotalEL))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -5612,7 +5612,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
             limpiarProveedorForm();
             pc.cargarFormProveedor(txtIdEP, txtNombreEP, txtDireccionEP, txtTelefonoEP, txtEmailEP, tblProveedoresGP);
             //TODO Implementar funcion carga tabla de gastos de un proveedor
-            //pc.cargarTablaGastosProveedor(Integer.parseInt(txtIdEP.getText()), jTable11);
+            gc.cargarTablaGastosProveedor(Integer.parseInt(txtIdEP.getText()), tblGastosProveedorES);
             edicionProveedorFrame.show();
         }
     }//GEN-LAST:event_btnEditarProveedorGPMouseClicked
@@ -5644,7 +5644,13 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarEPMouseClicked
 
     private void btnCancelarEI4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarEI4MouseClicked
-        // TODO add your handling code here:
+        if (tblGastosProveedorES.getSelectedRow() >= 0) {
+            if (edicionGastoFrame.isVisible() == false) {
+                dimensionarFrameDatos(edicionGastoFrame);
+            }
+            gc.cargarGastoEdicion(txtIdEG, txtDescripcionEG, txtFRegEG, txtFPagoEG, tblProveedoresEG, txtComprobanteEG, tblConceptosEG, txtImporteEG, txtEstadoEG, tblGastosProveedorES);
+            edicionGastoFrame.show();
+        }
     }//GEN-LAST:event_btnCancelarEI4MouseClicked
 
     private void btnProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProveedoresMouseClicked
@@ -5867,8 +5873,9 @@ public class MainFrameAdmin extends javax.swing.JFrame {
             lc.cargarDatosLiquidacion((int)tblLiquidacionesGL.getValueAt(row, 0), dtFechaInicioEL,  dtFechaFinEL, txtIdEL);
             dtFechaInicioEL.setEnabled(false);
             dtFechaFinEL.setEnabled(false);
-            lc.cargarTablaLiquidacionDetalleServicios((int)tblLiquidacionesGL.getValueAt(row, 0), tblServicioDetalleLiquidacionEL);
-            lc.cargarTablaLiquidacionDetalleGastos((int)tblLiquidacionesGL.getValueAt(row, 0), tblGastoDetalleLiquidacionEL);
+            Double cuotaServicios = lc.cargarTablaLiquidacionDetalleServicios((int)tblLiquidacionesGL.getValueAt(row, 0), tblServicioDetalleLiquidacionEL);
+            Double cuotaGastos = lc.cargarTablaLiquidacionDetalleGastos((int)tblLiquidacionesGL.getValueAt(row, 0), tblGastoDetalleLiquidacionEL);
+            lblTotalEL.setText(String.format("%,.2f", cuotaServicios + cuotaGastos) + "€");
             edicionLiquidacionFrame.show();
         }
     }//GEN-LAST:event_btnEditarLiquidacionGLMouseClicked
@@ -6235,7 +6242,6 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel85;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel93;
-    private javax.swing.JLabel jLabel94;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -6311,7 +6317,6 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane7;
     private javax.swing.JTabbedPane jTabbedPane8;
     public javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable12;
     public javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     public javax.swing.JTable jTable7;
@@ -6324,6 +6329,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     public javax.swing.JLabel lblServicioTipoAS;
     public javax.swing.JLabel lblTarifaServicioAS;
     private javax.swing.JLabel lblTotalEI;
+    private javax.swing.JLabel lblTotalEL;
     public javax.swing.JLabel lblVecinoApellidosAI;
     public javax.swing.JLabel lblVecinoIdAI;
     public javax.swing.JLabel lblVecinoNombreAI;
@@ -6337,6 +6343,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JTable tblConceptosJGC;
     private javax.swing.JTable tblGastoDetalleLiquidacionEL;
     public javax.swing.JTable tblGastosGG;
+    private javax.swing.JTable tblGastosProveedorES;
     public javax.swing.JTable tblInmueblesAI;
     public javax.swing.JTable tblInmueblesAS;
     private javax.swing.JTable tblInmueblesES;
