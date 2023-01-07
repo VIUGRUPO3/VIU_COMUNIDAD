@@ -196,14 +196,14 @@ public class ServicioLiquidacion {
      * @throws SQLException
      */
     private PreparedStatement busquedaLiquidacion(Connection con, Date fecha) throws SQLException {
-        String sql = "select * from liquidaciones where fechaInicio >= ? and fechaFin <= ?";
+        String sql = "select * from liquidaciones where fechaInicio <= ? and fechaFin >= ?";
         PreparedStatement ps = con.prepareStatement(sql);
         java.sql.Date fechaSql = new java.sql.Date(fecha.getTime());
         ps.setDate(1, fechaSql);
         ps.setDate(2, fechaSql);
         return ps;
     }
-    
+
     public List<LiquidacionDetalleServicio> buscarLiquidacionDetalleServicio(Liquidacion l) {
         List<LiquidacionDetalleServicio> lista = new ArrayList();
         try {
@@ -214,8 +214,8 @@ public class ServicioLiquidacion {
                     Servicio s = ss.buscarId(rs.getInt("idServicio"));
                     Inmueble i = si.buscarId(rs.getInt("idInmueble"));
                     LiquidacionDetalleServicio lds = new LiquidacionDetalleServicio(
-                            s, 
-                            l, 
+                            s,
+                            l,
                             i,
                             rs.getDouble("cuota")
                     );
@@ -247,7 +247,7 @@ public class ServicioLiquidacion {
         ps.setInt(1, l.getId());
         return ps;
     }
-    
+
     public List<LiquidacionDetalleGasto> buscarLiquidacionDetalleGasto(Liquidacion l) {
         List<LiquidacionDetalleGasto> lista = new ArrayList();
         try {
@@ -255,11 +255,11 @@ public class ServicioLiquidacion {
             ResultSet rs = stmt.executeQuery();
             {
                 while (rs.next()) {
-                    
+
                     Inmueble i = si.buscarId(rs.getInt("idInmueble"));
                     LiquidacionDetalleGasto ldg = new LiquidacionDetalleGasto(
-                            rs.getString("gastoConcepto"), 
-                            l, 
+                            rs.getString("gastoConcepto"),
+                            l,
                             i,
                             rs.getDouble("cuota")
                     );
@@ -315,6 +315,135 @@ public class ServicioLiquidacion {
             throw new RuntimeException("error SQL", e);
         }
         return lista;
+    }
+
+    public List<Liquidacion> buscarLiquidacionInmueble(int idInmueble) {
+        List<Liquidacion> lista = new ArrayList();
+        Liquidacion l = null;
+        try {
+            PreparedStatement stmt = busquedaLiquidacionInmueble(conn, idInmueble);
+            ResultSet rs = stmt.executeQuery();
+            {
+                while (rs.next()) {
+                    l = buscarId(rs.getInt("idLiquidacion"));
+                }
+                lista.add(l);
+                rs.close();
+                stmt.close();
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("error SQL", e);
+        }
+
+        return lista;
+    }
+
+    /**
+     * Metodo que genera la consulta parametrizada para realizar la busqueda
+     * porNombre
+     *
+     * @param con
+     * @param nombre
+     * @return
+     * @throws SQLException
+     */
+    private PreparedStatement busquedaLiquidacionInmueble(Connection con, int idInmueble) throws SQLException {
+        String sql = "select * from liquidacionDetalleServicio where idInmueble like ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idInmueble);
+        return ps;
+    }
+
+    public List<LiquidacionDetalleServicio> buscarLiquidacionDetalleServicioInmueble(int idInmueble, int idLiquidacion) {
+        List<LiquidacionDetalleServicio> lista = new ArrayList();
+        try {
+            PreparedStatement stmt = busquedaLiquidacionDetalleServicioInmueble(conn, idInmueble, idLiquidacion);
+            ResultSet rs = stmt.executeQuery();
+            {
+                while (rs.next()) {
+                    Liquidacion l = buscarId(idLiquidacion);
+                    Inmueble i = si.buscarId(idInmueble);
+                    Servicio s = ss.buscarId(rs.getInt("idServicio"));
+                    LiquidacionDetalleServicio lds = new LiquidacionDetalleServicio(
+                            s,
+                            l,
+                            i,
+                            rs.getDouble("cuota")
+                    );
+                    lista.add(lds);
+                }
+                rs.close();
+                stmt.close();
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("error SQL", e);
+        }
+
+        return lista;
+    }
+
+    /**
+     * Metodo que genera la consulta parametrizada para realizar la busqueda
+     * porNombre
+     *
+     * @param con
+     * @param nombre
+     * @return
+     * @throws SQLException
+     */
+    private PreparedStatement busquedaLiquidacionDetalleServicioInmueble(Connection con, int idInmueble, int idLiquidacion) throws SQLException {
+        String sql = "select * from liquidacionDetalleServicio where idInmueble like ? and idLiquidacion like ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idInmueble);
+        ps.setInt(2, idLiquidacion);
+        return ps;
+    }
+    
+    public List<LiquidacionDetalleGasto> buscarLiquidacionDetalleGastoInmueble(int idInmueble, int idLiquidacion) {
+        List<LiquidacionDetalleGasto> lista = new ArrayList();
+        try {
+            PreparedStatement stmt = busquedaLiquidacionDetalleGastoInmueble(conn, idInmueble, idLiquidacion);
+            ResultSet rs = stmt.executeQuery();
+            {
+                while (rs.next()) {
+                    Liquidacion l = buscarId(idLiquidacion);
+                    Inmueble i = si.buscarId(idInmueble);                   
+                    LiquidacionDetalleGasto ldg = new LiquidacionDetalleGasto(
+                            rs.getString("GastoConcepto"),
+                            l,
+                            i,
+                            rs.getDouble("cuota")
+                    );
+                    lista.add(ldg);
+                }
+                rs.close();
+                stmt.close();
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("error SQL", e);
+        }
+
+        return lista;
+    }
+
+    /**
+     * Metodo que genera la consulta parametrizada para realizar la busqueda
+     * porNombre
+     *
+     * @param con
+     * @param nombre
+     * @return
+     * @throws SQLException
+     */
+    private PreparedStatement busquedaLiquidacionDetalleGastoInmueble(Connection con, int idInmueble, int idLiquidacion) throws SQLException {
+        String sql = "select * from liquidacionDetalleGasto where idInmueble like ? and idLiquidacion like ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idInmueble);
+        ps.setInt(2, idLiquidacion);
+        return ps;
     }
 
 }

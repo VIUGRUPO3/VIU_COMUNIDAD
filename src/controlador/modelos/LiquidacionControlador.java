@@ -21,6 +21,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -73,7 +74,7 @@ public class LiquidacionControlador {
                 for (GastoConcepto gc : listaConceptos) {
                     List<Gasto> listaGastosAsociados = sg.buscarGastosAsociadosConcepto(gc);
                     for (Gasto g : listaGastosAsociados) {
-                        if (g.getFechaRegistro().after(dtFechaInicioEL.getDate()) && g.getFechaRegistro().before(dtFechaFinEL.getDate()) && g.isLiquidado()== false) {
+                        if (g.getFechaRegistro().after(dtFechaInicioEL.getDate()) && g.getFechaRegistro().before(dtFechaFinEL.getDate()) && g.isLiquidado() == false) {
                             Double cuota = g.getImporte() / inmueblesAsociadosServicio;
                             LiquidacionDetalleGasto ldg = new LiquidacionDetalleGasto(gc.getNombre(), l, inmueble, cuota);
                             sl.insertarLiquidacionDetalleGastoDB(ldg);
@@ -87,19 +88,17 @@ public class LiquidacionControlador {
         liquidarGastos(l);
     }
 
-    private void liquidarGastos(Liquidacion l){
-        for(Gasto g : l.getGastosLiquidados()){
+    private void liquidarGastos(Liquidacion l) {
+        for (Gasto g : l.getGastosLiquidados()) {
             sg.liquidarGasto(g);
         }
     }
+
     public LocalDate convertToLocalDateViaInstant(java.util.Date dateToConvert) {
         return dateToConvert.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
     }
-
-    
-   
 
     public int obtenerIdTabla(int row, JTable tabla) {
         int id = (int) tabla.getValueAt(row, 0);
@@ -109,12 +108,12 @@ public class LiquidacionControlador {
     public void cargarTablaLiquidaciones(Date fecha, JTable tabla) {
         String tipo;
         List<Liquidacion> lista = new ArrayList();
-        if(fecha != null){
+        if (fecha != null) {
             lista = sl.buscarLiquidacion(fecha);
-        }else{
+        } else {
             lista = sl.listarLiquidaciones();
         }
-        
+
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         model.setNumRows(0);
         for (int i = 0; i < lista.size(); i++) {
@@ -129,11 +128,11 @@ public class LiquidacionControlador {
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         model.setNumRows(0);
         for (int i = 0; i < lista.size(); i++) {
-            
+
             model.addRow(new Object[]{lista.get(i).getInmueble().getDireccion(), lista.get(i).getServicio().getNombre(), lista.get(i).getCuota()});
         }
     }
-    
+
     public void cargarTablaLiquidacionDetalleGastos(int idLiquidacion, JTable tabla) {
         String tipo;
         Liquidacion l = sl.buscarId(idLiquidacion);
@@ -141,11 +140,11 @@ public class LiquidacionControlador {
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         model.setNumRows(0);
         for (int i = 0; i < lista.size(); i++) {
-            
+
             model.addRow(new Object[]{lista.get(i).getInmueble().getDireccion(), lista.get(i).getGastoLiquidacion(), lista.get(i).getCuota()});
         }
     }
-    
+
     public void cargarDatosLiquidacion(int idLiquidacion, JDateChooser dtFechaInicioEL, JDateChooser dtFechaFinEL, JTextField txtIdEL) {
         Liquidacion l = sl.buscarId(idLiquidacion);
         txtIdEL.setText(Integer.toString(idLiquidacion));
@@ -155,7 +154,38 @@ public class LiquidacionControlador {
         dtFechaFinEL.setDate(fechaFinDate);
     }
 
+    public void cargarTablaLiquidacionesInmueble(int idInmueble, JTable tabla) {
+        String tipo;
+        List<Liquidacion> lista = new ArrayList();
+        lista = sl.buscarLiquidacionInmueble(idInmueble);
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        model.setNumRows(0);
+        for (int i = 0; i < lista.size(); i++) {
+            model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getFechaInicio(), lista.get(i).getFechaFin()});
+        }
+    }
     
-    
+    public void cargarTablaLiquidacionDetalleInmueble(int idInmueble, int idLiquidacion, JLabel lblTotalEI, JTable tabla) {
+        String tipo;
+        Liquidacion l = sl.buscarId(idLiquidacion);
+        Double cuotaFinal = 0.0;
+        List<LiquidacionDetalleServicio> listaServicios = sl.buscarLiquidacionDetalleServicioInmueble(idInmueble, idLiquidacion);
+        List<LiquidacionDetalleGasto> listaGastos = sl.buscarLiquidacionDetalleGastoInmueble(idInmueble, idLiquidacion);
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        model.setNumRows(0);
+        for (int i = 0; i < listaServicios.size(); i++) {
+            model.addRow(new Object[]{"SERVICIO", listaServicios.get(i).getServicio().getNombre(), listaServicios.get(i).getCuota()});
+            Double cuota = listaServicios.get(i).getCuota();
+            cuotaFinal += cuota;
+        }
+        for (int i = 0; i < listaGastos.size(); i++) {
+            model.addRow(new Object[]{"GASTO", listaGastos.get(i).getGastoLiquidacion(), listaGastos.get(i).getCuota()});
+            Double cuota = listaGastos.get(i).getCuota();
+            cuotaFinal += cuota;
+        }
+        lblTotalEI.setText(String.format("%,.2f", cuotaFinal) + "€");
+    }
+
+
     //Fin de la clase
 }

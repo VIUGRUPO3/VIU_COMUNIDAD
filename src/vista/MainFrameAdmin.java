@@ -4,7 +4,6 @@
  */
 package vista;
 
-import com.toedter.calendar.JDateChooser;
 import controlador.Controlador;
 import controlador.modelos.GastoConceptoControlador;
 import controlador.modelos.GastoControlador;
@@ -17,7 +16,6 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import modelo.Gasto;
 
 /**
  *
@@ -155,12 +153,14 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         tblServiciosEI = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable6 = new javax.swing.JTable();
+        tblLiquidacionDetalleInmueble = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane26 = new javax.swing.JScrollPane();
+        tblLiquidacionInmuebleEI = new javax.swing.JTable();
+        btnAsignarEI1 = new javax.swing.JButton();
+        lblTotalEI = new javax.swing.JLabel();
         asignacionInmuebleFrame = new javax.swing.JInternalFrame();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -1608,7 +1608,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -1621,8 +1621,8 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Servicios", jPanel1);
 
-        jTable5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+        tblLiquidacionDetalleInmueble.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tblLiquidacionDetalleInmueble.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -1630,13 +1630,27 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Tipo", "Concepto", "Importe"
+                "Tipo", "Descripcion", "Cuota"
             }
-        ));
-        jScrollPane5.setViewportView(jTable5);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
 
-        jTable6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(tblLiquidacionDetalleInmueble);
+
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel1.setText("Liquidaciones:");
+
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel2.setText("Detalle Liquidación:");
+
+        tblLiquidacionInmuebleEI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tblLiquidacionInmuebleEI.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -1647,41 +1661,74 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 "Fecha Inicio", "Fecha Fin", "Cuota"
             }
         ));
-        jScrollPane6.setViewportView(jTable6);
+        jScrollPane26.setViewportView(tblLiquidacionInmuebleEI);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel1.setText("Liquidaciones:");
+        btnAsignarEI1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnAsignarEI1.setForeground(new java.awt.Color(51, 51, 51));
+        btnAsignarEI1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/asignar.png"))); // NOI18N
+        btnAsignarEI1.setText("Consultar");
+        btnAsignarEI1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnAsignarEI1.setOpaque(true);
+        btnAsignarEI1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAsignarEI1MouseClicked(evt);
+            }
+        });
+        btnAsignarEI1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsignarEI1ActionPerformed(evt);
+            }
+        });
+        btnAsignarEI1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                btnAsignarEI1KeyTyped(evt);
+            }
+        });
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel2.setText("Detalle Liquidación:");
+        lblTotalEI.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblTotalEI.setForeground(new java.awt.Color(255, 153, 153));
+        lblTotalEI.setText("#####");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(400, 400, 400)
+                        .addComponent(btnAsignarEI1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblTotalEI)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jScrollPane26, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTotalEI)
+                    .addComponent(btnAsignarEI1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Liquidaciones", jPanel2);
@@ -1693,7 +1740,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, edicionInmuebleFrameLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(edicionInmuebleFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane2)
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -1706,7 +1753,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -5281,7 +5328,10 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                     txtEmailEI,
                     jTable2);
             int idInmueble = ic.obtenerIdTablaInmuebles(jTable2.getSelectedRow(), jTable2);
+            limpiarTablaAsignar(tblLiquidacionInmuebleEI);
+            limpiarTablaAsignar(tblLiquidacionDetalleInmueble);
             sc.cargarTablaServiciosInmueble(idInmueble, tblServiciosEI);
+            lc.cargarTablaLiquidacionesInmueble(idInmueble, tblLiquidacionInmuebleEI);
             edicionInmuebleFrame.show();
         }
     }//GEN-LAST:event_btnEditarInmuebleGIMouseClicked
@@ -5824,11 +5874,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarLiquidacionGLMouseClicked
 
     private void btnFiltrarInmueblesGI3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarInmueblesGI3MouseClicked
-        // TODO add your handling code here:
+        lc.cargarTablaLiquidaciones(dtConsultaLiquidacionGL.getDate(), tblLiquidacionesGL);
     }//GEN-LAST:event_btnFiltrarInmueblesGI3MouseClicked
 
     private void btnCancelarGI1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarGI1MouseClicked
-        // TODO add your handling code here:
+        gestionLiquidacionesFrame.hide();
     }//GEN-LAST:event_btnCancelarGI1MouseClicked
 
     private void btnCancelarEI2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarEI2MouseClicked
@@ -5849,6 +5899,22 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         lc.cargarTablaLiquidaciones(dtConsultaLiquidacionGL.getDate(), tblLiquidacionesGL);
         gestionLiquidacionesFrame.show();
     }//GEN-LAST:event_btnLiquidacionesMouseClicked
+
+    private void btnAsignarEI1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignarEI1MouseClicked
+        if(tblLiquidacionInmuebleEI.getSelectedRowCount()>0){
+            int row = tblLiquidacionInmuebleEI.getSelectedRow();
+            int idLiquidacion = (int)tblLiquidacionInmuebleEI.getValueAt(row, 0);
+            lc.cargarTablaLiquidacionDetalleInmueble(Integer.parseInt(txtIdEI.getText()), idLiquidacion, lblTotalEI, tblLiquidacionDetalleInmueble);
+        }
+    }//GEN-LAST:event_btnAsignarEI1MouseClicked
+
+    private void btnAsignarEI1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarEI1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAsignarEI1ActionPerformed
+
+    private void btnAsignarEI1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAsignarEI1KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAsignarEI1KeyTyped
 
     /**
      * @param args the command line arguments
@@ -5994,6 +6060,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnAltaServicioGS;
     private javax.swing.JButton btnAltaVecinoGU;
     private javax.swing.JButton btnAsignarEI;
+    private javax.swing.JButton btnAsignarEI1;
     private javax.swing.JButton btnAsignarInmueblesAI;
     private javax.swing.JButton btnAsignarInmueblesGI;
     private javax.swing.JButton btnAsignarServiciosAS;
@@ -6193,6 +6260,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel30;
+    private javax.swing.JPanel jPanel31;
+    private javax.swing.JPanel jPanel32;
+    private javax.swing.JPanel jPanel33;
+    private javax.swing.JPanel jPanel34;
+    private javax.swing.JPanel jPanel35;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -6217,23 +6289,31 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane23;
     private javax.swing.JScrollPane jScrollPane24;
     private javax.swing.JScrollPane jScrollPane25;
+    private javax.swing.JScrollPane jScrollPane26;
     private javax.swing.JScrollPane jScrollPane27;
     private javax.swing.JScrollPane jScrollPane29;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane30;
+    private javax.swing.JScrollPane jScrollPane31;
+    private javax.swing.JScrollPane jScrollPane32;
+    private javax.swing.JScrollPane jScrollPane33;
+    private javax.swing.JScrollPane jScrollPane34;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JTabbedPane jTabbedPane4;
+    private javax.swing.JTabbedPane jTabbedPane5;
+    private javax.swing.JTabbedPane jTabbedPane6;
+    private javax.swing.JTabbedPane jTabbedPane7;
+    private javax.swing.JTabbedPane jTabbedPane8;
     public javax.swing.JTable jTable1;
     private javax.swing.JTable jTable12;
     public javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable5;
-    private javax.swing.JTable jTable6;
     public javax.swing.JTable jTable7;
     private javax.swing.JLabel lblGastosProveedorEP;
     private javax.swing.JLabel lblIdJGC;
@@ -6243,6 +6323,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     public javax.swing.JLabel lblServicioNombreAS;
     public javax.swing.JLabel lblServicioTipoAS;
     public javax.swing.JLabel lblTarifaServicioAS;
+    private javax.swing.JLabel lblTotalEI;
     public javax.swing.JLabel lblVecinoApellidosAI;
     public javax.swing.JLabel lblVecinoIdAI;
     public javax.swing.JLabel lblVecinoNombreAI;
@@ -6259,6 +6340,8 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     public javax.swing.JTable tblInmueblesAI;
     public javax.swing.JTable tblInmueblesAS;
     private javax.swing.JTable tblInmueblesES;
+    private javax.swing.JTable tblLiquidacionDetalleInmueble;
+    private javax.swing.JTable tblLiquidacionInmuebleEI;
     public javax.swing.JTable tblLiquidacionesGL;
     private javax.swing.JTable tblProveedoresEG;
     public javax.swing.JTable tblProveedoresGP;
@@ -6267,6 +6350,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     public javax.swing.JTable tblSeleccionInmueblesAS;
     private javax.swing.JLabel tblSeleccionServiciosECG;
     private javax.swing.JTable tblServicioDetalleLiquidacionEL;
+    private javax.swing.JTable tblServicioDetalleLiquidacionEL1;
+    private javax.swing.JTable tblServicioDetalleLiquidacionEL2;
+    private javax.swing.JTable tblServicioDetalleLiquidacionEL3;
+    private javax.swing.JTable tblServicioDetalleLiquidacionEL4;
+    private javax.swing.JTable tblServicioDetalleLiquidacionEL5;
     public javax.swing.JTable tblServiciosAS;
     private javax.swing.JTable tblServiciosEGC;
     private javax.swing.JTable tblServiciosEI;
