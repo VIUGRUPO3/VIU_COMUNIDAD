@@ -1,7 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+// Asignatura: 21GIIN Proyectos Programación
+// Profesor: Eduardo Zamudio
+// @author: Grupo 3
+// Miembros:
+//       @author:Fernando Hernandez Fernandez
+//       @author:Javier Barbero Sales
+//       @author:Martin Gonzalez Dominguez
+// @version: 08/01/2023/package controlador;
 package dao;
 
 import java.io.FileInputStream;

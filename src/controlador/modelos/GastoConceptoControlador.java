@@ -10,10 +10,7 @@
 package controlador.modelos;
 
 import dao.ServicioGastosConcepto;
-import dao.ServicioInmuebles;
-import dao.ServicioServicioCuentas;
 import dao.ServicioServicios;
-import dao.ServicioUsuarios;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -157,7 +154,11 @@ public class GastoConceptoControlador {
             model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getNombre(), s.getNombre(),hijos});
         }
     }
-    
+    /**
+     * 
+     * @param gc
+     * @param tabla 
+     */
     public void cargarTablaConceptosEdicion(GastoConcepto gc, JTable tabla) {
         
         List<GastoConcepto> lista = sgc.listarGastosConceptos();
