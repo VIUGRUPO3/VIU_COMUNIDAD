@@ -42,7 +42,6 @@ public class LiquidacionControlador {
 
     //Atributos
     private ServicioInmuebles si = new ServicioInmuebles();
-    private ServicioUsuarios su = new ServicioUsuarios();
     private ServicioServicios ss = new ServicioServicios();
     private ServicioServicioCuentas ssc = new ServicioServicioCuentas();
     private ServicioLiquidacion sl = new ServicioLiquidacion();

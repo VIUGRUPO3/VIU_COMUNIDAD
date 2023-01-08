@@ -4,10 +4,6 @@
  */
 package dao;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import modelo.usuario.Vecino;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,9 +12,6 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.usuario.Admin;
 import vista.LoginFrame;

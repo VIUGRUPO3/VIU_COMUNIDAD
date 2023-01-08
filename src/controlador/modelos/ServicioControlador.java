@@ -33,7 +33,6 @@ public class ServicioControlador {
 
     //Atributos
     private ServicioInmuebles si = new ServicioInmuebles();
-    private ServicioUsuarios su = new ServicioUsuarios();
     private ServicioServicios ss = new ServicioServicios();
     private ServicioServicioCuentas ssc = new ServicioServicioCuentas();
 

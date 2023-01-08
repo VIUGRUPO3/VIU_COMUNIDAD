@@ -4,7 +4,6 @@
  */
 package dao;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,9 +22,8 @@ import modelo.Servicio;
  */
 public class ServicioServicios {
 
-    //Atributos
-    private ServicioUsuarios su = new ServicioUsuarios();
-    private Connection conn;
+//Atributos
+        private Connection conn;
 
     //Constructores
     /**

@@ -9,7 +9,6 @@
 
 package controlador.modelos;
 
-import controlador.Controlador;
 import dao.ServicioInmuebles;
 import dao.ServicioServicioCuentas;
 import dao.ServicioUsuarios;
@@ -21,7 +20,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import modelo.Inmueble;
-import modelo.Servicio;
 import modelo.ServicioCuenta;
 import modelo.usuario.Vecino;
 

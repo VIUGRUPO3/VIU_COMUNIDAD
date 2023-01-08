@@ -9,11 +9,7 @@
 
 package controlador.modelos;
 
-import dao.ServicioInmuebles;
 import dao.ServicioProveedores;
-import dao.ServicioServicioCuentas;
-import dao.ServicioServicios;
-import dao.ServicioUsuarios;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -26,12 +22,8 @@ import modelo.Proveedor;
  */
 public class ProveedorControlador {
 
-    //Atributos
-    private ServicioInmuebles si = new ServicioInmuebles();
-    private ServicioUsuarios su = new ServicioUsuarios();
-    private ServicioServicios ss = new ServicioServicios();
+//Atributos
     private ServicioProveedores sp = new ServicioProveedores();
-    private ServicioServicioCuentas ssc = new ServicioServicioCuentas();
 
     //Constructores
     public ProveedorControlador() {

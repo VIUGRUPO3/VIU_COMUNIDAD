@@ -28,28 +28,14 @@ import modelo.Servicio;
  */
 public class GastoConceptoControlador {
 
-    //Atributos
-
-    /**
-     * Atributo que definie el ServicioInmuebles
-     */
-    private ServicioInmuebles si = new ServicioInmuebles();
-
-    /**
-     * Atributo que definie el ServicioUsuarios
-     */
-    private ServicioUsuarios su = new ServicioUsuarios();
-
-    /**
+    
+//Atributos
+    
+        /**
      * Atributo que definie el ServicioServicios
      */
     private ServicioServicios ss = new ServicioServicios();
-
-    /**
-     * Atributo que definie el ServicioServicioCuentas
-     */
-    private ServicioServicioCuentas ssc = new ServicioServicioCuentas();
-
+    
     /**
      * Atributo que definie el ServicioGastosConcepto
      */
