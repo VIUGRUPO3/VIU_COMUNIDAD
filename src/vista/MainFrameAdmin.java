@@ -12,10 +12,12 @@ import controlador.modelos.LiquidacionControlador;
 import controlador.modelos.ProveedorControlador;
 import controlador.modelos.ServicioControlador;
 import controlador.modelos.UsuarioControlador;
+import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -773,6 +775,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
         txtNombreRA.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
         txtNombreRA.setForeground(new java.awt.Color(51, 51, 51));
+        txtNombreRA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreRAKeyTyped(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(51, 51, 51));
@@ -784,6 +791,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         txtPasswordRA.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtPasswordRAFocusGained(evt);
+            }
+        });
+        txtPasswordRA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPasswordRAKeyTyped(evt);
             }
         });
 
@@ -811,9 +823,24 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
         txtApellidosRA.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
         txtApellidosRA.setForeground(new java.awt.Color(51, 51, 51));
+        txtApellidosRA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidosRAKeyTyped(evt);
+            }
+        });
 
         txtUserNameRA.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
         txtUserNameRA.setForeground(new java.awt.Color(51, 51, 51));
+        txtUserNameRA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUserNameRAActionPerformed(evt);
+            }
+        });
+        txtUserNameRA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUserNameRAKeyTyped(evt);
+            }
+        });
 
         jLabel18.setBackground(new java.awt.Color(51, 51, 51));
         jLabel18.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -827,6 +854,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
         txtTelefonoRA.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
         txtTelefonoRA.setForeground(new java.awt.Color(51, 51, 51));
+        txtTelefonoRA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoRAKeyTyped(evt);
+            }
+        });
 
         jLabel20.setBackground(new java.awt.Color(51, 51, 51));
         jLabel20.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -835,6 +867,16 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
         txtEmailRA.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
         txtEmailRA.setForeground(new java.awt.Color(51, 51, 51));
+        txtEmailRA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailRAActionPerformed(evt);
+            }
+        });
+        txtEmailRA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEmailRAKeyTyped(evt);
+            }
+        });
 
         btnCancelarAltaAdmin.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnCancelarAltaAdmin.setForeground(new java.awt.Color(51, 51, 51));
@@ -1030,9 +1072,19 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
         txtTelefonoEU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtTelefonoEU.setForeground(new java.awt.Color(51, 51, 51));
+        txtTelefonoEU.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoEUKeyTyped(evt);
+            }
+        });
 
         txtApellidosEU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtApellidosEU.setForeground(new java.awt.Color(51, 51, 51));
+        txtApellidosEU.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidosEUKeyTyped(evt);
+            }
+        });
 
         jLabel25.setBackground(new java.awt.Color(51, 51, 51));
         jLabel25.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -1048,6 +1100,16 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         txtIdEU.setBackground(new java.awt.Color(255, 255, 255));
         txtIdEU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtIdEU.setForeground(new java.awt.Color(51, 51, 51));
+        txtIdEU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdEUActionPerformed(evt);
+            }
+        });
+        txtIdEU.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdEUKeyTyped(evt);
+            }
+        });
 
         jLabel23.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(51, 51, 51));
@@ -1061,6 +1123,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 txtPasswordEUFocusGained(evt);
             }
         });
+        txtPasswordEU.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPasswordEUKeyTyped(evt);
+            }
+        });
 
         jLabel26.setBackground(new java.awt.Color(51, 51, 51));
         jLabel26.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -1069,6 +1136,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
         txtUserNameEU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtUserNameEU.setForeground(new java.awt.Color(51, 51, 51));
+        txtUserNameEU.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUserNameEUKeyTyped(evt);
+            }
+        });
 
         jLabel28.setBackground(new java.awt.Color(51, 51, 51));
         jLabel28.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -1077,6 +1149,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
         txtEmailEU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtEmailEU.setForeground(new java.awt.Color(51, 51, 51));
+        txtEmailEU.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEmailEUKeyTyped(evt);
+            }
+        });
 
         jLabel22.setBackground(new java.awt.Color(51, 51, 51));
         jLabel22.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -1085,6 +1162,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
         txtNombreEU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtNombreEU.setForeground(new java.awt.Color(51, 51, 51));
+        txtNombreEU.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreEUKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -1372,6 +1454,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         txtIdEI.setBackground(new java.awt.Color(255, 255, 255));
         txtIdEI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtIdEI.setForeground(new java.awt.Color(51, 51, 51));
+        txtIdEI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdEIKeyTyped(evt);
+            }
+        });
 
         jLabel44.setBackground(new java.awt.Color(51, 51, 51));
         jLabel44.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -1380,6 +1467,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
         txtDireccionEI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtDireccionEI.setForeground(new java.awt.Color(51, 51, 51));
+        txtDireccionEI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDireccionEIKeyTyped(evt);
+            }
+        });
 
         btnAsignarEI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnAsignarEI.setForeground(new java.awt.Color(51, 51, 51));
@@ -1705,7 +1797,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(400, 400, 400)
                         .addComponent(btnAsignarEI1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1740,7 +1832,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, edicionInmuebleFrameLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(edicionInmuebleFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTabbedPane2)
+                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -2363,9 +2455,13 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jLabel51.setForeground(new java.awt.Color(51, 51, 51));
         jLabel51.setText("Nombre");
 
-        txtNombreES.setBackground(new java.awt.Color(255, 255, 255));
         txtNombreES.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtNombreES.setForeground(new java.awt.Color(51, 51, 51));
+        txtNombreES.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreESKeyTyped(evt);
+            }
+        });
 
         jLabel53.setBackground(new java.awt.Color(51, 51, 51));
         jLabel53.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -2374,6 +2470,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
         txtTarifaES.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtTarifaES.setForeground(new java.awt.Color(51, 51, 51));
+        txtTarifaES.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTarifaESKeyTyped(evt);
+            }
+        });
 
         btnCancelarEI1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnCancelarEI1.setForeground(new java.awt.Color(51, 51, 51));
@@ -2416,6 +2517,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         txtIdES.setBackground(new java.awt.Color(255, 255, 255));
         txtIdES.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtIdES.setForeground(new java.awt.Color(51, 51, 51));
+        txtIdES.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdESKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -3174,9 +3280,13 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jLabel58.setForeground(new java.awt.Color(51, 51, 51));
         jLabel58.setText("Nombre");
 
-        txtNombreEP.setBackground(new java.awt.Color(255, 255, 255));
         txtNombreEP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtNombreEP.setForeground(new java.awt.Color(51, 51, 51));
+        txtNombreEP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreEPKeyTyped(evt);
+            }
+        });
 
         jLabel60.setBackground(new java.awt.Color(51, 51, 51));
         jLabel60.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -3185,6 +3295,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
         txtTelefonoEP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtTelefonoEP.setForeground(new java.awt.Color(51, 51, 51));
+        txtTelefonoEP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoEPKeyTyped(evt);
+            }
+        });
 
         btnCancelarEP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnCancelarEP.setForeground(new java.awt.Color(51, 51, 51));
@@ -3224,10 +3339,19 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         txtIdEP.setBackground(new java.awt.Color(255, 255, 255));
         txtIdEP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtIdEP.setForeground(new java.awt.Color(51, 51, 51));
+        txtIdEP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdEPKeyTyped(evt);
+            }
+        });
 
-        txtDireccionEP.setBackground(new java.awt.Color(255, 255, 255));
         txtDireccionEP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtDireccionEP.setForeground(new java.awt.Color(51, 51, 51));
+        txtDireccionEP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDireccionEPKeyTyped(evt);
+            }
+        });
 
         jLabel63.setBackground(new java.awt.Color(51, 51, 51));
         jLabel63.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -3236,6 +3360,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
         txtEmailEP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtEmailEP.setForeground(new java.awt.Color(51, 51, 51));
+        txtEmailEP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEmailEPKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -3751,9 +3880,13 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jLabel65.setForeground(new java.awt.Color(51, 51, 51));
         jLabel65.setText("Nombre");
 
-        txtNombreEGC.setBackground(new java.awt.Color(255, 255, 255));
         txtNombreEGC.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtNombreEGC.setForeground(new java.awt.Color(51, 51, 51));
+        txtNombreEGC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreEGCKeyTyped(evt);
+            }
+        });
 
         jLabel68.setBackground(new java.awt.Color(51, 51, 51));
         jLabel68.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -3764,6 +3897,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         txtIdEGC.setBackground(new java.awt.Color(255, 255, 255));
         txtIdEGC.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtIdEGC.setForeground(new java.awt.Color(51, 51, 51));
+        txtIdEGC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdEGCKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -4333,9 +4471,13 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         jLabel67.setForeground(new java.awt.Color(51, 51, 51));
         jLabel67.setText("Descripcion");
 
-        txtDescripcionEG.setBackground(new java.awt.Color(255, 255, 255));
         txtDescripcionEG.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtDescripcionEG.setForeground(new java.awt.Color(51, 51, 51));
+        txtDescripcionEG.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDescripcionEGKeyTyped(evt);
+            }
+        });
 
         jLabel74.setBackground(new java.awt.Color(51, 51, 51));
         jLabel74.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -4344,6 +4486,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
         txtComprobanteEG.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtComprobanteEG.setForeground(new java.awt.Color(51, 51, 51));
+        txtComprobanteEG.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtComprobanteEGKeyTyped(evt);
+            }
+        });
 
         jLabel76.setBackground(new java.awt.Color(51, 51, 51));
         jLabel76.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -4354,6 +4501,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         txtIdEG.setBackground(new java.awt.Color(255, 255, 255));
         txtIdEG.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtIdEG.setForeground(new java.awt.Color(51, 51, 51));
+        txtIdEG.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdEGKeyTyped(evt);
+            }
+        });
 
         txtFRegEG.setEditable(false);
         txtFRegEG.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -4397,6 +4549,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         txtImporteEG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtImporteEGActionPerformed(evt);
+            }
+        });
+        txtImporteEG.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtImporteEGKeyTyped(evt);
             }
         });
 
@@ -4790,6 +4947,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         txtIdEL.setBackground(new java.awt.Color(255, 255, 255));
         txtIdEL.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtIdEL.setForeground(new java.awt.Color(51, 51, 51));
+        txtIdEL.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdELKeyTyped(evt);
+            }
+        });
 
         jLabel84.setBackground(new java.awt.Color(51, 51, 51));
         jLabel84.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -5923,6 +6085,285 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAsignarEI1KeyTyped
 
+    private void txtNombreRAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreRAKeyTyped
+        
+         String texto = txtNombreRA.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"l")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreRAKeyTyped
+
+    private void txtApellidosRAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosRAKeyTyped
+        String texto = txtApellidosRA.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"l")){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidosRAKeyTyped
+
+    private void txtTelefonoRAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoRAKeyTyped
+        String texto = txtTelefonoRA.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"t")){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefonoRAKeyTyped
+
+    private void txtEmailRAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailRAKeyTyped
+            String texto = txtEmailRA.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"m")){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailRAKeyTyped
+
+    private void txtEmailRAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailRAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailRAActionPerformed
+
+    private void txtUserNameRAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserNameRAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUserNameRAActionPerformed
+
+    private void txtUserNameRAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserNameRAKeyTyped
+        // TODO add your handling code here:
+        String texto = txtUserNameRA.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"l")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtUserNameRAKeyTyped
+
+    private void txtPasswordRAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordRAKeyTyped
+        // TODO add your handling code here:
+        String texto = txtPasswordRA.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"l")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPasswordRAKeyTyped
+
+    private void txtIdEUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdEUActionPerformed
+
+    }//GEN-LAST:event_txtIdEUActionPerformed
+
+    private void txtIdEUKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdEUKeyTyped
+        // TODO add your handling code here:
+        String texto = txtIdEU.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"l")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdEUKeyTyped
+
+    private void txtNombreEUKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreEUKeyTyped
+        // TODO add your handling code here:
+        String texto = txtNombreEU.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"l")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreEUKeyTyped
+
+    private void txtApellidosEUKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosEUKeyTyped
+        // TODO add your handling code here:
+                String texto = txtApellidosEU.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"l")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtApellidosEUKeyTyped
+
+    private void txtTelefonoEUKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoEUKeyTyped
+        // TODO add your handling code here:
+                String texto = txtTelefonoEU.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"t")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoEUKeyTyped
+
+    private void txtEmailEUKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailEUKeyTyped
+        // TODO add your handling code here:
+                String texto = txtNombreEU.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"m")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtEmailEUKeyTyped
+
+    private void txtUserNameEUKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserNameEUKeyTyped
+        // TODO add your handling code here:
+                String texto = txtUserNameEU.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"ln")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtUserNameEUKeyTyped
+
+    private void txtPasswordEUKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordEUKeyTyped
+        // TODO add your handling code here:
+                String texto = txtNombreEU.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"m")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPasswordEUKeyTyped
+
+    private void txtIdEIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdEIKeyTyped
+        // TODO add your handling code here:
+                String texto = txtIdEI.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"n")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdEIKeyTyped
+
+    private void txtDireccionEIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionEIKeyTyped
+        // TODO add your handling code here:
+                String texto = txtDireccionEI.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"m")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDireccionEIKeyTyped
+
+    private void txtIdESKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdESKeyTyped
+        // TODO add your handling code here:
+                String texto = txtIdES.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"n")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdESKeyTyped
+
+    private void txtNombreESKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreESKeyTyped
+        // TODO add your handling code here:
+                String texto = txtNombreES.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"l")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreESKeyTyped
+
+    private void txtTarifaESKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTarifaESKeyTyped
+        // TODO add your handling code here:
+                String texto = txtTarifaES.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"n")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTarifaESKeyTyped
+
+    private void txtIdEPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdEPKeyTyped
+        // TODO add your handling code here:
+                String texto = txtIdEP.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"n")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdEPKeyTyped
+
+    private void txtNombreEPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreEPKeyTyped
+        // TODO add your handling code here:
+        String texto = txtNombreEP.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"l")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreEPKeyTyped
+
+    private void txtDireccionEPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionEPKeyTyped
+        // TODO add your handling code here:
+        String texto = txtDireccionEP.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"m")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDireccionEPKeyTyped
+
+    private void txtTelefonoEPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoEPKeyTyped
+        // TODO add your handling code here:
+        String texto = txtTelefonoEP.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"n")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoEPKeyTyped
+
+    private void txtEmailEPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailEPKeyTyped
+        // TODO add your handling code here:
+        String texto = txtEmailEP.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"l")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtEmailEPKeyTyped
+
+    private void txtIdEGCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdEGCKeyTyped
+        // TODO add your handling code here:
+        String texto = txtIdEGC.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"n")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdEGCKeyTyped
+
+    private void txtNombreEGCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreEGCKeyTyped
+        // TODO add your handling code here:
+        String texto = txtNombreEGC.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"l")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreEGCKeyTyped
+
+    private void txtIdEGKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdEGKeyTyped
+        // TODO add your handling code here:
+        String texto = txtIdEG.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"l")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdEGKeyTyped
+
+    private void txtDescripcionEGKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionEGKeyTyped
+        // TODO add your handling code here:
+        String texto = txtDescripcionEG.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"m")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDescripcionEGKeyTyped
+
+    private void txtComprobanteEGKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtComprobanteEGKeyTyped
+        // TODO add your handling code here:
+        String texto = txtComprobanteEG.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"m")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtComprobanteEGKeyTyped
+
+    private void txtImporteEGKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtImporteEGKeyTyped
+        // TODO add your handling code here:
+        String texto = txtImporteEG.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"l")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtImporteEGKeyTyped
+
+    private void txtIdELKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdELKeyTyped
+        // TODO add your handling code here:
+        String texto = txtIdEL.getText();
+        char caracter = evt.getKeyChar();
+        if (filtrarCaracteres(texto,caracter,"l")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdELKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -6053,7 +6494,53 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         registroAdminFrame.hide();
     }
 
-
+//FUNCIONES DE FILTRADO
+    //solo letras y espacios
+    public boolean filtrarCaracteres(String texto, char caracter, String modo){
+        if (modo.equals("l")){
+            if(!(Character.isLetter(caracter) && (caracter != KeyEvent.VK_SPACE))){
+                JOptionPane.showMessageDialog(null, "Caracter no válido.\n Solo se admiten letras", "ComunidadVIU", HEIGHT);
+                return true;
+            }
+            return false;
+        }
+    
+       //solo numeros
+        if (modo.equals("n")){
+            if(!(Character.isDigit(caracter))){
+                JOptionPane.showMessageDialog(null, "Caracter no válido.\n Solo se admiten números", "ComunidadVIU", HEIGHT);
+                return true;
+            }
+            return false;
+        }
+        //letras y numeros
+        if (modo.equals("ln")){
+            if(!(Character.isDigit(caracter)) && (Character.isLetter(caracter))){
+                JOptionPane.showMessageDialog(null, "Caracter no válido.\n Solo se admiten letas/números", "ComunidadVIU", HEIGHT);
+                return true;
+            }
+            return false;
+        }
+        
+        //emails
+        if (modo.equals("m")){
+            if(!(Character.isAlphabetic(caracter))){
+                JOptionPane.showMessageDialog(null, "Caracter no válido.", "ComunidadVIU", HEIGHT);
+                return true;
+            }
+            return false;
+        }
+        //telefonos:
+        if (modo.equals("t")){
+            if(!(Character.isDigit(caracter)) && !(caracter == '+')){
+                JOptionPane.showMessageDialog(null, "Caracter no válido.\n Solo se admiten números o el caracter de prefijo +", "ComunidadVIU", HEIGHT);
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JInternalFrame JerarquizacionGastosConceptoFrame;
     public javax.swing.JInternalFrame asignacionInmuebleFrame;
@@ -6266,11 +6753,6 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel30;
-    private javax.swing.JPanel jPanel31;
-    private javax.swing.JPanel jPanel32;
-    private javax.swing.JPanel jPanel33;
-    private javax.swing.JPanel jPanel34;
-    private javax.swing.JPanel jPanel35;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -6299,11 +6781,6 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane27;
     private javax.swing.JScrollPane jScrollPane29;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane30;
-    private javax.swing.JScrollPane jScrollPane31;
-    private javax.swing.JScrollPane jScrollPane32;
-    private javax.swing.JScrollPane jScrollPane33;
-    private javax.swing.JScrollPane jScrollPane34;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
@@ -6311,11 +6788,6 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTabbedPane jTabbedPane4;
-    private javax.swing.JTabbedPane jTabbedPane5;
-    private javax.swing.JTabbedPane jTabbedPane6;
-    private javax.swing.JTabbedPane jTabbedPane7;
-    private javax.swing.JTabbedPane jTabbedPane8;
     public javax.swing.JTable jTable1;
     public javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
@@ -6357,11 +6829,6 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     public javax.swing.JTable tblSeleccionInmueblesAS;
     private javax.swing.JLabel tblSeleccionServiciosECG;
     private javax.swing.JTable tblServicioDetalleLiquidacionEL;
-    private javax.swing.JTable tblServicioDetalleLiquidacionEL1;
-    private javax.swing.JTable tblServicioDetalleLiquidacionEL2;
-    private javax.swing.JTable tblServicioDetalleLiquidacionEL3;
-    private javax.swing.JTable tblServicioDetalleLiquidacionEL4;
-    private javax.swing.JTable tblServicioDetalleLiquidacionEL5;
     public javax.swing.JTable tblServiciosAS;
     private javax.swing.JTable tblServiciosEGC;
     private javax.swing.JTable tblServiciosEI;

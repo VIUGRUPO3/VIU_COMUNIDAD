@@ -155,9 +155,9 @@ public class GastoConceptoControlador {
         }
     }
     /**
-     * 
-     * @param gc
-     * @param tabla 
+     * Método que carga la Tabla de Conceptos para su edición
+     * @param gc Objeto GastoConcepto 
+     * @param tabla  tabla donde se va a cargar el contenido del objeto gastoconcepto
      */
     public void cargarTablaConceptosEdicion(GastoConcepto gc, JTable tabla) {
         
@@ -202,9 +202,9 @@ public class GastoConceptoControlador {
     /**
      * Método que carga el Concepto seleccionado en la tabla indicada
      * @param tabla Tabla donde se va a cargar 
-     * @param lblIdJGC
-     * @param lblNombreJGC
-     * @param lblServicioJGC
+     * @param lblIdJGC etiqueda donde se mostrará el ID
+     * @param lblNombreJGC etiqueda donde se mostrará el nombre
+     * @param lblServicioJGC etiqueda donde se mostrará el nombre del servicio
      */
     public void cargarConceptoSelected(JTable tabla, JLabel lblIdJGC, JLabel lblNombreJGC, JLabel lblServicioJGC){
         int row = tabla.getSelectedRow();
@@ -217,9 +217,9 @@ public class GastoConceptoControlador {
     }
     
     /**
-     *
-     * @param tablaDestino
-     * @param tablaFuente
+     * Método que carga la tabla donde se muestran los conceptos por servicio
+     * @param tablaDestino Tabla destino
+     * @param tablaFuente Tabla origen 
      */
     public void cargarTablaConceptosPorServicio(JTable tablaDestino, JTable tablaFuente){
         int rowConcepto = tablaFuente.getSelectedRow();
@@ -237,9 +237,9 @@ public class GastoConceptoControlador {
     }
    
     /**
-     *
-     * @param tablaFuente
-     * @param tablaDestino
+     * Método que carga la tabla de Conceptos para su asignación
+     * @param tablaFuente Tabla origen
+     * @param tablaDestino Tabla destino
      */
     public void cargarTablaConceptosAsignar(JTable tablaFuente, JTable tablaDestino){
         int[] rows = tablaFuente.getSelectedRows();
@@ -251,9 +251,9 @@ public class GastoConceptoControlador {
     }
     
     /**
-     *
-     * @param lblIdJGC
-     * @param tblSeleccionConceptosJGC
+     * Método que permite establecer una jerarquia
+     * @param lblIdJGC Etiqueta que contiene el nombre del concepto padre
+     * @param tblSeleccionConceptosJGC  tabla que contiene los concecptos hijo a asignar
      */
     public void registrarJerarquia(JLabel lblIdJGC, JTable tblSeleccionConceptosJGC){
         int idConceptoPadre = Integer.parseInt((String)lblIdJGC.getText());
@@ -271,7 +271,10 @@ public class GastoConceptoControlador {
         
     }
     
-    
+    /**
+     * Método que permite borrar una jerarquía
+     * @param lblIdJGC  ID del concepto a borrar
+     */
     public void borrarJerarquia (JLabel lblIdJGC){
         int idConcepto = Integer.parseInt(lblIdJGC.getText());
         GastoConcepto gc = sgc.buscarId(idConcepto);
