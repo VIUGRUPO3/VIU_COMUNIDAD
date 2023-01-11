@@ -19,20 +19,30 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author fer
+ * Clase Conexion para gestionar la conexión a la base de datos
  */
 public class Conexion {
     
+    /**
+     * Atributo que contiene la conexión a la base de datos
+     */
     static Connection conn = null;
     
+    /**
+     * Método para establecer una conexión a la base de datos
+     * @throws IOException Excepción en caso de que haya problemas conectando a la base de datos
+     * @throws ClassNotFoundException Excepciones relativas a problemas de clase a la hora de conectar
+     */
     public Conexion() throws IOException, ClassNotFoundException {
         Conexion.conn = conectarBD();
     }
     
-    
-    
-    
-    
+    /**
+     * Método que establece una conexión a la base de datos
+     * @return Si no hay problemas, devuelve null
+     * @throws IOException Excepción devuelta en caso de no poder conectar
+     * @throws ClassNotFoundException Excepción devuelta en caso de haber problemas al operar la conexión
+     */
     public Connection conectarBD() throws IOException, ClassNotFoundException {
         InputStream config;
         try {

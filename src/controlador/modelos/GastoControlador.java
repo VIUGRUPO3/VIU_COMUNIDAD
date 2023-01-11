@@ -61,6 +61,16 @@ public class GastoControlador {
     }
 
     //Metodos
+
+    /**
+     * Método para registrar un nuevo gasto
+     * @param txtDescripcionEG campo de texto con la descripción del gasto
+     * @param tblProveedoresEG tabla proveedores, donde se ha seleccionado el proveedor correspondiente
+     * @param txtComprobanteEG campo de texto donde se indica el comprobante del gasto
+     * @param tblConceptosEG tabla donde se ha seleccionado el concepto de gasto
+     * @param txtImporteEG importe
+     * @param tblGastosGG tabla de gastos donde se va a introducir el nuevo gasto
+     */
     public void registrarGasto(JTextField txtDescripcionEG, JTable tblProveedoresEG, JTextField txtComprobanteEG, JTable tblConceptosEG, JTextField txtImporteEG, JTable tblGastosGG) {
         if (tblProveedoresEG.getSelectedRowCount() > 0 && tblConceptosEG.getSelectedRowCount() > 0) {
             Proveedor p = sp.buscarId((int) tblProveedoresEG.getValueAt(tblProveedoresEG.getSelectedRow(), 0));
@@ -80,6 +90,16 @@ public class GastoControlador {
         cargarTablaGastos("", tblGastosGG);
     }
 
+    /**
+     * Método que permite la actualización de un gasto previo
+     * @param txtIdEG campo de texto con el ID del gasto
+     * @param txtDescripcionEG Descripción del gasto
+     * @param tblProveedoresEG tabla de proveedores
+     * @param txtComprobanteEG campo de texto que indica el comprobante
+     * @param tblConceptosEG tabla de conceptos donde se ha indicado el concepto del gasto
+     * @param txtImporteEG importe del gasto
+     * @param tblGastosGG tabla donde está el gasto a actualizar
+     */
     public void updateGasto(JTextField txtIdEG, JTextField txtDescripcionEG, JTable tblProveedoresEG, JTextField txtComprobanteEG, JTable tblConceptosEG, JTextField txtImporteEG, JTable tblGastosGG) {
         int id = Integer.parseInt(txtIdEG.getText());
         Proveedor p = sp.buscarId((int) tblProveedoresEG.getValueAt(tblProveedoresEG.getSelectedRow(), 0));
@@ -114,6 +134,19 @@ public class GastoControlador {
         cargarTablaGastos("", tabla);
     }
 
+    /**
+     * Método que carga el gasto seleccionado para su edición
+     * @param txtIdEG ID del gasto seleccionado
+     * @param txtDescripcionEG Descripción del gasto
+     * @param txtFRegEG Fecha de registro del gasto
+     * @param txtFPagoEG Fecha de pago del gasto
+     * @param tblProveedoresEG tabla de Proveedores
+     * @param txtComprobanteEG campo de texto del comprobante
+     * @param tblConceptosEG tabla de conceptos, donde aparece seleccionado el concepto del gasto
+     * @param txtImporteEG importe del gasto
+     * @param txtEstadoEG estado del gasto
+     * @param tblGastosGG tabla que contiene los gastos
+     */
     public void cargarGastoEdicion(
             JTextField txtIdEG,
             JTextField txtDescripcionEG,
@@ -193,6 +226,11 @@ public class GastoControlador {
         }
     }
 
+    /**
+     * Método que carga la tabla de gastos por proveedor
+     * @param idProveedor ID del proveedor
+     * @param tabla tabla en la que mostrar los gastos
+     */
     public void cargarTablaGastosProveedor(int idProveedor, JTable tabla) {
         String estado;
         List<Gasto> lista = sg.buscarGastoProveedor(idProveedor);

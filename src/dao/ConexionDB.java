@@ -11,15 +11,24 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *
- * @author fer
- */
+ * Clase ConexionDB para gestionar la conexión a la base de datos
+ */ 
 public class ConexionDB {
     
+    /**
+     * Atributo que contiene la conexión a la base de datos
+     */
     private static Connection con = null;
     
+    /**
+     * Método para establecer la conexión a la base de datos
+     * @param url URL de conexión a la base de datos
+     * @param user usuario de la base de datos
+     * @param pwd contraseña de la base de datos
+     * @throws ClassNotFoundException Excepción devuelta en caso de problemas
+     */
     public ConexionDB(String url, String user, String pwd) throws ClassNotFoundException{
         
         try {
@@ -32,6 +41,10 @@ public class ConexionDB {
         
     }
     
+    /**
+     * Método para devolver el handler a la conexión establecida
+     * @return con Handler de la conexión
+     */
     public static Connection getConnection(){
         return con;
     }
