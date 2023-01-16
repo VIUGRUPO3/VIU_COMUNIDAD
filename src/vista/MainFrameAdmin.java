@@ -823,6 +823,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
         txtApellidosRA.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
         txtApellidosRA.setForeground(new java.awt.Color(51, 51, 51));
+        txtApellidosRA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApellidosRAActionPerformed(evt);
+            }
+        });
         txtApellidosRA.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtApellidosRAKeyTyped(evt);
@@ -1467,6 +1472,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
         txtDireccionEI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtDireccionEI.setForeground(new java.awt.Color(51, 51, 51));
+        txtDireccionEI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDireccionEIActionPerformed(evt);
+            }
+        });
         txtDireccionEI.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDireccionEIKeyTyped(evt);
@@ -6224,7 +6234,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
                 String texto = txtDireccionEI.getText();
         char caracter = evt.getKeyChar();
-        if (filtrarCaracteres(texto,caracter,"m")){
+        if (filtrarCaracteres(texto,caracter,"ln")){
             evt.consume();
         }
     }//GEN-LAST:event_txtDireccionEIKeyTyped
@@ -6278,7 +6288,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         String texto = txtDireccionEP.getText();
         char caracter = evt.getKeyChar();
-        if (filtrarCaracteres(texto,caracter,"m")){
+        if (filtrarCaracteres(texto,caracter,"ln")){
             evt.consume();
         }
     }//GEN-LAST:event_txtDireccionEPKeyTyped
@@ -6363,6 +6373,14 @@ public class MainFrameAdmin extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtIdELKeyTyped
+
+    private void txtApellidosRAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidosRAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidosRAActionPerformed
+
+    private void txtDireccionEIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionEIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDireccionEIActionPerformed
 
     /**
      * @param args the command line arguments
@@ -6498,7 +6516,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     //solo letras y espacios
     public boolean filtrarCaracteres(String texto, char caracter, String modo){
         if (modo.equals("l")){
-            if(!(Character.isLetter(caracter) && (caracter != KeyEvent.VK_SPACE))){
+            if(!(Character.isLetter(caracter) && (caracter != KeyEvent.VK_SPACE) && (caracter != KeyEvent.VK_BACK_SPACE) && (caracter != KeyEvent.VK_DELETE))){
                 JOptionPane.showMessageDialog(null, "Caracter no válido.\n Solo se admiten letras", "ComunidadVIU", HEIGHT);
                 return true;
             }
@@ -6507,7 +6525,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     
        //solo numeros
         if (modo.equals("n")){
-            if(!(Character.isDigit(caracter))){
+            if(!(Character.isDigit(caracter)  && (caracter != KeyEvent.VK_BACK_SPACE) && (caracter != KeyEvent.VK_DELETE))){
                 JOptionPane.showMessageDialog(null, "Caracter no válido.\n Solo se admiten números", "ComunidadVIU", HEIGHT);
                 return true;
             }
@@ -6515,7 +6533,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         }
         //letras y numeros
         if (modo.equals("ln")){
-            if(!(Character.isDigit(caracter)) && (Character.isLetter(caracter))){
+            if(!(Character.isDigit(caracter)) && !(Character.isLetter(caracter))  && (caracter != KeyEvent.VK_SPACE) && (caracter != KeyEvent.VK_BACK_SPACE) && (caracter != KeyEvent.VK_DELETE) && (caracter != KeyEvent.VK_BACK_SLASH) && (caracter != KeyEvent.VK_SLASH) ){
                 JOptionPane.showMessageDialog(null, "Caracter no válido.\n Solo se admiten letas/números", "ComunidadVIU", HEIGHT);
                 return true;
             }
@@ -6523,7 +6541,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         }
         
         //emails
-        if (modo.equals("m")){
+        if (modo.equals("m")  && (caracter != KeyEvent.VK_BACK_SPACE) && (caracter != KeyEvent.VK_DELETE)){
             if(!(Character.isAlphabetic(caracter))){
                 JOptionPane.showMessageDialog(null, "Caracter no válido.", "ComunidadVIU", HEIGHT);
                 return true;
@@ -6532,7 +6550,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         }
         //telefonos:
         if (modo.equals("t")){
-            if(!(Character.isDigit(caracter)) && !(caracter == '+')){
+            if(!(Character.isDigit(caracter)) && !(caracter == '+')  && (caracter != KeyEvent.VK_BACK_SPACE) && (caracter != KeyEvent.VK_DELETE)){
                 JOptionPane.showMessageDialog(null, "Caracter no válido.\n Solo se admiten números o el caracter de prefijo +", "ComunidadVIU", HEIGHT);
                 return true;
             }
