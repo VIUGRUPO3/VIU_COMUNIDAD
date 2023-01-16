@@ -178,7 +178,7 @@ public class GastoControlador {
         txtComprobanteEG.setText(g.getComprobante());
         txtImporteEG.setText(Double.toString(g.getImporte()));
         txtEstadoEG.setText(estado);
-        pc.cargarTablaProveedorEdicion(p, tblProveedoresEG);
+        pc.cargarTablaProveedorEdicionGasto(p, tblProveedoresEG);
         gcc.cargarTablaConceptosEdicion(gc, tblConceptosEG);
     }
 

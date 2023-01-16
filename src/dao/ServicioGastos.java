@@ -1,7 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+// Asignatura: 21GIIN Proyectos Programación
+// Profesor: Eduardo Zamudio
+// @author: Grupo 3
+// Miembros:
+//       @author:Fernando Hernandez Fernandez
+//       @author:Javier Barbero Sales
+//       @author:Martin Gonzalez Dominguez
+// @version: 01/12/2022/
+
 package dao;
 
 import java.sql.Connection;
@@ -16,15 +21,16 @@ import modelo.GastoConcepto;
 import modelo.Proveedor;
 
 /**
- *
- * @author fer
+ * 
+ * 
  */
 public class ServicioGastos {
 
-//Atributos
+        //Atributos
         private Connection conn;
         private ServicioProveedores sp = new ServicioProveedores();
         private ServicioGastosConcepto sgc = new ServicioGastosConcepto();
+    
     //Constructores
     /**
      * Constructor de la clase
@@ -54,7 +60,10 @@ public class ServicioGastos {
             throw new RuntimeException("error SQL", e);
         }
     }
-
+/**
+ * 
+ * @param g 
+ */
     public void updateGasto(Gasto g) {
         String sql = "update gastos set descripcion = ? , idProveedor = ?, comprobante = ?, idConcepto = ?, importe = ? where id = ?";
         try {
@@ -73,7 +82,10 @@ public class ServicioGastos {
             throw new RuntimeException("error SQL", e);
         }
     }
-    
+    /**
+     * 
+     * @param g 
+     */
     public void liquidarGasto(Gasto g) {
         String sql = "update gastos set liquidado = ? where id = ?";
         try {
@@ -88,7 +100,10 @@ public class ServicioGastos {
             throw new RuntimeException("error SQL", e);
         }
     }
-
+/**
+ * 
+ * @param g 
+ */
     public void borrarGasto(Gasto g) {
         String sql = "delete from gastos where id = ?";
         try {
@@ -139,7 +154,11 @@ public class ServicioGastos {
         }
         return lista;
     }
-
+/**
+ * 
+ * @param descripcion
+ * @return 
+ */
      public List<Gasto> buscarGasto(String descripcion) {
         List<Gasto> lista = new ArrayList();
         try {
@@ -179,7 +198,11 @@ public class ServicioGastos {
         ps.setString(1, descripcion + "%");
         return ps;
     }
-    
+    /**
+     * 
+     * @param idProveedor
+     * @return 
+     */
     public List<Gasto> buscarGastoProveedor(int idProveedor) {
         List<Gasto> lista = new ArrayList();
         try {
@@ -211,14 +234,24 @@ public class ServicioGastos {
 
         return lista;
     }
-
+/**
+ * 
+ * @param con
+ * @param idProveedor
+ * @return
+ * @throws SQLException 
+ */
     private PreparedStatement busquedaGastoProveedor(Connection con, int idProveedor) throws SQLException {
         String sql = "select * from gastos where idProveedor like ?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, idProveedor);
         return ps;
     }
-    
+    /**
+     * 
+     * @param id
+     * @return 
+     */
     public Gasto buscarId(int id) {
         Gasto g = new Gasto();
         try {
@@ -248,14 +281,24 @@ public class ServicioGastos {
         return g;
     }
 
-    
+    /**
+     * 
+     * @param con
+     * @param id
+     * @return
+     * @throws SQLException 
+     */
     private PreparedStatement busquedaId(Connection con, int id) throws SQLException {
         String sql = "select * from gastos where id like ?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, id);
         return ps;
     }
-    
+    /**
+     * 
+     * @param gc
+     * @return 
+     */
     public List<Gasto> buscarGastosAsociadosConcepto (GastoConcepto gc){
         List<Gasto> lista = new ArrayList();
         try {
@@ -287,7 +330,13 @@ public class ServicioGastos {
         return lista;
     }
 
-    
+    /**
+     * 
+     * @param con
+     * @param idGastoConcepto
+     * @return
+     * @throws SQLException 
+     */
     private PreparedStatement busquedaGastoAsociadoConcepto(Connection con, int idGastoConcepto) throws SQLException {
         String sql = "select * from gastos where idConcepto like ?";
         PreparedStatement ps = con.prepareStatement(sql);
