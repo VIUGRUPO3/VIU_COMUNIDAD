@@ -13,6 +13,7 @@ package controlador;
 import modelo.usuario.Vecino;
 import vista.LoginFrame;
 import vista.MainFrameAdmin;
+import vista.MainFrameAdmin_NEW;
 import vista.MainFrameVecino;
 
 /**
@@ -25,7 +26,7 @@ public class Controlador {
     /**
      * Se define la ventana Admin
      */
-    public static MainFrameAdmin mainFrameAdmin = new MainFrameAdmin();
+    public static MainFrameAdmin_NEW mainFrameAdmin_NEW = new MainFrameAdmin_NEW();
 
     /**
      * Se define la ventana Vecino
@@ -46,7 +47,7 @@ public class Controlador {
      * Método que define el inicio de la aplicación
      */
     public void iniciarApp() {
-        mainFrameAdmin.setVisible(false);
+        mainFrameAdmin_NEW.setVisible(false);
         LoginFrame loginForm = new LoginFrame();
         loginForm.setVisible(true);
     }
@@ -60,9 +61,9 @@ public class Controlador {
     public void autenticado(Vecino v, String tipoUsuario) {
             switch (tipoUsuario) {
                 case "admin":
-                    mainFrameAdmin.setVisible(true);
-                    mainFrameAdmin.jLabel42.setText(Integer.toString(v.getId()) + " - ");
-                    mainFrameAdmin.jLabel37.setText(v.getNombre() + " " + v.getApellidos());
+                    mainFrameAdmin_NEW.setVisible(true);
+                    mainFrameAdmin_NEW.jLabel42.setText(Integer.toString(v.getId()) + " - ");
+                    mainFrameAdmin_NEW.jLabel37.setText(v.getNombre() + " " + v.getApellidos());
                     break;
                 case "vecino":
                     mainFrameVecino.setVisible(true);
@@ -79,8 +80,8 @@ public class Controlador {
      * Método de logout para el tipo de usuario Administrador
      */
     public void logoutAdmin(){
-        mainFrameAdmin.setVisible(false);
-        mainFrameAdmin.dispose();
+        mainFrameAdmin_NEW.setVisible(false);
+        mainFrameAdmin_NEW.dispose();
         iniciarApp();
     }
 

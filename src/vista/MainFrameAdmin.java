@@ -78,7 +78,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         gUNombreText = new javax.swing.JTextField();
         btnFiltrarUsuariosGU = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblUsuarioGU = new javax.swing.JTable();
         btnCancelarGU = new javax.swing.JButton();
         registroAdminFrame = new javax.swing.JInternalFrame();
         jLabel14 = new javax.swing.JLabel();
@@ -675,8 +675,8 @@ public class MainFrameAdmin extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setFont(new java.awt.Font("SF Pro Display", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblUsuarioGU.setFont(new java.awt.Font("SF Pro Display", 0, 12)); // NOI18N
+        tblUsuarioGU.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -699,8 +699,8 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setRowHeight(25);
-        jScrollPane1.setViewportView(jTable1);
+        tblUsuarioGU.setRowHeight(25);
+        jScrollPane1.setViewportView(tblUsuarioGU);
 
         btnCancelarGU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnCancelarGU.setForeground(new java.awt.Color(51, 51, 51));
@@ -1864,7 +1864,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         asignacionInmuebleFrame.setForeground(new java.awt.Color(255, 255, 255));
         asignacionInmuebleFrame.setTitle("Asignación Inmueble");
         asignacionInmuebleFrame.setPreferredSize(new java.awt.Dimension(986, 586));
-        asignacionInmuebleFrame.setVisible(true);
+        asignacionInmuebleFrame.setVisible(false);
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -5243,7 +5243,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 .addGroup(panelDatosLayout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(asignacionInmuebleFrame, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
+                        .addComponent(asignacionInmuebleFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addComponent(asignacionServiciosFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addContainerGap()))
             .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5316,7 +5316,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
             .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelDatosLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(asignacionInmuebleFrame, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
+                    .addComponent(asignacionInmuebleFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(asignacionServiciosFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addContainerGap()))
@@ -5412,13 +5412,13 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPasswordRAFocusGained
 
     private void btnAltaAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaAdminMouseClicked
-        uc.registrarAdmin(txtNombreRA, txtApellidosRA, txtTelefonoRA, txtEmailRA, txtUserNameRA, txtPasswordRA, jTable1);
-        uc.cargarTablaUsuarios(gUNombreText.getText(), jTable1);
+        uc.registrarAdmin(txtNombreRA, txtApellidosRA, txtTelefonoRA, txtEmailRA, txtUserNameRA, txtPasswordRA, tblUsuarioGU);
+        uc.cargarTablaUsuarios(gUNombreText.getText(), tblUsuarioGU);
         registroAdminFrame.hide();
     }//GEN-LAST:event_btnAltaAdminMouseClicked
 
     private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
-        uc.cargarTablaUsuarios(gUNombreText.getText(), jTable1);
+        uc.cargarTablaUsuarios(gUNombreText.getText(), tblUsuarioGU);
         if (gestionUsuariosFrame.isVisible() == false) {
             dimensionarFrameDatos(gestionUsuariosFrame);
         }
@@ -5438,9 +5438,9 @@ public class MainFrameAdmin extends javax.swing.JFrame {
 
     private void btnGuardarEUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarEUMouseClicked
         if (txtIdEU.getText().equals("")) {
-            uc.registrarVecino(txtNombreEU, txtApellidosEU, txtTelefonoEU, txtEmailEU, txtUserNameEU, txtPasswordEU, jTable1);
+            uc.registrarVecino(txtNombreEU, txtApellidosEU, txtTelefonoEU, txtEmailEU, txtUserNameEU, txtPasswordEU, tblUsuarioGU);
         } else {
-            uc.updateUsuario(txtIdEU, txtNombreEU, txtApellidosEU, txtTelefonoEU, txtEmailEU, txtUserNameEU, txtPasswordEU, jTable1);
+            uc.updateUsuario(txtIdEU, txtNombreEU, txtApellidosEU, txtTelefonoEU, txtEmailEU, txtUserNameEU, txtPasswordEU, tblUsuarioGU);
         }
         edicionVecinoFrame.hide();;
     }//GEN-LAST:event_btnGuardarEUMouseClicked
@@ -5454,22 +5454,22 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarAltaAdminMouseClicked
 
     private void btnBorrarUsuarioGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarUsuarioGUMouseClicked
-        uc.eliminarUsuario(jTable1);
+        uc.eliminarUsuario(tblUsuarioGU);
     }//GEN-LAST:event_btnBorrarUsuarioGUMouseClicked
 
     private void btnEditarUsuarioGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarUsuarioGUMouseClicked
-        if (jTable1.getSelectedRow() >= 0) {
+        if (tblUsuarioGU.getSelectedRow() >= 0) {
             if (edicionVecinoFrame.isVisible() == false) {
                 dimensionarFrameDatos(edicionVecinoFrame);
             }
-            uc.cargarFormUsuario(jTable1, txtIdEU, txtNombreEU, txtApellidosEU, txtTelefonoEU, txtEmailEU, txtUserNameEU, txtPasswordEU);
+            uc.cargarFormUsuario(tblUsuarioGU, txtIdEU, txtNombreEU, txtApellidosEU, txtTelefonoEU, txtEmailEU, txtUserNameEU, txtPasswordEU);
             ic.cargarTablaInmueblesVecino(Integer.parseInt(txtIdEU.getText()), jTable3);
             edicionVecinoFrame.show();
         }
     }//GEN-LAST:event_btnEditarUsuarioGUMouseClicked
 
     private void btnFiltrarUsuariosGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarUsuariosGUMouseClicked
-        uc.cargarTablaUsuarios(gUNombreText.getText(), jTable1);
+        uc.cargarTablaUsuarios(gUNombreText.getText(), tblUsuarioGU);
     }//GEN-LAST:event_btnFiltrarUsuariosGUMouseClicked
 
     private void btnAltaAdminGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaAdminGUMouseClicked
@@ -6824,7 +6824,6 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
-    public javax.swing.JTable jTable1;
     public javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     public javax.swing.JTable jTable7;
@@ -6868,6 +6867,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     public javax.swing.JTable tblServiciosAS;
     private javax.swing.JTable tblServiciosEGC;
     private javax.swing.JTable tblServiciosEI;
+    public javax.swing.JTable tblUsuarioGU;
     public javax.swing.JTable tblVecinosAI;
     public javax.swing.JTextField txtApellidosEI;
     public javax.swing.JTextField txtApellidosEU;
