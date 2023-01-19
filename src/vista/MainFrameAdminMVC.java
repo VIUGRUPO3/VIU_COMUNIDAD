@@ -29,7 +29,7 @@ import javax.swing.JOptionPane;
  *
  * @author fer
  */
-public class MainFrameAdmin_NEW extends javax.swing.JFrame {
+public class MainFrameAdminMVC extends javax.swing.JFrame {
 
     Controlador ctrl = new Controlador();
     UsuarioControlador uc = new UsuarioControlador();
@@ -50,8 +50,10 @@ public class MainFrameAdmin_NEW extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
-    public MainFrameAdmin_NEW() {
+    public MainFrameAdminMVC() {
         initComponents();
+        
+        
     }
 
     /**
@@ -349,8 +351,9 @@ public class MainFrameAdmin_NEW extends javax.swing.JFrame {
 
     private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
         uc.cargarTablaUsuarios(guf.gUNombreText.getText(), guf.tblUsuarioGUF);
-        if (guf.isVisible() == false) {
-            dimensionarFrameDatos(guf);
+        if (guf.isVisible() == false) {         
+            panelDatos.add(guf);
+            guf.setVisible(true);
         }
     }//GEN-LAST:event_btnUsuariosMouseClicked
 
@@ -420,14 +423,18 @@ public class MainFrameAdmin_NEW extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrameAdmin_NEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrameAdminMVC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrameAdmin_NEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrameAdminMVC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrameAdmin_NEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrameAdminMVC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrameAdmin_NEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrameAdminMVC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -436,7 +443,7 @@ public class MainFrameAdmin_NEW extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrameAdmin_NEW().setVisible(true);
+                new MainFrameAdminMVC().setVisible(true);
             }
         });
     }
@@ -520,7 +527,7 @@ public class MainFrameAdmin_NEW extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     public javax.swing.JLabel jLabel42;
     private javax.swing.JDesktopPane panelCabecera;
-    private javax.swing.JDesktopPane panelDatos;
+    public javax.swing.JDesktopPane panelDatos;
     private javax.swing.JDesktopPane panelFooter;
     // End of variables declaration//GEN-END:variables
 }

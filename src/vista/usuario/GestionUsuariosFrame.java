@@ -4,7 +4,10 @@
  */
 package vista.usuario;
 
+import controlador.Controlador;
+import controlador.modelos.InmuebleControlador;
 import controlador.modelos.UsuarioControlador;
+import vista.MainFrameAdminMVC;
 
 /**
  *
@@ -12,14 +15,23 @@ import controlador.modelos.UsuarioControlador;
  */
 public class GestionUsuariosFrame extends javax.swing.JInternalFrame {
 
+    MainFrameAdminMVC  mfan;
     UsuarioControlador uc;
+    EdicionVecinoFrame evf;
+    RegistroAdminFrame raf;
+    InmuebleControlador ic;
+    Controlador ctrl;
     
     /**
      * Creates new form gestionUsuariosFrame
      */
     public GestionUsuariosFrame() {
         initComponents();
-        uc=new UsuarioControlador();
+        ctrl = new Controlador();
+        uc = new UsuarioControlador();
+        ic = new InmuebleControlador();
+        evf = new EdicionVecinoFrame();
+        raf = new RegistroAdminFrame();
     }
 
     /**
@@ -206,29 +218,29 @@ public class GestionUsuariosFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBorrarUsuarioGUMouseClicked
 
     private void btnAltaVecinoGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaVecinoGUMouseClicked
-//        if (EdicionVecinoFrame.isVisible() == false) {
-//            dimensionarFrameDatos(edicionVecinoFrame);
-//        }
-//        EdicionVecinoFrame.limpiarUserForm();
-//        EdicionVecinoFrame.show();
+        if (evf.isVisible() == false) {
+            ctrl.ocultarFrame(this);
+            ctrl.mostrarFrame(evf);      
+        }
+        evf.limpiarUserForm();
     }//GEN-LAST:event_btnAltaVecinoGUMouseClicked
 
     private void btnEditarUsuarioGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarUsuarioGUMouseClicked
-//        if (tblUsuarioGUF.getSelectedRow() >= 0) {
-//            if (EdicionVecinoFrame.isVisible() == false) {
-//                dimensionarFrameDatos(edicionVecinoFrame);
-//            }
-//            uc.cargarFormUsuario(tblUsuarioGUF, txtIdEU, txtNombreEU, txtApellidosEU, txtTelefonoEU, txtEmailEU, txtUserNameEU, txtPasswordEU);
-//            ic.cargarTablaInmueblesVecino(Integer.parseInt(txtIdEU.getText()), jTable3);
-//            EdicionVecinoFrame.show();
-//        }
+        if (tblUsuarioGUF.getSelectedRow() >= 0) {
+            if (evf.isVisible() == false) {
+                ctrl.ocultarFrame(this);
+                ctrl.mostrarFrame(evf); 
+            }
+            uc.cargarFormUsuario(tblUsuarioGUF, evf.txtIdEU, evf.txtNombreEU, evf.txtApellidosEU, evf.txtTelefonoEU, evf.txtEmailEU, evf.txtUserNameEU, evf.txtPasswordEU);
+            ic.cargarTablaInmueblesVecino(Integer.parseInt(evf.txtIdEU.getText()), evf.tblInmueblesEVF);
+        }
     }//GEN-LAST:event_btnEditarUsuarioGUMouseClicked
 
     private void btnAltaAdminGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaAdminGUMouseClicked
-//        if (registroAdminFrame.isVisible() == false) {
-//            dimensionarFrameDatos(registroAdminFrame);
-//        }
-//        registroAdminFrame.show();
+        if (raf.isVisible() == false) {
+            ctrl.ocultarFrame(this);
+            ctrl.mostrarFrame(raf);
+        }
     }//GEN-LAST:event_btnAltaAdminGUMouseClicked
 
     private void btnFiltrarUsuariosGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarUsuariosGUMouseClicked
@@ -236,7 +248,7 @@ public class GestionUsuariosFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnFiltrarUsuariosGUMouseClicked
 
     private void btnCancelarGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarGUMouseClicked
-        this.hide();
+        ctrl.ocultarFrame(this);
     }//GEN-LAST:event_btnCancelarGUMouseClicked
 
 

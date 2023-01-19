@@ -10,10 +10,11 @@ package controlador;
 // @version: 08/01/2023/package controlador;
 
 
+import javax.swing.JInternalFrame;
 import modelo.usuario.Vecino;
 import vista.LoginFrame;
 import vista.MainFrameAdmin;
-import vista.MainFrameAdmin_NEW;
+import vista.MainFrameAdminMVC;
 import vista.MainFrameVecino;
 
 /**
@@ -26,7 +27,7 @@ public class Controlador {
     /**
      * Se define la ventana Admin
      */
-    public static MainFrameAdmin_NEW mainFrameAdmin_NEW = new MainFrameAdmin_NEW();
+    public static MainFrameAdminMVC mfamvc = new MainFrameAdminMVC();
 
     /**
      * Se define la ventana Vecino
@@ -47,7 +48,7 @@ public class Controlador {
      * Método que define el inicio de la aplicación
      */
     public void iniciarApp() {
-        mainFrameAdmin_NEW.setVisible(false);
+        mfamvc.setVisible(false);
         LoginFrame loginForm = new LoginFrame();
         loginForm.setVisible(true);
     }
@@ -61,9 +62,9 @@ public class Controlador {
     public void autenticado(Vecino v, String tipoUsuario) {
             switch (tipoUsuario) {
                 case "admin":
-                    mainFrameAdmin_NEW.setVisible(true);
-                    mainFrameAdmin_NEW.jLabel42.setText(Integer.toString(v.getId()) + " - ");
-                    mainFrameAdmin_NEW.jLabel37.setText(v.getNombre() + " " + v.getApellidos());
+                    mfamvc.setVisible(true);
+                    mfamvc.jLabel42.setText(Integer.toString(v.getId()) + " - ");
+                    mfamvc.jLabel37.setText(v.getNombre() + " " + v.getApellidos());
                     break;
                 case "vecino":
                     mainFrameVecino.setVisible(true);
@@ -76,12 +77,22 @@ public class Controlador {
             }
     }
     
+    public void ocultarFrame(JInternalFrame jif){
+        jif.setVisible(false);
+        mfamvc.panelDatos.remove(jif);
+        
+    }
+    
+    public void mostrarFrame(JInternalFrame jif){
+        mfamvc.panelDatos.add(jif);
+        jif.setVisible(true);
+    }
     /**
      * Método de logout para el tipo de usuario Administrador
      */
     public void logoutAdmin(){
-        mainFrameAdmin_NEW.setVisible(false);
-        mainFrameAdmin_NEW.dispose();
+        mfamvc.setVisible(false);
+        mfamvc.dispose();
         iniciarApp();
     }
 

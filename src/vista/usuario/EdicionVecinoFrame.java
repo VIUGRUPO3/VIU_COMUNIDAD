@@ -29,7 +29,7 @@ public class EdicionVecinoFrame extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tblInmueblesEVF = new javax.swing.JTable();
         btnDetalleEU = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         btnCancelarEU = new javax.swing.JButton();
@@ -54,8 +54,8 @@ public class EdicionVecinoFrame extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel7.setText("Inmuebles Asociados:");
 
-        jTable3.setBackground(new java.awt.Color(242, 242, 242));
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tblInmueblesEVF.setBackground(new java.awt.Color(242, 242, 242));
+        tblInmueblesEVF.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -71,7 +71,7 @@ public class EdicionVecinoFrame extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(tblInmueblesEVF);
 
         btnDetalleEU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnDetalleEU.setForeground(new java.awt.Color(51, 51, 51));
@@ -449,7 +449,15 @@ public class EdicionVecinoFrame extends javax.swing.JInternalFrame {
 //            evt.consume();
 //        }
     }//GEN-LAST:event_txtNombreEUKeyTyped
-
+    public void limpiarUserForm() {
+            txtIdEU.setText("");
+            txtNombreEU.setText("");
+            txtApellidosEU.setText("");
+            txtTelefonoEU.setText("");
+            txtEmailEU.setText("");
+            txtUserNameEU.setText("");
+            txtPasswordEU.setText("");
+        }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarEU;
@@ -466,7 +474,7 @@ public class EdicionVecinoFrame extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable3;
+    public javax.swing.JTable tblInmueblesEVF;
     public javax.swing.JTextField txtApellidosEU;
     public javax.swing.JTextField txtEmailEU;
     public javax.swing.JTextField txtIdEU;
