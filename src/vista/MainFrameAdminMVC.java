@@ -31,7 +31,7 @@ import javax.swing.JOptionPane;
  */
 public class MainFrameAdminMVC extends javax.swing.JFrame {
 
-    Controlador ctrl = new Controlador();
+   
     UsuarioControlador uc = new UsuarioControlador();
     InmuebleControlador ic = new InmuebleControlador();
     ServicioControlador sc = new ServicioControlador();
@@ -378,7 +378,7 @@ public class MainFrameAdminMVC extends javax.swing.JFrame {
     }//GEN-LAST:event_btnServiciosMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        ctrl.logoutAdmin();
+        //ctrl.logoutAdmin();
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void btnProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProveedoresMouseClicked

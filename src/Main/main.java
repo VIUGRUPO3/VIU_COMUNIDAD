@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import vista.LoginFrame;
 
 /**
  * Clase que gestiona el programa principal
@@ -42,8 +43,10 @@ public class main {
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Controlador ctrl = new Controlador();
-        ctrl.iniciarApp();
+        LoginFrame loginForm = new LoginFrame();
+        loginForm.setVisible(true);
+//        Controlador ctrl = new Controlador();
+//        ctrl.iniciarApp();
         
     }
     

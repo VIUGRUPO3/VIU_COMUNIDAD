@@ -48,7 +48,9 @@ public class Controlador {
      * Método que define el inicio de la aplicación
      */
     public void iniciarApp() {
-        mfamvc.setVisible(false);
+        if(mfamvc.isVisible()==true){
+            mfamvc.setVisible(false);
+        }
         LoginFrame loginForm = new LoginFrame();
         loginForm.setVisible(true);
     }
