@@ -283,7 +283,7 @@ public class LoginFrame extends javax.swing.JFrame {
         UsuarioControlador uc = new UsuarioControlador();
         String userName = campo_usuario.getText();
         String pwd = campo_password.getText();
-        uc.autenticarUsuario(userName, pwd);
+        logueado = uc.autenticarUsuario(userName, pwd);
         if (logueado == true){
             this.setVisible(false);
             this.dispose();

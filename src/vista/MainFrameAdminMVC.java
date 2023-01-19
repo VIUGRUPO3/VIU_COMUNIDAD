@@ -31,7 +31,7 @@ import javax.swing.JOptionPane;
  */
 public class MainFrameAdminMVC extends javax.swing.JFrame {
 
-   
+    Controlador ctrl;
     UsuarioControlador uc = new UsuarioControlador();
     InmuebleControlador ic = new InmuebleControlador();
     ServicioControlador sc = new ServicioControlador();
@@ -52,7 +52,7 @@ public class MainFrameAdminMVC extends javax.swing.JFrame {
      */
     public MainFrameAdminMVC() {
         initComponents();
-        
+        ctrl = new Controlador();
         
     }
 
@@ -351,10 +351,7 @@ public class MainFrameAdminMVC extends javax.swing.JFrame {
 
     private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
         uc.cargarTablaUsuarios(guf.gUNombreText.getText(), guf.tblUsuarioGUF);
-        if (guf.isVisible() == false) {         
-            panelDatos.add(guf);
-            guf.setVisible(true);
-        }
+        ctrl.mostrarFrame(guf);
     }//GEN-LAST:event_btnUsuariosMouseClicked
 
     private void btnInmueblesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInmueblesMouseClicked

@@ -14,24 +14,26 @@ import vista.MainFrameAdminMVC;
  * @author LDAJBS1
  */
 public class GestionUsuariosFrame extends javax.swing.JInternalFrame {
-
-    MainFrameAdminMVC  mfan;
-    UsuarioControlador uc;
-    EdicionVecinoFrame evf;
-    RegistroAdminFrame raf;
-    InmuebleControlador ic;
-    Controlador ctrl;
+    //Controladores
+    private Controlador ctrl;
+    private UsuarioControlador uc;
+    private InmuebleControlador ic;
+    //Vistas
+    private EdicionVecinoFrame evf;
+    private RegistroAdminFrame raf;
+    
+    
     
     /**
      * Creates new form gestionUsuariosFrame
      */
     public GestionUsuariosFrame() {
         initComponents();
-        ctrl = new Controlador();
+        ctrl  = new Controlador();
         uc = new UsuarioControlador();
         ic = new InmuebleControlador();
         evf = new EdicionVecinoFrame();
-        //raf = new RegistroAdminFrame();
+        raf = new RegistroAdminFrame();
     }
 
     /**
@@ -237,10 +239,10 @@ public class GestionUsuariosFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditarUsuarioGUMouseClicked
 
     private void btnAltaAdminGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaAdminGUMouseClicked
-//        if (raf.isVisible() == false) {
-//            ctrl.ocultarFrame(this);
-//            ctrl.mostrarFrame(raf);
-//        }
+        if (raf.isVisible() == false) {
+            ctrl.ocultarFrame(this);
+            ctrl.mostrarFrame(raf);
+        }
     }//GEN-LAST:event_btnAltaAdminGUMouseClicked
 
     private void btnFiltrarUsuariosGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarUsuariosGUMouseClicked

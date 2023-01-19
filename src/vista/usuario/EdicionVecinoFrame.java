@@ -4,17 +4,25 @@
  */
 package vista.usuario;
 
-/**
- *
- * @author LDAJBS1
- */
-public class EdicionVecinoFrame extends javax.swing.JInternalFrame {
+import controlador.Controlador;
+import controlador.modelos.InmuebleControlador;
+import controlador.modelos.UsuarioControlador;
+import vista.inmueble.EdicionInmuebleFrame;
 
+
+public class EdicionVecinoFrame extends javax.swing.JInternalFrame {
+    private Controlador ctrl;
+    private InmuebleControlador ic;
+    private UsuarioControlador uc;
+    
     /**
      * Creates new form edicionVecinoFrame
      */
     public EdicionVecinoFrame() {
         initComponents();
+        ctrl = new Controlador();
+        ic = new InmuebleControlador();
+        uc = new UsuarioControlador();
     }
 
     /**
@@ -265,16 +273,16 @@ public class EdicionVecinoFrame extends javax.swing.JInternalFrame {
                                 .addComponent(txtPasswordEU)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnGuardarEU, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnGuardarEU, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(30, 30, 30)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtIdEU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addComponent(txtNombreEU, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -284,10 +292,7 @@ public class EdicionVecinoFrame extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtTelefonoEU))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(txtIdEU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                                        .addComponent(txtTelefonoEU, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCancelarEU, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -349,34 +354,40 @@ public class EdicionVecinoFrame extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDetalleEUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetalleEUMouseClicked
-//        if (jTable3.getSelectedRow() >= 0) {
-//            if (edicionInmuebleFrame.isVisible() == false) {
-//                dimensionarFrameDatos(edicionInmuebleFrame);
-//            }
-//            ic.cargarFormInmueble(
-//                txtIdEI,
-//                txtDireccionEI,
-//                txtIdVecinoEI,
-//                txtNombreEI,
-//                txtApellidosEI,
-//                txtTelefonoEI,
-//                txtEmailEI,
-//                jTable3);
-//            edicionInmuebleFrame.show();
-//        }
+        if (tblInmueblesEVF.getSelectedRow() >= 0) {
+            EdicionInmuebleFrame eif = new EdicionInmuebleFrame();
+            ctrl.ocultarFrame(this);
+            ctrl.mostrarFrame(eif);
+            
+            ic.cargarFormInmueble(
+                eif.txtIdEI,
+                eif.txtDireccionEI,
+                eif.txtIdVecinoEI,
+                eif.txtNombreEI,
+                eif.txtApellidosEI,
+                eif.txtTelefonoEI,
+                eif.txtEmailEI,
+                tblInmueblesEVF);
+        }
     }//GEN-LAST:event_btnDetalleEUMouseClicked
 
     private void btnCancelarEUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarEUMouseClicked
-//        EdicionVecinoFrame.hide();
+        GestionUsuariosFrame guf = new GestionUsuariosFrame();
+        ctrl.ocultarFrame(this);
+        uc.cargarTablaUsuarios(guf.gUNombreText.getText(), guf.tblUsuarioGUF);
+        ctrl.mostrarFrame(guf);
     }//GEN-LAST:event_btnCancelarEUMouseClicked
 
     private void btnGuardarEUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarEUMouseClicked
-//        if (txtIdEU.getText().equals("")) {
-//            uc.registrarVecino(txtNombreEU, txtApellidosEU, txtTelefonoEU, txtEmailEU, txtUserNameEU, txtPasswordEU, jTable1);
-//        } else {
-//            uc.updateUsuario(txtIdEU, txtNombreEU, txtApellidosEU, txtTelefonoEU, txtEmailEU, txtUserNameEU, txtPasswordEU, jTable1);
-//        }
-//        EdicionVecinoFrame.hide();;
+        GestionUsuariosFrame guf = new GestionUsuariosFrame();
+        if (txtIdEU.getText().equals("")) {
+            uc.registrarVecino(txtNombreEU, txtApellidosEU, txtTelefonoEU, txtEmailEU, txtUserNameEU, txtPasswordEU, guf.tblUsuarioGUF);
+        } else {
+            uc.updateUsuario(txtIdEU, txtNombreEU, txtApellidosEU, txtTelefonoEU, txtEmailEU, txtUserNameEU, txtPasswordEU, guf.tblUsuarioGUF);
+        }
+        ctrl.ocultarFrame(this);
+        uc.cargarTablaUsuarios(guf.gUNombreText.getText(), guf.tblUsuarioGUF);
+        ctrl.mostrarFrame(guf);
     }//GEN-LAST:event_btnGuardarEUMouseClicked
 
     private void txtTelefonoEUKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoEUKeyTyped
@@ -458,6 +469,8 @@ public class EdicionVecinoFrame extends javax.swing.JInternalFrame {
             txtUserNameEU.setText("");
             txtPasswordEU.setText("");
         }
+    
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarEU;

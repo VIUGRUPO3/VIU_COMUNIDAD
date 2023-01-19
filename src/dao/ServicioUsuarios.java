@@ -44,32 +44,6 @@ public class ServicioUsuarios {
 
 //Atributos
         //Metodos
-    /**
-     * Metodo que conecta con la base de datos de servidor
-     *
-     * @return
-     * @throws IOException
-     * @throws ClassNotFoundException
-     */
-//    private Connection conectarBD() throws IOException, ClassNotFoundException {
-//        InputStream config;
-//        try {
-//            config = new FileInputStream("./src/resources/config.properties");
-//            Properties prop = new Properties();
-//            prop.load(config);
-//            String dbURL = prop.getProperty("db.url");
-//            String dbUser = prop.getProperty("db.user");
-//            String dbPassword = prop.getProperty("db.password");
-//
-//            ConexionDB conDB = new ConexionDB(dbURL, dbUser, dbPassword);
-//            conn = conDB.getConnection();
-//            return conn;
-//
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(ServicioUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return null;
-//    }
 
     /**
      * Metodo que inserta una instancia de la clase Vecino en la base de datos
@@ -190,19 +164,19 @@ public class ServicioUsuarios {
         String sql = "delete from usuarios where id = ?";
         String sql2 = "delete from usuarios_roles where idUser = ?";
         try {
-            
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            {
-                stmt.setInt(1, vecino.getId());
-                stmt.execute();
-                stmt.close();
-            }
             PreparedStatement stmt2 = conn.prepareStatement(sql2);
             {
                 stmt2.setInt(1, vecino.getId());
                 stmt2.execute();
                 stmt2.close();
             }
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            {
+                stmt.setInt(1, vecino.getId());
+                stmt.execute();
+                stmt.close();
+            }
+            
         } catch (SQLException e) {
             throw new RuntimeException("error SQL", e);
         }

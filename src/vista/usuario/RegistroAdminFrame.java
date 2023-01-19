@@ -15,15 +15,14 @@ public class RegistroAdminFrame extends javax.swing.JInternalFrame {
     
     Controlador ctrl;
     UsuarioControlador uc;
-    GestionUsuariosFrame guf;
+    
     /**
      * Creates new form RegistroAdminFrame
      */
     public RegistroAdminFrame() {
         initComponents();
-        //ctrl = new Controlador();
+        ctrl = new Controlador();
         uc = new UsuarioControlador();
-        guf = new GestionUsuariosFrame();
     }
 
     /**
@@ -239,8 +238,8 @@ public class RegistroAdminFrame extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNombreRAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreRAKeyTyped
-        String texto = txtNombreRA.getText();
-        char caracter = evt.getKeyChar();
+//        String texto = txtNombreRA.getText();
+//        char caracter = evt.getKeyChar();
 //        if (filtrarCaracteres(texto,caracter,"l")){
 //            evt.consume();
 //        }
@@ -251,15 +250,16 @@ public class RegistroAdminFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtPasswordRAFocusGained
 
     private void txtPasswordRAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordRAKeyTyped
-        // TODO add your handling code here:
-        String texto = txtPasswordRA.getText();
-        char caracter = evt.getKeyChar();
+//        // TODO add your handling code here:
+//        String texto = txtPasswordRA.getText();
+//        char caracter = evt.getKeyChar();
 //        if (filtrarCaracteres(texto,caracter,"l")){
 //            evt.consume();
 //        }
     }//GEN-LAST:event_txtPasswordRAKeyTyped
 
     private void btnAltaAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaAdminMouseClicked
+        GestionUsuariosFrame guf = new GestionUsuariosFrame();
         uc.registrarAdmin(txtNombreRA, txtApellidosRA, txtTelefonoRA, txtEmailRA, txtUserNameRA, txtPasswordRA, guf.tblUsuarioGUF);
         uc.cargarTablaUsuarios(guf.gUNombreText.getText(), guf.tblUsuarioGUF);
         ctrl.ocultarFrame(this);
@@ -267,25 +267,25 @@ public class RegistroAdminFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAltaAdminMouseClicked
 
     private void txtApellidosRAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosRAKeyTyped
-        String texto = txtApellidosRA.getText();
-        char caracter = evt.getKeyChar();
+//        String texto = txtApellidosRA.getText();
+//        char caracter = evt.getKeyChar();
 //        if (filtrarCaracteres(texto,caracter,"l")){
 //            evt.consume();
 //        }        // TODO add your handling code here:
     }//GEN-LAST:event_txtApellidosRAKeyTyped
 
     private void txtUserNameRAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserNameRAKeyTyped
-        // TODO add your handling code here:
-        String texto = txtUserNameRA.getText();
-        char caracter = evt.getKeyChar();
+//        // TODO add your handling code here:
+//        String texto = txtUserNameRA.getText();
+//        char caracter = evt.getKeyChar();
 //        if (filtrarCaracteres(texto,caracter,"l")){
 //            evt.consume();
 //        }
     }//GEN-LAST:event_txtUserNameRAKeyTyped
 
     private void txtTelefonoRAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoRAKeyTyped
-        String texto = txtTelefonoRA.getText();
-        char caracter = evt.getKeyChar();
+//        String texto = txtTelefonoRA.getText();
+//        char caracter = evt.getKeyChar();
 //        if (filtrarCaracteres(texto,caracter,"t")){
 //            evt.consume();
 //        }        // TODO add your handling code here:
@@ -296,14 +296,16 @@ public class RegistroAdminFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtEmailRAActionPerformed
 
     private void txtEmailRAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailRAKeyTyped
-        String texto = txtEmailRA.getText();
-        char caracter = evt.getKeyChar();
+//        String texto = txtEmailRA.getText();
+//        char caracter = evt.getKeyChar();
 //        if (filtrarCaracteres(texto,caracter,"m")){
 //            evt.consume();
 //        }        // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailRAKeyTyped
 
     private void btnCancelarAltaAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarAltaAdminMouseClicked
+        GestionUsuariosFrame guf = new GestionUsuariosFrame();
+        uc.cargarTablaUsuarios(guf.gUNombreText.getText(), guf.tblUsuarioGUF);
         ctrl.ocultarFrame(this);
         ctrl.mostrarFrame(guf);
     }//GEN-LAST:event_btnCancelarAltaAdminMouseClicked

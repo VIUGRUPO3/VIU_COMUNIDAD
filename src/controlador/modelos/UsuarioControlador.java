@@ -35,13 +35,14 @@ public class UsuarioControlador {
     }
  
     //Metodos
-    public void autenticarUsuario(String userName, String pwd){
+    public boolean autenticarUsuario(String userName, String pwd){
         Vecino v = su.comprobarCredenciales(userName, pwd);
         if (v != null){
             String tipoUsuario = su.obtenerTipoUsuario(v);
             ctrl.autenticado(v, tipoUsuario);
-            vista.LoginFrame.logueado = true;
+            return true;
         }
+        return false;
     }
     
     

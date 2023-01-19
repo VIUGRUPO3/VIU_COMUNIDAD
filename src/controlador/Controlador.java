@@ -1,5 +1,3 @@
-package controlador;
-
 // Asignatura: 21GIIN Proyectos Programación
 // Profesor: Eduardo Zamudio
 // @author: Grupo 3
@@ -9,6 +7,7 @@ package controlador;
 //       @author:Martin Gonzalez Dominguez
 // @version: 08/01/2023/package controlador;
 
+package controlador;
 
 import javax.swing.JInternalFrame;
 import modelo.usuario.Vecino;
@@ -82,6 +81,7 @@ public class Controlador {
     public void ocultarFrame(JInternalFrame jif){
         jif.setVisible(false);
         mfamvc.panelDatos.remove(jif);
+        jif = null;
         
     }
     
