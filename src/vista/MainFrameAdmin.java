@@ -1864,7 +1864,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         asignacionInmuebleFrame.setForeground(new java.awt.Color(255, 255, 255));
         asignacionInmuebleFrame.setTitle("Asignación Inmueble");
         asignacionInmuebleFrame.setPreferredSize(new java.awt.Dimension(986, 586));
-        asignacionInmuebleFrame.setVisible(false);
+        asignacionInmuebleFrame.setVisible(true);
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -1962,6 +1962,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 btnFiltrarInmuebleAIMouseClicked(evt);
             }
         });
+        btnFiltrarInmuebleAI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiltrarInmuebleAIActionPerformed(evt);
+            }
+        });
 
         btnFiltrarUserAI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnFiltrarUserAI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lupa.png"))); // NOI18N
@@ -1976,6 +1981,11 @@ public class MainFrameAdmin extends javax.swing.JFrame {
         });
 
         txtFiltrarInmuebleAI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtFiltrarInmuebleAI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFiltrarInmuebleAIActionPerformed(evt);
+            }
+        });
 
         txtFiltrarNombreAI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
@@ -5233,7 +5243,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
                 .addGroup(panelDatosLayout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(asignacionInmuebleFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(asignacionInmuebleFrame, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
                         .addComponent(asignacionServiciosFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addContainerGap()))
             .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5306,7 +5316,7 @@ public class MainFrameAdmin extends javax.swing.JFrame {
             .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelDatosLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(asignacionInmuebleFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(asignacionInmuebleFrame, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(asignacionServiciosFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addContainerGap()))
@@ -6381,6 +6391,14 @@ public class MainFrameAdmin extends javax.swing.JFrame {
     private void txtDireccionEIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionEIActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDireccionEIActionPerformed
+
+    private void btnFiltrarInmuebleAIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarInmuebleAIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFiltrarInmuebleAIActionPerformed
+
+    private void txtFiltrarInmuebleAIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltrarInmuebleAIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFiltrarInmuebleAIActionPerformed
 
     /**
      * @param args the command line arguments
