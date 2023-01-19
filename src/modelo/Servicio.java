@@ -16,69 +16,38 @@ import java.util.Date;
  * Clase que gestiona las operaciones referentes a servicios
  *
  */
-public class Servicio {
-
-    //Atributos
-    /**
-     * ID del servicio
-     */
-    private int id;
-
-    /**
-     * Nombre del servicio
-     */
-    private String nombre;
+public class Servicio extends ServicioAbs{
 
     /**
      * Tarifa del servicio
      */
     private double tarifa;
 
-    /**
-     * Booleano que indica la obligatoriedad del servicio. Si es obligatorio
-     * tomará el valor False, en caso contrario será True
-     */
-    private boolean opcional;
-
-    //Constructores
-    /**
-     * Constructor de la clase servicio
-     */
     public Servicio() {
     }
 
-    /**
-     * Constructor de la clase servicio
-     *
-     * @param id objeto id de servicio
-     * @param nombre objeto nombre de servicio
-     * @param tarifa objeto tarifa de servicio
-     * @param opcional objeto tipo servicio opcional
-     */
-    
-    
-    public Servicio(String nombre, double tarifa, boolean opcional) {
-        this.nombre = nombre;
+    public Servicio(double tarifa) {
         this.tarifa = tarifa;
-        this.opcional = opcional;
-
     }
 
-    public Servicio(int id, String nombre, double tarifa, boolean opcional) {
-        this.id = id;
-        this.nombre = nombre;
+    public Servicio(double tarifa, String nombre, boolean opcional) {
+        super(nombre, opcional);
         this.tarifa = tarifa;
-        this.opcional = opcional;
     }
+
+    public Servicio(double tarifa, int id, String nombre, boolean opcional) {
+        super(id, nombre, opcional);
+        this.tarifa = tarifa;
+    }
+    
+    
 
     //Métodos
-    
     //equals
-
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 97 * hash + this.id;
+        hash = 97 * hash + this.getId();
         return hash;
     }
 
@@ -94,96 +63,19 @@ public class Servicio {
             return false;
         }
         final Servicio other = (Servicio) obj;
-        return this.id == other.id;
-    }
-    
-    
-    //Getters
-    /**
-     * Método obtiene si el servicio es Opcional
-     *
-     * @return opcional tipo de servicio
-     */
-    public boolean isOpcional() {
-        return opcional;
+        return this.getId() == other.getId();
     }
 
-    /**
-     * Método obtiene el Id de servicio
-     *
-     * @return id identificar de servicio
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * Método obtiene el nombre del servicio
-     *
-     * @return nombre string nombre de servicio
-     */
-    public String getNombre() {
-        return nombre;
-    }
-
-    /**
-     * Método que obtiene la tarifa asociada al servicio
-     *
-     * @return tarifa coste del servicio
-     */
     public double getTarifa() {
         return tarifa;
     }
 
-    //Setters
-    /**
-     * Método establece si el servicio es Opcional
-     *
-     * @param opcional tipo de servicio
-     */
-    public void setOpcional(boolean opcional) {
-        this.opcional = opcional;
-    }
-
-    /**
-     * Método Establece el id del servicio
-     *
-     * @param id identificador de servicio
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    /**
-     * Método Establece el nombre del servicio
-     *
-     * @param nombre objeto nombre del servicio
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    /**
-     * Método establece tarifa del servicio
-     *
-     * @param tarifa objeto precio del servicio
-     */
     public void setTarifa(double tarifa) {
         this.tarifa = tarifa;
     }
+    
+    
 
-    /**
-     * Método establece el objeto servicio con su Nombre y tarifa
-     *
-     * @param nombre objeto nombre servicio
-     * @param tarifa objeto coste servicio
-     * @param opcional booleano que identifica si el servicio es opcional(True) o no(False)
-     */
-    public void setServicio(String nombre, double tarifa, boolean opcional) {
-        this.nombre = nombre;
-        this.tarifa = tarifa;
-        this.opcional = opcional;
-    }
 
     //Funcionalidad
     /**
@@ -239,7 +131,9 @@ public class Servicio {
     public void updateServicio(ComunidadCRUD comunidadCRUD, String nombre, double tarifa, boolean opcional, Servicio servicioModificar) {
         comunidadCRUD.servicios.forEach(servicio -> {
             if (servicio == servicioModificar) {
-                servicio.setServicio(nombre, tarifa, opcional);
+                servicio.setNombre(nombre);
+                servicio.setTarifa(tarifa);
+                servicio.setOpcional(opcional);
             }
         });
     }
@@ -282,7 +176,7 @@ public class Servicio {
      */
     @Override
     public String toString() {
-        return nombre + " -> " + tarifa + "Euros \n";
+        return this.getNombre() + " -> " + tarifa + "Euros \n";
     }
 
 }

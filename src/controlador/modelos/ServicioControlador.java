@@ -58,7 +58,7 @@ public class ServicioControlador {
         } else {
             tipo = true;
         }
-        Servicio s = new Servicio(txtNombreES.getText(), Double.parseDouble(txtTarifaES.getText()), tipo);
+        Servicio s = new Servicio(Double.parseDouble(txtTarifaES.getText()),txtNombreES.getText(),  tipo);
         S_S.insertarServicioDB(s);
         Servicio sInsertado = S_S.obtenerUltimoServicio();
         if (tipo == false) {
@@ -90,7 +90,7 @@ public class ServicioControlador {
         } else {
             tipo = true;
         }
-        Servicio s = new Servicio(id, nombre, tarifa, tipo);
+        Servicio s = new Servicio(tarifa,id, nombre, tipo);
         S_S.updateServicio(s);
         if (tipo == false) {
             eliminarServicioCuentaServicio(s);

@@ -126,9 +126,9 @@ public class ServicioServicios {
             ResultSet rs = stmt.executeQuery("select * from servicios");
             while (rs.next()) {
                 lista.add(new Servicio(
+                        rs.getDouble("tarifa"),
                         rs.getInt("id"),
                         rs.getString("nombre"), 
-                        rs.getDouble("tarifa"),
                         rs.getBoolean("opcional")
                 ));
             }
@@ -157,9 +157,9 @@ public class ServicioServicios {
             {
                 while (rs.next()) {
                     lista.add(new Servicio(
+                            rs.getDouble("tarifa"),
                             rs.getInt("id"),
                             rs.getString("nombre"),
-                            rs.getDouble("tarifa"),
                             rs.getBoolean("opcional")
                     ));
                 }
@@ -197,9 +197,9 @@ public class ServicioServicios {
             {
                 while (rs.next()) {
                     lista.add(new Servicio(
+                            rs.getDouble("tarifa"),
                             rs.getInt("id"),
                             rs.getString("nombre"),
-                            rs.getDouble("tarifa"),
                             rs.getBoolean("opcional")
                     ));
                 }

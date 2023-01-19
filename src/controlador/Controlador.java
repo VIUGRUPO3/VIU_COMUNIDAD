@@ -27,7 +27,7 @@ public class Controlador {
      * Se define la ventana Admin
      */
     public static MainFrameAdminMVC mfamvc = new MainFrameAdminMVC();
-
+    //public static MainFrameAdmin mfa = new MainFrameAdmin();       
     /**
      * Se define la ventana Vecino
      */

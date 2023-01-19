@@ -1,7 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+// Asignatura: 21GIIN Proyectos Programación
+// Profesor: Eduardo Zamudio
+// @author: Grupo 3
+// Miembros:
+//       @author:Fernando Hernandez Fernandez
+//       @author:Javier Barbero Sales
+//       @author:Martin Gonzalez Dominguez
+// @version: 08/01/2023/package controlador;
+
 package vista.usuario;
 
 import controlador.Controlador;
@@ -10,8 +15,8 @@ import controlador.modelos.UsuarioControlador;
 import vista.MainFrameAdminMVC;
 
 /**
- *
- * @author LDAJBS1
+ *  Clase GestionUsuariosFrame
+ * 
  */
 public class GestionUsuariosFrame extends javax.swing.JInternalFrame {
     //Controladores
@@ -21,8 +26,6 @@ public class GestionUsuariosFrame extends javax.swing.JInternalFrame {
     //Vistas
     private EdicionVecinoFrame evf;
     private RegistroAdminFrame raf;
-    
-    
     
     /**
      * Creates new form gestionUsuariosFrame
@@ -214,11 +217,18 @@ public class GestionUsuariosFrame extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Boton para eliminar un usuario 
+     * @param evt evento recibido
+     */
     private void btnBorrarUsuarioGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarUsuarioGUMouseClicked
         uc.eliminarUsuario(tblUsuarioGUF);
     }//GEN-LAST:event_btnBorrarUsuarioGUMouseClicked
-
+    
+    /**
+     * Boton para dar de alta un usuario
+     * @param evt evento recibido
+     */
     private void btnAltaVecinoGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaVecinoGUMouseClicked
         if (evf.isVisible() == false) {
             ctrl.ocultarFrame(this);
@@ -226,7 +236,11 @@ public class GestionUsuariosFrame extends javax.swing.JInternalFrame {
         }
         evf.limpiarUserForm();
     }//GEN-LAST:event_btnAltaVecinoGUMouseClicked
-
+    
+    /**
+     * Boton editar usuario
+     * @param evt evento recibido
+     */
     private void btnEditarUsuarioGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarUsuarioGUMouseClicked
         if (tblUsuarioGUF.getSelectedRow() >= 0) {
             if (evf.isVisible() == false) {
@@ -238,6 +252,10 @@ public class GestionUsuariosFrame extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnEditarUsuarioGUMouseClicked
 
+    /**
+     * Boton alta administrador
+     * @param evt evento recibido
+     */
     private void btnAltaAdminGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaAdminGUMouseClicked
         if (raf.isVisible() == false) {
             ctrl.ocultarFrame(this);
@@ -245,10 +263,18 @@ public class GestionUsuariosFrame extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnAltaAdminGUMouseClicked
 
+    /**
+     * boton filtrar los usuarios
+     * @param evt evento recibido
+     */
     private void btnFiltrarUsuariosGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarUsuariosGUMouseClicked
         uc.cargarTablaUsuarios(gUNombreText.getText(), tblUsuarioGUF);
     }//GEN-LAST:event_btnFiltrarUsuariosGUMouseClicked
 
+    /**
+     * Boton cancelar, sale del Frame
+     * @param evt evento recibido
+     */
     private void btnCancelarGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarGUMouseClicked
         ctrl.ocultarFrame(this);
     }//GEN-LAST:event_btnCancelarGUMouseClicked

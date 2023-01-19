@@ -1,7 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+// Asignatura: 21GIIN Proyectos Programación
+// Profesor: Eduardo Zamudio
+// @author: Grupo 3
+// Miembros:
+//       @author:Fernando Hernandez Fernandez
+//       @author:Javier Barbero Sales
+//       @author:Martin Gonzalez Dominguez
+// @version: 08/01/2023/package controlador;
+
 package vista.usuario;
 
 import controlador.Controlador;
@@ -353,6 +358,7 @@ public class EdicionVecinoFrame extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void btnDetalleEUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetalleEUMouseClicked
         if (tblInmueblesEVF.getSelectedRow() >= 0) {
             EdicionInmuebleFrame eif = new EdicionInmuebleFrame();

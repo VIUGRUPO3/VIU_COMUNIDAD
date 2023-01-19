@@ -16,7 +16,7 @@ import modelo.Liquidacion;
  * Clase que gestiona el tipo de usuario Vecino, hereda de Usuario
  *
  */
-public class Vecino extends Usuario implements VecinoInterface {
+public class Vecino extends Usuario {
 
     // Atributos 
     // Todos los atributos son heredados de la clase Usuario
@@ -207,7 +207,7 @@ public class Vecino extends Usuario implements VecinoInterface {
      * @param vecinoBorrar id del vecino
      *
      */
-    @Override
+    
     public void bajaVecino(ComunidadCRUD comunidadCRUD, Vecino vecinoBorrar) {
         Vecino comunidad = comunidadCRUD.getVecino();        // Asignamos el vecino "Comunidad" al espacio de memoria que ocupaba el vecino eliminado
         comunidadCRUD.getInmuebles().forEach(inmueble -> {
@@ -235,7 +235,7 @@ public class Vecino extends Usuario implements VecinoInterface {
      * @param vecinoModificar id del vecino a modificar
      *
      */
-    @Override
+    
     public void updateVecino(ComunidadCRUD comunidadCRUD, String nombre, String clave, String telefono, String email, Vecino vecinoModificar) {
         comunidadCRUD.getVecinos().forEach(vecino -> {
             if (vecino == vecinoModificar) {
@@ -252,7 +252,7 @@ public class Vecino extends Usuario implements VecinoInterface {
      * @param liquidacion objeto que contiene la cabecera de la liquidación
      *
      */
-    @Override
+    
     public void consultarLiquidacion(ComunidadCRUD comunidadCRUD, Liquidacion liquidacion) {
         System.out.println("------------------------------------------------\n");
         System.out.println("CONSULTA DE LIQUIDACION DE:  " + this.nombre + "\n");
@@ -273,7 +273,7 @@ public class Vecino extends Usuario implements VecinoInterface {
      * la comunidad
      *
      */
-    @Override
+    
     public void consultarServicioCuentas(ComunidadCRUD comunidadCRUD) {
         System.out.println("------------------------------------------------\n");
         System.out.println("CONSULTA DE SERVICIOS DE:  " + this.nombre + "\n");
