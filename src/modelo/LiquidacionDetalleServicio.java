@@ -20,7 +20,7 @@ public class LiquidacionDetalleServicio extends LiquidacionDetalle {
      * Objeto servicio que contiene todos los detalles del servicio al que se le
      * va a detallar la liquidación
      */
-    private Servicio servicio;
+    
 
     //Constructores
     /**
@@ -29,46 +29,37 @@ public class LiquidacionDetalleServicio extends LiquidacionDetalle {
     public LiquidacionDetalleServicio() {
     }
 
-    /**
-     * Constructor de la clase LiquidacionDetalleServicio
-     *
-     * @param servicio Objeto servicio que contiene todos los detalles del
-     * servicio al que se le va a detallar la liquidación
-     * @param liquidacion Objeto liquidación que contiene todos los detalles de
-     * la liquidación
-     * @param inmueble Objeto inmueble que contiene todos los detalles del
-     * inmueble al que se le va a detallar la liquidación
-     * @param cuota cuota a pagar en la liquidación
-     */
-    public LiquidacionDetalleServicio(Servicio servicio, Liquidacion liquidacion, Inmueble inmueble, double cuota) {
-        super(liquidacion, inmueble, cuota);
-        this.servicio = servicio;
+    public LiquidacionDetalleServicio(Liquidacion liquidacion, ServicioCuenta sc, double cuota) {
+        super(liquidacion, sc, cuota);
+    }
+
+    public Liquidacion getLiquidacion() {    
+        return liquidacion;
+    }
+
+    public ServicioCuenta getSc() {    
+        return sc;
+    }
+
+    //Métodos
+    //Getters
+    public double getCuota() {   
+        return cuota;
+    }
+
+    public void setLiquidacion(Liquidacion liquidacion) {
+        this.liquidacion = liquidacion;
+    }
+
+    public void setSc(ServicioCuenta sc) {
+        this.sc = sc;
+    }
+
+    public void setCuota(double cuota) {
+        this.cuota = cuota;
     }
 
     
-    //Métodos
-    //Getters
-    /**
-     * Método para obtener el servicio relativo a los detalles de la liquidación
-     *
-     * @return servicio Objeto servicio que contiene todos los detalles del
-     * servicio al que se le va a detallar la liquidación
-     */
-    public Servicio getServicio() {
-        return servicio;
-    }
-
-    //Setters
-    /**
-     * Método para establecer el servicio relativo a los detalles de la
-     * liquidación
-     *
-     * @param servicio Objeto servicio que contiene todos los detalles del
-     * servicio al que se le va a detallar la liquidación
-     */
-    public void setServicio(Servicio servicio) {
-        this.servicio = servicio;
-    }
 
     /**
      * Función que devuelve una cadena con el servicio correspondiente al
@@ -79,7 +70,7 @@ public class LiquidacionDetalleServicio extends LiquidacionDetalle {
      */
     @Override
     public String toString() {
-        return "" + servicio;
+        return "" + sc;
     }
 
 }

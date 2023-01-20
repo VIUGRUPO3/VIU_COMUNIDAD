@@ -13,18 +13,18 @@ public abstract class ServicioAbs {
     /**
      * ID del servicio
      */
-    private int id;
+    protected int id;
 
     /**
      * Nombre del servicio
      */
-    private String nombre;
+    protected String nombre;
 
     /**
      * Booleano que indica la obligatoriedad del servicio. Si es obligatorio
      * tomará el valor False, en caso contrario será True
      */
-    private boolean opcional;
+    protected boolean opcional;
     
     public ServicioAbs() {
     }

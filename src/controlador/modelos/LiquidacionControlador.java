@@ -70,12 +70,13 @@ public class LiquidacionControlador {
         l = S_L.ultimoIdLiquidacion();
         List<Gasto> gastosLiquidados = new ArrayList();
 
-        for (Inmueble inmueble : listaInmuebles) {
-            List<ServicioCuenta> listaServiciosInmueble = S_S_C.buscarServiciosInmueble(inmueble.getId());
-            for (ServicioCuenta sc : listaServiciosInmueble) {
+        //for (Inmueble inmueble : listaInmuebles) {
+            //List<ServicioCuenta> listaServiciosInmueble = S_S_C.buscarServiciosInmueble(inmueble.getId());
+            List<ServicioCuenta> listaSC = S_S_C.listarServicioCuenta();
+            for (ServicioCuenta sc : listaSC) {
                 Servicio s = S_S.buscarId(sc.getServicio().getId());
-                int inmueblesAsociadosServicio = S_S_C.ContarInmueblesAsociadosServicio(s);
-                LiquidacionDetalleServicio lds = new LiquidacionDetalleServicio(s, l, inmueble, s.getTarifa());
+                int inmueblesAsociadosServicio = S_S_C.contarInmueblesAsociadosServicio(s);
+                LiquidacionDetalleServicio lds = new LiquidacionDetalleServicio( l, sc, sc.getServicio().getTarifa());
                 S_L.insertarLiquidacionDetalleServicioDB(lds);
                 List<GastoConcepto> listaConceptos = S_G_C.buscarConceptosServicio(s.getId());
                 for (GastoConcepto gc : listaConceptos) {
@@ -83,14 +84,14 @@ public class LiquidacionControlador {
                     for (Gasto g : listaGastosAsociados) {
                         if (g.getFechaRegistro().after(dtFechaInicioEL.getDate()) && g.getFechaRegistro().before(dtFechaFinEL.getDate()) && g.isLiquidado() == false) {
                             Double cuota = g.getImporte() / inmueblesAsociadosServicio;
-                            LiquidacionDetalleGasto ldg = new LiquidacionDetalleGasto(gc.getNombre(), l, inmueble, cuota);
+                            LiquidacionDetalleGasto ldg = new LiquidacionDetalleGasto(gc.getNombre(), l, sc, cuota);
                             S_L.insertarLiquidacionDetalleGastoDB(ldg);
                             gastosLiquidados.add(g);
                         }
                     }
                 }
             }
-        }
+        //}
         l.setGastosLiquidados(gastosLiquidados);
         liquidarGastos(l);
     }
@@ -157,7 +158,7 @@ public class LiquidacionControlador {
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         model.setNumRows(0);
         for (int i = 0; i < lista.size(); i++) {
-            model.addRow(new Object[]{lista.get(i).getInmueble().getDireccion(), lista.get(i).getServicio().getNombre(), lista.get(i).getCuota()});
+            model.addRow(new Object[]{lista.get(i).getSc().getInmueble().getDireccion(), lista.get(i).getSc().getServicio().getNombre(), lista.get(i).getCuota()});
             double cuota = lista.get(i).getCuota();
             cuotaFinal += cuota;
         }
@@ -177,7 +178,7 @@ public class LiquidacionControlador {
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         model.setNumRows(0);
         for (int i = 0; i < lista.size(); i++) {
-            model.addRow(new Object[]{lista.get(i).getInmueble().getDireccion(), lista.get(i).getGastoLiquidacion(), lista.get(i).getCuota()});
+            model.addRow(new Object[]{lista.get(i).getSc().getInmueble().getDireccion(), lista.get(i).getGastoLiquidacion(), lista.get(i).getCuota()});
             Double cuota = lista.get(i).getCuota();
             cuotaFinal += cuota;
         }
@@ -231,7 +232,7 @@ public class LiquidacionControlador {
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         model.setNumRows(0);
         for (int i = 0; i < listaServicios.size(); i++) {
-            model.addRow(new Object[]{"SERVICIO", listaServicios.get(i).getServicio().getNombre(), listaServicios.get(i).getCuota()});
+            model.addRow(new Object[]{"SERVICIO", listaServicios.get(i).getSc().getServicio().getNombre(), listaServicios.get(i).getCuota()});
             Double cuota = listaServicios.get(i).getCuota();
             cuotaFinal += cuota;
         }

@@ -352,34 +352,34 @@ public class Admin extends Usuario {
         gasto.updateGasto(comunidadCRUD, descripcion, fechaRegistro, fechaPago, proveedor, comprobante, gastoConcepto, importe, liquidado, gasto);
     }
 
-    /**
-     * Método que genera una nueva liquidacion entre las fechas indicadas
-     *
-     * @param comunidadCRUD objeto comunidad que contiene toda la información de
-     * la comunidad
-     * @param id identificador de la liquidacion
-     * @param fechaInicio fecha inicial del periodo a liquidar
-     * @param fechaFin fecha final del periodo a liquidar
-        *
-     */
-    
-    public void liquidar(ComunidadCRUD comunidadCRUD, int id, LocalDate fechaInicio, LocalDate fechaFin) {
-        Liquidacion liquidacion = new Liquidacion(id, fechaInicio, fechaFin);
-        liquidacion.generarLiquidacion(fechaInicio, fechaFin, comunidadCRUD, liquidacion);
-        comunidadCRUD.getLiquidaciones().add(liquidacion);
-    }
+//    /**
+//     * Método que genera una nueva liquidacion entre las fechas indicadas
+//     *
+//     * @param comunidadCRUD objeto comunidad que contiene toda la información de
+//     * la comunidad
+//     * @param id identificador de la liquidacion
+//     * @param fechaInicio fecha inicial del periodo a liquidar
+//     * @param fechaFin fecha final del periodo a liquidar
+//        *
+//     */
+//    
+//    public void liquidar(ComunidadCRUD comunidadCRUD, int id, LocalDate fechaInicio, LocalDate fechaFin) {
+//        Liquidacion liquidacion = new Liquidacion(id, fechaInicio, fechaFin);
+//        liquidacion.generarLiquidacion(fechaInicio, fechaFin, comunidadCRUD, liquidacion);
+//        comunidadCRUD.getLiquidaciones().add(liquidacion);
+//    }
 
-    /**
-     * Método que muestra la liquidación actual
-     *
-     * @param comunidadCRUD objeto comunidad que contiene toda la información de
-     * la comunidad
-     * @param liquidacion objeto liquidación que contiene toda la información
-     * referente a la liquidación
-     */
-    public void imprimirLiquidacion(ComunidadCRUD comunidadCRUD, Liquidacion liquidacion) {
-        liquidacion.imprimirLiquidacion(comunidadCRUD, liquidacion);
-    }
+//    /**
+//     * Método que muestra la liquidación actual
+//     *
+//     * @param comunidadCRUD objeto comunidad que contiene toda la información de
+//     * la comunidad
+//     * @param liquidacion objeto liquidación que contiene toda la información
+//     * referente a la liquidación
+//     */
+//    public void imprimirLiquidacion(ComunidadCRUD comunidadCRUD, Liquidacion liquidacion) {
+//        liquidacion.imprimirLiquidacion(comunidadCRUD, liquidacion);
+//    }
 
     /**
      * Método que define un servicio como Fijo y lo asigna a todos los inmuebles

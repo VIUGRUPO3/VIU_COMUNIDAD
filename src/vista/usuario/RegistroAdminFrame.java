@@ -244,13 +244,18 @@ public class RegistroAdminFrame extends javax.swing.JInternalFrame {
 //            evt.consume();
 //        }
     }//GEN-LAST:event_txtNombreRAKeyTyped
-
+    /**
+     * Evento campo password coge el foco
+     * @param evt Evento recibido
+     */
     private void txtPasswordRAFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordRAFocusGained
         txtPasswordRA.setText("");
     }//GEN-LAST:event_txtPasswordRAFocusGained
-
+    /**
+     * Evento pulsar una tecla sobre el campo password
+     * @param evt Evento recibido
+     */
     private void txtPasswordRAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordRAKeyTyped
-//        // TODO add your handling code here:
 //        String texto = txtPasswordRA.getText();
 //        char caracter = evt.getKeyChar();
 //        if (filtrarCaracteres(texto,caracter,"l")){
@@ -258,6 +263,10 @@ public class RegistroAdminFrame extends javax.swing.JInternalFrame {
 //        }
     }//GEN-LAST:event_txtPasswordRAKeyTyped
 
+    /**
+     * Evento hacer click sobre el boton alta administrador
+     * @param evt Evento recibido
+     */
     private void btnAltaAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaAdminMouseClicked
         GestionUsuariosFrame guf = new GestionUsuariosFrame();
         uc.registrarAdmin(txtNombreRA, txtApellidosRA, txtTelefonoRA, txtEmailRA, txtUserNameRA, txtPasswordRA, guf.tblUsuarioGUF);
@@ -265,7 +274,10 @@ public class RegistroAdminFrame extends javax.swing.JInternalFrame {
         ctrl.ocultarFrame(this);
         ctrl.mostrarFrame(guf);
     }//GEN-LAST:event_btnAltaAdminMouseClicked
-
+    /**
+     * Evento pulsar una tecla sobre el campo txtApellidos
+     * @param evt 
+     */
     private void txtApellidosRAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosRAKeyTyped
 //        String texto = txtApellidosRA.getText();
 //        char caracter = evt.getKeyChar();
@@ -273,7 +285,10 @@ public class RegistroAdminFrame extends javax.swing.JInternalFrame {
 //            evt.consume();
 //        }        // TODO add your handling code here:
     }//GEN-LAST:event_txtApellidosRAKeyTyped
-
+    /**
+     * Evento 
+     * @param evt 
+     */
     private void txtUserNameRAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserNameRAKeyTyped
 //        // TODO add your handling code here:
 //        String texto = txtUserNameRA.getText();

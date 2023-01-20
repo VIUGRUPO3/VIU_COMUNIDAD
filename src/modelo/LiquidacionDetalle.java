@@ -27,7 +27,7 @@ abstract class LiquidacionDetalle {
     /**
      * Objeto inmueble con los datos del inmueble con el que está relacionado
      */
-    protected Inmueble inmueble;
+    protected ServicioCuenta sc;
 
     /**
      * Cuota a pagar en la liquidación
@@ -48,11 +48,14 @@ abstract class LiquidacionDetalle {
      * @param inmueble objeto inmueble al que va asociada dicha liquidacion
     *
      */
-    public LiquidacionDetalle(Liquidacion liquidacion, Inmueble inmueble, double cuota) {
+    
+    
+    public LiquidacionDetalle(Liquidacion liquidacion, ServicioCuenta sc, double cuota) {
         this.liquidacion = liquidacion;
-        this.inmueble = inmueble;
+        this.sc = sc;
         this.cuota = cuota;
     }
+
 
     //3.Métodos
     //Getters
@@ -67,14 +70,14 @@ abstract class LiquidacionDetalle {
     }
 
     /**
-     * Método para consultar el inmueble asociado a la liquidacion
-     *
-     * @return inmueble objeto inmueble asociado a la liquidacion
-     *
+     * Metodo que devuelve la cuenta de Servicio
+     * @return ServicioCuenta 
      */
-    public Inmueble getInmueble() {
-        return inmueble;
+    public ServicioCuenta getSc() {
+        return sc;
     }
+
+    
 
     /**
      * Método para consultar el total asociado a la liquidacion
@@ -97,15 +100,15 @@ abstract class LiquidacionDetalle {
         this.liquidacion = liquidacion;
     }
 
-    /**
-     * Método para asociar un objeto inmueble a la liquidacion actual
-     *
-     * @param inmueble objeto inmueble a asociar
-     *
-     */
-    public void setInmueble(Inmueble inmueble) {
-        this.inmueble = inmueble;
+    public void setSc(ServicioCuenta sc) {
+        this.sc = sc;
     }
+
+    public void setCuota(double cuota) {
+        this.cuota = cuota;
+    }
+
+    
 
     /**
      * Método para asociar un total de liquidacion a la liquidacion actual

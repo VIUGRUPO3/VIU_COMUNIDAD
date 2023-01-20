@@ -111,6 +111,7 @@ public class ServicioServicioCuentas {
                 Inmueble i = si.buscarId(rs.getInt("idInmueble"));
                 Servicio s = ss.buscarId(rs.getInt("idServicio"));
                 lista.add(new ServicioCuenta(
+                        rs.getInt("id"),
                         i,
                         s, 
                         rs.getDate("fechaAlta"),
@@ -137,6 +138,7 @@ public class ServicioServicioCuentas {
                     Inmueble i = si.buscarId(idInmueble);
                     Servicio s = ss.buscarId(rs.getInt("idServicio"));
                     lista.add(new ServicioCuenta(
+                            rs.getInt("id"),
                             i,
                             s,
                             rs.getDate("fechaAlta"),
@@ -171,6 +173,7 @@ public class ServicioServicioCuentas {
                     Inmueble i = si.buscarId(rs.getInt("idInmueble"));
                     Servicio s = ss.buscarId(idServicio);
                     lista.add(new ServicioCuenta(
+                            rs.getInt("id"),
                             i,
                             s,
                             rs.getDate("fechaAlta"),
@@ -195,7 +198,40 @@ public class ServicioServicioCuentas {
         return ps;
     }
    
-    public int ContarInmueblesAsociadosServicio ( Servicio s){
+    public ServicioCuenta buscarId(int id) {
+        ServicioCuenta sc = new ServicioCuenta();
+        try {
+            PreparedStatement stmt = busquedaId(conn, id);
+            ResultSet rs = stmt.executeQuery();
+            {
+                while (rs.next()) {
+                    Inmueble i = si.buscarId(rs.getInt("idInmueble"));
+                    Servicio s = ss.buscarId(rs.getInt("idServicio"));
+                    sc.setFechaAlta(rs.getDate("fechaAlta"));
+                    sc.setFechaBaja(rs.getDate("fechaBaja"));
+                    sc.setInmueble(i);
+                    sc.setServicio(s);
+                    sc.setId(rs.getInt("id"));
+                }
+                rs.close();
+                stmt.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("error SQL", e);
+        }
+
+        return sc;
+    }
+
+    
+    private PreparedStatement busquedaId(Connection con, int id) throws SQLException {
+        String sql = "select * from servicioCuentas where id = ? ";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, id);
+        return ps;
+    }
+    
+    public int contarInmueblesAsociadosServicio ( Servicio s){
         String sql = "select count(*) from servicioCuentas where idServicio = ?";
         int n = 0;
         try {

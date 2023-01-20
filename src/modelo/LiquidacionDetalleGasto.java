@@ -28,19 +28,16 @@ public class LiquidacionDetalleGasto extends LiquidacionDetalle {
     public LiquidacionDetalleGasto() {
     }
 
-    /**
-     * Constructor de la clase LiquidacionDetalleGasto
-     *
-     * @param gastoConcepto Concepto que etiqueta al gastoConcepto generado
-     * @param liquidacion objeto liquidación afectado por el gastoConcepto
-     * actual
-     * @param inmueble objeto inmueble afectado por el gastoConcepto actual
-     * @param cuota cuota a pagar
-     */
-    public LiquidacionDetalleGasto(String gastoConcepto, Liquidacion liquidacion, Inmueble inmueble, double cuota) {
-        super(liquidacion, inmueble, cuota);
+    public LiquidacionDetalleGasto(String gastoConcepto) {
         this.gastoConcepto = gastoConcepto;
     }
+
+    public LiquidacionDetalleGasto(String gastoConcepto, Liquidacion liquidacion, ServicioCuenta sc, double cuota) {
+        super(liquidacion, sc, cuota);
+        this.gastoConcepto = gastoConcepto;
+    }
+
+    
 
     //Métodos
     //Getters

@@ -26,6 +26,7 @@ import modelo.Liquidacion;
 import modelo.LiquidacionDetalleGasto;
 import modelo.LiquidacionDetalleServicio;
 import modelo.Servicio;
+import modelo.ServicioCuenta;
 
 /**
  *
@@ -37,6 +38,7 @@ public class ServicioLiquidacion {
     private Connection conn;
     ServicioInmuebles si = new ServicioInmuebles();
     ServicioServicios ss = new ServicioServicios();
+    ServicioServicioCuentas ssc = new ServicioServicioCuentas();
 
     //Constructores
     /**
@@ -85,14 +87,13 @@ public class ServicioLiquidacion {
     }
 
     public void insertarLiquidacionDetalleServicioDB(LiquidacionDetalleServicio lds) {
-        String sql = "insert into liquidacionDetalleServicio (idInmueble, cuota, idLiquidacion, idServicio) values (?, ?, ?, ?)";
+        String sql = "insert into liquidacionDetalleServicio (idServicioCuenta, cuota, idLiquidacion) values (?, ?, ?)";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
             {
-                stmt.setInt(1, lds.getInmueble().getId());
-                stmt.setDouble(2, lds.getServicio().getTarifa());
+                stmt.setInt(1, lds.getSc().getId());
+                stmt.setDouble(2, lds.getCuota());
                 stmt.setInt(3, lds.getLiquidacion().getId());
-                stmt.setInt(4, lds.getServicio().getId());
                 stmt.execute();
                 stmt.close();
             }
@@ -102,11 +103,11 @@ public class ServicioLiquidacion {
     }
 
     public void insertarLiquidacionDetalleGastoDB(LiquidacionDetalleGasto ldg) {
-        String sql = "insert into liquidacionDetalleGasto (idInmueble, cuota, idLiquidacion, gastoConcepto) values (?, ?, ?, ?)";
+        String sql = "insert into liquidacionDetalleGasto (idServicioCuenta, cuota, idLiquidacion, gastoConcepto) values (?, ?, ?, ?)";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
             {
-                stmt.setInt(1, ldg.getInmueble().getId());
+                stmt.setInt(1, ldg.getSc().getId());
                 stmt.setDouble(2, ldg.getCuota());
                 stmt.setInt(3, ldg.getLiquidacion().getId());
                 stmt.setString(4, ldg.getGastoLiquidacion());
@@ -216,12 +217,10 @@ public class ServicioLiquidacion {
             ResultSet rs = stmt.executeQuery();
             {
                 while (rs.next()) {
-                    Servicio s = ss.buscarId(rs.getInt("idServicio"));
-                    Inmueble i = si.buscarId(rs.getInt("idInmueble"));
+                    ServicioCuenta sc = ssc.buscarId(rs.getInt("idServicioCuenta"));
                     LiquidacionDetalleServicio lds = new LiquidacionDetalleServicio(
-                            s,
                             l,
-                            i,
+                            sc,
                             rs.getDouble("cuota")
                     );
                     lista.add(lds);
@@ -260,12 +259,11 @@ public class ServicioLiquidacion {
             ResultSet rs = stmt.executeQuery();
             {
                 while (rs.next()) {
-
-                    Inmueble i = si.buscarId(rs.getInt("idInmueble"));
+                    ServicioCuenta sc = ssc.buscarId(rs.getInt("idServicioCuenta"));
                     LiquidacionDetalleGasto ldg = new LiquidacionDetalleGasto(
                             rs.getString("gastoConcepto"),
                             l,
-                            i,
+                            sc,
                             rs.getDouble("cuota")
                     );
                     lista.add(ldg);
@@ -322,11 +320,12 @@ public class ServicioLiquidacion {
         return lista;
     }
 
-    public List<Liquidacion> buscarLiquidacionInmueble(int idInmueble) {
+    public List<Liquidacion> buscarLiquidacionInmueble(int idServicioCuenta) {
         List<Liquidacion> lista = new ArrayList();
         Liquidacion l = null;
+        ServicioCuenta sc = ssc.buscarId(idServicioCuenta);
         try {
-            PreparedStatement stmt = busquedaLiquidacionInmueble(conn, idInmueble);
+            PreparedStatement stmt = busquedaLiquidacionInmueble(conn, idServicioCuenta);
             ResultSet rs = stmt.executeQuery();
             {
                 while (rs.next()) {
@@ -353,27 +352,25 @@ public class ServicioLiquidacion {
      * @return
      * @throws SQLException
      */
-    private PreparedStatement busquedaLiquidacionInmueble(Connection con, int idInmueble) throws SQLException {
-        String sql = "select * from liquidacionDetalleServicio where idInmueble like ?";
+    private PreparedStatement busquedaLiquidacionInmueble(Connection con, int idServicioCuenta) throws SQLException {
+        String sql = "select * from liquidacionDetalleServicio where idServicioCuenta like ?";
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, idInmueble);
+        ps.setInt(1, idServicioCuenta);
         return ps;
     }
 
-    public List<LiquidacionDetalleServicio> buscarLiquidacionDetalleServicioInmueble(int idInmueble, int idLiquidacion) {
+    public List<LiquidacionDetalleServicio> buscarLiquidacionDetalleServicioInmueble(int idServicioCuenta, int idLiquidacion) {
         List<LiquidacionDetalleServicio> lista = new ArrayList();
         try {
-            PreparedStatement stmt = busquedaLiquidacionDetalleServicioInmueble(conn, idInmueble, idLiquidacion);
+            PreparedStatement stmt = busquedaLiquidacionDetalleServicioInmueble(conn, idServicioCuenta, idLiquidacion);
             ResultSet rs = stmt.executeQuery();
             {
                 while (rs.next()) {
                     Liquidacion l = buscarId(idLiquidacion);
-                    Inmueble i = si.buscarId(idInmueble);
-                    Servicio s = ss.buscarId(rs.getInt("idServicio"));
+                    ServicioCuenta sc = ssc.buscarId(idServicioCuenta);
                     LiquidacionDetalleServicio lds = new LiquidacionDetalleServicio(
-                            s,
                             l,
-                            i,
+                            sc,
                             rs.getDouble("cuota")
                     );
                     lista.add(lds);
@@ -398,27 +395,27 @@ public class ServicioLiquidacion {
      * @return
      * @throws SQLException
      */
-    private PreparedStatement busquedaLiquidacionDetalleServicioInmueble(Connection con, int idInmueble, int idLiquidacion) throws SQLException {
-        String sql = "select * from liquidacionDetalleServicio where idInmueble like ? and idLiquidacion like ?";
+    private PreparedStatement busquedaLiquidacionDetalleServicioInmueble(Connection con, int idServicioCuenta, int idLiquidacion) throws SQLException {
+        String sql = "select * from liquidacionDetalleServicio where idServicioCuenta like ? and idLiquidacion like ?";
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, idInmueble);
+        ps.setInt(1, idServicioCuenta);
         ps.setInt(2, idLiquidacion);
         return ps;
     }
     
-    public List<LiquidacionDetalleGasto> buscarLiquidacionDetalleGastoInmueble(int idInmueble, int idLiquidacion) {
+    public List<LiquidacionDetalleGasto> buscarLiquidacionDetalleGastoInmueble(int idServicioCuenta, int idLiquidacion) {
         List<LiquidacionDetalleGasto> lista = new ArrayList();
         try {
-            PreparedStatement stmt = busquedaLiquidacionDetalleGastoInmueble(conn, idInmueble, idLiquidacion);
+            PreparedStatement stmt = busquedaLiquidacionDetalleGastoInmueble(conn, idServicioCuenta, idLiquidacion);
             ResultSet rs = stmt.executeQuery();
             {
                 while (rs.next()) {
                     Liquidacion l = buscarId(idLiquidacion);
-                    Inmueble i = si.buscarId(idInmueble);                   
+                    ServicioCuenta sc = ssc.buscarId(idServicioCuenta);                   
                     LiquidacionDetalleGasto ldg = new LiquidacionDetalleGasto(
                             rs.getString("GastoConcepto"),
                             l,
-                            i,
+                            sc,
                             rs.getDouble("cuota")
                     );
                     lista.add(ldg);

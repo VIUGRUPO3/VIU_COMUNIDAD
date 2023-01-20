@@ -244,27 +244,27 @@ public class Vecino extends Usuario {
         });
     }
 
-    /**
-     * Método para consultar las liquidaciones de un vecino
-     *
-     * @param comunidadCRUD objeto comunidad que contiene toda la información de
-     * la comunidad
-     * @param liquidacion objeto que contiene la cabecera de la liquidación
-     *
-     */
-    
-    public void consultarLiquidacion(ComunidadCRUD comunidadCRUD, Liquidacion liquidacion) {
-        System.out.println("------------------------------------------------\n");
-        System.out.println("CONSULTA DE LIQUIDACION DE:  " + this.nombre + "\n");
-        comunidadCRUD.getInmuebles().forEach(inmueble -> {
-
-            if (inmueble.getVecino() == this) {
-                System.out.println("\n" + liquidacion + "\n");
-                System.out.println(inmueble);
-                liquidacion.imprimirLiquidacionInmueble(comunidadCRUD, liquidacion, inmueble);
-            }
-        });
-    }
+//    /**
+//     * Método para consultar las liquidaciones de un vecino
+//     *
+//     * @param comunidadCRUD objeto comunidad que contiene toda la información de
+//     * la comunidad
+//     * @param liquidacion objeto que contiene la cabecera de la liquidación
+//     *
+//     */
+//    
+//    public void consultarLiquidacion(ComunidadCRUD comunidadCRUD, Liquidacion liquidacion) {
+//        System.out.println("------------------------------------------------\n");
+//        System.out.println("CONSULTA DE LIQUIDACION DE:  " + this.nombre + "\n");
+//        comunidadCRUD.getInmuebles().forEach(inmueble -> {
+//
+//            if (inmueble.getVecino() == this) {
+//                System.out.println("\n" + liquidacion + "\n");
+//                System.out.println(inmueble);
+//                liquidacion.imprimirLiquidacionInmueble(comunidadCRUD, liquidacion, inmueble);
+//            }
+//        });
+//    }
 
     /**
      * Método para consultar las cuentas de servicio de un vecino

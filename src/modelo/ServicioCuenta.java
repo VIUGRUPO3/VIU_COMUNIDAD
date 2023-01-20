@@ -19,6 +19,8 @@ import java.util.Date;
 public class ServicioCuenta {
 
     //Atributos
+    
+    private int id;
     /**
      * Objeto Inmueble asociado al ServicioCuenta
      */
@@ -55,7 +57,8 @@ public class ServicioCuenta {
      */
     
     
-    public ServicioCuenta(Inmueble inmueble, Servicio servicio, Date fechaAlta, Date fechaBaja) {
+    public ServicioCuenta(int id, Inmueble inmueble, Servicio servicio, Date fechaAlta, Date fechaBaja) {
+        this.id = id;
         this.inmueble = inmueble;
         this.servicio = servicio;
         this.fechaAlta = fechaAlta;
@@ -72,6 +75,11 @@ public class ServicioCuenta {
 
     //Métodos
     //Getters
+
+    public int getId() {
+        return id;
+    }
+
     /**
      * Método que nos devuelve el objeto del inmueble
      *
@@ -109,6 +117,12 @@ public class ServicioCuenta {
     }
 
     //Setters
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
     /**
      * Método que establece el objeto Inmueble
      *
