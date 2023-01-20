@@ -521,9 +521,10 @@ public class AsignacionInmuebleFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAsignarInmueblesAIMouseClicked
 
     private void btnCancelarAIFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarAIFMouseClicked
-        EdicionInmuebleFrame eif = new EdicionInmuebleFrame();
+        GestionInmueblesFrame gif = new GestionInmueblesFrame();
+        ic.cargarTablaInmuebles("", gif.tblInmueblesGIF);
         ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos );
-        ctrl.mostrarFrame(eif, ctrl.mfamvc.panelDatos);
+        ctrl.mostrarFrame(gif, ctrl.mfamvc.panelDatos);
     }//GEN-LAST:event_btnCancelarAIFMouseClicked
 
     private void limpiarDatosUsuario() {
