@@ -4,17 +4,34 @@
  */
 package vista.inmueble;
 
+import controlador.Controlador;
+import controlador.modelos.InmuebleControlador;
+import controlador.modelos.LiquidacionControlador;
+import controlador.modelos.ServicioControlador;
+
 /**
  *
  * @author LDAJBS1
  */
 public class GestionInmueblesFrame extends javax.swing.JInternalFrame {
-
+    Controlador ctrl;
+    InmuebleControlador ic;
+    ServicioControlador sc;
+    LiquidacionControlador lc;
+    EdicionInmuebleFrame eif;
+    AsignacionInmuebleFrame aif;
+    
     /**
      * Creates new form GestionInmueblesFrame
      */
     public GestionInmueblesFrame() {
         initComponents();
+        ctrl = new Controlador();
+        ic = new InmuebleControlador();
+        sc = new ServicioControlador();
+        lc = new LiquidacionControlador();
+        eif = new EdicionInmuebleFrame();
+        aif = new AsignacionInmuebleFrame();
     }
 
     /**
@@ -26,21 +43,225 @@ public class GestionInmueblesFrame extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnAltaInmuebleGI = new javax.swing.JButton();
+        javax.swing.JButton btnEditarInmuebleGI = new javax.swing.JButton();
+        btnBorrarInmuebleGI = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        gIDireccionText = new javax.swing.JTextField();
+        btnFiltrarInmueblesGI = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblInmueblesGIF = new javax.swing.JTable();
+        btnCancelarGI = new javax.swing.JButton();
+        btnAsignarInmueblesGI = new javax.swing.JButton();
+
+        setVisible(false);
+
+        btnAltaInmuebleGI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnAltaInmuebleGI.setForeground(new java.awt.Color(51, 51, 51));
+        btnAltaInmuebleGI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/agregar_inmueble.png"))); // NOI18N
+        btnAltaInmuebleGI.setText("Alta Inmueble");
+        btnAltaInmuebleGI.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnAltaInmuebleGI.setOpaque(true);
+        btnAltaInmuebleGI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAltaInmuebleGIMouseClicked(evt);
+            }
+        });
+
+        btnEditarInmuebleGI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnEditarInmuebleGI.setForeground(new java.awt.Color(51, 51, 51));
+        btnEditarInmuebleGI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editar.png"))); // NOI18N
+        btnEditarInmuebleGI.setText("Editar / Detalle");
+        btnEditarInmuebleGI.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnEditarInmuebleGI.setOpaque(true);
+        btnEditarInmuebleGI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditarInmuebleGIMouseClicked(evt);
+            }
+        });
+
+        btnBorrarInmuebleGI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnBorrarInmuebleGI.setForeground(new java.awt.Color(51, 51, 51));
+        btnBorrarInmuebleGI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/borrar.png"))); // NOI18N
+        btnBorrarInmuebleGI.setText("Eliminar");
+        btnBorrarInmuebleGI.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnBorrarInmuebleGI.setOpaque(true);
+        btnBorrarInmuebleGI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBorrarInmuebleGIMouseClicked(evt);
+            }
+        });
+
+        jLabel12.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel12.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel12.setText("Direccion");
+
+        gIDireccionText.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        gIDireccionText.setForeground(new java.awt.Color(51, 51, 51));
+
+        btnFiltrarInmueblesGI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnFiltrarInmueblesGI.setForeground(new java.awt.Color(51, 51, 51));
+        btnFiltrarInmueblesGI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/buscar.png"))); // NOI18N
+        btnFiltrarInmueblesGI.setText("Consultar");
+        btnFiltrarInmueblesGI.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnFiltrarInmueblesGI.setOpaque(true);
+        btnFiltrarInmueblesGI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFiltrarInmueblesGIMouseClicked(evt);
+            }
+        });
+
+        tblInmueblesGIF.setFont(new java.awt.Font("SF Pro Display", 0, 12)); // NOI18N
+        tblInmueblesGIF.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "id", "Direccion", "Propietario"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tblInmueblesGIF.setRowHeight(25);
+        jScrollPane2.setViewportView(tblInmueblesGIF);
+
+        btnCancelarGI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnCancelarGI.setForeground(new java.awt.Color(51, 51, 51));
+        btnCancelarGI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cancelar.png"))); // NOI18N
+        btnCancelarGI.setText("Cancelar");
+        btnCancelarGI.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnCancelarGI.setOpaque(true);
+        btnCancelarGI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelarGIMouseClicked(evt);
+            }
+        });
+
+        btnAsignarInmueblesGI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnAsignarInmueblesGI.setForeground(new java.awt.Color(51, 51, 51));
+        btnAsignarInmueblesGI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/asignar.png"))); // NOI18N
+        btnAsignarInmueblesGI.setText("Asignar Inmuebles");
+        btnAsignarInmueblesGI.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnAsignarInmueblesGI.setOpaque(true);
+        btnAsignarInmueblesGI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAsignarInmueblesGIMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAltaInmuebleGI, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEditarInmuebleGI, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBorrarInmuebleGI, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAsignarInmueblesGI, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCancelarGI, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(gIDireccionText)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnFiltrarInmueblesGI, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAltaInmuebleGI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditarInmuebleGI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnBorrarInmuebleGI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCancelarGI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAsignarInmueblesGI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(gIDireccionText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFiltrarInmueblesGI))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAltaInmuebleGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaInmuebleGIMouseClicked
+        ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
+        ctrl.mostrarFrame(eif, ctrl.mfamvc.panelDatos);
+        eif.limpiarInmuebleForm();
+    }//GEN-LAST:event_btnAltaInmuebleGIMouseClicked
+
+    private void btnEditarInmuebleGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarInmuebleGIMouseClicked
+        if (tblInmueblesGIF.getSelectedRow() >= 0) {
+            ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
+            ctrl.mostrarFrame(eif, ctrl.mfamvc.panelDatos);
+            ic.cargarFormInmueble(eif.txtIdEI,
+                eif.txtDireccionEI,
+                eif.txtIdVecinoEI,
+                eif.txtNombreEI,
+                eif.txtApellidosEI,
+                eif.txtTelefonoEI,
+                eif.txtEmailEI,
+                tblInmueblesGIF);
+            int idInmueble = ic.obtenerIdTablaInmuebles(tblInmueblesGIF.getSelectedRow(), tblInmueblesGIF);
+            ctrl.limpiarTabla(eif.tblLiquidacionInmuebleEI);
+            ctrl.limpiarTabla(eif.tblLiquidacionDetalleInmueble);
+            sc.cargarTablaServiciosInmueble(idInmueble, eif.tblServiciosEI);
+            lc.cargarTablaLiquidacionesInmueble(idInmueble, eif.tblLiquidacionInmuebleEI);
+            
+        }
+    }//GEN-LAST:event_btnEditarInmuebleGIMouseClicked
+
+    private void btnBorrarInmuebleGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarInmuebleGIMouseClicked
+        ic.eliminarInmueble(tblInmueblesGIF);
+    }//GEN-LAST:event_btnBorrarInmuebleGIMouseClicked
+
+    private void btnFiltrarInmueblesGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarInmueblesGIMouseClicked
+        ic.cargarTablaInmuebles(gIDireccionText.getText(), tblInmueblesGIF);
+    }//GEN-LAST:event_btnFiltrarInmueblesGIMouseClicked
+
+    private void btnCancelarGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarGIMouseClicked
+        ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
+    }//GEN-LAST:event_btnCancelarGIMouseClicked
+
+    private void btnAsignarInmueblesGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignarInmueblesGIMouseClicked
+        ic.cargarTablaInmuebles("", aif.tblInmueblesAI);
+        ic.cargarTablaVecinosAsignacion("", aif.tblVecinosAI);
+        ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
+        ctrl.mostrarFrame(aif, ctrl.mfamvc.panelDatos);
+    }//GEN-LAST:event_btnAsignarInmueblesGIMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAltaInmuebleGI;
+    private javax.swing.JButton btnAsignarInmueblesGI;
+    private javax.swing.JButton btnBorrarInmuebleGI;
+    private javax.swing.JButton btnCancelarGI;
+    private javax.swing.JButton btnFiltrarInmueblesGI;
+    public javax.swing.JTextField gIDireccionText;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JScrollPane jScrollPane2;
+    public javax.swing.JTable tblInmueblesGIF;
     // End of variables declaration//GEN-END:variables
 }

@@ -146,11 +146,6 @@ public class MainFrameAdminMVC extends javax.swing.JFrame {
                 btnInmueblesMouseClicked(evt);
             }
         });
-        btnInmuebles.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInmueblesActionPerformed(evt);
-            }
-        });
 
         btnUsuarios.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnUsuarios.setForeground(new java.awt.Color(51, 51, 51));
@@ -351,20 +346,15 @@ public class MainFrameAdminMVC extends javax.swing.JFrame {
 
     private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
         uc.cargarTablaUsuarios(guf.gUNombreText.getText(), guf.tblUsuarioGUF);
-        ctrl.mostrarFrame(guf);
+        ctrl.limpiarDesktopPane(panelDatos);
+        ctrl.mostrarFrame(guf,panelDatos);
     }//GEN-LAST:event_btnUsuariosMouseClicked
 
     private void btnInmueblesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInmueblesMouseClicked
-//        if (gif.isVisible() == false) {
-//            dimensionarFrameDatos(gif);
-//        }
-//        ic.cargarTablaInmuebles("", jTable2);
-//        gif.show();
+        ic.cargarTablaInmuebles("", gif.tblInmueblesGIF);
+        ctrl.limpiarDesktopPane(panelDatos);
+        ctrl.mostrarFrame(gif,panelDatos);
     }//GEN-LAST:event_btnInmueblesMouseClicked
-
-    private void btnInmueblesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInmueblesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnInmueblesActionPerformed
 
     private void btnServiciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnServiciosMouseClicked
 //        if (gsf.isVisible() == false) {
@@ -445,10 +435,7 @@ public class MainFrameAdminMVC extends javax.swing.JFrame {
         });
     }
 
-    private void limpiarTablaAsignar(JTable tabla) {
-        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
-        model.setNumRows(0);
-    }
+   
    
     private void dimensionarFrameDatos(JInternalFrame jIF) {
         jIF.setLocation((btnUsuarios.location().x),

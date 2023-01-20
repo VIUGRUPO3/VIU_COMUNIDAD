@@ -1,16 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+// Asignatura: 21GIIN Proyectos Programación
+// Profesor: Eduardo Zamudio
+// @author: Grupo 3
+// Miembros:
+//       @author:Fernando Hernandez Fernandez
+//       @author:Javier Barbero Sales
+//       @author:Martin Gonzalez Dominguez
+// @version: 08/01/2023/package controlador;
+
 package vista.usuario;
 
 import controlador.Controlador;
 import controlador.modelos.UsuarioControlador;
 
-/**
- *
- * @author fersi
- */
 public class RegistroAdminFrame extends javax.swing.JInternalFrame {
     
     Controlador ctrl;
@@ -138,11 +139,6 @@ public class RegistroAdminFrame extends javax.swing.JInternalFrame {
 
         txtEmailRA.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
         txtEmailRA.setForeground(new java.awt.Color(51, 51, 51));
-        txtEmailRA.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmailRAActionPerformed(evt);
-            }
-        });
         txtEmailRA.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtEmailRAKeyTyped(evt);
@@ -238,12 +234,13 @@ public class RegistroAdminFrame extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNombreRAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreRAKeyTyped
-//        String texto = txtNombreRA.getText();
-//        char caracter = evt.getKeyChar();
-//        if (filtrarCaracteres(texto,caracter,"l")){
-//            evt.consume();
-//        }
+        String texto = txtNombreRA.getText();
+        char caracter = evt.getKeyChar();
+        if (ctrl.filtrarCaracteres(texto,caracter,"l")){
+            evt.consume();
+        }
     }//GEN-LAST:event_txtNombreRAKeyTyped
+    
     /**
      * Evento campo password coge el foco
      * @param evt Evento recibido
@@ -251,16 +248,17 @@ public class RegistroAdminFrame extends javax.swing.JInternalFrame {
     private void txtPasswordRAFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordRAFocusGained
         txtPasswordRA.setText("");
     }//GEN-LAST:event_txtPasswordRAFocusGained
+    
     /**
      * Evento pulsar una tecla sobre el campo password
      * @param evt Evento recibido
      */
     private void txtPasswordRAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordRAKeyTyped
-//        String texto = txtPasswordRA.getText();
-//        char caracter = evt.getKeyChar();
-//        if (filtrarCaracteres(texto,caracter,"l")){
-//            evt.consume();
-//        }
+        String texto = txtPasswordRA.getText();
+        char caracter = evt.getKeyChar();
+        if (ctrl.filtrarCaracteres(texto,caracter,"l")){
+            evt.consume();
+        }
     }//GEN-LAST:event_txtPasswordRAKeyTyped
 
     /**
@@ -271,58 +269,67 @@ public class RegistroAdminFrame extends javax.swing.JInternalFrame {
         GestionUsuariosFrame guf = new GestionUsuariosFrame();
         uc.registrarAdmin(txtNombreRA, txtApellidosRA, txtTelefonoRA, txtEmailRA, txtUserNameRA, txtPasswordRA, guf.tblUsuarioGUF);
         uc.cargarTablaUsuarios(guf.gUNombreText.getText(), guf.tblUsuarioGUF);
-        ctrl.ocultarFrame(this);
-        ctrl.mostrarFrame(guf);
+        ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
+        ctrl.mostrarFrame(guf, ctrl.mfamvc.panelDatos);
     }//GEN-LAST:event_btnAltaAdminMouseClicked
+    
     /**
      * Evento pulsar una tecla sobre el campo txtApellidos
-     * @param evt 
+     * @param evt Evento recibido
      */
     private void txtApellidosRAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosRAKeyTyped
-//        String texto = txtApellidosRA.getText();
-//        char caracter = evt.getKeyChar();
-//        if (filtrarCaracteres(texto,caracter,"l")){
-//            evt.consume();
-//        }        // TODO add your handling code here:
+        String texto = txtApellidosRA.getText();
+        char caracter = evt.getKeyChar();
+        if (ctrl.filtrarCaracteres(texto,caracter,"l")){
+            evt.consume();
+        }        
     }//GEN-LAST:event_txtApellidosRAKeyTyped
+    
     /**
-     * Evento 
-     * @param evt 
+     * Evento pulsar una tecla sobre el campo UserName
+     * @param evt Evento Recibido
      */
     private void txtUserNameRAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserNameRAKeyTyped
-//        // TODO add your handling code here:
-//        String texto = txtUserNameRA.getText();
-//        char caracter = evt.getKeyChar();
-//        if (filtrarCaracteres(texto,caracter,"l")){
-//            evt.consume();
-//        }
+        String texto = txtUserNameRA.getText();
+        char caracter = evt.getKeyChar();
+        if (ctrl.filtrarCaracteres(texto,caracter,"l")){
+            evt.consume();
+        }
     }//GEN-LAST:event_txtUserNameRAKeyTyped
-
+    
+    /**
+     * Evento pulsar una tecla sobre el campo Telefono
+     * @param evt Evento recibido
+     */
     private void txtTelefonoRAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoRAKeyTyped
-//        String texto = txtTelefonoRA.getText();
-//        char caracter = evt.getKeyChar();
-//        if (filtrarCaracteres(texto,caracter,"t")){
-//            evt.consume();
-//        }        // TODO add your handling code here:
+        String texto = txtTelefonoRA.getText();
+        char caracter = evt.getKeyChar();
+        if (ctrl.filtrarCaracteres(texto,caracter,"t")){
+            evt.consume();
+        }        
     }//GEN-LAST:event_txtTelefonoRAKeyTyped
-
-    private void txtEmailRAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailRAActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmailRAActionPerformed
-
+    
+    /**
+     * Evento pulsar una tecla sobre el campo email
+     * @param evt Evento recibido
+     */
     private void txtEmailRAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailRAKeyTyped
-//        String texto = txtEmailRA.getText();
-//        char caracter = evt.getKeyChar();
-//        if (filtrarCaracteres(texto,caracter,"m")){
-//            evt.consume();
-//        }        // TODO add your handling code here:
+        String texto = txtEmailRA.getText();
+        char caracter = evt.getKeyChar();
+        if (ctrl.filtrarCaracteres(texto,caracter,"m")){
+            evt.consume();
+        }        
     }//GEN-LAST:event_txtEmailRAKeyTyped
 
+    /**
+     * Evento Cancelar, cierra el internalFrame
+     * @param evt Evento recibido
+     */
     private void btnCancelarAltaAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarAltaAdminMouseClicked
         GestionUsuariosFrame guf = new GestionUsuariosFrame();
         uc.cargarTablaUsuarios(guf.gUNombreText.getText(), guf.tblUsuarioGUF);
-        ctrl.ocultarFrame(this);
-        ctrl.mostrarFrame(guf);
+        ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
+        ctrl.mostrarFrame(guf, ctrl.mfamvc.panelDatos);
     }//GEN-LAST:event_btnCancelarAltaAdminMouseClicked
 
 

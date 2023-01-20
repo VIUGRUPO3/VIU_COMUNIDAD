@@ -4,17 +4,27 @@
  */
 package vista.inmueble;
 
+import controlador.Controlador;
+import controlador.modelos.InmuebleControlador;
+import controlador.modelos.LiquidacionControlador;
+
 /**
  *
  * @author fersi
  */
 public class EdicionInmuebleFrame extends javax.swing.JInternalFrame {
 
+    Controlador ctrl;
+    InmuebleControlador ic;
+    LiquidacionControlador lc;
     /**
      * Creates new form EdicionInmuebleFrame
      */
     public EdicionInmuebleFrame() {
         initComponents();
+        ctrl = new Controlador();
+        ic = new InmuebleControlador();
+        lc = new LiquidacionControlador();
     }
 
     /**
@@ -86,11 +96,6 @@ public class EdicionInmuebleFrame extends javax.swing.JInternalFrame {
 
         txtDireccionEI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtDireccionEI.setForeground(new java.awt.Color(51, 51, 51));
-        txtDireccionEI.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDireccionEIActionPerformed(evt);
-            }
-        });
         txtDireccionEI.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDireccionEIKeyTyped(evt);
@@ -386,16 +391,6 @@ public class EdicionInmuebleFrame extends javax.swing.JInternalFrame {
                 btnAsignarEI1MouseClicked(evt);
             }
         });
-        btnAsignarEI1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAsignarEI1ActionPerformed(evt);
-            }
-        });
-        btnAsignarEI1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                btnAsignarEI1KeyTyped(evt);
-            }
-        });
 
         lblTotalEI.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblTotalEI.setForeground(new java.awt.Color(255, 153, 153));
@@ -452,7 +447,7 @@ public class EdicionInmuebleFrame extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane2)
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -466,79 +461,74 @@ public class EdicionInmuebleFrame extends javax.swing.JInternalFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtIdEIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdEIKeyTyped
-//        // TODO add your handling code here:
-//        String texto = txtIdEI.getText();
-//        char caracter = evt.getKeyChar();
-//        if (filtrarCaracteres(texto,caracter,"n")){
-//            evt.consume();
-//        }
+        String texto = txtIdEI.getText();
+        char caracter = evt.getKeyChar();
+        if (ctrl.filtrarCaracteres(texto,caracter,"n")){
+            evt.consume();
+        }
     }//GEN-LAST:event_txtIdEIKeyTyped
 
-    private void txtDireccionEIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionEIActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionEIActionPerformed
-
     private void txtDireccionEIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionEIKeyTyped
-//        // TODO add your handling code here:
-//        String texto = txtDireccionEI.getText();
-//        char caracter = evt.getKeyChar();
-//        if (filtrarCaracteres(texto,caracter,"ln")){
-//            evt.consume();
-//        }
+        String texto = txtDireccionEI.getText();
+        char caracter = evt.getKeyChar();
+        if (ctrl.filtrarCaracteres(texto,caracter,"ln")){
+            evt.consume();
+        }
     }//GEN-LAST:event_txtDireccionEIKeyTyped
 
     private void btnAsignarEIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignarEIMouseClicked
-//        if (asignacionInmuebleFrame.isVisible() == false) {
-//            dimensionarFrameDatos(asignacionInmuebleFrame);
-//        }
-//        asignacionInmuebleFrame.show();
-//        ic.cargarTablaInmueblesFromEdit(
-//            tblInmueblesAI,
-//            tblSeleccionInmueblesAI,
-//            btnFiltrarInmuebleAI,
-//            btnLimpiarTablaAI,
-//            btnSeleccionarInmueblesAI,
-//            txtFiltrarInmuebleAI,
-//            ic.obtenerInmueble(Integer.parseInt(txtIdEI.getText())));
-//        ic.cargarTablaVecinosAsignacion("", tblVecinosAI);
+        AsignacionInmuebleFrame aif = new AsignacionInmuebleFrame();
+        ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
+        ctrl.mostrarFrame(aif, ctrl.mfamvc.panelDatos);
+        ic.cargarTablaInmueblesFromEdit(
+            aif.tblInmueblesAI,
+            aif.tblSeleccionInmueblesAI,
+            aif.btnFiltrarInmuebleAI,
+            aif.btnLimpiarTablaAI,
+            aif.btnSeleccionarInmueblesAI,
+            aif.txtFiltrarInmuebleAI,
+            ic.obtenerInmueble(Integer.parseInt(txtIdEI.getText())));
+        ic.cargarTablaVecinosAsignacion("", aif.tblVecinosAI);
     }//GEN-LAST:event_btnAsignarEIMouseClicked
 
     private void btnCancelarEIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarEIMouseClicked
-//        edicionInmuebleFrame.hide();
+        ctrl.ocultarFrame(this,ctrl.mfamvc.panelDatos);
     }//GEN-LAST:event_btnCancelarEIMouseClicked
 
     private void btnGuardarEIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarEIMouseClicked
-//        if (txtIdEI.getText().equals("")) {
-//            ic.registrarInmueble(txtDireccionEI, jTable2);
-//        } else {
-//            ic.updateInmueble(txtIdEI, txtDireccionEI, txtIdVecinoEI, jTable2);
-//        }
-//        edicionInmuebleFrame.hide();;
+        GestionInmueblesFrame gif = new GestionInmueblesFrame();
+        if (txtIdEI.getText().equals("")) {
+            ic.registrarInmueble(txtDireccionEI, gif.tblInmueblesGIF);
+        } else {
+            ic.updateInmueble(txtIdEI, txtDireccionEI, txtIdVecinoEI, gif.tblInmueblesGIF);
+        }
+        ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
+        ctrl.mostrarFrame(gif, ctrl.mfamvc.panelDatos);
     }//GEN-LAST:event_btnGuardarEIMouseClicked
 
     private void btnAsignarEI1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignarEI1MouseClicked
-//        if(tblLiquidacionInmuebleEI.getSelectedRowCount()>0){
-//            int row = tblLiquidacionInmuebleEI.getSelectedRow();
-//            int idLiquidacion = (int)tblLiquidacionInmuebleEI.getValueAt(row, 0);
-//            lc.cargarTablaLiquidacionDetalleInmueble(Integer.parseInt(txtIdEI.getText()), idLiquidacion, lblTotalEI, tblLiquidacionDetalleInmueble);
-//        }
+        if(tblLiquidacionInmuebleEI.getSelectedRowCount()>0){
+            int row = tblLiquidacionInmuebleEI.getSelectedRow();
+            int idLiquidacion = (int)tblLiquidacionInmuebleEI.getValueAt(row, 0);
+            lc.cargarTablaLiquidacionDetalleInmueble(Integer.parseInt(txtIdEI.getText()), idLiquidacion, lblTotalEI, tblLiquidacionDetalleInmueble);
+        }
     }//GEN-LAST:event_btnAsignarEI1MouseClicked
 
-    private void btnAsignarEI1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarEI1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAsignarEI1ActionPerformed
-
-    private void btnAsignarEI1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAsignarEI1KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAsignarEI1KeyTyped
-
+    public void limpiarInmuebleForm() {
+        txtIdEI.setText("");
+        txtDireccionEI.setText("");
+        txtApellidosEI.setText("");
+        txtTelefonoEI.setText("");
+        txtEmailEI.setText("");
+        txtNombreEI.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAsignarEI;
@@ -564,9 +554,9 @@ public class EdicionInmuebleFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JLabel lblTotalEI;
-    private javax.swing.JTable tblLiquidacionDetalleInmueble;
-    private javax.swing.JTable tblLiquidacionInmuebleEI;
-    private javax.swing.JTable tblServiciosEI;
+    public javax.swing.JTable tblLiquidacionDetalleInmueble;
+    public javax.swing.JTable tblLiquidacionInmuebleEI;
+    public javax.swing.JTable tblServiciosEI;
     public javax.swing.JTextField txtApellidosEI;
     public javax.swing.JTextField txtDireccionEI;
     public javax.swing.JTextField txtEmailEI;

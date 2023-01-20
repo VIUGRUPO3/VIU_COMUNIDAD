@@ -9,7 +9,13 @@
 
 package controlador;
 
+import java.awt.event.KeyEvent;
+import static java.awt.image.ImageObserver.HEIGHT;
+import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import modelo.usuario.Vecino;
 import vista.LoginFrame;
 import vista.MainFrameAdmin;
@@ -78,16 +84,26 @@ public class Controlador {
             }
     }
     
-    public void ocultarFrame(JInternalFrame jif){
+    public void ocultarFrame(JInternalFrame jif, JDesktopPane dp){
         jif.setVisible(false);
-        mfamvc.panelDatos.remove(jif);
+        dp.remove(jif);
         jif = null;
         
     }
     
-    public void mostrarFrame(JInternalFrame jif){
-        mfamvc.panelDatos.add(jif);
+    public void mostrarFrame(JInternalFrame jif, JDesktopPane dp){
+        dp.add(jif);
         jif.setVisible(true);
+    }
+     
+    public void limpiarDesktopPane(JDesktopPane dp){
+        for(JInternalFrame jif: dp.getAllFrames()){
+            if (jif!=null){
+                jif.setVisible(false);
+                dp.remove(jif);
+                jif = null;
+            }
+        }
     }
     /**
      * Método de logout para el tipo de usuario Administrador
@@ -105,6 +121,62 @@ public class Controlador {
         mainFrameVecino.setVisible(false);
         mainFrameVecino.dispose();
         iniciarApp();
+    }
+    
+    /**
+     * Metodo que vacia la tabla especificada
+     * @param tabla Tabla que se vaciara
+     */
+     public void limpiarTabla(JTable tabla) {
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        model.setNumRows(0);
+    }
+    
+    //FUNCIONES DE FILTRADO
+    //solo letras y espacios
+    public boolean filtrarCaracteres(String texto, char caracter, String modo){
+        if (modo.equals("l")){
+            if(!(Character.isLetter(caracter) && (caracter != KeyEvent.VK_SPACE) && (caracter != KeyEvent.VK_BACK_SPACE) && (caracter != KeyEvent.VK_DELETE))){
+                JOptionPane.showMessageDialog(null, "Caracter no válido.\n Solo se admiten letras", "ComunidadVIU", HEIGHT);
+                return true;
+            }
+            return false;
+        }
+    
+       //solo numeros
+        if (modo.equals("n")){
+            if(!(Character.isDigit(caracter)  && (caracter != KeyEvent.VK_BACK_SPACE) && (caracter != KeyEvent.VK_DELETE))){
+                JOptionPane.showMessageDialog(null, "Caracter no válido.\n Solo se admiten números", "ComunidadVIU", HEIGHT);
+                return true;
+            }
+            return false;
+        }
+        //letras y numeros
+        if (modo.equals("ln")){
+            if(!(Character.isDigit(caracter)) && !(Character.isLetter(caracter))  && (caracter != KeyEvent.VK_SPACE) && (caracter != KeyEvent.VK_BACK_SPACE) && (caracter != KeyEvent.VK_DELETE) && (caracter != KeyEvent.VK_BACK_SLASH) && (caracter != KeyEvent.VK_SLASH) ){
+                JOptionPane.showMessageDialog(null, "Caracter no válido.\n Solo se admiten letas/números", "ComunidadVIU", HEIGHT);
+                return true;
+            }
+            return false;
+        }
+        
+        //emails
+        if (modo.equals("m")  && (caracter != KeyEvent.VK_BACK_SPACE) && (caracter != KeyEvent.VK_DELETE)){
+//            if(!(Character.isAlphabetic(caracter))){
+//                JOptionPane.showMessageDialog(null, "Caracter no válido.", "ComunidadVIU", HEIGHT);
+//                return true;
+//            }
+            return false;
+        }
+        //telefonos:
+        if (modo.equals("t")){
+            if(!(Character.isDigit(caracter)) && !(caracter == '+')  && (caracter != KeyEvent.VK_BACK_SPACE) && (caracter != KeyEvent.VK_DELETE)){
+                JOptionPane.showMessageDialog(null, "Caracter no válido.\n Solo se admiten números o el caracter de prefijo +", "ComunidadVIU", HEIGHT);
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
 }

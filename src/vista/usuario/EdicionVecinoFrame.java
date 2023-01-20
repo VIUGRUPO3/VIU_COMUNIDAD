@@ -188,11 +188,6 @@ public class EdicionVecinoFrame extends javax.swing.JInternalFrame {
         txtIdEU.setBackground(new java.awt.Color(255, 255, 255));
         txtIdEU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txtIdEU.setForeground(new java.awt.Color(51, 51, 51));
-        txtIdEU.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdEUActionPerformed(evt);
-            }
-        });
         txtIdEU.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtIdEUKeyTyped(evt);
@@ -358,13 +353,15 @@ public class EdicionVecinoFrame extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    /**
+     * Evento hacer click sobre el boton Editar/Detalle usuario
+     * @param evt Evento recibido
+     */
     private void btnDetalleEUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetalleEUMouseClicked
         if (tblInmueblesEVF.getSelectedRow() >= 0) {
             EdicionInmuebleFrame eif = new EdicionInmuebleFrame();
-            ctrl.ocultarFrame(this);
-            ctrl.mostrarFrame(eif);
-            
+            ctrl.ocultarFrame(this,ctrl.mfamvc.panelDatos);
+            ctrl.mostrarFrame(eif, ctrl.mfamvc.panelDatos);
             ic.cargarFormInmueble(
                 eif.txtIdEI,
                 eif.txtDireccionEI,
@@ -377,13 +374,21 @@ public class EdicionVecinoFrame extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnDetalleEUMouseClicked
 
+    /**
+     * Evento hacer click sobre el boton cancelar
+     * @param evt evento recibido
+     */
     private void btnCancelarEUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarEUMouseClicked
         GestionUsuariosFrame guf = new GestionUsuariosFrame();
-        ctrl.ocultarFrame(this);
+        ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
         uc.cargarTablaUsuarios(guf.gUNombreText.getText(), guf.tblUsuarioGUF);
-        ctrl.mostrarFrame(guf);
+        ctrl.mostrarFrame(guf, ctrl.mfamvc.panelDatos);
     }//GEN-LAST:event_btnCancelarEUMouseClicked
 
+    /**
+     * Evento hacer click sobre el boton guardar
+     * @param evt 
+     */
     private void btnGuardarEUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarEUMouseClicked
         GestionUsuariosFrame guf = new GestionUsuariosFrame();
         if (txtIdEU.getText().equals("")) {
@@ -391,81 +396,106 @@ public class EdicionVecinoFrame extends javax.swing.JInternalFrame {
         } else {
             uc.updateUsuario(txtIdEU, txtNombreEU, txtApellidosEU, txtTelefonoEU, txtEmailEU, txtUserNameEU, txtPasswordEU, guf.tblUsuarioGUF);
         }
-        ctrl.ocultarFrame(this);
+        ctrl.ocultarFrame(this,ctrl.mfamvc.panelDatos);
         uc.cargarTablaUsuarios(guf.gUNombreText.getText(), guf.tblUsuarioGUF);
-        ctrl.mostrarFrame(guf);
+        ctrl.mostrarFrame(guf, ctrl.mfamvc.panelDatos);
     }//GEN-LAST:event_btnGuardarEUMouseClicked
-
+    
+    /**
+     * Evento pulsar una tecla sobre el campo Telefono
+     * @param evt Evento recibido
+     */
     private void txtTelefonoEUKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoEUKeyTyped
-//        // TODO add your handling code here:
-//        String texto = txtTelefonoEU.getText();
-//        char caracter = evt.getKeyChar();
-//        if (filtrarCaracteres(texto,caracter,"t")){
-//            evt.consume();
-//        }
+        String texto = txtTelefonoEU.getText();
+        char caracter = evt.getKeyChar();
+        if (ctrl.filtrarCaracteres(texto,caracter,"t")){
+            evt.consume();
+        }
     }//GEN-LAST:event_txtTelefonoEUKeyTyped
 
+    /**
+     * Evento pulsar una tecla sobre el campo apellidos
+     * @param evt 
+     */
     private void txtApellidosEUKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosEUKeyTyped
-//        // TODO add your handling code here:
-//        String texto = txtApellidosEU.getText();
-//        char caracter = evt.getKeyChar();
-//        if (filtrarCaracteres(texto,caracter,"l")){
-//            evt.consume();
-//        }
+        String texto = txtApellidosEU.getText();
+        char caracter = evt.getKeyChar();
+        if (ctrl.filtrarCaracteres(texto,caracter,"l")){
+            evt.consume();
+        }
     }//GEN-LAST:event_txtApellidosEUKeyTyped
 
-    private void txtIdEUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdEUActionPerformed
-
-    }//GEN-LAST:event_txtIdEUActionPerformed
-
+    /**
+     * Evento pulsar una tecla sobre el campo id
+     * @param evt Evento recibido
+     */
     private void txtIdEUKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdEUKeyTyped
-//        // TODO add your handling code here:
-//        String texto = txtIdEU.getText();
-//        char caracter = evt.getKeyChar();
-//        if (filtrarCaracteres(texto,caracter,"l")){
-//            evt.consume();
-//        }
+        String texto = txtIdEU.getText();
+        char caracter = evt.getKeyChar();
+        if (ctrl.filtrarCaracteres(texto,caracter,"l")){
+            evt.consume();
+        }
     }//GEN-LAST:event_txtIdEUKeyTyped
 
+    /**
+     * Evento ganar foco el campo password
+     * @param evt Evento recibido
+     */
     private void txtPasswordEUFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordEUFocusGained
         txtPasswordEU.setText("");
     }//GEN-LAST:event_txtPasswordEUFocusGained
 
+    /**
+     * Evento pulsar una tecla sobre el campo password
+     * @param evt Evento recibido
+     */
     private void txtPasswordEUKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordEUKeyTyped
-//        // TODO add your handling code here:
-//        String texto = txtNombreEU.getText();
-//        char caracter = evt.getKeyChar();
-//        if (filtrarCaracteres(texto,caracter,"m")){
-//            evt.consume();
-//        }
+        String texto = txtNombreEU.getText();
+        char caracter = evt.getKeyChar();
+        if (ctrl.filtrarCaracteres(texto,caracter,"m")){
+            evt.consume();
+        }
     }//GEN-LAST:event_txtPasswordEUKeyTyped
 
+    /**
+     * Evento pulsar una tecla sobre el campo UserName
+     * @param evt Evento recibido
+     */
     private void txtUserNameEUKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserNameEUKeyTyped
-//        // TODO add your handling code here:
-//        String texto = txtUserNameEU.getText();
-//        char caracter = evt.getKeyChar();
-//        if (filtrarCaracteres(texto,caracter,"ln")){
-//            evt.consume();
-//        }
+        String texto = txtUserNameEU.getText();
+        char caracter = evt.getKeyChar();
+        if (ctrl.filtrarCaracteres(texto,caracter,"ln")){
+            evt.consume();
+        }
     }//GEN-LAST:event_txtUserNameEUKeyTyped
 
+    /**
+     * Evento pulsar una tecla sobre el campo email
+     * @param evt Evento recibido
+     */
     private void txtEmailEUKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailEUKeyTyped
-//        // TODO add your handling code here:
-//        String texto = txtNombreEU.getText();
-//        char caracter = evt.getKeyChar();
-//        if (filtrarCaracteres(texto,caracter,"m")){
-//            evt.consume();
-//        }
+        String texto = txtNombreEU.getText();
+        char caracter = evt.getKeyChar();
+        if (ctrl.filtrarCaracteres(texto,caracter,"m")){
+            evt.consume();
+        }
     }//GEN-LAST:event_txtEmailEUKeyTyped
-
+    
+    /**
+     * Evento pulsar una tecla sobre el campo nombre
+     * @param evt Evento recibido
+     */
     private void txtNombreEUKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreEUKeyTyped
-//        // TODO add your handling code here:
-//        String texto = txtNombreEU.getText();
-//        char caracter = evt.getKeyChar();
-//        if (filtrarCaracteres(texto,caracter,"l")){
-//            evt.consume();
-//        }
+        String texto = txtNombreEU.getText();
+        char caracter = evt.getKeyChar();
+        if (ctrl.filtrarCaracteres(texto,caracter,"l")){
+            evt.consume();
+        }
     }//GEN-LAST:event_txtNombreEUKeyTyped
+    
+    /**
+     * Metodo para limpiar los campos del formulario del usuario
+     */
     public void limpiarUserForm() {
             txtIdEU.setText("");
             txtNombreEU.setText("");
@@ -476,8 +506,6 @@ public class EdicionVecinoFrame extends javax.swing.JInternalFrame {
             txtPasswordEU.setText("");
         }
     
-  
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarEU;
     private javax.swing.JButton btnDetalleEU;

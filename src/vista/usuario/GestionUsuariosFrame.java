@@ -12,7 +12,6 @@ package vista.usuario;
 import controlador.Controlador;
 import controlador.modelos.InmuebleControlador;
 import controlador.modelos.UsuarioControlador;
-import vista.MainFrameAdminMVC;
 
 /**
  *  Clase GestionUsuariosFrame
@@ -226,26 +225,26 @@ public class GestionUsuariosFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBorrarUsuarioGUMouseClicked
     
     /**
-     * Boton para dar de alta un usuario
+     * Evento pulsar el boton Alta vecino
      * @param evt evento recibido
      */
     private void btnAltaVecinoGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaVecinoGUMouseClicked
         if (evf.isVisible() == false) {
-            ctrl.ocultarFrame(this);
-            ctrl.mostrarFrame(evf);      
+            ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
+            ctrl.mostrarFrame(evf, ctrl.mfamvc.panelDatos);      
         }
         evf.limpiarUserForm();
     }//GEN-LAST:event_btnAltaVecinoGUMouseClicked
     
     /**
-     * Boton editar usuario
+     * Evento pulsar el boton editar usuario
      * @param evt evento recibido
      */
     private void btnEditarUsuarioGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarUsuarioGUMouseClicked
         if (tblUsuarioGUF.getSelectedRow() >= 0) {
             if (evf.isVisible() == false) {
-                ctrl.ocultarFrame(this);
-                ctrl.mostrarFrame(evf); 
+                ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
+                ctrl.mostrarFrame(evf, ctrl.mfamvc.panelDatos); 
             }
             uc.cargarFormUsuario(tblUsuarioGUF, evf.txtIdEU, evf.txtNombreEU, evf.txtApellidosEU, evf.txtTelefonoEU, evf.txtEmailEU, evf.txtUserNameEU, evf.txtPasswordEU);
             ic.cargarTablaInmueblesVecino(Integer.parseInt(evf.txtIdEU.getText()), evf.tblInmueblesEVF);
@@ -253,18 +252,18 @@ public class GestionUsuariosFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditarUsuarioGUMouseClicked
 
     /**
-     * Boton alta administrador
+     * Evento pulsar el boton Alta administrador
      * @param evt evento recibido
      */
     private void btnAltaAdminGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaAdminGUMouseClicked
         if (raf.isVisible() == false) {
-            ctrl.ocultarFrame(this);
-            ctrl.mostrarFrame(raf);
+            ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
+            ctrl.mostrarFrame(raf, ctrl.mfamvc.panelDatos);
         }
     }//GEN-LAST:event_btnAltaAdminGUMouseClicked
 
     /**
-     * boton filtrar los usuarios
+     * Evento pulsar el boton filtrar usuarios
      * @param evt evento recibido
      */
     private void btnFiltrarUsuariosGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarUsuariosGUMouseClicked
@@ -272,11 +271,11 @@ public class GestionUsuariosFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnFiltrarUsuariosGUMouseClicked
 
     /**
-     * Boton cancelar, sale del Frame
+     * Evento pulsar el boton Cancelar, cierra el internal frame
      * @param evt evento recibido
      */
     private void btnCancelarGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarGUMouseClicked
-        ctrl.ocultarFrame(this);
+        ctrl.ocultarFrame(this,ctrl.mfamvc.panelDatos);
     }//GEN-LAST:event_btnCancelarGUMouseClicked
 
 
