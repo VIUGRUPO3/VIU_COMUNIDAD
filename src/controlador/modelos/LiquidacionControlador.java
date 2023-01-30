@@ -205,17 +205,17 @@ public class LiquidacionControlador {
      * @param idInmueble id inmueble
      * @param tabla tabla donde muestra los resultados
      */
-    public void cargarTablaLiquidacionesInmueble(int idInmueble, JTable tabla) {
-        String tipo;
-       
-        List<Liquidacion> lista = new ArrayList();
-        lista = S_L.buscarLiquidacionInmueble(idInmueble);
-        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
-        model.setNumRows(0);
-        for (int i = 0; i < lista.size(); i++) {
-            model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getFechaInicio(), lista.get(i).getFechaFin()});
-        }
-    }
+//    public void cargarTablaLiquidacionesInmueble(int idInmueble, JTable tabla) {
+//        String tipo;
+//       
+//        List<Liquidacion> lista = new ArrayList();
+//        lista = S_L.buscarLiquidacionInmueble(idInmueble);
+//        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+//        model.setNumRows(0);
+//        for (int i = 0; i < lista.size(); i++) {
+//            model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getFechaInicio(), lista.get(i).getFechaFin()});
+//        }
+//    }
     /**
      * Carga tabla de liquidaciones de un inmueble en detalle
      * @param idInmueble id inmueble
@@ -243,7 +243,24 @@ public class LiquidacionControlador {
         }
         lblTotalEI.setText(String.format("%,.2f", cuotaFinal) + "€");
     }
-
+    
+    public List<LiquidacionDetalleServicio> serviciosLiquidadosInmueble(int idInmueble, int idLiquidacion){
+        List<LiquidacionDetalleServicio> listaServicios = S_L.buscarLiquidacionDetalleServicioInmueble(idInmueble, idLiquidacion);
+        return listaServicios;
+    }
+    
+    public List<LiquidacionDetalleGasto> gastosLiquidadosInmueble(int idInmueble, int idLiquidacion){
+        List<LiquidacionDetalleGasto> listaGastos = S_L.buscarLiquidacionDetalleGastoInmueble(idInmueble, idLiquidacion);
+        return listaGastos;
+    }
+    public Liquidacion obtenerLiquidacion(int id){
+        Liquidacion l  = S_L.buscarId(id);
+        return l;
+    }
+    public List<Liquidacion> buscarLiquidacionInmueble(int idServicioCuenta){
+        List<Liquidacion> listaLiquidacion = S_L.buscarLiquidacionInmueble(idServicioCuenta);
+        return listaLiquidacion;
+    }
 
     //Fin de la clase
 }

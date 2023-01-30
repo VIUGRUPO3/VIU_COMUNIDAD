@@ -8,6 +8,10 @@ import controlador.Controlador;
 import controlador.modelos.InmuebleControlador;
 import controlador.modelos.LiquidacionControlador;
 import controlador.modelos.ServicioControlador;
+import java.util.List;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import modelo.Inmueble;
 
 /**
  *
@@ -207,51 +211,91 @@ public class GestionInmueblesFrame extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAltaInmuebleGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaInmuebleGIMouseClicked
-        ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
-        ctrl.mostrarFrame(eif, ctrl.mfamvc.panelDatos);
+        ctrl.ocultarFrameAdmin(this);
+        ctrl.mostrarFrameAdmin(eif);
         eif.limpiarInmuebleForm();
     }//GEN-LAST:event_btnAltaInmuebleGIMouseClicked
-
+    
+    /**
+     * 
+     * @param evt 
+     */
     private void btnEditarInmuebleGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarInmuebleGIMouseClicked
         if (tblInmueblesGIF.getSelectedRow() >= 0) {
-            ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
-            ctrl.mostrarFrame(eif, ctrl.mfamvc.panelDatos);
-            ic.cargarFormInmueble(eif.txtIdEI,
-                eif.txtDireccionEI,
-                eif.txtIdVecinoEI,
-                eif.txtNombreEI,
-                eif.txtApellidosEI,
-                eif.txtTelefonoEI,
-                eif.txtEmailEI,
-                tblInmueblesGIF);
-            int idInmueble = ic.obtenerIdTablaInmuebles(tblInmueblesGIF.getSelectedRow(), tblInmueblesGIF);
-            ctrl.limpiarTabla(eif.tblLiquidacionInmuebleEI);
-            ctrl.limpiarTabla(eif.tblLiquidacionDetalleInmueble);
-            sc.cargarTablaServiciosInmueble(idInmueble, eif.tblServiciosEI);
-            lc.cargarTablaLiquidacionesInmueble(idInmueble, eif.tblLiquidacionInmuebleEI);
-            
+            ctrl.ocultarFrameAdmin(this);
+            ctrl.mostrarFrameAdmin(eif);
+            int row = tblInmueblesGIF.getSelectedRow();
+            int idInmueble = (int)tblInmueblesGIF.getValueAt(row, 0);
+            eif.cargarFormInmueble(idInmueble);
+            limpiarTabla(eif.tblLiquidacionInmuebleEI);
+            limpiarTabla(eif.tblLiquidacionDetalleInmueble);
+            eif.cargarTablaServiciosInmueble(idInmueble);
+            eif.cargarTablaLiquidacionesInmueble(idInmueble);
         }
     }//GEN-LAST:event_btnEditarInmuebleGIMouseClicked
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnBorrarInmuebleGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarInmuebleGIMouseClicked
-        ic.eliminarInmueble(tblInmueblesGIF);
+        int[] lista = tblInmueblesGIF.getSelectedRows();
+        if (lista.length != 0) {
+            for (int row : lista) {
+                ic.eliminarInmueble((int)tblInmueblesGIF.getValueAt(row, 0));
+            }
+        }
+        cargarTablaInmuebles("");
+        
     }//GEN-LAST:event_btnBorrarInmuebleGIMouseClicked
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnFiltrarInmueblesGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarInmueblesGIMouseClicked
-        ic.cargarTablaInmuebles(gIDireccionText.getText(), tblInmueblesGIF);
+        cargarTablaInmuebles(gIDireccionText.getText());
     }//GEN-LAST:event_btnFiltrarInmueblesGIMouseClicked
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnCancelarGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarGIMouseClicked
-        ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
+        ctrl.ocultarFrameAdmin(this);
     }//GEN-LAST:event_btnCancelarGIMouseClicked
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnAsignarInmueblesGIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignarInmueblesGIMouseClicked
-        ic.cargarTablaInmuebles("", aif.tblInmueblesAI);
-        ic.cargarTablaVecinosAsignacion("", aif.tblVecinosAI);
-        ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
-        ctrl.mostrarFrame(aif, ctrl.mfamvc.panelDatos);
+        aif.cargarTablaInmuebles("");
+        aif.cargarTablaVecinosAsignacion("");
+        ctrl.ocultarFrameAdmin(this);
+        ctrl.mostrarFrameAdmin(aif);
     }//GEN-LAST:event_btnAsignarInmueblesGIMouseClicked
+    /**
+     * 
+     * @param tabla 
+     */
+    public void limpiarTabla(JTable tabla) {
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        model.setNumRows(0);
+    }
+    /**
+     * 
+     * @param direccion 
+     */
+    public void cargarTablaInmuebles(String direccion) {
+        List<Inmueble> lista = ic.obtenerListaInmuebles(direccion);
+        DefaultTableModel model = (DefaultTableModel) tblInmueblesGIF.getModel();
+        model.setNumRows(0);
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).getVecino() != null) {
+                model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getDireccion(), lista.get(i).getVecino().getNombre() + " " + lista.get(i).getVecino().getApellidos()});
+            } else {
+                model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getDireccion(), " "});
+            }
 
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAltaInmuebleGI;

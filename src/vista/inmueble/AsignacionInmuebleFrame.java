@@ -7,6 +7,11 @@ package vista.inmueble;
 import controlador.Controlador;
 import controlador.modelos.InmuebleControlador;
 import controlador.modelos.UsuarioControlador;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import modelo.Inmueble;
+import modelo.usuario.Vecino;
 
 
 /**
@@ -482,25 +487,24 @@ public class AsignacionInmuebleFrame extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSeleccionarInmueblesAIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeleccionarInmueblesAIMouseClicked
-        ic.cargarTablaInmueblesSelected(
-            tblInmueblesAI,
-            tblSeleccionInmueblesAI,
-            btnFiltrarInmuebleAI,
-            btnLimpiarTablaAI,
-            btnSeleccionarInmueblesAI,
-            txtFiltrarInmuebleAI);
+        cargarTablaInmueblesSelected();
     }//GEN-LAST:event_btnSeleccionarInmueblesAIMouseClicked
 
     private void btnSeleccionarVecinoAIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeleccionarVecinoAIMouseClicked
-        uc.cargarVecinosSelected(tblVecinosAI, lblVecinoIdAI, lblVecinoNombreAI, lblVecinoApellidosAI);
+        int row = tblVecinosAI.getSelectedRow();
+        if(row > 0){
+            lblVecinoIdAI.setText(Integer.toString((int) tblVecinosAI.getValueAt(row, 0)));
+            lblVecinoNombreAI.setText((String) tblVecinosAI.getValueAt(row, 1));
+            lblVecinoApellidosAI.setText((String) tblVecinosAI.getValueAt(row, 2));
+        }
     }//GEN-LAST:event_btnSeleccionarVecinoAIMouseClicked
 
     private void btnFiltrarInmuebleAIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarInmuebleAIMouseClicked
-        ic.cargarTablaInmuebles(txtFiltrarInmuebleAI.getText(), tblInmueblesAI);
+        cargarTablaInmuebles(txtFiltrarInmuebleAI.getText());
     }//GEN-LAST:event_btnFiltrarInmuebleAIMouseClicked
 
     private void btnFiltrarUserAIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarUserAIMouseClicked
-        ic.cargarTablaVecinosAsignacion(txtFiltrarNombreAI.getText(), tblVecinosAI);
+        cargarTablaVecinosAsignacion(txtFiltrarNombreAI.getText());
     }//GEN-LAST:event_btnFiltrarUserAIMouseClicked
 
     private void btnLimpiarTablaAIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarTablaAIMouseClicked
@@ -512,19 +516,28 @@ public class AsignacionInmuebleFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimpiarVecinoAIMouseClicked
 
     private void btnAsignarInmueblesAIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignarInmueblesAIMouseClicked
-        if (ic.comprobarAsignacion(tblSeleccionInmueblesAI, lblVecinoIdAI) == true) {
-            ic.AsignarInmueble(tblSeleccionInmueblesAI, lblVecinoIdAI);
+        if (formulariosLlenos() == true) {
+            List<Inmueble> inmuebles = new ArrayList();
+            Vecino v = uc.obtenerVecino(Integer.parseInt(lblVecinoIdAI.getText()));
+            int rows = tblSeleccionInmueblesAI.getRowCount();
+            for (int i = 0; i < rows; i++) {
+                Inmueble inmueble = new Inmueble((int) tblSeleccionInmueblesAI.getValueAt(i, 0),
+                        v, 
+                        (String) tblSeleccionInmueblesAI.getValueAt(i, 1));
+                inmuebles.add(inmueble);
+            }
+            ic.AsignarInmueble(inmuebles, v.getId());
             limpiarDatosUsuario();
             ctrl.limpiarTabla(tblSeleccionInmueblesAI);
-            ic.cargarTablaInmuebles("", tblInmueblesAI);
+            cargarTablaInmuebles("");
         }
     }//GEN-LAST:event_btnAsignarInmueblesAIMouseClicked
 
     private void btnCancelarAIFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarAIFMouseClicked
         GestionInmueblesFrame gif = new GestionInmueblesFrame();
-        ic.cargarTablaInmuebles("", gif.tblInmueblesGIF);
-        ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos );
-        ctrl.mostrarFrame(gif, ctrl.mfamvc.panelDatos);
+        gif.cargarTablaInmuebles("");
+        ctrl.ocultarFrameAdmin(this);
+        ctrl.mostrarFrameAdmin(gif);
     }//GEN-LAST:event_btnCancelarAIFMouseClicked
 
     private void limpiarDatosUsuario() {
@@ -532,6 +545,84 @@ public class AsignacionInmuebleFrame extends javax.swing.JInternalFrame {
         lblVecinoNombreAI.setText("");
         lblVecinoApellidosAI.setText("");
     }
+    
+    /**
+     *Método que permite asociar un vecino a un inmueble
+     * @param nombre nombre del vecino
+     * @param tabla tabla que contiene el inmueble a asignar
+     */
+    public void cargarTablaVecinosAsignacion(String nombre) {
+        List<Vecino> lista = uc.obtenerListaUsuarios(nombre);
+        DefaultTableModel model = (DefaultTableModel) tblVecinosAI.getModel();
+        model.setNumRows(0);
+        for (int i = 0; i < lista.size(); i++) {
+            model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getNombre(), lista.get(i).getApellidos()});
+        }
+    }
+    
+    /**
+     * Método que envía la tabla inmuebles de la parte de edición a la tabla de resultados después de haber una edición/actualización de los mismos
+     * 
+     * @param i objeto inmueble
+     */
+    public void cargarTablaInmueblesFromEdit(Inmueble i) {
+        tblInmueblesAI.setEnabled(false);
+        btnFiltrarInmuebleAI.setEnabled(false);
+        btnLimpiarTablaAI.setEnabled(false);
+        btnSeleccionarInmueblesAI.setEnabled(false);
+        txtFiltrarInmuebleAI.setEnabled(false);
+        DefaultTableModel model = (DefaultTableModel) tblSeleccionInmueblesAI.getModel();
+        model.setNumRows(0);
+        model.addRow(new Object[]{i.getId(), i.getDireccion()});
+    }
+    
+    public void cargarTablaInmuebles(String direccion) {
+        List<Inmueble> lista = ic.obtenerListaInmuebles(direccion);
+        DefaultTableModel model = (DefaultTableModel) tblInmueblesAI.getModel();
+        model.setNumRows(0);
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).getVecino() != null) {
+                model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getDireccion(), lista.get(i).getVecino().getNombre() + " " + lista.get(i).getVecino().getApellidos()});
+            } else {
+                model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getDireccion(), " "});
+            }
+
+        }
+    }
+    /**
+     * Método que carga los inmuebles seleccionados de una tabla en otra
+     * 
+     */
+    public void cargarTablaInmueblesSelected() {
+        tblInmueblesAI.setEnabled(true);
+        btnFiltrarInmuebleAI.setEnabled(true);
+        btnLimpiarTablaAI.setEnabled(true);
+        btnSeleccionarInmueblesAI.setEnabled(true);
+        txtFiltrarInmuebleAI.setEnabled(true);
+        int[] rows = tblInmueblesAI.getSelectedRows();
+        DefaultTableModel model = (DefaultTableModel) tblSeleccionInmueblesAI.getModel();
+        model.setNumRows(0);
+        for (int i = 0; i < rows.length; i++) {
+            model.addRow(new Object[]{tblInmueblesAI.getValueAt(rows[i], 0), tblInmueblesAI.getValueAt(rows[i], 1)});
+        }
+    }
+    
+    /**
+     * Método que permite comprobar si está presente determinado ID en una tabla
+     * @param tabla tabla que comprobar si contiene el ID
+     * @param lblId ID a comprobar
+     * @return booleano booleando que indica si hay o no presencia de dicho ID en la tabla indicada
+     */
+    public boolean formulariosLlenos() {
+        DefaultTableModel model = (DefaultTableModel) tblSeleccionInmueblesAI.getModel();
+        int rows = model.getRowCount();
+        if (rows > 0 && !lblVecinoIdAI.equals("")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAsignarInmueblesAI;

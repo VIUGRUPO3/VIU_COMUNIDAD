@@ -12,6 +12,9 @@ package vista.usuario;
 import controlador.Controlador;
 import controlador.modelos.InmuebleControlador;
 import controlador.modelos.UsuarioControlador;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import modelo.usuario.Vecino;
 
 /**
  *  Clase GestionUsuariosFrame
@@ -221,7 +224,13 @@ public class GestionUsuariosFrame extends javax.swing.JInternalFrame {
      * @param evt evento recibido
      */
     private void btnBorrarUsuarioGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarUsuarioGUMouseClicked
-        uc.eliminarUsuario(tblUsuarioGUF);
+        int[] lista = tblUsuarioGUF.getSelectedRows();
+        if (lista.length != 0) {
+            for (int row : lista) {
+                uc.eliminarUsuario((int)tblUsuarioGUF.getValueAt(row, 0));
+            }
+        }
+        cargarTablaUsuarios("");
     }//GEN-LAST:event_btnBorrarUsuarioGUMouseClicked
     
     /**
@@ -230,8 +239,8 @@ public class GestionUsuariosFrame extends javax.swing.JInternalFrame {
      */
     private void btnAltaVecinoGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaVecinoGUMouseClicked
         if (evf.isVisible() == false) {
-            ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
-            ctrl.mostrarFrame(evf, ctrl.mfamvc.panelDatos);      
+            ctrl.ocultarFrameAdmin(this);
+            ctrl.mostrarFrameAdmin(evf);       
         }
         evf.limpiarUserForm();
     }//GEN-LAST:event_btnAltaVecinoGUMouseClicked
@@ -241,13 +250,14 @@ public class GestionUsuariosFrame extends javax.swing.JInternalFrame {
      * @param evt evento recibido
      */
     private void btnEditarUsuarioGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarUsuarioGUMouseClicked
-        if (tblUsuarioGUF.getSelectedRow() >= 0) {
+        int row = tblUsuarioGUF.getSelectedRow();
+        if (row >= 0) {
             if (evf.isVisible() == false) {
-                ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
-                ctrl.mostrarFrame(evf, ctrl.mfamvc.panelDatos); 
+                ctrl.ocultarFrameAdmin(this);
+                ctrl.mostrarFrameAdmin(evf); 
             }
-            uc.cargarFormUsuario(tblUsuarioGUF, evf.txtIdEU, evf.txtNombreEU, evf.txtApellidosEU, evf.txtTelefonoEU, evf.txtEmailEU, evf.txtUserNameEU, evf.txtPasswordEU);
-            ic.cargarTablaInmueblesVecino(Integer.parseInt(evf.txtIdEU.getText()), evf.tblInmueblesEVF);
+            evf.cargarFormUsuario((int)tblUsuarioGUF.getValueAt(row, 0));
+            evf.cargarTablaInmueblesVecino((int)tblUsuarioGUF.getValueAt(row, 0));
         }
     }//GEN-LAST:event_btnEditarUsuarioGUMouseClicked
 
@@ -257,8 +267,8 @@ public class GestionUsuariosFrame extends javax.swing.JInternalFrame {
      */
     private void btnAltaAdminGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaAdminGUMouseClicked
         if (raf.isVisible() == false) {
-            ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
-            ctrl.mostrarFrame(raf, ctrl.mfamvc.panelDatos);
+            ctrl.ocultarFrameAdmin(this);
+            ctrl.mostrarFrameAdmin(raf);
         }
     }//GEN-LAST:event_btnAltaAdminGUMouseClicked
 
@@ -267,7 +277,7 @@ public class GestionUsuariosFrame extends javax.swing.JInternalFrame {
      * @param evt evento recibido
      */
     private void btnFiltrarUsuariosGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarUsuariosGUMouseClicked
-        uc.cargarTablaUsuarios(gUNombreText.getText(), tblUsuarioGUF);
+        cargarTablaUsuarios(gUNombreText.getText());
     }//GEN-LAST:event_btnFiltrarUsuariosGUMouseClicked
 
     /**
@@ -275,9 +285,23 @@ public class GestionUsuariosFrame extends javax.swing.JInternalFrame {
      * @param evt evento recibido
      */
     private void btnCancelarGUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarGUMouseClicked
-        ctrl.ocultarFrame(this,ctrl.mfamvc.panelDatos);
+        ctrl.ocultarFrameAdmin(this);
     }//GEN-LAST:event_btnCancelarGUMouseClicked
 
+    public void cargarTablaUsuarios(String nombre) {
+        List<Vecino> lista = uc.obtenerListaUsuarios(nombre);
+        DefaultTableModel model = (DefaultTableModel) tblUsuarioGUF.getModel();
+        model.setNumRows(0);
+        for (int i = 0; i < lista.size(); i++) {
+            model.addRow(new Object[]{lista.get(i).getId(), 
+                lista.get(i).getNombre(), 
+                lista.get(i).getApellidos(), 
+                lista.get(i).getTelefono(), 
+                lista.get(i).getEmail(), 
+                lista.get(i).getUserName(), 
+                uc.obtenerTipoUsuario(lista.get(i)).toUpperCase()});
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAltaAdminGU;

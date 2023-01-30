@@ -184,30 +184,19 @@ public class ServicioControlador {
         }
     }
 
-    public void cargarTablaInmueblesServicio(int idServicio, JTable tabla) {
-        List<ServicioCuenta> listaServicioCuenta = S_S_C.buscarInmublesServicios(idServicio);
-        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
-        model.setNumRows(0);
-        for(ServicioCuenta sc : listaServicioCuenta){
-            Inmueble i = S_I.buscarId(sc.getInmueble().getId());
-            model.addRow(new Object[]{i.getId(), i.getDireccion(), i.getVecino().getNombre() + " " + i.getVecino().getApellidos()});
-        }
-    }
+//    public void cargarTablaInmueblesServicio(int idServicio, JTable tabla) {
+//        List<ServicioCuenta> listaServicioCuenta = S_S_C.buscarInmublesServicios(idServicio);
+//        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+//        model.setNumRows(0);
+//        for(ServicioCuenta sc : listaServicioCuenta){
+//            Inmueble i = S_I.buscarId(sc.getInmueble().getId());
+//            model.addRow(new Object[]{i.getId(), i.getDireccion(), i.getVecino().getNombre() + " " + i.getVecino().getApellidos()});
+//        }
+//    }
     
-    public void cargarTablaServiciosInmueble(int idInmueble, JTable tabla) {
-        List<ServicioCuenta> listaServicioCuenta = S_S_C.buscarServiciosInmueble(idInmueble);
-        String tipoServicio;
-        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
-        model.setNumRows(0);
-        for(ServicioCuenta sc : listaServicioCuenta){
-            Servicio s = S_S.buscarId(sc.getServicio().getId());
-            if(s.isOpcional()==true){
-                tipoServicio = "Opcional";
-            }else{
-                tipoServicio = "Obligatorio";
-            }
-            model.addRow(new Object[]{s.getId(), s.getNombre(), s.getTarifa(), tipoServicio});
-        }
+    public Servicio obtenerServicio(int id){
+        Servicio s = S_S.buscarId(id);
+        return s;
     }
 
     public void cargarServicioSelected(JTable tabla, JLabel lblServicioIdAS, JLabel lblServicioNombreAS, JLabel lblTarifaServicioAS, JLabel lblServicioTipoAS){

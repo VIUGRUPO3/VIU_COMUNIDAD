@@ -11,14 +11,12 @@ package controlador;
 
 import java.awt.event.KeyEvent;
 import static java.awt.image.ImageObserver.HEIGHT;
-import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.usuario.Vecino;
 import vista.LoginFrame;
-import vista.MainFrameAdmin;
 import vista.MainFrameAdminMVC;
 import vista.MainFrameVecino;
 
@@ -70,13 +68,10 @@ public class Controlador {
             switch (tipoUsuario) {
                 case "admin":
                     mfamvc.setVisible(true);
-                    mfamvc.jLabel42.setText(Integer.toString(v.getId()) + " - ");
-                    mfamvc.jLabel37.setText(v.getNombre() + " " + v.getApellidos());
+                    mfamvc.cargaInicialDatos(v.getId(),v.getNombre(),v.getApellidos());
                     break;
                 case "vecino":
-                    mainFrameVecino.setVisible(true);
-                    mainFrameVecino.jLabel39.setText(Integer.toString(v.getId()) + " - ");
-                    mainFrameVecino.jLabel37.setText(v.getNombre() + " " + v.getApellidos());
+                    //TODO: Pendiente de implementacion vista vecino
                     break;
                 default:
                     iniciarApp();
@@ -84,26 +79,16 @@ public class Controlador {
             }
     }
     
-    public void ocultarFrame(JInternalFrame jif, JDesktopPane dp){
-        jif.setVisible(false);
-        dp.remove(jif);
-        jif = null;
-        
+    public void ocultarFrameAdmin(JInternalFrame jif){
+        mfamvc.ocultarFrame(jif); 
     }
     
-    public void mostrarFrame(JInternalFrame jif, JDesktopPane dp){
-        dp.add(jif);
-        jif.setVisible(true);
+    public void mostrarFrameAdmin(JInternalFrame jif){
+        mfamvc.mostrarFrame(jif);
     }
      
-    public void limpiarDesktopPane(JDesktopPane dp){
-        for(JInternalFrame jif: dp.getAllFrames()){
-            if (jif!=null){
-                jif.setVisible(false);
-                dp.remove(jif);
-                jif = null;
-            }
-        }
+    public void limpiarDesktopPane(){
+        mfamvc.limpiarDesktopPane();
     }
     /**
      * Método de logout para el tipo de usuario Administrador

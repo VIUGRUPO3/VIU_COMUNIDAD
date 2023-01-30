@@ -21,8 +21,6 @@ import controlador.modelos.UsuarioControlador;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,13 +30,6 @@ import javax.swing.JOptionPane;
 public class MainFrameAdminMVC extends javax.swing.JFrame {
 
     Controlador ctrl;
-    UsuarioControlador uc = new UsuarioControlador();
-    InmuebleControlador ic = new InmuebleControlador();
-    ServicioControlador sc = new ServicioControlador();
-    ProveedorControlador pc = new ProveedorControlador();
-    GastoConceptoControlador gcc = new GastoConceptoControlador();
-    GastoControlador gc = new GastoControlador();
-    LiquidacionControlador lc = new LiquidacionControlador();
     GestionUsuariosFrame guf = new GestionUsuariosFrame();
     GestionInmueblesFrame gif = new GestionInmueblesFrame();
     GestionServiciosFrame gsf = new GestionServiciosFrame();
@@ -82,7 +73,7 @@ public class MainFrameAdminMVC extends javax.swing.JFrame {
         jLabel34 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
         panelDatos = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -266,12 +257,12 @@ public class MainFrameAdminMVC extends javax.swing.JFrame {
         jLabel35.setFont(new java.awt.Font("72 Light", 0, 12)); // NOI18N
         jLabel35.setText("Gestión y Administración de Comunidades");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cerrar-sesion.png"))); // NOI18N
-        jButton1.setText("Cerrar Sesión");
-        jButton1.setToolTipText("");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cerrar-sesion.png"))); // NOI18N
+        btnLogout.setText("Cerrar Sesión");
+        btnLogout.setToolTipText("");
+        btnLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                btnLogoutMouseClicked(evt);
             }
         });
 
@@ -304,7 +295,7 @@ public class MainFrameAdminMVC extends javax.swing.JFrame {
                             .addComponent(jLabel35)
                             .addComponent(jLabel34))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24))
                     .addComponent(panelFooter))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -326,7 +317,7 @@ public class MainFrameAdminMVC extends javax.swing.JFrame {
                             .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                             .addComponent(jLabel35)))
-                    .addComponent(jButton1))
+                    .addComponent(btnLogout))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelCabecera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 612, Short.MAX_VALUE)
@@ -345,15 +336,15 @@ public class MainFrameAdminMVC extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
-        uc.cargarTablaUsuarios(guf.gUNombreText.getText(), guf.tblUsuarioGUF);
-        ctrl.limpiarDesktopPane(panelDatos);
-        ctrl.mostrarFrame(guf,panelDatos);
+        guf.cargarTablaUsuarios(guf.gUNombreText.getText());
+        limpiarDesktopPane();
+        mostrarFrame(guf);
     }//GEN-LAST:event_btnUsuariosMouseClicked
 
     private void btnInmueblesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInmueblesMouseClicked
-        ic.cargarTablaInmuebles("", gif.tblInmueblesGIF);
-        ctrl.limpiarDesktopPane(panelDatos);
-        ctrl.mostrarFrame(gif,panelDatos);
+        gif.cargarTablaInmuebles("");
+        limpiarDesktopPane();
+        mostrarFrame(gif);
     }//GEN-LAST:event_btnInmueblesMouseClicked
 
     private void btnServiciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnServiciosMouseClicked
@@ -364,9 +355,9 @@ public class MainFrameAdminMVC extends javax.swing.JFrame {
 //        gsf.show();
     }//GEN-LAST:event_btnServiciosMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
         ctrl.logoutAdmin();
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_btnLogoutMouseClicked
 
     private void btnProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProveedoresMouseClicked
 //        if (gpf.isVisible() == false) {
@@ -435,15 +426,32 @@ public class MainFrameAdminMVC extends javax.swing.JFrame {
         });
     }
 
-   
-   
-    private void dimensionarFrameDatos(JInternalFrame jIF) {
-        jIF.setLocation((btnUsuarios.location().x),
-                (btnUsuarios.location().y + btnUsuarios.getSize().height + 5));
-        jIF.setSize(JFrame.WIDTH - 30, JFrame.HEIGHT - jLabel4.getSize().height - 30 - btnUsuarios.getSize().height);
-        jIF.setVisible(true);
-        jIF.show();
-
+    
+    public void cargaInicialDatos(int id, String nombre, String apellidos){
+        jLabel42.setText(Integer.toString(id) + " - ");
+        jLabel37.setText(nombre + " " + apellidos);
+    }
+    
+    public void ocultarFrame(JInternalFrame jif){
+        jif.setVisible(false);
+        panelDatos.remove(jif);
+        jif = null;
+        
+    }
+    
+    public void mostrarFrame(JInternalFrame jif){
+        panelDatos.add(jif);
+        jif.setVisible(true);
+    }
+    
+    public void limpiarDesktopPane(){
+        for(JInternalFrame jif: panelDatos.getAllFrames()){
+            if (jif!=null){
+                jif.setVisible(false);
+                panelDatos.remove(jif);
+                jif = null;
+            }
+        }
     }
 
 //FUNCIONES DE FILTRADO
@@ -497,10 +505,10 @@ public class MainFrameAdminMVC extends javax.swing.JFrame {
     private javax.swing.JButton btnGastos;
     private javax.swing.JButton btnInmuebles;
     private javax.swing.JButton btnLiquidaciones;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnProveedores;
     private javax.swing.JButton btnServicios;
     private javax.swing.JButton btnUsuarios;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;

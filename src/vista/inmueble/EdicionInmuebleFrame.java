@@ -7,6 +7,19 @@ package vista.inmueble;
 import controlador.Controlador;
 import controlador.modelos.InmuebleControlador;
 import controlador.modelos.LiquidacionControlador;
+import controlador.modelos.ServicioControlador;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import modelo.Inmueble;
+import modelo.Liquidacion;
+import modelo.LiquidacionDetalleGasto;
+import modelo.LiquidacionDetalleServicio;
+import modelo.Servicio;
+import modelo.ServicioCuenta;
+import modelo.usuario.Vecino;
 
 /**
  *
@@ -17,6 +30,7 @@ public class EdicionInmuebleFrame extends javax.swing.JInternalFrame {
     Controlador ctrl;
     InmuebleControlador ic;
     LiquidacionControlador lc;
+    ServicioControlador sc;
     /**
      * Creates new form EdicionInmuebleFrame
      */
@@ -24,6 +38,7 @@ public class EdicionInmuebleFrame extends javax.swing.JInternalFrame {
         initComponents();
         ctrl = new Controlador();
         ic = new InmuebleControlador();
+        sc = new ServicioControlador();
         lc = new LiquidacionControlador();
     }
 
@@ -467,6 +482,10 @@ public class EdicionInmuebleFrame extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * 
+     * @param evt 
+     */
     private void txtIdEIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdEIKeyTyped
         String texto = txtIdEI.getText();
         char caracter = evt.getKeyChar();
@@ -474,7 +493,10 @@ public class EdicionInmuebleFrame extends javax.swing.JInternalFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtIdEIKeyTyped
-
+    /**
+     * 
+     * @param evt 
+     */
     private void txtDireccionEIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionEIKeyTyped
         String texto = txtDireccionEI.getText();
         char caracter = evt.getKeyChar();
@@ -482,45 +504,61 @@ public class EdicionInmuebleFrame extends javax.swing.JInternalFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtDireccionEIKeyTyped
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnAsignarEIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignarEIMouseClicked
         AsignacionInmuebleFrame aif = new AsignacionInmuebleFrame();
-        ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
-        ctrl.mostrarFrame(aif, ctrl.mfamvc.panelDatos);
-        ic.cargarTablaInmueblesFromEdit(
-            aif.tblInmueblesAI,
-            aif.tblSeleccionInmueblesAI,
-            aif.btnFiltrarInmuebleAI,
-            aif.btnLimpiarTablaAI,
-            aif.btnSeleccionarInmueblesAI,
-            aif.txtFiltrarInmuebleAI,
-            ic.obtenerInmueble(Integer.parseInt(txtIdEI.getText())));
-        ic.cargarTablaVecinosAsignacion("", aif.tblVecinosAI);
+        ctrl.ocultarFrameAdmin(this);
+        ctrl.mostrarFrameAdmin(aif);
+        aif.cargarTablaInmueblesFromEdit(ic.obtenerInmueble(Integer.parseInt(txtIdEI.getText())));
+        aif.cargarTablaVecinosAsignacion("");
     }//GEN-LAST:event_btnAsignarEIMouseClicked
 
+    /**
+     * 
+     * @param evt 
+     */
     private void btnCancelarEIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarEIMouseClicked
-        ctrl.ocultarFrame(this,ctrl.mfamvc.panelDatos);
+        ctrl.ocultarFrameAdmin(this);
     }//GEN-LAST:event_btnCancelarEIMouseClicked
 
+    /**
+     * 
+     * @param evt 
+     */
     private void btnGuardarEIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarEIMouseClicked
         GestionInmueblesFrame gif = new GestionInmueblesFrame();
         if (txtIdEI.getText().equals("")) {
-            ic.registrarInmueble(txtDireccionEI, gif.tblInmueblesGIF);
+            String direccion = txtDireccionEI.getText();
+            ic.registrarInmueble(direccion);
         } else {
-            ic.updateInmueble(txtIdEI, txtDireccionEI, txtIdVecinoEI, gif.tblInmueblesGIF);
+            int id = Integer.parseInt(txtIdEI.getText());
+            String direccion = txtDireccionEI.getText();
+            String idVecino = txtIdVecinoEI.getText();
+            ic.updateInmueble(id, direccion, idVecino);
         }
-        ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
-        ctrl.mostrarFrame(gif, ctrl.mfamvc.panelDatos);
+        gif.cargarTablaInmuebles("");
+        ctrl.ocultarFrameAdmin(this);
+        ctrl.mostrarFrameAdmin(gif);
     }//GEN-LAST:event_btnGuardarEIMouseClicked
 
+    /**
+     * 
+     * @param evt 
+     */
     private void btnAsignarEI1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignarEI1MouseClicked
         if(tblLiquidacionInmuebleEI.getSelectedRowCount()>0){
             int row = tblLiquidacionInmuebleEI.getSelectedRow();
             int idLiquidacion = (int)tblLiquidacionInmuebleEI.getValueAt(row, 0);
-            lc.cargarTablaLiquidacionDetalleInmueble(Integer.parseInt(txtIdEI.getText()), idLiquidacion, lblTotalEI, tblLiquidacionDetalleInmueble);
+            cargarTablaLiquidacionDetalleInmueble(Integer.parseInt(txtIdEI.getText()), idLiquidacion, lblTotalEI, tblLiquidacionDetalleInmueble);
         }
     }//GEN-LAST:event_btnAsignarEI1MouseClicked
 
+    /**
+     * 
+     */
     public void limpiarInmuebleForm() {
         txtIdEI.setText("");
         txtDireccionEI.setText("");
@@ -528,6 +566,93 @@ public class EdicionInmuebleFrame extends javax.swing.JInternalFrame {
         txtTelefonoEI.setText("");
         txtEmailEI.setText("");
         txtNombreEI.setText("");
+    }
+    /**
+     * 
+     * @param id 
+     */
+    public void cargarFormInmueble(int id) {
+        Inmueble i = ic.obtenerInmueble(id);
+        txtIdEI.setText(Integer.toString(i.getId()));
+        txtDireccionEI.setText(i.getDireccion());
+        Vecino v = i.getVecino();
+        if (v != null) {
+            txtIdVecinoEI.setText(Integer.toString(v.getId()));
+            txtNombreEI.setText(v.getNombre());
+            txtApellidosEI.setText(v.getApellidos());
+            txtTelefonoEI.setText(v.getTelefono());
+            txtEmailEI.setText(v.getEmail());
+        } else {
+            txtIdVecinoEI.setText("");
+            txtNombreEI.setText("");
+            txtApellidosEI.setText("");
+            txtTelefonoEI.setText("");
+            txtEmailEI.setText("");
+        }
+
+    }
+    /**
+     * 
+     * @param idInmueble 
+     */
+    public void cargarTablaServiciosInmueble(int idInmueble) {
+        DefaultTableModel model = (DefaultTableModel) tblServiciosEI.getModel();
+        model.setNumRows(0);
+        List <ServicioCuenta> listaServicioCuenta = ic.listarServiciosInmueble(idInmueble);
+        String tipoServicio;
+        for(ServicioCuenta scta : listaServicioCuenta){
+          Servicio s = sc.obtenerServicio(scta.getServicio().getId());
+            if(s.isOpcional()==true){
+                tipoServicio = "Opcional";
+            }else{
+                tipoServicio = "Obligatorio";
+            }
+            model.addRow(new Object[]{s.getId(), s.getNombre(), s.getTarifa(), tipoServicio});
+        }
+    }
+    /**
+     * 
+     * @param idInmueble 
+     */
+    public void cargarTablaLiquidacionesInmueble(int idInmueble) {
+        String tipo;
+        List <ServicioCuenta> listaServicioCuenta = ic.listarServiciosInmueble(idInmueble);
+        List<Liquidacion> lista = new ArrayList();
+        DefaultTableModel model = (DefaultTableModel) tblLiquidacionInmuebleEI.getModel();
+        model.setNumRows(0);
+        for(ServicioCuenta scta : listaServicioCuenta){
+            lista = lc.buscarLiquidacionInmueble(scta.getId());
+            for (int i = 0; i < lista.size(); i++) {
+            model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getFechaInicio(), lista.get(i).getFechaFin()});
+            }
+        }
+    }
+    /**
+     * 
+     * @param idInmueble
+     * @param idLiquidacion
+     * @param lblTotalEI
+     * @param tabla 
+     */
+    public void cargarTablaLiquidacionDetalleInmueble(int idInmueble, int idLiquidacion, JLabel lblTotalEI, JTable tabla) {
+        String tipo;
+        Liquidacion l = lc.obtenerLiquidacion(idLiquidacion);
+        Double cuotaFinal = 0.0;
+        List<LiquidacionDetalleServicio> listaServicios = lc.serviciosLiquidadosInmueble(idInmueble, idLiquidacion);
+        List<LiquidacionDetalleGasto> listaGastos = lc.gastosLiquidadosInmueble(idInmueble, idLiquidacion);
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        model.setNumRows(0);
+        for (int i = 0; i < listaServicios.size(); i++) {
+            model.addRow(new Object[]{"SERVICIO", listaServicios.get(i).getSc().getServicio().getNombre(), listaServicios.get(i).getCuota()});
+            Double cuota = listaServicios.get(i).getCuota();
+            cuotaFinal += cuota;
+        }
+        for (int i = 0; i < listaGastos.size(); i++) {
+            model.addRow(new Object[]{"GASTO", listaGastos.get(i).getGastoLiquidacion(), listaGastos.get(i).getCuota()});
+            Double cuota = listaGastos.get(i).getCuota();
+            cuotaFinal += cuota;
+        }
+        lblTotalEI.setText(String.format("%,.2f", cuotaFinal) + "€");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -11,6 +11,7 @@ package vista.usuario;
 
 import controlador.Controlador;
 import controlador.modelos.UsuarioControlador;
+import modelo.usuario.Admin;
 
 public class RegistroAdminFrame extends javax.swing.JInternalFrame {
     
@@ -267,10 +268,17 @@ public class RegistroAdminFrame extends javax.swing.JInternalFrame {
      */
     private void btnAltaAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaAdminMouseClicked
         GestionUsuariosFrame guf = new GestionUsuariosFrame();
-        uc.registrarAdmin(txtNombreRA, txtApellidosRA, txtTelefonoRA, txtEmailRA, txtUserNameRA, txtPasswordRA, guf.tblUsuarioGUF);
-        uc.cargarTablaUsuarios(guf.gUNombreText.getText(), guf.tblUsuarioGUF);
-        ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
-        ctrl.mostrarFrame(guf, ctrl.mfamvc.panelDatos);
+        String nombre = txtNombreRA.getText();
+        String apellidos =  txtApellidosRA.getText();
+        String telefono = txtTelefonoRA.getText();
+        String email = txtEmailRA.getText();
+        String userName = txtUserNameRA.getText();
+        String password = txtPasswordRA.getText();
+        Admin a = new Admin(nombre, apellidos,userName, password, telefono, email);
+        uc.registrarAdmin(a);
+        guf.cargarTablaUsuarios("");
+        ctrl.ocultarFrameAdmin(this);
+        ctrl.mostrarFrameAdmin(guf);
     }//GEN-LAST:event_btnAltaAdminMouseClicked
     
     /**
@@ -327,9 +335,9 @@ public class RegistroAdminFrame extends javax.swing.JInternalFrame {
      */
     private void btnCancelarAltaAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarAltaAdminMouseClicked
         GestionUsuariosFrame guf = new GestionUsuariosFrame();
-        uc.cargarTablaUsuarios(guf.gUNombreText.getText(), guf.tblUsuarioGUF);
-        ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
-        ctrl.mostrarFrame(guf, ctrl.mfamvc.panelDatos);
+        guf.cargarTablaUsuarios("");
+        ctrl.ocultarFrameAdmin(this);
+        ctrl.mostrarFrameAdmin(guf);
     }//GEN-LAST:event_btnCancelarAltaAdminMouseClicked
 
 

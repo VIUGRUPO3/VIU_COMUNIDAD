@@ -12,6 +12,10 @@ package vista.usuario;
 import controlador.Controlador;
 import controlador.modelos.InmuebleControlador;
 import controlador.modelos.UsuarioControlador;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import modelo.Inmueble;
+import modelo.usuario.Vecino;
 import vista.inmueble.EdicionInmuebleFrame;
 
 
@@ -359,18 +363,12 @@ public class EdicionVecinoFrame extends javax.swing.JInternalFrame {
      */
     private void btnDetalleEUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetalleEUMouseClicked
         if (tblInmueblesEVF.getSelectedRow() >= 0) {
+            int row = tblInmueblesEVF.getSelectedRow();
+            Inmueble i = ic.obtenerInmueble((int)tblInmueblesEVF.getValueAt(row, 0));
             EdicionInmuebleFrame eif = new EdicionInmuebleFrame();
-            ctrl.ocultarFrame(this,ctrl.mfamvc.panelDatos);
-            ctrl.mostrarFrame(eif, ctrl.mfamvc.panelDatos);
-            ic.cargarFormInmueble(
-                eif.txtIdEI,
-                eif.txtDireccionEI,
-                eif.txtIdVecinoEI,
-                eif.txtNombreEI,
-                eif.txtApellidosEI,
-                eif.txtTelefonoEI,
-                eif.txtEmailEI,
-                tblInmueblesEVF);
+            ctrl.ocultarFrameAdmin(this);
+            ctrl.mostrarFrameAdmin(eif);
+            eif.cargarFormInmueble(i.getId());
         }
     }//GEN-LAST:event_btnDetalleEUMouseClicked
 
@@ -380,9 +378,9 @@ public class EdicionVecinoFrame extends javax.swing.JInternalFrame {
      */
     private void btnCancelarEUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarEUMouseClicked
         GestionUsuariosFrame guf = new GestionUsuariosFrame();
-        ctrl.ocultarFrame(this, ctrl.mfamvc.panelDatos);
-        uc.cargarTablaUsuarios(guf.gUNombreText.getText(), guf.tblUsuarioGUF);
-        ctrl.mostrarFrame(guf, ctrl.mfamvc.panelDatos);
+        ctrl.ocultarFrameAdmin(this);
+        guf.cargarTablaUsuarios("");
+        ctrl.mostrarFrameAdmin(guf);
     }//GEN-LAST:event_btnCancelarEUMouseClicked
 
     /**
@@ -391,15 +389,54 @@ public class EdicionVecinoFrame extends javax.swing.JInternalFrame {
      */
     private void btnGuardarEUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarEUMouseClicked
         GestionUsuariosFrame guf = new GestionUsuariosFrame();
+        String nombre = txtNombreEU.getText();
+        String apellidos = txtApellidosEU.getText();
+        String telefono = txtTelefonoEU.getText();
+        String email = txtEmailEU.getText();
+        String userName = txtUserNameEU.getText();
+        String password = txtPasswordEU.getText();
         if (txtIdEU.getText().equals("")) {
-            uc.registrarVecino(txtNombreEU, txtApellidosEU, txtTelefonoEU, txtEmailEU, txtUserNameEU, txtPasswordEU, guf.tblUsuarioGUF);
+            uc.registrarVecino(nombre, apellidos, telefono, email, userName, password);
         } else {
-            uc.updateUsuario(txtIdEU, txtNombreEU, txtApellidosEU, txtTelefonoEU, txtEmailEU, txtUserNameEU, txtPasswordEU, guf.tblUsuarioGUF);
+            int id = Integer.parseInt(txtIdEU.getText());
+            uc.updateUsuario(id, nombre, apellidos, telefono, email, userName, password);
         }
-        ctrl.ocultarFrame(this,ctrl.mfamvc.panelDatos);
-        uc.cargarTablaUsuarios(guf.gUNombreText.getText(), guf.tblUsuarioGUF);
-        ctrl.mostrarFrame(guf, ctrl.mfamvc.panelDatos);
+        ctrl.ocultarFrameAdmin(this);
+        guf.cargarTablaUsuarios("");
+        ctrl.mostrarFrameAdmin(guf);
     }//GEN-LAST:event_btnGuardarEUMouseClicked
+    
+    public void cargarFormUsuario(int id){
+        Vecino v = uc.obtenerVecino(id);
+        txtIdEU.setText(Integer.toString(v.getId()));
+        txtNombreEU.setText(v.getNombre());
+        txtApellidosEU.setText(v.getApellidos());
+        txtTelefonoEU.setText(v.getTelefono());
+        txtEmailEU.setText(v.getEmail());
+        txtUserNameEU.setText(v.getUserName());
+        txtPasswordEU.setText(v.getClave());
+    }
+    
+    public void cargarTablaInmueblesVecino(int vecinoId) {
+        List<Inmueble> lista = ic.obtenerInmueblesVecino(vecinoId);
+        DefaultTableModel model = (DefaultTableModel) tblInmueblesEVF.getModel();
+        model.setNumRows(0);
+        for (int i = 0; i < lista.size(); i++) {
+            model.addRow(new Object[]{lista.get(i).getId(), lista.get(i).getDireccion(), lista.get(i).getVecino().getNombre() + " " + lista.get(i).getVecino().getApellidos()});
+        }
+    }
+    /**
+     * Metodo para limpiar los campos del formulario del usuario
+     */
+    public void limpiarUserForm() {
+            txtIdEU.setText("");
+            txtNombreEU.setText("");
+            txtApellidosEU.setText("");
+            txtTelefonoEU.setText("");
+            txtEmailEU.setText("");
+            txtUserNameEU.setText("");
+            txtPasswordEU.setText("");
+        }
     
     /**
      * Evento pulsar una tecla sobre el campo Telefono
@@ -493,18 +530,7 @@ public class EdicionVecinoFrame extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtNombreEUKeyTyped
     
-    /**
-     * Metodo para limpiar los campos del formulario del usuario
-     */
-    public void limpiarUserForm() {
-            txtIdEU.setText("");
-            txtNombreEU.setText("");
-            txtApellidosEU.setText("");
-            txtTelefonoEU.setText("");
-            txtEmailEU.setText("");
-            txtUserNameEU.setText("");
-            txtPasswordEU.setText("");
-        }
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarEU;
